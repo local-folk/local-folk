@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Newcastle Folk Events</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+  /* ============================================================
+     PASTE YOUR PUBLISHED SHEET CSV LINK BELOW (see CONFIG in the
+     <script> section near the bottom of this file)
+     ============================================================ */
+
+  :root {
+    --bg: #ffffff;
+    --text: #111111;
+    --line: #dddddd;
+    --btn-bg: #f0f0f0;
+    --btn-active: #333333;
+    --btn-active-text: #ffffff;
+  }
+  body.dark {
+    --bg: #111111;
+    --text: #f0f0f0;
+    --line: #333333;
+    --btn-bg: #222222;
+    --btn-active: #eeeeee;
+    --btn-active-text: #111111;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+  }
+  header h1 { font-size: 1.3rem; margin: 0; }
+  #darkToggle {
+    border: 1px solid var(--line);
+    background: var(--btn-bg);
+    color: var(--text);
+    border-radius: 20px;
+    padding: 6px 14px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  #map { height: 260px; width: 100%; }
+
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 16px;
+  }
+  .filter-btn {
+    border: 1px solid var(--line);
+    background: var(--btn-bg);
+    color: var(--text);
+    border-radius: 16px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .filter-btn.active {
+    background: var(--btn-active);
+    color: var(--btn-active-text);
+  }
+
+  #dateRangeBox {
+    display: none;
+    gap: 8px;
+    padding: 0 16px 10px;
+    align-items: center;
+  }
+  #dateRangeBox input { padding: 4px; }
+
+  #eventList {
+    padding: 0 16px 40px;
+  }
+  .event {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .event:last-child { border-bottom: none; }
+  .event-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 6px; }
+  .event-line { margin-bottom: 4px; font-size: 0.92rem; opacity: 0.9; }
+  .event-line a { color: inherit; }
+
+  #status { padding: 20px 16px; opacity: 0.7; }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>Newcastle Folk Events</h1>
+    <button id="darkToggle">Dark mode</button>
+  </header>
+
+  <div id="map"></div>
+
+  <div class="filter-row" id="typeFilters">
+    <button class="filter-btn" data-type="music">Music</button>
+    <button class="filter-btn" data-type="dance">Dance</button>
+    <button class="filter-btn" data-type="crafts">Crafts</button>
+    <button class="filter-btn" data-type="fayres">Fayres</button>
+  </div>
+
+  <div class="filter-row" id="dateFilters">
+    <button class="filter-btn" data-range="today">Today</button>
+    <button class="filter-btn" data-range="week">This Week</button>
+    <button class="filter-btn" data-range="weekend">This Weekend</button>
+    <button class="filter-btn" data-range="month">This Month</button>
+    <button class="filter-btn" data-range="custom">Choose Dates</button>
+    <button class="filter-btn active" data-range="all">All</button>
+  </div>
+
+  <div id="dateRangeBox">
+    <input type="date" id="dateFrom"> to
+    <input type="date" id="dateTo">
+  </div>
+
+  <div id="status">Loading events...</div>
+  <div id="eventList"></div>
+
+<script>
+// ============================================================
+// CONFIG - paste your published Google Sheet CSV link here
+// ============================================================
+const CONFIG = {
+  CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRtJN8W8AwbpQfUMykoANi9RfW6XA8ghJ-F-vagUGkQ8Ep5PWTbyae6f45kLlCVEpwJS2Mg0U9eKdz4/pub?gid=514788102&single=true&output=csv'
+};
+
+// Which of your Sheet's Category values count under each button.
+// Edit these lists any time to match your own category names.
+const TYPE_GROUPS = {
+  music: ['Folk Music', 'Music Session'],
+  dance: ['Ceilidh / Social Dance', 'Traditional Dance'],
+  crafts: ['Heritage Workshop', 'Storytelling'],
+  fayres: ['Craft Fayre']
+};
+
+let allEvents = [];
+let activeTypes = new Set();
+let activeRange = 'all';
+let map, markersLayer;
+
+function initMap() {
+  map = L.map('map').setView([54.9783, -1.6178], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  markersLayer = L.layerGroup().addTo(map);
+}
+
+function loadEvents() {
+  Papa.parse(CONFIG.CSV_URL, {
+    download: true,
+    header: true,
+    complete: function(results) {
+      allEvents = results.data
+        .filter(row => row.Title && row.Date)
+        .map(row => ({
+          title: row.Title,
+          description: row.Description,
+          category: row.Category || '',
+          date: row.Date,
+          startTime: row.StartTime || '',
+          endTime: row.EndTime || '',
+          venue: row.Venue || '',
+          address: row.Address || '',
+          lat: parseFloat(row.Lat),
+          lng: parseFloat(row.Lng),
+          sourceUrl: row.SourceURL || ''
+        }));
+      document.getElementById('status').style.display = 'none';
+      render();
+    },
+    error: function() {
+      document.getElementById('status').textContent =
+        'Could not load events - check the CSV link in CONFIG.';
+    }
+  });
+}
+
+function todayStr(offsetDays) {
+  const d = new Date();
+  d.setDate(d.getDate() + (offsetDays || 0));
+  return d.toISOString().slice(0, 10);
+}
+
+function passesDateFilter(dateStr) {
+  if (activeRange === 'all') return true;
+  const today = new Date(todayStr());
+  const eventDate = new Date(dateStr);
+
+  if (activeRange === 'today') return dateStr === todayStr();
+
+  if (activeRange === 'week') {
+    const weekEnd = new Date(today); weekEnd.setDate(today.getDate() + 7);
+    return eventDate >= today && eventDate <= weekEnd;
+  }
+  if (activeRange === 'weekend') {
+    const day = today.getDay(); // 0=Sun..6=Sat
+    const satOffset = (6 - day + 7) % 7;
+    const sat = new Date(today); sat.setDate(today.getDate() + satOffset);
+    const sun = new Date(sat); sun.setDate(sat.getDate() + 1);
+    return eventDate >= sat && eventDate <= sun;
+  }
+  if (activeRange === 'month') {
+    return eventDate.getMonth() === today.getMonth() &&
+      eventDate.getFullYear() === today.getFullYear();
+  }
+  if (activeRange === 'custom') {
+    const from = document.getElementById('dateFrom').value;
+    const to = document.getElementById('dateTo').value;
+    if (!from || !to) return true;
+    return dateStr >= from && dateStr <= to;
+  }
+  return true;
+}
+
+function passesTypeFilter(category) {
+  if (activeTypes.size === 0) return true;
+  for (const type of activeTypes) {
+    if ((TYPE_GROUPS[type] || []).includes(category)) return true;
+  }
+  return false;
+}
+
+function render() {
+  const filtered = allEvents
+    .filter(e => passesTypeFilter(e.category) && passesDateFilter(e.date))
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  markersLayer.clearLayers();
+  filtered.forEach(e => {
+    if (e.lat && e.lng) {
+      L.marker([e.lat, e.lng]).addTo(markersLayer)
+        .bindPopup('<b>' + e.title + '</b><br>' + e.venue);
+    }
+  });
+
+  const list = document.getElementById('eventList');
+  list.innerHTML = '';
+  if (filtered.length === 0) {
+    list.innerHTML = '<div id="status">No events match these filters.</div>';
+    return;
+  }
+
+  filtered.forEach(e => {
+    const div = document.createElement('div');
+    div.className = 'event';
+    div.innerHTML =
+      '<div class="event-title">' + e.title + '</div>' +
+      '<div class="event-line">' + formatDateDisplay(e.date) +
+        (e.startTime ? ' - ' + e.startTime : '') + '</div>' +
+      '<div class="event-line">' + e.venue + '</div>' +
+      (e.category ? '<div class="event-line">' + e.category + '</div>' : '') +
+      (e.sourceUrl ? '<div class="event-line"><a href="' + e.sourceUrl +
+        '" target="_blank">More info</a></div>' : '');
+    list.appendChild(div);
+  });
+}
+
+function formatDateDisplay(dateStr) {
+  const d = new Date(dateStr);
+  if (isNaN(d)) return dateStr;
+  return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+}
+
+// ---- Wiring up the buttons ----
+document.getElementById('darkToggle').addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+});
+
+document.querySelectorAll('#typeFilters .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const type = btn.dataset.type;
+    if (activeTypes.has(type)) {
+      activeTypes.delete(type);
+      btn.classList.remove('active');
+    } else {
+      activeTypes.add(type);
+      btn.classList.add('active');
+    }
+    render();
+  });
+});
+
+document.querySelectorAll('#dateFilters .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#dateFilters .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeRange = btn.dataset.range;
+    document.getElementById('dateRangeBox').style.display =
+      activeRange === 'custom' ? 'flex' : 'none';
+    render();
+  });
+});
+
+document.getElementById('dateFrom').addEventListener('change', render);
+document.getElementById('dateTo').addEventListener('change', render);
+
+initMap();
+loadEvents();
+</script>
+</body>
+</html>
