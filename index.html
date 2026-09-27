@@ -98,6 +98,51 @@
   .event-line a { color: inherit; }
 
   #status { padding: 20px 16px; opacity: 0.7; }
+
+  #modalOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+  }
+  #modalOverlay.open { display: flex; }
+  #modalBox {
+    position: relative;
+    background: var(--bg);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 24px;
+    max-width: 420px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  #modalClose {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.6rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  #modalContent .event-title { font-size: 1.2rem; margin-bottom: 10px; }
+  #modalContent .event-line { margin-bottom: 8px; }
+  #modalContent a.ticket-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background: var(--btn-active);
+    color: var(--btn-active-text);
+    border-radius: 16px;
+    text-decoration: none;
+  }
 </style>
 </head>
 <body>
@@ -113,7 +158,8 @@
     <button class="filter-btn" data-type="music">Music</button>
     <button class="filter-btn" data-type="dance">Dance</button>
     <button class="filter-btn" data-type="crafts">Crafts</button>
-    <button class="filter-btn" data-type="fayres">Fayres</button>
+    <button class="filter-btn" data-type="markets">Markets</button>
+    <button class="filter-btn" data-type="spokenword">Spoken Word</button>
   </div>
 
   <div class="filter-row" id="dateFilters">
@@ -133,12 +179,19 @@
   <div id="status">Loading events...</div>
   <div id="eventList"></div>
 
+  <div id="modalOverlay">
+    <div id="modalBox">
+      <button id="modalClose">&times;</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
 <script>
 // ============================================================
 // CONFIG - paste your published Google Sheet CSV link here
 // ============================================================
 const CONFIG = {
-  CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRtJN8W8AwbpQfUMykoANi9RfW6XA8ghJ-F-vagUGkQ8Ep5PWTbyae6f45kLlCVEpwJS2Mg0U9eKdz4/pub?gid=514788102&single=true&output=csv'
+  CSV_URL: 'PASTE_YOUR_PUBLISHED_CSV_LINK_HERE'
 };
 
 // Which of your Sheet's Category values count under each button.
@@ -146,8 +199,9 @@ const CONFIG = {
 const TYPE_GROUPS = {
   music: ['Folk Music', 'Music Session'],
   dance: ['Ceilidh / Social Dance', 'Traditional Dance'],
-  crafts: ['Heritage Workshop', 'Storytelling'],
-  fayres: ['Craft Fayre']
+  crafts: ['Heritage Workshop'],
+  markets: ['Market'],
+  spokenword: ['Spoken Word']
 };
 
 let allEvents = [];
@@ -258,25 +312,88 @@ function render() {
     return;
   }
 
-  filtered.forEach(e => {
+  filtered.forEach((e, i) => {
     const div = document.createElement('div');
     div.className = 'event';
     div.innerHTML =
       '<div class="event-title">' + e.title + '</div>' +
       '<div class="event-line">' + formatDateDisplay(e.date) +
-        (e.startTime ? ' - ' + e.startTime : '') + '</div>' +
+        (e.startTime ? ', ' + formatTimeDisplay(e.startTime) : '') + '</div>' +
       '<div class="event-line">' + e.venue + '</div>' +
       (e.category ? '<div class="event-line">' + e.category + '</div>' : '') +
-      (e.sourceUrl ? '<div class="event-line"><a href="' + e.sourceUrl +
-        '" target="_blank">More info</a></div>' : '');
+      '<button class="filter-btn more-info-btn" data-index="' + i + '">More info</button>';
     list.appendChild(div);
+  });
+
+  // Store the currently filtered list so the More info buttons
+  // (added just above) can look up the right event by index.
+  window.currentFilteredEvents = filtered;
+  document.querySelectorAll('.more-info-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      openModal(window.currentFilteredEvents[parseInt(btn.dataset.index, 10)]);
+    });
   });
 }
 
+// A link only counts as worth showing if it points somewhere
+// event-specific. Crack Magazine's link is always just the same
+// category listing page, not the actual event, so we hide it there.
+function isGenericListingLink(url) {
+  if (!url) return true;
+  return url.indexOf('thecrackmagazine.com/whatson') !== -1;
+}
+
+function openModal(e) {
+  const content = document.getElementById('modalContent');
+  content.innerHTML =
+    '<div class="event-title">' + e.title + '</div>' +
+    '<div class="event-line">' + formatDateDisplay(e.date) +
+      (e.startTime ? ', ' + formatTimeDisplay(e.startTime) : '') + '</div>' +
+    '<div class="event-line">' + e.venue + '</div>' +
+    (e.description ? '<div class="event-line">' + e.description + '</div>' : '') +
+    (!isGenericListingLink(e.sourceUrl)
+      ? '<a class="ticket-link" href="' + e.sourceUrl + '" target="_blank">View / book tickets</a>'
+      : '');
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalOverlay').addEventListener('click', (event) => {
+  if (event.target.id === 'modalOverlay') closeModal();
+});
+
+function ordinal(n) {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
 function formatDateDisplay(dateStr) {
-  const d = new Date(dateStr);
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return dateStr;
+  // Built from the parts directly (not new Date(dateStr)) so the
+  // displayed day never shifts due to timezone rounding.
+  const d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
   if (isNaN(d)) return dateStr;
-  return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+  const weekday = d.toLocaleDateString('en-GB', { weekday: 'long' });
+  const month = d.toLocaleDateString('en-GB', { month: 'long' });
+  return weekday + ' ' + ordinal(d.getDate()) + ' ' + month;
+}
+
+function formatTimeDisplay(timeStr) {
+  if (!timeStr) return '';
+  const match = timeStr.match(/(\d{1,2}):(\d{2})/);
+  if (!match) return timeStr; // unrecognised format - show as-is rather than hide it
+  let hour = parseInt(match[1], 10);
+  const minute = match[2];
+  const suffix = hour >= 12 ? 'pm' : 'am';
+  hour = hour % 12;
+  if (hour === 0) hour = 12;
+  return hour + ':' + minute + suffix;
 }
 
 // ---- Wiring up the buttons ----
