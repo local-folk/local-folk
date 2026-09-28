@@ -100,14 +100,24 @@
   #status { padding: 20px 16px; opacity: 0.7; }
 
   .venue-name { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
-  .venue-address { font-size: 0.8rem; opacity: 0.75; margin-bottom: 10px; }
+  .venue-address { font-size: 0.8rem; font-style: italic; opacity: 0.75; margin-bottom: 14px; }
   .venue-events { max-height: 180px; overflow-y: auto; }
-  .venue-event-link {
-    display: block;
+  .venue-event-line {
+    display: flex;
     margin-bottom: 8px;
     font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .venue-event-datetime {
+    flex-shrink: 0;
+    color: var(--text);
+  }
+  .venue-event-link {
     color: #1a5fb4;
     text-decoration: none;
+  }
+  .venue-event-link:hover {
+    text-decoration: underline;
   }
   .event { transition: background 0.4s, box-shadow 0.4s; }
   .event.highlight {
@@ -171,7 +181,8 @@
   <div id="map"></div>
 
   <div class="filter-row" id="typeFilters">
-    <button class="filter-btn" data-type="music">Music</button>
+    <button class="filter-btn" data-type="gigs">Gigs</button>
+    <button class="filter-btn" data-type="sessions">Sessions</button>
     <button class="filter-btn" data-type="dance">Dance</button>
     <button class="filter-btn" data-type="crafts">Crafts</button>
     <button class="filter-btn" data-type="markets">Markets</button>
@@ -213,7 +224,8 @@ const CONFIG = {
 // Which of your Sheet's Category values count under each button.
 // Edit these lists any time to match your own category names.
 const TYPE_GROUPS = {
-  music: ['Folk Music', 'Music Session'],
+  gigs: ['Folk Music'],
+  sessions: ['Music Session'],
   dance: ['Ceilidh / Social Dance', 'Traditional Dance'],
   crafts: ['Heritage Workshop'],
   markets: ['Market'],
@@ -385,6 +397,9 @@ function formatDateShort(dateStr) {
 
 // Venue name and address at the top, then one clickable line per
 // event: "Sun 25th Oct - 7:30pm - Event title".
+// Only the event title is a link (not the date/time), and when the
+// title wraps to a new line it stays aligned with the start of the
+// title rather than dropping back under the date.
 function buildVenuePopup(g) {
   let html = '<div class="venue-popup"><div class="venue-name">' +
     esc(g.venue || 'Event location') + '</div>';
@@ -392,9 +407,12 @@ function buildVenuePopup(g) {
   html += '<div class="venue-events">';
   g.events.forEach(e => {
     const time = e.startTime ? ' - ' + formatTimeDisplay(e.startTime) : '';
-    html += '<a href="#" class="venue-event-link" onclick="scrollToEvent(\'' +
-      e.domId + '\'); return false;">' +
-      esc(formatDateShort(e.date) + time + ' - ' + e.title) + '</a>';
+    const datetime = formatDateShort(e.date) + time + ' - ';
+    html += '<div class="venue-event-line">' +
+      '<span class="venue-event-datetime">' + esc(datetime) + '</span>' +
+      '<a href="#" class="venue-event-link" onclick="scrollToEvent(\'' +
+      e.domId + '\'); return false;">' + esc(e.title) + '</a>' +
+      '</div>';
   });
   return html + '</div></div>';
 }
@@ -459,15 +477,6 @@ function formatDateDisplay(dateStr) {
   return weekday + ' ' + ordinal(d.getDate()) + ' ' + month;
 }
 
-function formatDateShort(dateStr) {
-  const parts = dateStr.split('-');
-  if (parts.length !== 3) return dateStr;
-  const d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
-  if (isNaN(d)) return dateStr;
-  const weekday = d.toLocaleDateString('en-GB', { weekday: 'short' });
-  const month = d.toLocaleDateString('en-GB', { month: 'short' });
-  return weekday + ' ' + ordinal(d.getDate()) + ' ' + month;
-}
 function formatTimeDisplay(timeStr) {
   if (!timeStr) return '';
   const match = timeStr.match(/(\d{1,2}):(\d{2})/);
