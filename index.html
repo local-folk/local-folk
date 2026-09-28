@@ -99,6 +99,22 @@
 
   #status { padding: 20px 16px; opacity: 0.7; }
 
+  .venue-name { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+  .venue-address { font-size: 0.8rem; opacity: 0.75; margin-bottom: 10px; }
+  .venue-events { max-height: 180px; overflow-y: auto; }
+  .venue-event-link {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    color: #1a5fb4;
+    text-decoration: none;
+  }
+  .event { transition: background 0.4s, box-shadow 0.4s; }
+  .event.highlight {
+    background: var(--btn-bg);
+    box-shadow: -16px 0 0 var(--btn-bg), 16px 0 0 var(--btn-bg);
+  }
+
   #modalOverlay {
     display: none;
     position: fixed;
@@ -191,7 +207,7 @@
 // CONFIG - paste your published Google Sheet CSV link here
 // ============================================================
 const CONFIG = {
-  CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRtJN8W8AwbpQfUMykoANi9RfW6XA8ghJ-F-vagUGkQ8Ep5PWTbyae6f45kLlCVEpwJS2Mg0U9eKdz4/pub?gid=514788102&single=true&output=csv'
+  CSV_URL: 'PASTE_YOUR_PUBLISHED_CSV_LINK_HERE'
 };
 
 // Which of your Sheet's Category values count under each button.
@@ -224,7 +240,9 @@ function loadEvents() {
     complete: function(results) {
       allEvents = results.data
         .filter(row => row.Title && row.Date)
-        .map(row => ({
+        .map((row, idx) => ({
+          eventId: row.EventID || '',
+          domId: 'event-' + idx + '-' + (row.EventID || row.Title).replace(/[^a-zA-Z0-9]/g, '').slice(0, 40),
           title: row.Title,
           description: row.Description,
           category: row.Category || '',
@@ -298,11 +316,22 @@ function render() {
     .sort((a, b) => a.date.localeCompare(b.date));
 
   markersLayer.clearLayers();
+
+  // One pin per venue, however many events are on there.
+  const venueGroups = {};
   filtered.forEach(e => {
-    if (e.lat && e.lng) {
-      L.marker([e.lat, e.lng]).addTo(markersLayer)
-        .bindPopup('<b>' + e.title + '</b><br>' + e.venue);
+    if (!e.lat || !e.lng) return;
+    const key = (e.venue || '').toLowerCase().replace(/[^a-z0-9]/g, '') ||
+      (e.lat + ',' + e.lng);
+    if (!venueGroups[key]) {
+      venueGroups[key] = { venue: e.venue, address: e.address, lat: e.lat, lng: e.lng, events: [] };
     }
+    if (!venueGroups[key].address && e.address) venueGroups[key].address = e.address;
+    venueGroups[key].events.push(e);
+  });
+  Object.values(venueGroups).forEach(g => {
+    L.marker([g.lat, g.lng]).addTo(markersLayer)
+      .bindPopup(buildVenuePopup(g), { maxWidth: 320 });
   });
 
   const list = document.getElementById('eventList');
@@ -315,6 +344,7 @@ function render() {
   filtered.forEach((e, i) => {
     const div = document.createElement('div');
     div.className = 'event';
+    div.id = e.domId;
     div.innerHTML =
       '<div class="event-title">' + e.title + '</div>' +
       '<div class="event-line">' + formatDateDisplay(e.date) +
@@ -333,6 +363,51 @@ function render() {
       openModal(window.currentFilteredEvents[parseInt(btn.dataset.index, 10)]);
     });
   });
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function formatDateShort(dateStr) {
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return dateStr;
+  const d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+  if (isNaN(d)) return dateStr;
+  const weekday = d.toLocaleDateString('en-GB', { weekday: 'short' });
+  const month = d.toLocaleDateString('en-GB', { month: 'short' });
+  return weekday + ' ' + ordinal(d.getDate()) + ' ' + month;
+}
+
+// Venue name and address at the top, then one clickable line per
+// event: "Sun 25th Oct - 7:30pm - Event title".
+function buildVenuePopup(g) {
+  let html = '<div class="venue-popup"><div class="venue-name">' +
+    esc(g.venue || 'Event location') + '</div>';
+  if (g.address) html += '<div class="venue-address">' + esc(g.address) + '</div>';
+  html += '<div class="venue-events">';
+  g.events.forEach(e => {
+    const time = e.startTime ? ' - ' + formatTimeDisplay(e.startTime) : '';
+    html += '<a href="#" class="venue-event-link" onclick="scrollToEvent(\'' +
+      e.domId + '\'); return false;">' +
+      esc(formatDateShort(e.date) + time + ' - ' + e.title) + '</a>';
+  });
+  return html + '</div></div>';
+}
+
+// Closes the map popup and scrolls down to that event in the list,
+// briefly highlighting it so it's easy to spot.
+function scrollToEvent(domId) {
+  const el = document.getElementById(domId);
+  if (!el) return;
+  map.closePopup();
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.classList.add('highlight');
+  setTimeout(() => el.classList.remove('highlight'), 2000);
 }
 
 // A link only counts as worth showing if it points somewhere
@@ -384,6 +459,15 @@ function formatDateDisplay(dateStr) {
   return weekday + ' ' + ordinal(d.getDate()) + ' ' + month;
 }
 
+function formatDateShort(dateStr) {
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return dateStr;
+  const d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+  if (isNaN(d)) return dateStr;
+  const weekday = d.toLocaleDateString('en-GB', { weekday: 'short' });
+  const month = d.toLocaleDateString('en-GB', { month: 'short' });
+  return weekday + ' ' + ordinal(d.getDate()) + ' ' + month;
+}
 function formatTimeDisplay(timeStr) {
   if (!timeStr) return '';
   const match = timeStr.match(/(\d{1,2}):(\d{2})/);
@@ -393,7 +477,7 @@ function formatTimeDisplay(timeStr) {
   const suffix = hour >= 12 ? 'pm' : 'am';
   hour = hour % 12;
   if (hour === 0) hour = 12;
-  return hour + ':' + minute + suffix;
+  return hour + (minute === '00' ? '' : ':' + minute) + suffix;
 }
 
 // ---- Wiring up the buttons ----
