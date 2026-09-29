@@ -280,7 +280,14 @@ function loadEvents() {
 function todayStr(offsetDays) {
   const d = new Date();
   d.setDate(d.getDate() + (offsetDays || 0));
-  return d.toISOString().slice(0, 10);
+  // Built from the local date parts rather than toISOString().
+  // toISOString() reports the date in UTC, which is an hour ahead
+  // of us for most of the year - so late in the evening it would
+  // hand back tomorrow's date and quietly drop today's events out
+  // of the "Today" filter.
+  const m = ('0' + (d.getMonth() + 1)).slice(-2);
+  const day = ('0' + d.getDate()).slice(-2);
+  return d.getFullYear() + '-' + m + '-' + day;
 }
 
 function passesDateFilter(dateStr) {
@@ -345,8 +352,12 @@ function render() {
     // Extract postcode from address if available
     const postcodeMatch = (e.address || '').match(/([A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2})/i);
     const postcode = postcodeMatch ? postcodeMatch[1].replace(/\s+/g, '') : '';
-    // Use venue name + postcode as key, or just postcode if no venue name
-    const venueKey = venueNorm + '|' + postcode || (e.lat + ',' + e.lng);
+    // Group by venue name + postcode. If we have neither (an event
+    // with no venue and no usable address), fall back to the exact
+    // coordinates so those events don't all collapse onto one pin.
+    const venueKey = (venueNorm || postcode)
+      ? venueNorm + '|' + postcode
+      : e.lat + ',' + e.lng;
     if (!venueGroups[venueKey]) {
       venueGroups[venueKey] = { venue: e.venue, address: e.address, lat: e.lat, lng: e.lng, events: [] };
     }
