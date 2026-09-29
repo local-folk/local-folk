@@ -330,18 +330,23 @@ function render() {
   markersLayer.clearLayers();
 
   // One pin per venue, however many events are on there.
-  // Grouping ignores the word "The" (case-insensitive) so that
-  // "The Cluny 2" and "Cluny 2" are treated as the same venue,
-  // but "Cluny" and "Cluny 2" remain separate.
+  // Grouping ignores the word "The" (case-insensitive) and also
+  // uses postcode as a fallback so that venues with slightly
+  // different names but the same postcode are grouped together.
   const venueGroups = {};
   filtered.forEach(e => {
     if (!e.lat || !e.lng) return;
-    const venueKey = (e.venue || '')
+    const venueNorm = (e.venue || '')
       .toLowerCase()
       .replace(/^the\s+/, '')   // strip leading "The"
       .replace(/\s+the\s+/g, ' ') // strip "The" in the middle
       .replace(/[^a-z0-9]/g, '')  // remove non-alphanumeric
-      .trim() || (e.lat + ',' + e.lng);
+      .trim();
+    // Extract postcode from address if available
+    const postcodeMatch = (e.address || '').match(/([A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2})/i);
+    const postcode = postcodeMatch ? postcodeMatch[1].replace(/\s+/g, '') : '';
+    // Use venue name + postcode as key, or just postcode if no venue name
+    const venueKey = venueNorm + '|' + postcode || (e.lat + ',' + e.lng);
     if (!venueGroups[venueKey]) {
       venueGroups[venueKey] = { venue: e.venue, address: e.address, lat: e.lat, lng: e.lng, events: [] };
     }
