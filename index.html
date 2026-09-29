@@ -330,16 +330,23 @@ function render() {
   markersLayer.clearLayers();
 
   // One pin per venue, however many events are on there.
+  // Grouping ignores the word "The" (case-insensitive) so that
+  // "The Cluny 2" and "Cluny 2" are treated as the same venue,
+  // but "Cluny" and "Cluny 2" remain separate.
   const venueGroups = {};
   filtered.forEach(e => {
     if (!e.lat || !e.lng) return;
-    const key = (e.venue || '').toLowerCase().replace(/[^a-z0-9]/g, '') ||
-      (e.lat + ',' + e.lng);
-    if (!venueGroups[key]) {
-      venueGroups[key] = { venue: e.venue, address: e.address, lat: e.lat, lng: e.lng, events: [] };
+    const venueKey = (e.venue || '')
+      .toLowerCase()
+      .replace(/^the\s+/, '')   // strip leading "The"
+      .replace(/\s+the\s+/g, ' ') // strip "The" in the middle
+      .replace(/[^a-z0-9]/g, '')  // remove non-alphanumeric
+      .trim() || (e.lat + ',' + e.lng);
+    if (!venueGroups[venueKey]) {
+      venueGroups[venueKey] = { venue: e.venue, address: e.address, lat: e.lat, lng: e.lng, events: [] };
     }
-    if (!venueGroups[key].address && e.address) venueGroups[key].address = e.address;
-    venueGroups[key].events.push(e);
+    if (!venueGroups[venueKey].address && e.address) venueGroups[venueKey].address = e.address;
+    venueGroups[venueKey].events.push(e);
   });
   Object.values(venueGroups).forEach(g => {
     L.marker([g.lat, g.lng]).addTo(markersLayer)
