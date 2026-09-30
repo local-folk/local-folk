@@ -453,6 +453,8 @@ function favButtonHtml(e, extraClass) {
 // Pins sit at Leaflet's default size when unselected, drawn in the
 // palette's rust. Only the selected pin grows and darkens, so the
 // difference between the two states is easy to pick out.
+const PIN_SELECTED_H = 47;
+
 function pinIcon(selected) {
   const w = selected ? 29 : 25;
   const h = selected ? 47 : 41;
@@ -469,8 +471,27 @@ function pinIcon(selected) {
     className: 'map-pin',
     iconSize: [w, h],
     iconAnchor: [w / 2, h],
-    popupAnchor: [0, -h + 4]
+    popupAnchor: [0, -h]
   });
+}
+
+// Leaflet pans to fit a popup on its own, but a long list in a short
+// map can still leave the pin covered. The scrolling list is capped so
+// the popup and the pin fit together, then the map is panned the
+// minimum amount needed to bring the top of the popup into view.
+function showPinWithPopup(marker) {
+  const el = marker.getPopup().getElement();
+  const listEl = el && el.querySelector('.venue-events');
+  if (!listEl) return;
+  const size = map.getSize();
+  const chrome = el.offsetHeight - listEl.offsetHeight;
+  const roomForList = size.y - PIN_SELECTED_H - chrome - 24;
+  listEl.style.maxHeight = Math.max(60, roomForList) + 'px';
+  // Reading the height back forces the layout to settle.
+  const popupH = el.offsetHeight;
+  const tip = map.latLngToContainerPoint(marker.getLatLng());
+  const popupTop = tip.y - PIN_SELECTED_H - popupH;
+  if (popupTop < 8) map.panBy([0, popupTop - 8]);
 }
 
 function initMap() {
@@ -628,7 +649,10 @@ function render() {
       .bindPopup(buildVenuePopup(g), { maxWidth: 320 });
     // Darken the pin while its popup is open, so the selected venue is
     // obvious without having to read the popup.
-    marker.on('popupopen', () => marker.setIcon(pinIcon(true)));
+    marker.on('popupopen', () => {
+      marker.setIcon(pinIcon(true));
+      showPinWithPopup(marker);
+    });
     marker.on('popupclose', () => marker.setIcon(pinIcon(false)));
     venueMarkers[key] = marker;
   });
