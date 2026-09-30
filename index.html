@@ -13,35 +13,33 @@
      <script> section near the bottom of this file)
      ============================================================ */
 
-  /* Palette: #406F2C forest green, #646F29 olive, #765522 brown,
-     #AB8F34 gold, #BA502C terracotta. None of them are light, so
-     the page runs dark-green with parchment text rather than the
-     other way round. */
+  /* Palette: #3d6108 olive, #addb4b lime, #e3b505 yellow,
+     #006117 deep green, #814e00 brown. */
   :root {
-    --bg: #406F2C;
-    --text: #F5F2E6;
-    --line: #5B8A42;
+    --bg: #addb4b;
+    --text: #111111;
+    --line: #3d6108;
     --btn-bg: #f0f0f0;
     --btn-active: #333333;
     --btn-active-text: #ffffff;
-    --fav-empty: #A8B86A;
-    --fav-hover: #E5C86B;
-    --fav-on: #E5C86B;
-    --fav-on-dark: #F0D68C;
-    --type-btn-bg: #AB8F34;
-    --type-btn-line: #8E7526;
-    --type-btn-active: #765522;
+    --fav-empty: #6d8a26;
+    --fav-hover: #8a1c00;
+    --fav-on: #8a1c00;
+    --fav-on-dark: #6e1600;
+    --type-btn-bg: #e3b505;
+    --type-btn-line: #b08c04;
+    --type-btn-active: #3d6108;
   }
   body.dark {
-    --bg: #1E3312;
+    --bg: #00300F;
     --text: #F5F2E6;
-    --line: #3C5A2A;
+    --line: #4a7020;
     --btn-bg: #222222;
     --btn-active: #eeeeee;
     --btn-active-text: #111111;
-    --fav-empty: #7E8F55;
-    --fav-hover: #D9C06A;
-    --fav-on-dark: #D9C06A;
+    --fav-empty: #7d9a2e;
+    --fav-hover: #e8a06a;
+    --fav-on-dark: #e8a06a;
   }
 
   * { box-sizing: border-box; }
@@ -105,14 +103,14 @@
   }
   #typeFilters .filter-btn.active {
     background: var(--type-btn-active);
-    border-color: #C9A63F;
-    color: var(--text);
+    border-color: #2f4d06;
+    color: #ffffff;
   }
   #typeFilters .filter-btn:hover {
-    background: #C0A344;
+    background: #f0c62a;
   }
   #typeFilters .filter-btn.active:hover {
-    background: #63481C;
+    background: #2f4d06;
   }
 
   #dateRangeBox {
@@ -151,7 +149,7 @@
     color: var(--text);
   }
   .venue-event-link {
-    color: #8E7526;
+    color: #814e00;
     text-decoration: none;
   }
   .venue-event-link:hover {
@@ -159,25 +157,25 @@
   }
   .event { transition: background 0.4s, box-shadow 0.4s; }
   .event.highlight {
-    background: #4E7A37;
-    box-shadow: -16px 0 0 #4E7A37, 16px 0 0 #4E7A37;
+    background: #C4EC7C;
+    box-shadow: -16px 0 0 #C4EC7C, 16px 0 0 #C4EC7C;
   }
 
-  /* The map tiles are light and can't follow the theme, so they are
-     framed in gold to read as a deliberate panel rather than a white
-     block. The popup is restyled to match the rest of the page. */
+  /* The map tiles are light and can't follow the theme, so the map is
+     framed in the palette's deep green to read as a deliberate panel.
+     The popup is restyled to match the rest of the page. */
   #map {
-    border-bottom: 2px solid #AB8F34;
+    border-bottom: 2px solid #3d6108;
   }
   .leaflet-popup-content-wrapper {
-    background: #F5F2E6;
-    color: #243D18;
+    background: #FBF8EA;
+    color: #111111;
     border-radius: 8px;
   }
-  .leaflet-popup-tip { background: #F5F2E6; }
-  .leaflet-container a.leaflet-popup-close-button { color: #6B5A1E; }
-  .leaflet-container a.leaflet-popup-close-button:hover { color: #243D18; }
-  #map .venue-event-link { color: #8E7526; }
+  .leaflet-popup-tip { background: #FBF8EA; }
+  .leaflet-container a.leaflet-popup-close-button { color: #5a6b3a; }
+  .leaflet-container a.leaflet-popup-close-button:hover { color: #111111; }
+  #map .venue-event-link { color: #814e00; }
 
   #modalOverlay {
     display: none;
@@ -231,11 +229,11 @@
   /* Padding comes from .filter-row, so this row sits the same distance
      from the date filters as they do from the type filters. */
   #favFilterRow { align-items: center; }
-  #favFilterRow .filter-btn { border-color: #C9A63F; color: var(--text); }
+  #favFilterRow .filter-btn { border-color: #3d6108; color: #111111; }
   #favFilterRow .filter-btn.active {
     background: var(--type-btn-active);
-    color: var(--text);
-    border-color: #C9A63F;
+    color: #ffffff;
+    border-color: #2f4d06;
   }
   #favFilterRow .filter-btn:disabled { opacity: 0.45; cursor: default; }
   #favCount { font-size: 0.85rem; opacity: 0.7; }
