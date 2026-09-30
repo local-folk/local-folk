@@ -20,6 +20,8 @@
     --btn-bg: #f0f0f0;
     --btn-active: #333333;
     --btn-active-text: #ffffff;
+    --fav-empty: #9a9a9a;
+    --fav-on: #d1455b;
   }
   body.dark {
     --bg: #111111;
@@ -28,6 +30,7 @@
     --btn-bg: #222222;
     --btn-active: #eeeeee;
     --btn-active-text: #111111;
+    --fav-empty: #6f6f6f;
   }
 
   * { box-sizing: border-box; }
@@ -169,6 +172,43 @@
     border-radius: 16px;
     text-decoration: none;
   }
+
+  #favFilterRow { padding: 0 16px 10px; }
+  #favFilterRow .filter-btn { border-color: #d1455b; }
+  #favFilterRow .filter-btn.active {
+    background: #d1455b;
+    color: #ffffff;
+    border-color: #d1455b;
+  }
+  #favFilterRow .filter-btn:disabled { opacity: 0.45; cursor: default; }
+  #favFilterRow { align-items: center; }
+  #favCount { font-size: 0.85rem; opacity: 0.7; }
+
+  .fav-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font-size: 1.45rem;
+    line-height: 1;
+    color: var(--fav-empty);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fav-btn.on { color: var(--fav-on); }
+
+  .event-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .event-head .event-title { flex: 1; }
+  .event-head .fav-btn { flex-shrink: 0; margin-top: 2px; }
+
+  #modalContent .fav-btn { font-size: 1.7rem; }
 </style>
 </head>
 <body>
@@ -196,6 +236,11 @@
     <button class="filter-btn" data-range="month">This Month</button>
     <button class="filter-btn" data-range="custom">Choose Dates</button>
     <button class="filter-btn active" data-range="all">All</button>
+  </div>
+
+  <div class="filter-row" id="favFilterRow">
+    <button class="filter-btn" id="favFilter">Favourites only</button>
+    <span id="favCount"></span>
   </div>
 
   <div id="dateRangeBox">
@@ -235,7 +280,66 @@ const TYPE_GROUPS = {
 let allEvents = [];
 let activeTypes = new Set();
 let activeRange = 'all';
+let favouritesOnly = false;
 let map, markersLayer;
+
+// ---- Favourites ----
+// Stored in this browser only. Never sent anywhere.
+const FAV_KEY = 'newcastleFolkFavourites';
+let favIds = new Set();
+
+function loadFavourites() {
+  try {
+    const raw = localStorage.getItem(FAV_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) favIds = new Set(parsed.filter(x => typeof x === 'string'));
+  } catch (err) {
+    // Storage blocked - favourites still work, just not remembered.
+    favIds = new Set();
+  }
+}
+
+function saveFavourites() {
+  try {
+    localStorage.setItem(FAV_KEY, JSON.stringify(Array.from(favIds)));
+  } catch (err) {
+    // Could not persist - keep the in-memory copy working.
+  }
+}
+
+function isFavourite(e) {
+  return favIds.has(favId(e));
+}
+
+// EventID is built as date|venue|title, so it survives the sheet
+// being rewritten. Mirrors that same shape if EventID is blank.
+function favId(e) {
+  if (e.eventId) return e.eventId;
+  const norm = t => String(t || '').toLowerCase()
+    .replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
+  return e.date + '|' + norm(e.venue) + '|' + norm(e.title);
+}
+
+function toggleFavourite(e) {
+  const id = favId(e);
+  if (favIds.has(id)) favIds.delete(id);
+  else favIds.add(id);
+  saveFavourites();
+  render();
+}
+
+// Outline heart when not favourited, solid when it is.
+function favButtonHtml(e, extraClass) {
+  const on = isFavourite(e);
+  const label = on ? 'Remove from favourites' : 'Add to favourites';
+  return '<button class="fav-btn' + (on ? ' on' : '') + (extraClass ? ' ' + extraClass : '') + '"' +
+    ' data-dom-id="' + e.domId + '"' +
+    ' aria-pressed="' + (on ? 'true' : 'false') + '"' +
+    ' aria-label="' + label + '"' +
+    ' title="' + label + '">' +
+    (on ? '&#9829;' : '&#9825;') + '</button>';
+}
 
 function initMap() {
   map = L.map('map').setView([54.9783, -1.6178], 12);
@@ -290,6 +394,16 @@ function todayStr(offsetDays) {
   return d.getFullYear() + '-' + m + '-' + day;
 }
 
+// The week starts on Monday, so this returns the Monday of the week
+// that the given date falls in.
+function startOfWeek(date) {
+  const day = date.getDay(); // 0=Sun..6=Sat
+  const daysSinceMonday = (day === 0) ? 6 : day - 1;
+  const monday = new Date(date);
+  monday.setDate(date.getDate() - daysSinceMonday);
+  return monday;
+}
+
 function passesDateFilter(dateStr) {
   if (activeRange === 'all') return true;
   const today = new Date(todayStr());
@@ -298,13 +412,15 @@ function passesDateFilter(dateStr) {
   if (activeRange === 'today') return dateStr === todayStr();
 
   if (activeRange === 'week') {
-    const weekEnd = new Date(today); weekEnd.setDate(today.getDate() + 7);
-    return eventDate >= today && eventDate <= weekEnd;
+    const monday = startOfWeek(today);
+    const sunday = new Date(monday); sunday.setDate(monday.getDate() + 6);
+    return eventDate >= monday && eventDate <= sunday;
   }
   if (activeRange === 'weekend') {
-    const day = today.getDay(); // 0=Sun..6=Sat
-    const satOffset = (6 - day + 7) % 7;
-    const sat = new Date(today); sat.setDate(today.getDate() + satOffset);
+    // The Saturday and Sunday of the week we are currently in, so
+    // Friday looks forward and Sunday looks back at the day before.
+    const monday = startOfWeek(today);
+    const sat = new Date(monday); sat.setDate(monday.getDate() + 5);
     const sun = new Date(sat); sun.setDate(sat.getDate() + 1);
     return eventDate >= sat && eventDate <= sun;
   }
@@ -332,8 +448,10 @@ function passesTypeFilter(category) {
 function render() {
   const filtered = allEvents
     .filter(e => passesTypeFilter(e.category) && passesDateFilter(e.date))
+    .filter(e => !favouritesOnly || isFavourite(e))
     .sort((a, b) => a.date.localeCompare(b.date));
 
+  updateFavCount();
   markersLayer.clearLayers();
 
   // One pin per venue, however many events are on there.
@@ -381,7 +499,10 @@ function render() {
     div.className = 'event';
     div.id = e.domId;
     div.innerHTML =
-      '<div class="event-title">' + e.title + '</div>' +
+      '<div class="event-head">' +
+        '<div class="event-title">' + e.title + '</div>' +
+        favButtonHtml(e) +
+      '</div>' +
       '<div class="event-line">' + formatDateDisplay(e.date) +
         (e.startTime ? ', ' + formatTimeDisplay(e.startTime) : '') + '</div>' +
       '<div class="event-line">' + e.venue + '</div>' +
@@ -398,6 +519,33 @@ function render() {
       openModal(window.currentFilteredEvents[parseInt(btn.dataset.index, 10)]);
     });
   });
+
+  // Hearts are matched by dom-id back to the event, so the same
+  // handler works in the list and in the modal.
+  document.querySelectorAll('.fav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const e = allEvents.find(x => x.domId === btn.dataset.domId);
+      if (e) toggleFavourite(e);
+    });
+  });
+}
+
+function updateFavCount() {
+  const countEl = document.getElementById('favCount');
+  const btn = document.getElementById('favFilter');
+  const n = favIds.size;
+  if (n === 0) {
+    countEl.textContent = '';
+  } else {
+    countEl.textContent = n + (n === 1 ? ' favourite' : ' favourites');
+  }
+  // With nothing saved, grey the filter out rather than letting
+  // someone click into an empty list.
+  btn.disabled = (n === 0);
+  if (n === 0) {
+    favouritesOnly = false;
+    btn.classList.remove('active');
+  }
 }
 
 function esc(s) {
@@ -459,10 +607,23 @@ function isGenericListingLink(url) {
   return url.indexOf('thecrackmagazine.com/whatson') !== -1;
 }
 
+let modalEvent = null;
+
 function openModal(e) {
+  modalEvent = e;
+  paintModal();
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function paintModal() {
+  const e = modalEvent;
+  if (!e) return;
   const content = document.getElementById('modalContent');
   content.innerHTML =
-    '<div class="event-title">' + e.title + '</div>' +
+    '<div class="event-head">' +
+      '<div class="event-title">' + e.title + '</div>' +
+      favButtonHtml(e, 'modal-fav-btn') +
+    '</div>' +
     '<div class="event-line">' + formatDateDisplay(e.date) +
       (e.startTime ? ', ' + formatTimeDisplay(e.startTime) : '') + '</div>' +
     '<div class="event-line">' + e.venue + '</div>' +
@@ -470,11 +631,23 @@ function openModal(e) {
     (!isGenericListingLink(e.sourceUrl)
       ? '<a class="ticket-link" href="' + e.sourceUrl + '" target="_blank">View / book tickets</a>'
       : '');
-  document.getElementById('modalOverlay').classList.add('open');
+  const btn = content.querySelector('.fav-btn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const target = allEvents.find(x => x.domId === btn.dataset.domId);
+      if (!target) return;
+      toggleFavourite(target);
+      // render() rebuilds the list but not the modal.
+      if (document.getElementById('modalOverlay').classList.contains('open')) {
+        paintModal();
+      }
+    });
+  }
 }
 
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open');
+  modalEvent = null;
 }
 
 document.getElementById('modalClose').addEventListener('click', closeModal);
@@ -545,6 +718,14 @@ document.querySelectorAll('#dateFilters .filter-btn').forEach(btn => {
 document.getElementById('dateFrom').addEventListener('change', render);
 document.getElementById('dateTo').addEventListener('change', render);
 
+document.getElementById('favFilter').addEventListener('click', () => {
+  if (favIds.size === 0) return;
+  favouritesOnly = !favouritesOnly;
+  document.getElementById('favFilter').classList.toggle('active', favouritesOnly);
+  render();
+});
+
+loadFavourites();
 initMap();
 loadEvents();
 </script>
