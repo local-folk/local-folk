@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Newcastle Folk Events</title>
+<title>NE Folk</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -14,16 +14,19 @@
      ============================================================ */
 
   :root {
-    --bg: #ffffff;
+    --bg: #e9f2e6;
     --text: #111111;
-    --line: #dddddd;
+    --line: #c6d8c2;
     --btn-bg: #f0f0f0;
     --btn-active: #333333;
     --btn-active-text: #ffffff;
-    --fav-empty: #9a9a9a;
+    --fav-empty: #7d8a7b;
     --fav-hover: #d1455b;
     --fav-on: #d1455b;
     --fav-on-dark: #b03a4d;
+    --type-btn-bg: #f8ecb0;
+    --type-btn-line: #dcc978;
+    --type-btn-active: #d4a017;
   }
   body.dark {
     --bg: #111111;
@@ -47,12 +50,16 @@
 
   header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 12px 16px;
+    position: relative;
+    padding: 14px 16px;
   }
-  header h1 { font-size: 1.3rem; margin: 0; }
+  header h1 { font-size: 1.7rem; margin: 0; letter-spacing: 0.02em; }
+  /* Pinned to the right so the title can sit dead centre. */
   #darkToggle {
+    position: absolute;
+    right: 16px;
     border: 1px solid var(--line);
     background: var(--btn-bg);
     color: var(--text);
@@ -82,6 +89,25 @@
   .filter-btn.active {
     background: var(--btn-active);
     color: var(--btn-active-text);
+  }
+
+  /* Scoped to the event type row so the date filters and the
+     "More info" buttons keep their existing grey look. */
+  #typeFilters .filter-btn {
+    background: var(--type-btn-bg);
+    border-color: var(--type-btn-line);
+    color: #111111;
+  }
+  #typeFilters .filter-btn.active {
+    background: var(--type-btn-active);
+    border-color: var(--type-btn-active);
+    color: #111111;
+  }
+  #typeFilters .filter-btn:hover {
+    background: #fbe9a0;
+  }
+  #typeFilters .filter-btn.active:hover {
+    background: #c99712;
   }
 
   #dateRangeBox {
@@ -235,7 +261,7 @@
 <body>
 
   <header>
-    <h1>Newcastle Folk Events</h1>
+    <h1>NE Folk</h1>
     <button id="darkToggle">Dark mode</button>
   </header>
 
