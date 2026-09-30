@@ -161,6 +161,9 @@
     cursor: pointer;
     line-height: 1;
   }
+  /* Leaves room for the close button in the top right, so the heart
+     on the title row doesn't sit underneath it. */
+  #modalContent .event-head { padding-right: 34px; }
   #modalContent .event-title { font-size: 1.2rem; margin-bottom: 10px; }
   #modalContent .event-line { margin-bottom: 8px; }
   #modalContent a.ticket-link {
@@ -239,7 +242,7 @@
   </div>
 
   <div class="filter-row" id="favFilterRow">
-    <button class="filter-btn" id="favFilter">Favourites only</button>
+    <button class="filter-btn" id="favFilter">Favourites</button>
     <span id="favCount"></span>
   </div>
 
@@ -446,12 +449,16 @@ function passesTypeFilter(category) {
 }
 
 function render() {
+  // Runs before the list is built, so that removing the last
+  // favourite switches the filter off and the events reappear in the
+  // same pass rather than showing an empty list first.
+  updateFavCount();
+
   const filtered = allEvents
     .filter(e => passesTypeFilter(e.category) && passesDateFilter(e.date))
     .filter(e => !favouritesOnly || isFavourite(e))
     .sort((a, b) => a.date.localeCompare(b.date));
 
-  updateFavCount();
   markersLayer.clearLayers();
 
   // One pin per venue, however many events are on there.
