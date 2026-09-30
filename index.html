@@ -13,31 +13,35 @@
      <script> section near the bottom of this file)
      ============================================================ */
 
+  /* Palette: #406F2C forest green, #646F29 olive, #765522 brown,
+     #AB8F34 gold, #BA502C terracotta. None of them are light, so
+     the page runs dark-green with parchment text rather than the
+     other way round. */
   :root {
-    --bg: #c2dcb4;
-    --text: #111111;
-    --line: #9dbf8c;
+    --bg: #406F2C;
+    --text: #F5F2E6;
+    --line: #5B8A42;
     --btn-bg: #f0f0f0;
     --btn-active: #333333;
     --btn-active-text: #ffffff;
-    --fav-empty: #55684f;
-    --fav-hover: #b5263d;
-    --fav-on: #b5263d;
-    --fav-on-dark: #8e1a2c;
-    --type-btn-bg: #f5d465;
-    --type-btn-line: #d4ab2c;
-    --type-btn-active: #c9930f;
+    --fav-empty: #A8B86A;
+    --fav-hover: #E5C86B;
+    --fav-on: #E5C86B;
+    --fav-on-dark: #F0D68C;
+    --type-btn-bg: #AB8F34;
+    --type-btn-line: #8E7526;
+    --type-btn-active: #765522;
   }
   body.dark {
-    --bg: #111111;
-    --text: #f0f0f0;
-    --line: #333333;
+    --bg: #1E3312;
+    --text: #F5F2E6;
+    --line: #3C5A2A;
     --btn-bg: #222222;
     --btn-active: #eeeeee;
     --btn-active-text: #111111;
-    --fav-empty: #6f6f6f;
-    --fav-hover: #e4637a;
-    --fav-on-dark: #e4637a;
+    --fav-empty: #7E8F55;
+    --fav-hover: #D9C06A;
+    --fav-on-dark: #D9C06A;
   }
 
   * { box-sizing: border-box; }
@@ -71,6 +75,7 @@
 
   #map { height: 260px; width: 100%; }
 
+
   .filter-row {
     display: flex;
     flex-wrap: wrap;
@@ -100,14 +105,14 @@
   }
   #typeFilters .filter-btn.active {
     background: var(--type-btn-active);
-    border-color: var(--type-btn-active);
-    color: #111111;
+    border-color: #C9A63F;
+    color: var(--text);
   }
   #typeFilters .filter-btn:hover {
-    background: #f9df8c;
+    background: #C0A344;
   }
   #typeFilters .filter-btn.active:hover {
-    background: #b9870a;
+    background: #63481C;
   }
 
   #dateRangeBox {
@@ -146,7 +151,7 @@
     color: var(--text);
   }
   .venue-event-link {
-    color: #1a5fb4;
+    color: #8E7526;
     text-decoration: none;
   }
   .venue-event-link:hover {
@@ -154,9 +159,25 @@
   }
   .event { transition: background 0.4s, box-shadow 0.4s; }
   .event.highlight {
-    background: var(--btn-bg);
-    box-shadow: -16px 0 0 var(--btn-bg), 16px 0 0 var(--btn-bg);
+    background: #4E7A37;
+    box-shadow: -16px 0 0 #4E7A37, 16px 0 0 #4E7A37;
   }
+
+  /* The map tiles are light and can't follow the theme, so they are
+     framed in gold to read as a deliberate panel rather than a white
+     block. The popup is restyled to match the rest of the page. */
+  #map {
+    border-bottom: 2px solid #AB8F34;
+  }
+  .leaflet-popup-content-wrapper {
+    background: #F5F2E6;
+    color: #243D18;
+    border-radius: 8px;
+  }
+  .leaflet-popup-tip { background: #F5F2E6; }
+  .leaflet-container a.leaflet-popup-close-button { color: #6B5A1E; }
+  .leaflet-container a.leaflet-popup-close-button:hover { color: #243D18; }
+  #map .venue-event-link { color: #8E7526; }
 
   #modalOverlay {
     display: none;
@@ -210,11 +231,11 @@
   /* Padding comes from .filter-row, so this row sits the same distance
      from the date filters as they do from the type filters. */
   #favFilterRow { align-items: center; }
-  #favFilterRow .filter-btn { border-color: #d1455b; }
+  #favFilterRow .filter-btn { border-color: #C9A63F; color: var(--text); }
   #favFilterRow .filter-btn.active {
-    background: #d1455b;
-    color: #ffffff;
-    border-color: #d1455b;
+    background: var(--type-btn-active);
+    color: var(--text);
+    border-color: #C9A63F;
   }
   #favFilterRow .filter-btn:disabled { opacity: 0.45; cursor: default; }
   #favCount { font-size: 0.85rem; opacity: 0.7; }
