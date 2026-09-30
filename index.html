@@ -160,7 +160,7 @@
   }
   .venue-event-datetime {
     flex-shrink: 0;
-    color: var(--text);
+    color: #000000;
   }
   .venue-event-link {
     color: #b82e00;
@@ -182,14 +182,18 @@
   #map {
     border-bottom: 2px solid #cc9900;
   }
+  /* Popups sit on a cream panel in both themes, so their text is set
+     to black rather than following the theme. The artist/event name
+     keeps the palette's orange. */
   .leaflet-popup-content-wrapper {
     background: #ffffea;
-    color: #210000;
+    color: #000000;
     border-radius: 8px;
   }
   .leaflet-popup-tip { background: #ffffea; }
-  .leaflet-container a.leaflet-popup-close-button { color: #996633; }
-  .leaflet-container a.leaflet-popup-close-button:hover { color: #210000; }
+  .venue-name, .venue-address { color: #000000; }
+  .leaflet-container a.leaflet-popup-close-button { color: #000000; }
+  .leaflet-container a.leaflet-popup-close-button:hover { color: #666666; }
   #map .venue-event-link { color: #b82e00; }
 
   #modalOverlay {
@@ -772,9 +776,20 @@ function formatTimeDisplay(timeStr) {
 }
 
 // ---- Wiring up the buttons ----
+
+// The button names the mode it will switch to, not the one in use, so
+// it reads "Light mode" while dark is on.
+function updateThemeLabel() {
+  document.getElementById('darkToggle').textContent =
+    document.body.classList.contains('dark') ? 'Light mode' : 'Dark mode';
+}
+
 document.getElementById('darkToggle').addEventListener('click', () => {
   document.body.classList.toggle('dark');
+  updateThemeLabel();
 });
+
+updateThemeLabel();
 
 // One handler for the whole event list, attached once. Every card is
 // rebuilt on each filter change, so attaching a listener to each
