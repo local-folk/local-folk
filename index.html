@@ -529,13 +529,13 @@ function render() {
     div.id = e.domId;
     div.innerHTML =
       '<div class="event-head">' +
-        '<div class="event-title">' + e.title + '</div>' +
+        '<div class="event-title">' + esc(e.title) + '</div>' +
         favButtonHtml(e) +
       '</div>' +
-      '<div class="event-line">' + formatDateDisplay(e.date) +
-        (e.startTime ? ', ' + formatTimeDisplay(e.startTime) : '') + '</div>' +
-      '<div class="event-line">' + e.venue + '</div>' +
-      (e.category ? '<div class="event-line">' + e.category + '</div>' : '') +
+      '<div class="event-line">' + esc(formatDateDisplay(e.date)) +
+        (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</div>' +
+      '<div class="event-line">' + esc(e.venue) + '</div>' +
+      (e.category ? '<div class="event-line">' + esc(e.category) + '</div>' : '') +
       '<button class="filter-btn more-info-btn" data-index="' + i + '">More info</button>';
     list.appendChild(div);
   });
@@ -577,12 +577,23 @@ function updateFavCount() {
   }
 }
 
+// Turns a value from the sheet into something safe to drop into
+// innerHTML, so a stray < or & in a title shows as typed instead of
+// being read as markup.
 function esc(s) {
   return String(s)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Ticket links come from scraped sources, so only real web addresses
+// are turned into links. Anything else (a javascript: URL, or junk)
+// is ignored rather than made clickable.
+function isSafeUrl(url) {
+  return /^https?:\/\//i.test(String(url || '').trim());
 }
 
 function formatDateShort(dateStr) {
@@ -650,15 +661,15 @@ function paintModal() {
   const content = document.getElementById('modalContent');
   content.innerHTML =
     '<div class="event-head">' +
-      '<div class="event-title">' + e.title + '</div>' +
+      '<div class="event-title">' + esc(e.title) + '</div>' +
       favButtonHtml(e, 'modal-fav-btn') +
     '</div>' +
-    '<div class="event-line">' + formatDateDisplay(e.date) +
-      (e.startTime ? ', ' + formatTimeDisplay(e.startTime) : '') + '</div>' +
-    '<div class="event-line">' + e.venue + '</div>' +
-    (e.description ? '<div class="event-line">' + e.description + '</div>' : '') +
-    (!isGenericListingLink(e.sourceUrl)
-      ? '<a class="ticket-link" href="' + e.sourceUrl + '" target="_blank">View / book tickets</a>'
+    '<div class="event-line">' + esc(formatDateDisplay(e.date)) +
+      (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</div>' +
+    '<div class="event-line">' + esc(e.venue) + '</div>' +
+    (e.description ? '<div class="event-line">' + esc(e.description) + '</div>' : '') +
+    (!isGenericListingLink(e.sourceUrl) && isSafeUrl(e.sourceUrl)
+      ? '<a class="ticket-link" href="' + esc(e.sourceUrl) + '" target="_blank" rel="noopener noreferrer">View / book tickets</a>'
       : '');
   const btn = content.querySelector('.fav-btn');
   if (btn) {
