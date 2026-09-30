@@ -543,20 +543,6 @@ function render() {
   // Store the currently filtered list so the More info buttons
   // (added just above) can look up the right event by index.
   window.currentFilteredEvents = filtered;
-  document.querySelectorAll('.more-info-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      openModal(window.currentFilteredEvents[parseInt(btn.dataset.index, 10)]);
-    });
-  });
-
-  // Hearts are matched by dom-id back to the event, so the same
-  // handler works in the list and in the modal.
-  document.querySelectorAll('.fav-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const e = allEvents.find(x => x.domId === btn.dataset.domId);
-      if (e) toggleFavourite(e);
-    });
-  });
 }
 
 function updateFavCount() {
@@ -728,6 +714,25 @@ function formatTimeDisplay(timeStr) {
 // ---- Wiring up the buttons ----
 document.getElementById('darkToggle').addEventListener('click', () => {
   document.body.classList.toggle('dark');
+});
+
+// One handler for the whole event list, attached once. Every card is
+// rebuilt on each filter change, so attaching a listener to each
+// button individually meant re-attaching hundreds of them every time
+// a filter was tapped. The list container never changes, so listening
+// on it catches clicks on any card, present or future.
+document.getElementById('eventList').addEventListener('click', ev => {
+  const favBtn = ev.target.closest('.fav-btn');
+  if (favBtn) {
+    const e = allEvents.find(x => x.domId === favBtn.dataset.domId);
+    if (e) toggleFavourite(e);
+    return;
+  }
+  const moreBtn = ev.target.closest('.more-info-btn');
+  if (moreBtn) {
+    const e = window.currentFilteredEvents[parseInt(moreBtn.dataset.index, 10)];
+    if (e) openModal(e);
+  }
 });
 
 document.querySelectorAll('#typeFilters .filter-btn').forEach(btn => {
