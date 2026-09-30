@@ -450,16 +450,16 @@ function favButtonHtml(e, extraClass) {
     ' title="' + label + '">' + heart + '</button>';
 }
 
-// Bigger than Leaflet's default pin, and drawn in the palette's rust
-// so it stands out against the light map tiles. The selected variant is
-// a much darker rust, so an open pin is obvious at a glance.
-const PIN_W = 36, PIN_H = 54;
-
+// Pins sit at Leaflet's default size when unselected, drawn in the
+// palette's rust. Only the selected pin grows and darkens, so the
+// difference between the two states is easy to pick out.
 function pinIcon(selected) {
+  const w = selected ? 29 : 25;
+  const h = selected ? 47 : 41;
   const body = selected ? '#7A1A0A' : '#B04411';
   const edge = selected ? '#3A0D02' : '#7A1A0A';
   const html =
-    '<svg viewBox="0 0 24 36" width="' + PIN_W + '" height="' + PIN_H + '" aria-hidden="true">' +
+    '<svg viewBox="0 0 24 36" width="' + w + '" height="' + h + '" aria-hidden="true">' +
       '<path d="M12 35.2C12 35.2 22 22.6 22 12.4A10 10 0 0 0 2 12.4C2 22.6 12 35.2 12 35.2Z" ' +
         'fill="' + body + '" stroke="' + edge + '" stroke-width="1.6"/>' +
       '<circle cx="12" cy="12.4" r="3.7" fill="#ffffea"/>' +
@@ -467,9 +467,9 @@ function pinIcon(selected) {
   return L.divIcon({
     html: html,
     className: 'map-pin',
-    iconSize: [PIN_W, PIN_H],
-    iconAnchor: [PIN_W / 2, PIN_H],
-    popupAnchor: [0, -PIN_H + 4]
+    iconSize: [w, h],
+    iconAnchor: [w / 2, h],
+    popupAnchor: [0, -h + 4]
   });
 }
 
