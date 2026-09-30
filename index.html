@@ -32,6 +32,7 @@
     --type-btn-active: #b04411;
     --hl-bg: #ffe680;
     --hl-text: #210000;
+    --link: #b82e00;
   }
   body.dark {
     --bg: #210000;
@@ -45,6 +46,7 @@
     --fav-on-dark: #ffcc33;
     --hl-bg: #7a1a1a;
     --hl-text: #ffffea;
+    --link: #ffcc33;
   }
 
   * { box-sizing: border-box; }
@@ -154,6 +156,9 @@
   .venue-events { max-height: 180px; overflow-y: auto; }
   .venue-event-line {
     display: flex;
+    /* The trailing space in the date/time text is trimmed as a flex
+       item, so the gap supplies the space before the event name. */
+    gap: 0.3em;
     margin-bottom: 8px;
     font-size: 0.85rem;
     line-height: 1.4;
@@ -243,6 +248,13 @@
     color: var(--btn-active-text);
     border-radius: 16px;
     text-decoration: none;
+  }
+
+  /* The venue name doubles as a link back to the map pin. */
+  #modalContent a.venue-jump {
+    color: var(--link);
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   /* Padding comes from .filter-row, so this row sits the same distance
@@ -367,6 +379,7 @@ let activeTypes = new Set();
 let activeRange = 'all';
 let favouritesOnly = false;
 let map, markersLayer;
+let venueMarkers = {};
 
 // ---- Favourites ----
 // Stored in this browser only. Never sent anywhere.
@@ -534,6 +547,26 @@ function passesTypeFilter(category) {
   return false;
 }
 
+// Identifies which pin an event belongs to. Grouping ignores the word
+// "The" (case-insensitive) and also uses postcode as a fallback so
+// that venues with slightly different names but the same postcode are
+// grouped together. Shared with the modal so both always agree.
+function venueKeyFor(e) {
+  const venueNorm = (e.venue || '')
+    .toLowerCase()
+    .replace(/^the\s+/, '')    // strip leading "The"
+    .replace(/\s+the\s+/g, ' ') // strip "The" in the middle
+    .replace(/[^a-z0-9]/g, '')  // remove non-alphanumeric
+    .trim();
+  // Extract postcode from address if available
+  const postcodeMatch = (e.address || '').match(/([A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2})/i);
+  const postcode = postcodeMatch ? postcodeMatch[1].replace(/\s+/g, '') : '';
+  // If we have neither (an event with no venue and no usable address),
+  // fall back to the exact coordinates so those events don't all
+  // collapse onto one pin.
+  return (venueNorm || postcode) ? venueNorm + '|' + postcode : e.lat + ',' + e.lng;
+}
+
 function render() {
   // Runs before the list is built, so that removing the last
   // favourite switches the filter off and the events reappear in the
@@ -546,38 +579,24 @@ function render() {
     .sort((a, b) => a.date.localeCompare(b.date));
 
   markersLayer.clearLayers();
+  venueMarkers = {};
 
   // One pin per venue, however many events are on there.
-  // Grouping ignores the word "The" (case-insensitive) and also
-  // uses postcode as a fallback so that venues with slightly
-  // different names but the same postcode are grouped together.
   const venueGroups = {};
   filtered.forEach(e => {
     if (!e.lat || !e.lng) return;
-    const venueNorm = (e.venue || '')
-      .toLowerCase()
-      .replace(/^the\s+/, '')   // strip leading "The"
-      .replace(/\s+the\s+/g, ' ') // strip "The" in the middle
-      .replace(/[^a-z0-9]/g, '')  // remove non-alphanumeric
-      .trim();
-    // Extract postcode from address if available
-    const postcodeMatch = (e.address || '').match(/([A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2})/i);
-    const postcode = postcodeMatch ? postcodeMatch[1].replace(/\s+/g, '') : '';
-    // Group by venue name + postcode. If we have neither (an event
-    // with no venue and no usable address), fall back to the exact
-    // coordinates so those events don't all collapse onto one pin.
-    const venueKey = (venueNorm || postcode)
-      ? venueNorm + '|' + postcode
-      : e.lat + ',' + e.lng;
+    const venueKey = venueKeyFor(e);
     if (!venueGroups[venueKey]) {
       venueGroups[venueKey] = { venue: e.venue, address: e.address, lat: e.lat, lng: e.lng, events: [] };
     }
     if (!venueGroups[venueKey].address && e.address) venueGroups[venueKey].address = e.address;
     venueGroups[venueKey].events.push(e);
   });
-  Object.values(venueGroups).forEach(g => {
-    L.marker([g.lat, g.lng]).addTo(markersLayer)
+  Object.keys(venueGroups).forEach(key => {
+    const g = venueGroups[key];
+    const marker = L.marker([g.lat, g.lng]).addTo(markersLayer)
       .bindPopup(buildVenuePopup(g), { maxWidth: 320 });
+    venueMarkers[key] = marker;
   });
 
   const list = document.getElementById('eventList');
@@ -689,6 +708,20 @@ function scrollToEvent(domId) {
   setTimeout(() => el.classList.remove('highlight'), 2000);
 }
 
+// Closes the details popup, scrolls back up to the map and opens that
+// venue's pin. The map is only panned when the pin is off screen, so
+// a venue already in view doesn't jump about.
+function jumpToVenue(venueKey) {
+  const marker = venueMarkers[venueKey];
+  if (!marker) return;
+  closeModal();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (!map.getBounds().contains(marker.getLatLng())) {
+    map.setView(marker.getLatLng(), map.getZoom());
+  }
+  marker.openPopup();
+}
+
 // A link only counts as worth showing if it points somewhere
 // event-specific. Crack Magazine's link is always just the same
 // category listing page, not the actual event, so we hide it there.
@@ -709,6 +742,12 @@ function paintModal() {
   const e = modalEvent;
   if (!e) return;
   const content = document.getElementById('modalContent');
+  // The venue is a link only when this event actually has a pin.
+  const venueKey = venueKeyFor(e);
+  const venueHtml = venueMarkers[venueKey]
+    ? '<a href="#" class="venue-jump" onclick="jumpToVenue(\'' + venueKey + '\'); return false;">' +
+        esc(e.venue || 'Event location') + '</a>'
+    : esc(e.venue);
   content.innerHTML =
     '<div class="event-head">' +
       '<div class="event-title">' + esc(e.title) + '</div>' +
@@ -716,7 +755,7 @@ function paintModal() {
     '</div>' +
     '<div class="event-line">' + esc(formatDateDisplay(e.date)) +
       (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</div>' +
-    '<div class="event-line">' + esc(e.venue) + '</div>' +
+    '<div class="event-line">' + venueHtml + '</div>' +
     (e.description ? '<div class="event-line">' + esc(e.description) + '</div>' : '') +
     (!isGenericListingLink(e.sourceUrl) && isSafeUrl(e.sourceUrl)
       ? '<a class="ticket-link" href="' + esc(e.sourceUrl) + '" target="_blank" rel="noopener noreferrer">View / book tickets</a>'
