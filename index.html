@@ -181,7 +181,9 @@
     text-decoration: none;
   }
 
-  #favFilterRow { padding: 0 16px 10px; }
+  /* Padding comes from .filter-row, so this row sits the same distance
+     from the date filters as they do from the type filters. */
+  #favFilterRow { align-items: center; }
   #favFilterRow .filter-btn { border-color: #d1455b; }
   #favFilterRow .filter-btn.active {
     background: #d1455b;
@@ -189,7 +191,6 @@
     border-color: #d1455b;
   }
   #favFilterRow .filter-btn:disabled { opacity: 0.45; cursor: default; }
-  #favFilterRow { align-items: center; }
   #favCount { font-size: 0.85rem; opacity: 0.7; }
 
   /* Drawn as an SVG rather than a text character, so its shape and
@@ -732,15 +733,20 @@ document.querySelectorAll('#typeFilters .filter-btn').forEach(btn => {
   });
 });
 
-document.querySelectorAll('#dateFilters .filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('#dateFilters .filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeRange = btn.dataset.range;
-    document.getElementById('dateRangeBox').style.display =
-      activeRange === 'custom' ? 'flex' : 'none';
-    render();
+function setDateRange(range) {
+  // Pressing the button for the range that is already on switches it
+  // back to All, so a single button turns the filter on and off.
+  activeRange = (range === activeRange && range !== 'all') ? 'all' : range;
+  document.querySelectorAll('#dateFilters .filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.range === activeRange);
   });
+  document.getElementById('dateRangeBox').style.display =
+    activeRange === 'custom' ? 'flex' : 'none';
+  render();
+}
+
+document.querySelectorAll('#dateFilters .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => setDateRange(btn.dataset.range));
 });
 
 document.getElementById('dateFrom').addEventListener('change', render);
