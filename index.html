@@ -6,7 +6,7 @@
 <title>NE Folk</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -70,15 +70,15 @@
     padding: 14px 16px;
     background: #660000;
   }
-  /* EB Garamond, with old-style serifs already installed as a
-     fallback so the title still looks traditional if the web font
-     fails to load. */
+  /* IM Fell English. It has only one weight, so it must not be given
+     a bolder one or the browser fakes a bold and blurs the letterforms.
+     The fallbacks are old-style serifs already on most machines. */
   header h1 {
-    font-family: 'EB Garamond', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+    font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
     font-size: 2.1rem;
-    font-weight: 600;
+    font-weight: 400;
     margin: 0;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.03em;
     color: #ffffea;
   }
   /* Pinned to the right so the title can sit dead centre. */
