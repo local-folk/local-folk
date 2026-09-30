@@ -30,6 +30,8 @@
     --type-btn-bg: #ffcc33;
     --type-btn-line: #cc9900;
     --type-btn-active: #b04411;
+    --hl-bg: #ffe680;
+    --hl-text: #210000;
   }
   body.dark {
     --bg: #210000;
@@ -41,6 +43,8 @@
     --fav-empty: #6f6440;
     --fav-hover: #ffcc33;
     --fav-on-dark: #ffcc33;
+    --hl-bg: #7a1a1a;
+    --hl-text: #ffffea;
   }
 
   * { box-sizing: border-box; }
@@ -51,25 +55,34 @@
     color: var(--text);
   }
 
+  /* The title bar keeps the same dark red in both themes, so its
+     contents are set explicitly rather than inheriting the theme. */
   header {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     padding: 14px 16px;
+    background: #660000;
   }
-  header h1 { font-size: 1.7rem; margin: 0; letter-spacing: 0.02em; }
+  header h1 {
+    font-size: 1.7rem;
+    margin: 0;
+    letter-spacing: 0.02em;
+    color: #ffffea;
+  }
   /* Pinned to the right so the title can sit dead centre. */
   #darkToggle {
     position: absolute;
     right: 16px;
-    border: 1px solid var(--line);
-    background: var(--btn-bg);
-    color: var(--text);
+    border: 1px solid #cc9900;
+    background: #ffcc33;
+    color: #210000;
     border-radius: 20px;
     padding: 6px 14px;
     cursor: pointer;
     font-size: 0.9rem;
+    font-weight: 600;
   }
 
   #map { height: 260px; width: 100%; }
@@ -158,8 +171,9 @@
   }
   .event { transition: background 0.4s, box-shadow 0.4s; }
   .event.highlight {
-    background: #ffe680;
-    box-shadow: -16px 0 0 #ffe680, 16px 0 0 #ffe680;
+    background: var(--hl-bg);
+    color: var(--hl-text);
+    box-shadow: -16px 0 0 var(--hl-bg), 16px 0 0 var(--hl-bg);
   }
 
   /* The map tiles are light and can't follow the theme, so the map is
@@ -278,7 +292,7 @@
   #modalContent .fav-btn svg { width: 1.75rem; height: 1.6rem; }
 </style>
 </head>
-<body>
+<body class="dark">
 
   <header>
     <h1>NE Folk</h1>
