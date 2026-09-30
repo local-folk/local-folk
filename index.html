@@ -167,8 +167,9 @@
   }
   /* Leaves room for the close button in the top right, so the heart
      on the title row doesn't sit underneath it. */
-  #modalContent .event-head { padding-right: 34px; }
-  #modalContent .event-title { font-size: 1.2rem; margin-bottom: 10px; }
+  #modalContent .event-head { padding-right: 34px; margin-bottom: 10px; }
+  #modalContent .event-head .event-title { margin-bottom: 0; }
+  #modalContent .event-title { font-size: 1.2rem; }
   #modalContent .event-line { margin-bottom: 8px; }
   #modalContent a.ticket-link {
     display: inline-block;
@@ -205,25 +206,29 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     flex-shrink: 0;
   }
   .fav-btn.on { color: var(--fav-on); }
-  .fav-btn svg { display: block; width: 1.25rem; height: 1.14rem; }
+  .fav-btn svg { display: block; width: 1.6rem; height: 1.46rem; }
   .fav-btn:hover { color: var(--fav-hover); }
   .fav-btn.on:hover { color: var(--fav-on-dark); }
 
+  /* align-items:center centres each item on the title's margin box,
+     so the title's own bottom margin would drag the heart off line.
+     The gap below the row is set here instead. */
   .event-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    margin-bottom: 6px;
   }
-  .event-head .event-title { flex: 1; }
+  .event-head .event-title { flex: 1; margin-bottom: 0; }
 
-  #modalContent .fav-btn { width: 2.25rem; height: 2.25rem; }
-  #modalContent .fav-btn svg { width: 1.4rem; height: 1.28rem; }
+  #modalContent .fav-btn { width: 2.75rem; height: 2.75rem; }
+  #modalContent .fav-btn svg { width: 1.75rem; height: 1.6rem; }
 </style>
 </head>
 <body>
