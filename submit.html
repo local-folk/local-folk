@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submit an Event - NE Folk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap">
+<style>
+  /* ============================================================
+     PASTE YOUR DEPLOYED WEB APP URL BELOW (see CONFIG in the
+     <script> section at the bottom of this file)
+     ============================================================ */
+
+  /* Palette taken from thesession.org: pale page #ffffea with dark
+     red ink #210000, bright yellow #ffcc33, gold #cc9900, rust
+     button #b04411 and orange link #b82e00. */
+  :root {
+    --bg: #ffffea;
+    --text: #210000;
+    --line: #c9c2a0;
+    --field-bg: #ffffff;
+    --btn-active: #333333;
+    --btn-active-text: #ffffff;
+    --hl-bg: #ffe680;
+    --hl-text: #210000;
+    --link: #b82e00;
+  }
+  body.dark {
+    --bg: #210000;
+    --text: #ffffea;
+    --line: #5c3828;
+    --field-bg: #2a2a2a;
+    --btn-active: #eeeeee;
+    --btn-active-text: #111111;
+    --hl-bg: #7a1a1a;
+    --hl-text: #ffffea;
+    --link: #ffcc33;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  /* The title bar keeps the same dark red in both themes, so its
+     contents are set explicitly rather than inheriting the theme. */
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 14px 16px;
+    background: #660000;
+  }
+  /* The two header buttons sit together on the left. On a wide screen
+     they are pinned there and the bar is padded either side, so the
+     title stays dead centre without sliding underneath them. On a narrow
+     screen there isn't room for that, so the buttons drop below the
+     title instead, where the long "Submit an Event" heading has room to
+     be as big as it likes. */
+  @media (min-width: 620px) {
+    header { padding-left: 170px; padding-right: 170px; }
+  }
+  @media (max-width: 619px) {
+    header { flex-direction: column; gap: 10px; }
+  }
+  .header-btns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  @media (min-width: 620px) {
+    .header-btns { position: absolute; left: 14px; }
+  }
+  /* IM Fell English. It has only one weight, so it must not be given
+     a bolder one or the browser fakes a bold and blurs the letterforms. */
+  header h1 {
+    font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    font-size: 2.1rem;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: 0.03em;
+    color: #ffffea;
+  }
+  #darkToggle {
+    border: 1px solid #cc9900;
+    background: #ffcc33;
+    color: #210000;
+    border-radius: 20px;
+    padding: 6px 14px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  main {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+
+  #backLink {
+    display: inline-block;
+    color: var(--link);
+    text-decoration: underline;
+    margin-bottom: 20px;
+  }
+
+  .intro {
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+
+  .field { margin-bottom: 20px; }
+  .field label {
+    display: block;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  .optional {
+    font-weight: 400;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-left: 6px;
+  }
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--field-bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .field textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+  .hint {
+    display: block;
+    font-size: 0.82rem;
+    font-style: italic;
+    opacity: 0.75;
+    margin-top: 5px;
+  }
+  /* Set by the browser or by the check below when a required field
+     is left empty, so the person can see which one is missing. */
+  .field input:invalid,
+  .field textarea:invalid {
+    border-color: #b04411;
+  }
+
+  #submitBtn {
+    width: 100%;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    background: #ffcc33;
+    color: #210000;
+    border: 1px solid #cc9900;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  #submitBtn:hover { background: #ffdb66; }
+
+  /* Sits after the form for the successful return, and holds the
+     message in the palette's highlight colours. */
+  #thanks {
+    display: none;
+    background: var(--hl-bg);
+    color: var(--hl-text);
+    box-shadow: -16px 0 0 var(--hl-bg), 16px 0 0 var(--hl-bg);
+    padding: 24px 20px;
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+  #thanks h2 {
+    font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin: 0 0 12px;
+  }
+  #thanks.shown { display: block; }
+
+  #problem {
+    display: none;
+    border: 1px solid #b04411;
+    padding: 14px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  #problem.shown { display: block; }
+
+  /* ---- Slide-out menu ---- */
+  #menuBtn {
+    border: 1px solid #cc9900;
+    background: #ffcc33;
+    border-radius: 20px;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 32px;
+  }
+  #menuBtn:hover { background: #ffdb66; }
+  /* Drawn as an SVG rather than a text character, so its shape and its
+     height are the same in every browser. */
+  #menuBtn svg { display: block; width: 20px; height: 16px; }
+  #menuBtn svg line {
+    stroke: #210000;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+  }
+
+  /* The shade over the page. Tapping it closes the menu, so it needs a
+     cursor that says so. */
+  #menuShade {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+  }
+  #menuShade.open { display: block; }
+
+  /* The panel itself, sliding in from the left. */
+  #menuPanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 82vw;
+    background: var(--bg);
+    color: var(--text);
+    border-right: 2px solid #cc9900;
+    padding: 16px 20px 24px;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 1101;
+  }
+  #menuPanel.open { transform: translateX(0); }
+
+  #menuClose {
+    display: block;
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 6px;
+  }
+  #menuClose:hover { color: #b04411; }
+  #menuHeading {
+    font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    font-size: 1.4rem;
+    margin: 10px 0 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .menu-link {
+    display: block;
+    padding: 12px 0;
+    color: var(--link);
+    text-decoration: underline;
+    font-size: 1.05rem;
+  }
+  .menu-link:hover { text-decoration: none; }
+</style>
+</head>
+<body class="dark">
+
+  <header>
+    <div class="header-btns">
+      <button id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
+        <svg viewBox="0 0 20 16" aria-hidden="true" focusable="false">
+          <line x1="0" y1="2" x2="20" y2="2"/>
+          <line x1="0" y1="8" x2="20" y2="8"/>
+          <line x1="0" y1="14" x2="20" y2="14"/>
+        </svg>
+      </button>
+      <button id="darkToggle">Dark mode</button>
+    </div>
+    <h1>Submit an Event</h1>
+  </header>
+
+  <div id="menuShade"></div>
+  <div id="menuPanel">
+    <button id="menuClose" aria-label="Close menu">&times;</button>
+    <div id="menuHeading">Menu</div>
+    <a class="menu-link" href="index.html" id="menuHome">All Events</a>
+    <a class="menu-link" href="submit.html" id="menuSubmit">Submit An Event</a>
+  </div>
+
+  <main>
+    <a href="index.html" id="backLink">&larr; Back to all events</a>
+
+    <div id="thanks">
+      <h2>Thank you for your submission.</h2>
+      <p>We have it. We look at every submission before it appears on the
+         site, so it may take a little while to show up here.</p>
+    </div>
+
+    <div id="problem">
+      <p>Sorry - something went wrong and we did not get your submission.
+         Please try again, and if it keeps happening you can email us and
+         we'll add the event by hand.</p>
+    </div>
+
+    <p class="intro">Know of a folk event, session, ceilidh or workshop in
+       Newcastle and the North East that isn't listed? Tell us about it and
+       we'll take a look.</p>
+
+    <form id="submitForm" action="" method="post" novalidate>
+
+      <div class="field">
+        <label for="f-title">Event title</label>
+        <input type="text" id="f-title" name="title" maxlength="200" required>
+      </div>
+
+      <div class="field">
+        <label for="f-venue">Venue</label>
+        <input type="text" id="f-venue" name="venue" maxlength="200" required>
+        <span class="hint">The name of the place, e.g. The Hexagon.</span>
+      </div>
+
+      <div class="field">
+        <label for="f-date">Date</label>
+        <input type="date" id="f-date" name="date" required>
+      </div>
+
+      <div class="field">
+        <label for="f-time">Start time</label>
+        <input type="time" id="f-time" name="time" required>
+      </div>
+
+      <div class="field">
+        <label for="f-link">Link <span class="optional">optional</span></label>
+        <input type="url" id="f-link" name="link" maxlength="500"
+               placeholder="https://">
+        <span class="hint">A ticket page or a link to the event, if there is one.</span>
+      </div>
+
+      <div class="field">
+        <label for="f-desc">Brief description <span class="optional">optional</span></label>
+        <textarea id="f-desc" name="description" maxlength="1000"></textarea>
+      </div>
+
+      <!-- Left empty by people and filled in by automated rubbish. The
+           script throws any submission that arrives with this completed
+           away without a word. -->
+      <div class="field" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;">
+        <label for="f-trap">Leave this field empty</label>
+        <input type="text" id="f-trap" name="trap" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+  </main>
+
+<script>
+// ============================================================
+// CONFIG - paste the URL you get from Deploy > New deployment
+// here. It looks like https://script.google.com/macros/s/AKfycb.../exec
+// ============================================================
+const CONFIG = {
+  WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbzPeXzOdU-VG3ejWRlKG5VVPczL0px44f6WJrSewRlP4yM_2DYI7xHIubU7jyWAEmHZ/exec'
+};
+
+const form = document.getElementById('submitForm');
+form.action = CONFIG.WEB_APP_URL;
+
+// The script sends people back here with "sent" on the address once the
+// submission is saved. Everything else loads the form as normal, so
+// arriving from a bookmark or a shared link doesn't look like a success.
+const cameBack = new URLSearchParams(window.location.search).get('sent');
+if (cameBack === '1') {
+  document.getElementById('thanks').classList.add('shown');
+  form.style.display = 'none';
+  document.querySelector('.intro').style.display = 'none';
+} else if (window.location.search) {
+  // Any other marker on the address means the script couldn't save it.
+  // Without this being an "else", a successful submission would show the
+  // failure message as well as the thank you.
+  document.getElementById('problem').classList.add('shown');
+  form.style.display = 'none';
+}
+
+// The mandatory fields are checked here so a person is told which one is
+// missing before the form is sent, in the same message style as the rest
+// of the site.
+function missingField() {
+  if (!form.title.value.trim()) return 'Please enter the event title.';
+  if (!form.venue.value.trim()) return 'Please enter the venue.';
+  if (!form.date.value) return 'Please choose a date.';
+  if (!form.time.value) return 'Please enter a start time.';
+  return '';
+}
+
+form.addEventListener('submit', function(ev) {
+  const problem = missingField();
+  if (problem) {
+    ev.preventDefault();
+    window.alert(problem);
+    return;
+  }
+  // Guards against a double tap sending the same event twice.
+  document.getElementById('submitBtn').disabled = true;
+});
+
+// The button names the mode it will switch to, not the one in use, so
+// it reads "Light mode" while dark is on.
+function updateThemeLabel() {
+  document.getElementById('darkToggle').textContent =
+    document.body.classList.contains('dark') ? 'Light mode' : 'Dark mode';
+}
+
+document.getElementById('darkToggle').addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  updateThemeLabel();
+});
+
+updateThemeLabel();
+
+// ---- Slide-out menu ----
+const menuPanel = document.getElementById('menuPanel');
+const menuBtn = document.getElementById('menuBtn');
+const menuShade = document.getElementById('menuShade');
+
+function setMenuOpen(open) {
+  menuPanel.classList.toggle('open', open);
+  menuShade.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (open) menuPanel.scrollTop = 0;
+}
+
+menuBtn.addEventListener('click', () => setMenuOpen(!menuPanel.classList.contains('open')));
+document.getElementById('menuClose').addEventListener('click', () => setMenuOpen(false));
+menuShade.addEventListener('click', () => setMenuOpen(false));
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && menuPanel.classList.contains('open')) setMenuOpen(false);
+});
+</script>
+</body>
+</html>
