@@ -57,25 +57,44 @@
     padding: 14px 16px;
     background: #660000;
   }
-  /* The two header buttons sit together on the left. On a wide screen
-     they are pinned there and the bar is padded either side, so the
-     title stays dead centre without sliding underneath them. On a narrow
-     screen there isn't room for that, so the buttons drop below the
-     title instead, where the long "Submit an Event" heading has room to
-     be as big as it likes. */
+  /* The two header buttons sit at opposite ends. On a wide screen each is
+     pinned to its own side and the bar is padded either side, so the title
+     stays dead centre without sliding underneath them. On a narrow screen
+     there isn't room for that, so both buttons drop below the title
+     instead, where the long "Submit an Event" heading has room to be as
+     big as it likes. */
   @media (min-width: 620px) {
     header { padding-left: 170px; padding-right: 170px; }
   }
   @media (max-width: 619px) {
     header { flex-direction: column; gap: 10px; }
   }
+  #darkToggle {
+    position: absolute;
+    left: 14px;
+  }
+  #menuBtn {
+    position: absolute;
+    right: 14px;
+  }
+  /* On a narrow screen the buttons are back in the flow, held apart by
+     the row they sit in. */
+  @media (max-width: 619px) {
+    #darkToggle, #menuBtn {
+      position: static;
+    }
+  }
   .header-btns {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 8px;
   }
+  /* With both buttons positioned absolutely on a wide screen, the row
+     itself only needs to survive as a container for them. */
   @media (min-width: 620px) {
-    .header-btns { position: absolute; left: 14px; }
+    .header-btns { position: static; display: block; width: 0; height: 0; }
   }
   /* IM Fell English. It has only one weight, so it must not be given
      a bolder one or the browser fakes a bold and blurs the letterforms. */
@@ -190,6 +209,20 @@
     margin: 0 0 12px;
   }
   #thanks.shown { display: block; }
+
+  #thanksBtn {
+    margin-top: 6px;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    background: #ffcc33;
+    color: #210000;
+    border: 1px solid #cc9900;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  #thanksBtn:hover { background: #ffdb66; }
 
   #problem {
     display: none;
@@ -311,6 +344,7 @@
       <h2>Thank you for your submission.</h2>
       <p>We have it. We look at every submission before it appears on the
          site, so it may take a little while to show up here.</p>
+      <button type="button" id="thanksBtn">Submit Another Event</button>
     </div>
 
     <div id="problem">
@@ -382,21 +416,33 @@ const CONFIG = {
 const form = document.getElementById('submitForm');
 form.action = CONFIG.WEB_APP_URL;
 
-// The script sends people back here with "sent" on the address once the
-// submission is saved. Everything else loads the form as normal, so
-// arriving from a bookmark or a shared link doesn't look like a success.
-const cameBack = new URLSearchParams(window.location.search).get('sent');
-if (cameBack === '1') {
-  document.getElementById('thanks').classList.add('shown');
+const thanks = document.getElementById('thanks');
+const problem = document.getElementById('problem');
+const intro = document.querySelector('.intro');
+const submitBtn = document.getElementById('submitBtn');
+const thanksBtn = document.getElementById('thanksBtn');
+
+function showThanks() {
+  thanks.classList.add('shown');
+  problem.classList.remove('shown');
   form.style.display = 'none';
-  document.querySelector('.intro').style.display = 'none';
-} else if (window.location.search) {
-  // Any other marker on the address means the script couldn't save it.
-  // Without this being an "else", a successful submission would show the
-  // failure message as well as the thank you.
-  document.getElementById('problem').classList.add('shown');
-  form.style.display = 'none';
+  intro.style.display = 'none';
 }
+
+// Puts the form back, cleared and ready for the next event.
+function showForm() {
+  thanks.classList.remove('shown');
+  problem.classList.remove('shown');
+  form.style.display = '';
+  intro.style.display = '';
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Submit';
+  form.reset();
+  form.title.focus();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+thanksBtn.addEventListener('click', showForm);
 
 // The mandatory fields are checked here so a person is told which one is
 // missing before the form is sent, in the same message style as the rest
@@ -410,14 +456,40 @@ function missingField() {
 }
 
 form.addEventListener('submit', function(ev) {
-  const problem = missingField();
-  if (problem) {
+  const missing = missingField();
+  if (missing) {
     ev.preventDefault();
-    window.alert(problem);
+    window.alert(missing);
     return;
   }
-  // Guards against a double tap sending the same event twice.
-  document.getElementById('submitBtn').disabled = true;
+
+  // The form is sent in the background rather than being handed to the
+  // browser as a normal form post. A normal post would take the visitor
+  // away to a Google address, from where there was no way back to this
+  // page. Sending it like this keeps them here, so the thank you and the
+  // "Submit Another Event" button can be shown on this page.
+  ev.preventDefault();
+
+  // Stops a double tap sending the same event twice.
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+
+  // A browser will not let this page read the reply from another site,
+  // so the send is fire-and-forget: if it throws, nothing reached
+  // Google, and if it does not, the submission was delivered.
+  fetch(CONFIG.WEB_APP_URL, {
+    method: 'POST',
+    body: new FormData(form),
+    mode: 'no-cors'
+  }).then(function() {
+    showThanks();
+  }).catch(function() {
+    problem.classList.add('shown');
+    form.style.display = 'none';
+    intro.style.display = 'none';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit';
+  });
 });
 
 // The button names the mode it will switch to, not the one in use, so
