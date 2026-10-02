@@ -839,7 +839,7 @@ function paintModal() {
     '<div class="event-line">' + venueHtml + '</div>' +
     (e.description ? '<div class="event-line">' + esc(e.description) + '</div>' : '') +
     (!isGenericListingLink(e.sourceUrl) && isSafeUrl(e.sourceUrl)
-      ? '<a class="ticket-link" href="' + esc(e.sourceUrl) + '" target="_blank" rel="noopener noreferrer">View / book tickets</a>'
+      ? '<a class="ticket-link" href="' + esc(e.sourceUrl) + '" target="_blank" rel="noopener noreferrer">More info</a>'
       : '');
   const btn = content.querySelector('.fav-btn');
   if (btn) {
