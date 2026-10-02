@@ -72,16 +72,21 @@
   #darkToggle {
     position: absolute;
     left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
   }
   #menuBtn {
     position: absolute;
     right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
   }
   /* On a narrow screen the buttons are back in the flow, held apart by
      the row they sit in. */
   @media (max-width: 619px) {
     #darkToggle, #menuBtn {
       position: static;
+      transform: none;
     }
   }
   .header-btns {
