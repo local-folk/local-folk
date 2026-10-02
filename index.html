@@ -70,25 +70,43 @@
     padding: 14px 16px;
     background: #660000;
   }
-  /* The two header buttons sit together on the left. On a wide screen
-     they are pinned there and the bar is padded either side, so the
-     title stays dead centre without sliding underneath them. On a narrow
-     screen there isn't room for that, so the buttons drop below the
-     title instead, where the long "Submit an Event" heading has room to
-     be as big as it likes. */
+  /* The two header buttons sit at opposite ends. On a wide screen each is
+     pinned to its own side and the bar is padded either side, so the title
+     stays dead centre without sliding underneath them. On a narrow screen
+     there isn't room for that, so both buttons drop below the title
+     instead, where the long heading has room to be as big as it likes. */
   @media (min-width: 620px) {
     header { padding-left: 170px; padding-right: 170px; }
   }
   @media (max-width: 619px) {
     header { flex-direction: column; gap: 10px; }
   }
+  #darkToggle {
+    position: absolute;
+    left: 14px;
+  }
+  #menuBtn {
+    position: absolute;
+    right: 14px;
+  }
+  /* On a narrow screen the buttons are back in the flow, held apart by
+     the row they sit in. */
+  @media (max-width: 619px) {
+    #darkToggle, #menuBtn {
+      position: static;
+    }
+  }
   .header-btns {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 8px;
   }
+  /* With both buttons positioned absolutely on a wide screen, the row
+     itself only needs to survive as a container for them. */
   @media (min-width: 620px) {
-    .header-btns { position: absolute; left: 14px; }
+    .header-btns { position: static; display: block; width: 0; height: 0; }
   }
   /* IM Fell English. It has only one weight, so it must not be given
      a bolder one or the browser fakes a bold and blurs the letterforms.
