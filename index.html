@@ -70,6 +70,26 @@
     padding: 14px 16px;
     background: #660000;
   }
+  /* The two header buttons sit together on the left. On a wide screen
+     they are pinned there and the bar is padded either side, so the
+     title stays dead centre without sliding underneath them. On a narrow
+     screen there isn't room for that, so the buttons drop below the
+     title instead, where the long "Submit an Event" heading has room to
+     be as big as it likes. */
+  @media (min-width: 620px) {
+    header { padding-left: 170px; padding-right: 170px; }
+  }
+  @media (max-width: 619px) {
+    header { flex-direction: column; gap: 10px; }
+  }
+  .header-btns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  @media (min-width: 620px) {
+    .header-btns { position: absolute; left: 14px; }
+  }
   /* IM Fell English. It has only one weight, so it must not be given
      a bolder one or the browser fakes a bold and blurs the letterforms.
      The fallbacks are old-style serifs already on most machines. */
@@ -81,10 +101,7 @@
     letter-spacing: 0.03em;
     color: #ffffea;
   }
-  /* Pinned to the right so the title can sit dead centre. */
   #darkToggle {
-    position: absolute;
-    right: 16px;
     border: 1px solid #cc9900;
     background: #ffcc33;
     color: #210000;
@@ -330,14 +347,109 @@
 
   #modalContent .fav-btn { width: 2.75rem; height: 2.75rem; }
   #modalContent .fav-btn svg { width: 1.75rem; height: 1.6rem; }
+
+  /* ---- Slide-out menu ---- */
+  #menuBtn {
+    border: 1px solid #cc9900;
+    background: #ffcc33;
+    border-radius: 20px;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 32px;
+  }
+  #menuBtn:hover { background: #ffdb66; }
+  /* Drawn as an SVG rather than a text character, so its shape and its
+     height are the same in every browser. */
+  #menuBtn svg { display: block; width: 20px; height: 16px; }
+  #menuBtn svg line {
+    stroke: #210000;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+  }
+
+  /* The shade over the page. Tapping it closes the menu, so it needs a
+     cursor that says so. */
+  #menuShade {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+  }
+  #menuShade.open { display: block; }
+
+  /* The panel itself, sliding in from the left. */
+  #menuPanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 82vw;
+    background: var(--bg);
+    color: var(--text);
+    border-right: 2px solid #cc9900;
+    padding: 16px 20px 24px;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 1101;
+  }
+  #menuPanel.open { transform: translateX(0); }
+
+  #menuClose {
+    display: block;
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 6px;
+  }
+  #menuClose:hover { color: #b04411; }
+  #menuHeading {
+    font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    font-size: 1.4rem;
+    margin: 10px 0 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .menu-link {
+    display: block;
+    padding: 12px 0;
+    color: var(--link);
+    text-decoration: underline;
+    font-size: 1.05rem;
+  }
+  .menu-link:hover { text-decoration: none; }
 </style>
 </head>
 <body class="dark">
 
   <header>
+    <div class="header-btns">
+      <button id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
+        <svg viewBox="0 0 20 16" aria-hidden="true" focusable="false">
+          <line x1="0" y1="2" x2="20" y2="2"/>
+          <line x1="0" y1="8" x2="20" y2="8"/>
+          <line x1="0" y1="14" x2="20" y2="14"/>
+        </svg>
+      </button>
+      <button id="darkToggle">Dark mode</button>
+    </div>
     <h1>NE Folk</h1>
-    <button id="darkToggle">Dark mode</button>
   </header>
+
+  <div id="menuShade"></div>
+  <div id="menuPanel">
+    <button id="menuClose" aria-label="Close menu">&times;</button>
+    <div id="menuHeading">Menu</div>
+    <a class="menu-link" href="submit.html" id="menuSubmit">Submit An Event</a>
+  </div>
 
   <div id="map"></div>
 
@@ -910,6 +1022,25 @@ document.getElementById('darkToggle').addEventListener('click', () => {
 });
 
 updateThemeLabel();
+
+// ---- Slide-out menu ----
+const menuPanel = document.getElementById('menuPanel');
+const menuBtn = document.getElementById('menuBtn');
+const menuShade = document.getElementById('menuShade');
+
+function setMenuOpen(open) {
+  menuPanel.classList.toggle('open', open);
+  menuShade.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (open) menuPanel.scrollTop = 0;
+}
+
+menuBtn.addEventListener('click', () => setMenuOpen(!menuPanel.classList.contains('open')));
+document.getElementById('menuClose').addEventListener('click', () => setMenuOpen(false));
+menuShade.addEventListener('click', () => setMenuOpen(false));
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && menuPanel.classList.contains('open')) setMenuOpen(false);
+});
 
 // One handler for the whole event list, attached once. Every card is
 // rebuilt on each filter change, so attaching a listener to each
