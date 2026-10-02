@@ -1,0 +1,305 @@
+// NE Folk - website event submissions
+//
+// A standalone Apps Script project. It is deliberately NOT part of the
+// scraper project: this one only listens for submissions, the scraper
+// only fills the sheet. Deploy this one as a Web App, running as you,
+// open to anyone.
+
+
+// ============================================================
+// CONFIG - THE ONLY SECTION YOU NEED TO EDIT
+// ============================================================
+
+// The spreadsheet this writes into. Find it in the address bar of your
+// sheet: it is the long string between "/d/" and "/edit".
+const SPREADSHEET_ID = '1ELx3213mGMa7g25wZNiifRSydCXhwKhju9szDeNTkKk';
+
+// Where the confirmation email goes.
+const NOTIFY_EMAIL = 'emdias.media@gmail.com';
+
+// The page the submit button lives on, so people are sent back to it.
+const PAGE_URL = 'https://local-folk.github.io/local-folk/submit.html';
+
+const TAB_NAME = 'Pending';
+const SOURCE_NAME = 'Website submission';
+const STATUS_VALUE = 'Needs Review';
+
+const MAX_TITLE = 200;
+const MAX_VENUE = 200;
+const MAX_LINK = 500;
+const MAX_DESC = 1000;
+
+
+// ============================================================
+// RECEIVING THE SUBMISSION
+// ============================================================
+
+function doPost(e) {
+  const p = (e && e.parameter) || {};
+
+  // The hidden trap field. People can't see it so they leave it blank;
+  // automated rubbish fills it in and gets dropped here.
+  if (String(p.trap || '').trim() !== '') {
+    return goBack('?sent=1');
+  }
+
+  const title = clean(p.title, MAX_TITLE);
+  const venue = clean(p.venue, MAX_VENUE);
+  const date = normaliseDate(p.date);
+  const time = normaliseTime(p.time);
+  const link = clean(p.link, MAX_LINK);
+  const description = clean(p.description, MAX_DESC);
+
+  if (!title || !venue || !date || !time) {
+    return goBack('?error=1');
+  }
+
+  const status = saveSubmission_(title, description, date, time, venue, link);
+  if (!status) {
+    return goBack('?error=1');
+  }
+
+  try {
+    notify_(status);
+  } catch (err) {
+    // The submission is already saved, so this only means the nudge
+    // didn't arrive. Not worth failing the visitor's submission over.
+  }
+
+  return goBack('?sent=1');
+}
+
+// Nothing useful lives at this address. Returns the page itself so the
+// deployment can be checked in a browser.
+function doGet() {
+  return HtmlService.createHtmlOutput(
+    'NE Folk submissions is running.'
+  ).setTitle('NE Folk submissions');
+}
+
+
+// ============================================================
+// SAVING THE ROW
+// ============================================================
+
+// Returns the row number written, or '' if the sheet could not be
+// reached or written to.
+function saveSubmission_(title, description, date, time, venue, link) {
+  let ss;
+  try {
+    ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  } catch (err) {
+    return '';
+  }
+
+  const sheet = ss.getSheetByName(TAB_NAME);
+  if (!sheet) return '';
+
+  const geo = geocodeVenue_(venue);
+  const row = [
+    '',                                          // A EventID - left blank, filled in later
+    title,                                       // B Title
+    description,                                 // C Description
+    guessCategory_(title, description, venue),   // D Category
+    date,                                        // E Date
+    time,                                        // F StartTime
+    '',                                          // G EndTime
+    venue,                                       // H Venue
+    '',                                          // I Address
+    geo ? geo.lat : '',                          // J Lat
+    geo ? geo.lng : '',                          // K Lng
+    SOURCE_NAME,                                 // L SourceName
+    link,                                        // M SourceURL
+    STATUS_VALUE,                                // N Status
+    ''                                           // O Research Link
+  ];
+
+  sheet.appendRow(row);
+
+  const rowNumber = sheet.getLastRow();
+
+  // The Research Link search, same as the scraper's, so a submission is
+  // as easy to check as a scraped one.
+  const searchUrl = 'https://www.google.com/search?q=' +
+    encodeURIComponent(title + ' music');
+  try {
+    const cell = sheet.getRange(rowNumber, 15);
+    cell.setNumberFormat('Automatic');
+    cell.setFormula('=HYPERLINK("' + searchUrl + '","Search")');
+  } catch (err) {
+    // The row is saved; only the convenience link is missing.
+  }
+
+  return rowNumber;
+}
+
+
+// ============================================================
+// THE EMAIL NUDGE
+// ============================================================
+
+function notify_(rowNumber) {
+  const subject = 'NE Folk - new event submitted (row ' + rowNumber + ')';
+
+  const body = [
+    'A new event has been submitted through the website.',
+    '',
+    'It is in the ' + TAB_NAME + ' tab on row ' + rowNumber + '.',
+    '',
+    'Set its Status to Approved (or Rejected) and run your usual',
+    'routine to move it.',
+    '',
+    'Title: ' + getField_(rowNumber, 2),
+    'Venue: ' + getField_(rowNumber, 8),
+    'Date:  ' + getField_(rowNumber, 5) + ' at ' + getField_(rowNumber, 6),
+    'Link:  ' + (getField_(rowNumber, 13) || '(none given)'),
+    '',
+    'Description:',
+    getField_(rowNumber, 3) || '(none given)'
+  ].join('\n');
+
+  MailApp.sendEmail({
+    to: NOTIFY_EMAIL,
+    subject: subject,
+    body: body
+  });
+}
+
+function getField_(rowNumber, column) {
+  const value = SpreadsheetApp.openById(SPREADSHEET_ID)
+    .getSheetByName(TAB_NAME)
+    .getRange(rowNumber, column)
+    .getValue();
+  return value === null || value === undefined ? '' : String(value);
+}
+
+
+// ============================================================
+// GEOGRAPHY
+// ============================================================
+
+// Looks the venue up so the event gets a map pin. A failure here is
+// fine - your backfill routine will fill it in later, and an event with
+// no coordinates still shows in the list.
+function geocodeVenue_(venue) {
+  try {
+    const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' +
+      encodeURIComponent(venue + ', Newcastle upon Tyne, UK');
+    const res = UrlFetchApp.fetch(url, {
+      muteHttpExceptions: true,
+      headers: { 'User-Agent': 'NE-Folk-submissions/1.0' }
+    });
+    if (res.getResponseCode() !== 200) return null;
+    const hits = JSON.parse(res.getContentText());
+    if (!hits || !hits.length) return null;
+    const lat = parseFloat(hits[0].lat);
+    const lng = parseFloat(hits[0].lon);
+    if (isNaN(lat) || isNaN(lng)) return null;
+    return { lat: lat, lng: lng };
+  } catch (err) {
+    return null;
+  }
+}
+
+
+// ============================================================
+// CATEGORY
+// ============================================================
+
+// A one-word guess from the words in the submission. The sheet only
+// recognises these seven; anything else shows on the site with no
+// category, which is harmless but untidy. Worth changing by hand.
+function guessCategory_(title, description, venue) {
+  const text = ((title || '') + ' ' + (description || '') + ' ' + (venue || ''))
+    .toLowerCase();
+
+  if (/\b(ceilidh|bal|scottish country dance|country dance)\b/.test(text)) {
+    return 'Ceilidh / Social Dance';
+  }
+  if (/\b(barn dance|traditional dance|morris|step dance|clog dance)\b/.test(text)) {
+    return 'Traditional Dance';
+  }
+  if (/\b(session|singalong|sing along|sings the weathersfield|shanty)\b/.test(text)) {
+    return 'Music Session';
+  }
+  if (/\b(market|fair|fete|festival stall)\b/.test(text)) {
+    return 'Market';
+  }
+  if (/\b(workshop|craft|spinning|knitting|woodwork|ancestry)\b/.test(text)) {
+    return 'Heritage Workshop';
+  }
+  if (/\b(talk|lecture|storytelling|poetry)\b/.test(text)) {
+    return 'Spoken Word';
+  }
+  return 'Folk Music';
+}
+
+
+// ============================================================
+// TIDYING UP WHAT ARRIVED
+// ============================================================
+
+// Trims, flattens anything that looks like markup, and clips the length.
+function clean(value, maxLength) {
+  return String(value === undefined || value === null ? '' : value)
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, maxLength);
+}
+
+// Keeps only a plain YYYY-MM-DD, and rejects impossible dates.
+function normaliseDate(value) {
+  const text = String(value || '').trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return '';
+  const parts = text.split('-').map(Number);
+  const d = new Date(parts[0], parts[1] - 1, parts[2]);
+  if (d.getFullYear() !== parts[0] ||
+      d.getMonth() !== parts[1] - 1 ||
+      d.getDate() !== parts[2]) {
+    return '';
+  }
+  return text;
+}
+
+// Keeps only a plain HH:MM, so the site's friendly-time formatting works.
+function normaliseTime(value) {
+  const text = String(value || '').trim();
+  if (!/^\d{1,2}:\d{2}$/.test(text)) return '';
+  const parts = text.split(':').map(Number);
+  if (parts[0] < 0 || parts[0] > 23 || parts[1] < 0 || parts[1] > 59) return '';
+  return pad2(parts[0]) + ':' + pad2(parts[1]);
+}
+
+function pad2(n) {
+  return (n < 10 ? '0' : '') + n;
+}
+
+
+// ============================================================
+// SENDING THE VISITOR BACK
+// ============================================================
+
+// The submit button's page can't read the reply from here, so instead of
+// showing a message, people are returned to the page with a marker on the
+// address that the page recognises.
+function goBack(marker) {
+  const target = String(PAGE_URL || '').trim();
+  const base = target ? target.replace(/\?.*$/, '').replace(/#.*$/, '') : '';
+  if (!base) {
+    return HtmlService.createHtmlOutput(
+      'Thank you for your submission.'
+    ).setTitle('Thank you');
+  }
+  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8">' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<title>Thank you</title></head><body>' +
+    '<p>Thank you for your submission.</p>' +
+    '<script>top.location.replace(' + jsonString_(base + marker) + ');</script>' +
+    '</body></html>';
+  return HtmlService.createHtmlOutput(html).setTitle('Thank you');
+}
+
+function jsonString_(value) {
+  return JSON.stringify(String(value));
+}
