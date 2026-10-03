@@ -588,6 +588,12 @@ const TYPE_GROUPS = {
 };
 
 let allEvents = [];
+// Newcastle city centre, used as the map's starting point.
+const DEFAULT_CENTRE = [54.9783, -1.6178];
+const DEFAULT_ZOOM = 12;
+// Set once the map has opened wide enough to show every pin, so later
+// filter changes leave the visitor's chosen view alone.
+let mapHasFitted = false;
 let activeTypes = new Set();
 let activeRange = 'all';
 let favouritesOnly = false;
@@ -701,11 +707,37 @@ function showPinWithPopup(marker) {
 }
 
 function initMap() {
-  map = L.map('map').setView([54.9783, -1.6178], 12);
+  map = L.map('map').setView(DEFAULT_CENTRE, DEFAULT_ZOOM);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
   markersLayer = L.layerGroup().addTo(map);
+}
+
+// Zooms the map so every pin currently on it is visible, used once on
+// first load so the map opens showing the whole area rather than a fixed
+// stretch of Newcastle that may cut off Whitley Bay, Jarrow or the coast.
+//
+// A single pin would otherwise fill the screen at maximum zoom, so with
+// only one (or none) the normal view is kept.
+function fitMapToPins() {
+  if (!map || !map.fitBounds) return false;
+  const pts = [];
+  markersLayer.eachLayer(m => {
+    const p = m.getLatLng();
+    if (p) pts.push([p.lat, p.lng]);
+  });
+  // One pin, or none, would zoom to maximum on a single point, so the
+  // normal Newcastle view is left alone.
+  if (pts.length < 2) return false;
+  // The map can be asked to fit before it has settled to its real size,
+  // which would give the wrong answer, so make sure it has.
+  if (map.invalidateSize) map.invalidateSize();
+  // Jumps rather than animates. Leaflet's zoom animation can be left
+  // part-finished when the events are still arriving, and a half-finished
+  // zoom leaves the map at its old level with pins off screen.
+  map.fitBounds(pts, { padding: [30, 30], maxZoom: DEFAULT_ZOOM, animate: false });
+  return true;
 }
 
 function loadEvents() {
@@ -862,6 +894,13 @@ function render() {
     marker.on('popupclose', () => marker.setIcon(pinIcon(false)));
     venueMarkers[key] = marker;
   });
+
+  // On the very first pass, open the map wide enough to show every pin.
+  // Only once, so that tapping a filter afterwards doesn't yank the view
+  // away from wherever the visitor has moved it.
+  if (!mapHasFitted) {
+    if (fitMapToPins()) mapHasFitted = true;
+  }
 
   const list = document.getElementById('eventList');
   list.innerHTML = '';
