@@ -86,21 +86,23 @@
     top: 50%;
     transform: translateY(-50%);
   }
+  /* The same yellow and gold as the event type filter buttons, with a
+     rounded pill shape and the same gold outline. */
   .kofi-button {
     display: inline-block;
     white-space: nowrap;
-    padding: 5px 12px;
-    border-radius: 4px;
-    background-color: #cc9900;
-    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 16px;
+    background-color: #ffcc33;
+    border: 1px solid #cc9900;
+    color: #111111;
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 700;
-    border: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
   }
   .kofi-button:hover {
     text-decoration: none;
-    filter: brightness(1.08);
+    background-color: #ffdb66;
   }
   .kofi-button .kofiimg {
     vertical-align: middle;
@@ -140,17 +142,6 @@
     letter-spacing: 0.03em;
     color: #ffffea;
   }
-  #darkToggle {
-    border: 1px solid #cc9900;
-    background: #ffcc33;
-    color: #210000;
-    border-radius: 20px;
-    padding: 6px 14px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-
   main {
     max-width: 560px;
     margin: 0 auto;
@@ -345,19 +336,21 @@
     font-size: 1.05rem;
   }
   .menu-link:hover { text-decoration: none; }
-  /* The dark mode button sits in the menu rather than the header bar, so
-     it is styled to match the menu links above it. */
+  /* The dark mode option is a button rather than a link, but it is listed
+     alongside the links and has to look identical to them. Buttons come
+     with a background and a border of their own, so both are cleared. */
   .menu-btn {
     display: block;
     width: 100%;
     text-align: left;
     padding: 12px 0;
     background: none;
-    border: none;
-    border-top: 1px solid var(--line);
+    border: 0;
+    border-radius: 0;
     color: var(--link);
     font-family: inherit;
     font-size: 1.05rem;
+    line-height: inherit;
     text-decoration: underline;
     cursor: pointer;
   }
@@ -392,6 +385,8 @@
     <div id="menuHeading">Menu</div>
     <a class="menu-link" href="index.html" id="menuHome">All Events</a>
     <a class="menu-link" href="submit.html" id="menuSubmit">Submit An Event</a>
+    <a class="menu-link" href="https://ko-fi.com/thekirn" id="menuSupport"
+       target="_blank" rel="noopener noreferrer">Support</a>
     <button id="darkToggle" class="menu-btn">Dark mode</button>
   </div>
 
