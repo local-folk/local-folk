@@ -57,34 +57,63 @@
     padding: 14px 16px;
     background: #660000;
   }
-  /* The two header buttons sit at opposite ends. On a wide screen each is
-     pinned to its own side and the bar is padded either side, so the title
-     stays dead centre without sliding underneath them. On a narrow screen
-     there isn't room for that, so both buttons drop below the title
-     instead, where the long "Submit an Event" heading has room to be as
-     big as it likes. */
+  /* The menu button sits at the left and the Ko-fi button at the right. On
+     a wide screen each is pinned to its own side and the bar is padded
+     either side, so the title stays dead centre without sliding underneath
+     them. On a narrow screen there isn't room for that, so both drop below
+     the title instead, where the long "Submit an Event" heading has room to
+     be as big as it likes. */
   @media (min-width: 620px) {
-    header { padding-left: 170px; padding-right: 170px; }
+    header { padding-left: 110px; padding-right: 110px; }
   }
   @media (max-width: 619px) {
     header { flex-direction: column; gap: 10px; }
   }
-  #darkToggle {
+  #menuBtn {
     position: absolute;
     left: 14px;
     top: 50%;
     transform: translateY(-50%);
   }
-  #menuBtn {
+  /* Ko-fi's own button markup, rebuilt as plain HTML. Their widget uses
+     document.writeln, which can blank the page if it runs late, and it
+     offers no way to say where the button should go. This version sits
+     exactly where the header wants it. The colour, text and account are
+     the three values passed to their init(), kept here instead. */
+  #kofiSlot {
     position: absolute;
     right: 14px;
     top: 50%;
     transform: translateY(-50%);
   }
+  .kofi-button {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background-color: #cc9900;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 0;
+  }
+  .kofi-button:hover {
+    text-decoration: none;
+    filter: brightness(1.08);
+  }
+  .kofi-button .kofiimg {
+    vertical-align: middle;
+    height: 13px;
+    width: 20px;
+    margin-right: 6px;
+    margin-bottom: 3px;
+    border: none;
+  }
   /* On a narrow screen the buttons are back in the flow, held apart by
      the row they sit in. */
   @media (max-width: 619px) {
-    #darkToggle, #menuBtn {
+    #menuBtn, #kofiSlot {
       position: static;
       transform: none;
     }
@@ -96,8 +125,8 @@
     width: 100%;
     gap: 8px;
   }
-  /* With both buttons positioned absolutely on a wide screen, the row
-     itself only needs to survive as a container for them. */
+  /* With both pinned absolutely on a wide screen, the row itself only
+     needs to survive as a container for them. */
   @media (min-width: 620px) {
     .header-btns { position: static; display: block; width: 0; height: 0; }
   }
@@ -316,6 +345,23 @@
     font-size: 1.05rem;
   }
   .menu-link:hover { text-decoration: none; }
+  /* The dark mode button sits in the menu rather than the header bar, so
+     it is styled to match the menu links above it. */
+  .menu-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 0;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--line);
+    color: var(--link);
+    font-family: inherit;
+    font-size: 1.05rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .menu-btn:hover { text-decoration: none; }
 </style>
 </head>
 <body class="dark">
@@ -329,7 +375,13 @@
           <line x1="0" y1="14" x2="20" y2="14"/>
         </svg>
       </button>
-      <button id="darkToggle">Dark mode</button>
+      <div id="kofiSlot">
+      <a class="kofi-button" title="Support me on ko-fi.com"
+         href="https://ko-fi.com/D7F8284K0C" target="_blank" rel="noopener noreferrer">
+        <img class="kofiimg" src="https://storage.ko-fi.com/cdn/cup-border.png"
+             alt="Ko-fi donations">Donate
+      </a>
+    </div>
     </div>
     <h1>Submit an Event</h1>
   </header>
@@ -340,6 +392,7 @@
     <div id="menuHeading">Menu</div>
     <a class="menu-link" href="index.html" id="menuHome">All Events</a>
     <a class="menu-link" href="submit.html" id="menuSubmit">Submit An Event</a>
+    <button id="darkToggle" class="menu-btn">Dark mode</button>
   </div>
 
   <main>
