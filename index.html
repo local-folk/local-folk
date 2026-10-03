@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NE Folk</title>
+<title>The Kirn</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap">
@@ -464,7 +464,7 @@
       </button>
       <button id="darkToggle">Dark mode</button>
     </div>
-    <h1>NE Folk</h1>
+    <h1>The Kirn</h1>
   </header>
 
   <div id="menuShade"></div>
@@ -483,6 +483,7 @@
     <button class="filter-btn" data-type="crafts">Crafts</button>
     <button class="filter-btn" data-type="markets">Markets</button>
     <button class="filter-btn" data-type="spokenword">Spoken Word</button>
+    <button class="filter-btn" data-type="other">Other</button>
   </div>
 
   <div class="filter-row" id="dateFilters">
@@ -530,7 +531,8 @@ const TYPE_GROUPS = {
   dance: ['Ceilidh / Social Dance', 'Traditional Dance'],
   crafts: ['Heritage Workshop'],
   markets: ['Market'],
-  spokenword: ['Spoken Word']
+  spokenword: ['Spoken Word'],
+  other: ['Other']
 };
 
 let allEvents = [];
