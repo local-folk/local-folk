@@ -71,6 +71,9 @@
   }
   @media (max-width: 619px) {
     header { flex-direction: column; gap: 10px; }
+    /* A phone has room for the title above the buttons rather than
+       between them, so it can be a size that suits a small screen. */
+    header h1 { font-size: 1.7rem; }
   }
   #menuBtn {
     position: absolute;
@@ -363,6 +366,7 @@
 <body class="dark">
 
   <header>
+    <h1>Submit an Event</h1>
     <div class="header-btns">
       <button id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
         <svg viewBox="0 0 20 16" aria-hidden="true" focusable="false">
@@ -372,14 +376,13 @@
         </svg>
       </button>
       <div id="kofiSlot">
-      <a class="kofi-button" title="Support me on ko-fi.com"
-         href="https://ko-fi.com/D7F8284K0C" target="_blank" rel="noopener noreferrer">
-        <img class="kofiimg" src="https://storage.ko-fi.com/cdn/cup-border.png"
-             alt="Ko-fi donations">Donate
-      </a>
+        <a class="kofi-button" title="Support me on ko-fi.com"
+           href="https://ko-fi.com/D7F8284K0C" target="_blank" rel="noopener noreferrer">
+          <img class="kofiimg" src="https://storage.ko-fi.com/cdn/cup-border.png"
+               alt="Ko-fi donations">Donate
+        </a>
+      </div>
     </div>
-    </div>
-    <h1>Submit an Event</h1>
   </header>
 
   <div id="menuShade"></div>
