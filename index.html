@@ -602,8 +602,18 @@ let venueMarkers = {};
 
 // ---- Favourites ----
 // Stored in this browser only. Never sent anywhere.
+// Do not rename this string: every saved favourite is filed under it, so
+// changing it makes everyone's favourites look as though they had vanished.
 const FAV_KEY = 'newcastleFolkFavourites';
 let favIds = new Set();
+
+// Where the visitor last had the map panned and zoomed to. Also browser
+// only. A separate name from FAV_KEY so the two cannot overwrite each
+// other.
+const MAP_KEY = 'kirnMapView';
+let suppressMapSave = false;
+// True when this visitor had a view of their own from a previous visit.
+let hasSavedMapView = false;
 
 function loadFavourites() {
   try {
@@ -707,11 +717,53 @@ function showPinWithPopup(marker) {
 }
 
 function initMap() {
-  map = L.map('map').setView(DEFAULT_CENTRE, DEFAULT_ZOOM);
+  const saved = loadSavedMapView();
+  hasSavedMapView = !!saved;
+  map = L.map('map').setView(
+    saved ? [saved.lat, saved.lng] : DEFAULT_CENTRE,
+    saved ? saved.zoom : DEFAULT_ZOOM
+  );
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
   markersLayer = L.layerGroup().addTo(map);
+  // Remembering where someone had panned and zoomed to is useful on their
+  // own machine, so it is written back as they move. Kept off the end so
+  // it fires once the move has settled rather than on every frame.
+  map.on('moveend zoomend', saveMapView);
+}
+
+function loadSavedMapView() {
+  try {
+    const raw = localStorage.getItem(MAP_KEY);
+    if (!raw) return null;
+    const v = JSON.parse(raw);
+    if (typeof v !== 'object' || v === null) return null;
+    const lat = Number(v.lat), lng = Number(v.lng), zoom = Number(v.zoom);
+    if (!isFinite(lat) || !isFinite(lng) || !isFinite(zoom)) return null;
+    if (lat < -90 || lat > 90 || lng < -180 || lng > 180) return null;
+    if (zoom < 1 || zoom > 18) return null;
+    return { lat: lat, lng: lng, zoom: zoom };
+  } catch (err) {
+    // Storage blocked or the value is unreadable - just start normally.
+    return null;
+  }
+}
+
+function saveMapView() {
+  // The automatic fit that happens on a first visit is not a choice the
+  // visitor made, so it is not written down as though it were.
+  if (suppressMapSave) return;
+  try {
+    const c = map.getCenter();
+    localStorage.setItem(MAP_KEY, JSON.stringify({
+      lat: Math.round(c.lat * 100000) / 100000,
+      lng: Math.round(c.lng * 100000) / 100000,
+      zoom: map.getZoom()
+    }));
+  } catch (err) {
+    // No storage, or no room left - the map still works, it just forgets.
+  }
 }
 
 // Zooms the map so every pin currently on it is visible, used once on
@@ -738,6 +790,16 @@ function fitMapToPins() {
   // zoom leaves the map at its old level with pins off screen.
   map.fitBounds(pts, { padding: [30, 30], maxZoom: DEFAULT_ZOOM, animate: false });
   return true;
+}
+
+// Fits the map, without that choice being remembered as the visitor's own.
+function autoFitMapToPins() {
+  suppressMapSave = true;
+  try {
+    return fitMapToPins();
+  } finally {
+    suppressMapSave = false;
+  }
 }
 
 function loadEvents() {
@@ -898,8 +960,11 @@ function render() {
   // On the very first pass, open the map wide enough to show every pin.
   // Only once, so that tapping a filter afterwards doesn't yank the view
   // away from wherever the visitor has moved it.
-  if (!mapHasFitted) {
-    if (fitMapToPins()) mapHasFitted = true;
+  //
+  // Skipped when the map came back at a position the visitor chose
+  // themselves on an earlier visit, as that always beats the automatic fit.
+  if (!mapHasFitted && !hasSavedMapView) {
+    if (autoFitMapToPins()) mapHasFitted = true;
   }
 
   const list = document.getElementById('eventList');
