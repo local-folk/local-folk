@@ -210,8 +210,22 @@
   #dateRangeBox input { padding: 4px; }
 
   #eventList {
+    padding: 0 16px 20px;
+  }
+  /* The invitation to submit an event, sat under the list. IM Fell has one
+     weight only, so like the page title it must not be given a bolder one
+     or the browser fakes a bold and blurs the letterforms. */
+  #submitPrompt {
+    font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    margin: 0;
     padding: 0 16px 40px;
   }
+  #submitPrompt a { color: var(--text); text-decoration: underline; }
+  #submitPrompt a:hover { text-decoration: none; }
   .event {
     padding: 14px 0;
     border-bottom: 1px solid var(--line);
@@ -559,6 +573,8 @@
 
   <div id="status">Loading events...</div>
   <div id="eventList"></div>
+
+  <p id="submitPrompt">Something missing? Submit an event <a href="submit.html">here</a></p>
 
   <div id="modalOverlay">
     <div id="modalBox">
