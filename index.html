@@ -587,7 +587,10 @@
 // CONFIG - paste your published Google Sheet CSV link here
 // ============================================================
 const CONFIG = {
-  CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRtJN8W8AwbpQfUMykoANi9RfW6XA8ghJ-F-vagUGkQ8Ep5PWTbyae6f45kLlCVEpwJS2Mg0U9eKdz4/pub?gid=514788102&single=true&output=csv'
+  CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRtJN8W8AwbpQfUMykoANi9RfW6XA8ghJ-F-vagUGkQ8Ep5PWTbyae6f45kLlCVEpwJS2Mg0U9eKdz4/pub?gid=514788102&single=true&output=csv',
+  // The address that counts this page view. Same one the submit form
+  // posts to, so it must not change.
+  WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbzPeXzOdU-VG3ejWRlKG5VVPczL0px44f6WJrSewRlP4yM_2DYI7xHIubU7jyWAEmHZ/exec'
 };
 
 // Which of your Sheet's Category values count under each button.
@@ -1203,6 +1206,28 @@ function formatTimeDisplay(timeStr) {
   return hour + (minute === '00' ? '' : ':' + minute) + suffix;
 }
 
+// ---- Page view count ----
+// Adds one to today's row in the Web Traffic tab, and sends nothing else:
+// no address, no device, no cookie, no identifier. If it fails, the page
+// carries on exactly as before - the count is not worth an error in front
+// of a visitor.
+function countPageView() {
+  if (!CONFIG.WEB_APP_URL) return;
+  try {
+    fetch(CONFIG.WEB_APP_URL + '?hit=1', {
+      mode: 'no-cors',
+      // Keeps this site's address out of the request, so nothing links
+      // the count to where the visitor was.
+      referrerPolicy: 'no-referrer',
+      // Survives the visitor closing the tab straight away.
+      keepalive: true,
+      cache: 'no-store'
+    })['catch'](function() {});
+  } catch (err) {
+    // Never let the counter get in the way of the page.
+  }
+}
+
 // ---- Wiring up the buttons ----
 
 // The button names the mode it will switch to, not the one in use, so
@@ -1305,6 +1330,7 @@ document.getElementById('favFilter').addEventListener('click', () => {
 loadFavourites();
 initMap();
 loadEvents();
+countPageView();
 </script>
 </body>
 </html>
