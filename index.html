@@ -157,6 +157,15 @@
     letter-spacing: 0.03em;
     color: #ffffea;
   }
+  /* The site name is a link home, but drawn as a logo rather than as a
+     hyperlink: no underline, and no colour change on hover. It stays a
+     real link underneath, so a screen reader still announces it as
+     somewhere to go. */
+  header h1 a {
+    color: #ffffea;
+    text-decoration: none;
+  }
+  header h1 a:hover { text-decoration: none; }
   #map { height: 260px; width: 100%; }
 
 
@@ -482,10 +491,16 @@
     display: block;
     padding: 12px 0;
     color: var(--link);
-    text-decoration: underline;
+    text-decoration: none;
     font-size: 1.05rem;
   }
-  .menu-link:hover { text-decoration: none; }
+  /* Only the page you are on is underlined, so the menu says where you
+     are without marking everything as a link. */
+  .menu-link.current {
+    text-decoration: underline;
+  }
+  .menu-link:hover { text-decoration: underline; }
+  .menu-link.current:hover { text-decoration: underline; }
   /* The dark mode option is a button rather than a link, but it is listed
      alongside the links and has to look identical to them. Buttons come
      with a background and a border of their own, so both are cleared. */
@@ -501,16 +516,16 @@
     font-family: inherit;
     font-size: 1.05rem;
     line-height: inherit;
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
   }
-  .menu-btn:hover { text-decoration: none; }
+  .menu-btn:hover { text-decoration: underline; }
 </style>
 </head>
 <body class="dark">
 
   <header>
-    <h1>The Kirn</h1>
+    <h1><a href="/" id="siteLink">The Kirn</a></h1>
     <div class="header-btns">
       <button id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
         <svg viewBox="0 0 20 16" aria-hidden="true" focusable="false">
@@ -533,11 +548,12 @@
   <div id="menuPanel">
     <button id="menuClose" aria-label="Close menu">&times;</button>
     <div id="menuHeading">Menu</div>
+    <a class="menu-link current" href="/" id="menuHome">Home</a>
     <a class="menu-link" href="/about/" id="menuAbout">About</a>
     <a class="menu-link" href="/submit/" id="menuSubmit">Submit An Event</a>
     <a class="menu-link" href="https://ko-fi.com/thekirn" id="menuSupport"
        target="_blank" rel="noopener noreferrer">Donate</a>
-    <a class="menu-link" href="/contact/">Contact</a>
+    <a class="menu-link" href="/contact/" id="menuContact">Contact</a>
     <button id="darkToggle" class="menu-btn">Dark mode</button>
   </div>
 
