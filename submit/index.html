@@ -167,11 +167,13 @@
     text-align: center;
   }
 
+  /* Sits at the foot of the page, below the form, rather than at the top
+     where it pushed the form down. */
   #backLink {
     display: inline-block;
     color: var(--link);
     text-decoration: underline;
-    margin-bottom: 20px;
+    margin-top: 32px;
   }
 
   .intro {
@@ -420,8 +422,6 @@
   <main>
     <h2 class="page-title">Submit an Event</h2>
 
-    <a href="/" id="backLink">&larr; Back to all events</a>
-
     <div id="thanks">
       <h2>Thank you for your submission.</h2>
       <p>We have it. We look at every submission before it appears on the
@@ -484,6 +484,8 @@
 
       <button type="submit" id="submitBtn">Submit</button>
     </form>
+
+    <a href="/" id="backLink">&larr; Back to all events</a>
   </main>
 
 <script>
