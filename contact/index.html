@@ -377,8 +377,9 @@
     <a href="/" id="backLink">&larr; Back to all events</a>
 
     <div id="thanks">
-      <h2>Thank you.</h2>
-      <p>Your message is on its way to us.</p>
+      <h2>Thank you for your message.</h2>
+      <p>If you provided an email address, we'll aim to get to back to you as
+         soon as possible.</p>
       <button type="button" id="thanksBtn">Send Another Message</button>
     </div>
 
@@ -387,26 +388,24 @@
          Please try again.</p>
     </div>
 
-    <p class="intro">Questions, something that looks wrong on the site, or an
-       event you think is missing? Send a message here and we'll take a look.</p>
+    <p class="intro">If you have a query or have spotted an error, please get in
+       touch using the form below.</p>
 
-    <p class="intro">To put a <em>folky event</em> on the site, please use the
-       <a id="submitLink" href="/submit/">event submission form</a> instead -
-       it goes straight into the list for review rather than to an inbox.</p>
+    <p class="intro">To submit an event to The Kirn, please click
+       <a id="submitLink" href="/submit/">here</a>.</p>
 
     <form id="contactForm" action="" method="post" novalidate>
 
       <div class="field">
-        <label for="f-name">Your name <span class="optional">optional</span></label>
-        <input type="text" id="f-name" name="name" maxlength="100">
+        <label for="f-name">Your Name</label>
+        <input type="text" id="f-name" name="name" maxlength="100" required>
       </div>
 
       <div class="field">
         <label for="f-email">Your email <span class="optional">optional</span></label>
         <input type="email" id="f-email" name="email" maxlength="200"
                placeholder="you@example.com">
-        <span class="hint">Only so we can reply to you. Leave it blank if you
-          would rather we didn't.</span>
+        <span class="hint">Leave blank if no reply needed</span>
       </div>
 
       <div class="field">
@@ -471,6 +470,14 @@ thanksBtn.addEventListener('click', showForm);
 // checked here and the person is told in the same style as the rest of
 // the site.
 form.addEventListener('submit', function(ev) {
+  // Name and message are the two the browser insists on, checked here so
+  // the person is told which one is missing rather than being left with a
+  // silent refusal.
+  if (!form.name.value.trim()) {
+    ev.preventDefault();
+    window.alert('Please enter your name.');
+    return;
+  }
   if (!form.message.value.trim()) {
     ev.preventDefault();
     window.alert('Please enter a message.');
