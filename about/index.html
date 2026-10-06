@@ -147,11 +147,13 @@
     text-align: center;
   }
 
+  /* Sits at the foot of the page, below the reading matter, rather than
+     at the top where it pushed the content down. */
   #backLink {
     display: inline-block;
     color: var(--link);
     text-decoration: underline;
-    margin-bottom: 24px;
+    margin-top: 32px;
   }
 
   /* The reading matter, in the same face as the title. IM Fell English
@@ -319,8 +321,6 @@
   <main>
     <h2 class="page-title">About</h2>
 
-    <a href="/" id="backLink">&larr; Back to all events</a>
-
     <div class="about-text">
       <h3>Welcome to The Kirn!</h3>
 
@@ -335,6 +335,8 @@
 
       <p class="closing">Thank you for supporting The Kirn</p>
     </div>
+
+    <a href="/" id="backLink">&larr; Back to all events</a>
   </main>
 
 <script>
