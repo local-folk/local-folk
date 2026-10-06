@@ -157,11 +157,13 @@
     text-align: center;
   }
 
+  /* Sits at the foot of the page, below the form, rather than at the top
+     where it pushed the form down. */
   #backLink {
     display: inline-block;
     color: var(--link);
     text-decoration: underline;
-    margin-bottom: 20px;
+    margin-top: 32px;
   }
 
   .intro {
@@ -403,8 +405,6 @@
   <main>
     <h2 class="page-title">Contact</h2>
 
-    <a href="/" id="backLink">&larr; Back to all events</a>
-
     <div id="thanks">
       <h2>Thank you for your message.</h2>
       <p>If you provided an email address, we'll aim to get to back to you as
@@ -454,6 +454,8 @@
 
       <button type="submit" id="sendBtn">Send</button>
     </form>
+
+    <a href="/" id="backLink">&larr; Back to all events</a>
   </main>
 
 <script>
