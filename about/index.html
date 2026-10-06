@@ -119,12 +119,31 @@
     letter-spacing: 0.03em;
     color: #ffffea;
   }
+  /* The site name is a link home, but drawn as a logo rather than as a
+     hyperlink: no underline, and no colour change on hover. It stays a
+     real link underneath, so a screen reader still announces it as
+     somewhere to go. */
+  header h1 a {
+    color: #ffffea;
+    text-decoration: none;
+  }
+  header h1 a:hover { text-decoration: none; }
 
   /* The column of text. The margin puts it in the middle of the page. */
   main {
     max-width: 560px;
     margin: 0 auto;
     padding: 24px 16px 60px;
+  }
+
+  /* The page's own title, sitting just under the bar. A size below the
+     site name so "The Kirn" stays the largest text on the screen. */
+  .page-title {
+    font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin: 0 0 24px;
+    color: var(--text);
   }
 
   #backLink {
@@ -142,7 +161,7 @@
     line-height: 1.6;
     text-align: left;
   }
-  .about-text h2 {
+  .about-text h3 {
     font-family: inherit;
     font-weight: 400;
     font-size: 1.6rem;
@@ -231,10 +250,16 @@
     display: block;
     padding: 12px 0;
     color: var(--link);
-    text-decoration: underline;
+    text-decoration: none;
     font-size: 1.05rem;
   }
-  .menu-link:hover { text-decoration: none; }
+  /* Only the page you are on is underlined, so the menu says where you
+     are without marking everything as a link. */
+  .menu-link.current {
+    text-decoration: underline;
+  }
+  .menu-link:hover { text-decoration: underline; }
+  .menu-link.current:hover { text-decoration: underline; }
   /* The dark mode option is a button rather than a link, but it is listed
      alongside the links and has to look identical to them. */
   .menu-btn {
@@ -249,16 +274,16 @@
     font-family: inherit;
     font-size: 1.05rem;
     line-height: inherit;
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
   }
-  .menu-btn:hover { text-decoration: none; }
+  .menu-btn:hover { text-decoration: underline; }
 </style>
 </head>
 <body class="dark">
 
   <header>
-    <h1>About</h1>
+    <h1><a href="/" id="siteLink">The Kirn</a></h1>
     <div class="header-btns">
       <button id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
         <svg viewBox="0 0 20 16" aria-hidden="true" focusable="false">
@@ -281,18 +306,22 @@
   <div id="menuPanel">
     <button id="menuClose" aria-label="Close menu">&times;</button>
     <div id="menuHeading">Menu</div>
-    <a class="menu-link" href="/">All Events</a>
-    <a class="menu-link" href="/submit/">Submit An Event</a>
-    <a class="menu-link" href="https://ko-fi.com/thekirn" target="_blank" rel="noopener noreferrer">Donate</a>
-    <a class="menu-link" href="/contact/">Contact</a>
+    <a class="menu-link" href="/" id="menuHome">Home</a>
+    <a class="menu-link current" href="/about/" id="menuAbout">About</a>
+    <a class="menu-link" href="/submit/" id="menuSubmit">Submit An Event</a>
+    <a class="menu-link" href="https://ko-fi.com/thekirn" id="menuSupport"
+       target="_blank" rel="noopener noreferrer">Donate</a>
+    <a class="menu-link" href="/contact/" id="menuContact">Contact</a>
     <button id="darkToggle" class="menu-btn">Dark mode</button>
   </div>
 
   <main>
+    <h2 class="page-title">About</h2>
+
     <a href="/" id="backLink">&larr; Back to all events</a>
 
     <div class="about-text">
-      <h2>Welcome to The Kirn!</h2>
+      <h3>Welcome to The Kirn!</h3>
 
       <p>There are so many wonderful folk and traditional events happening
          across Newcastle and the surrounding area.</p>
