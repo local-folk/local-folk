@@ -140,16 +140,23 @@
     font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
     font-size: 1.15rem;
     line-height: 1.6;
-    text-align: center;
+    text-align: left;
   }
   .about-text h2 {
     font-family: inherit;
     font-weight: 400;
     font-size: 1.6rem;
     margin: 0 0 20px;
+    text-align: center;
   }
   .about-text p { margin: 0 0 20px; }
-  .about-text p:last-child { margin-bottom: 0; }
+  /* The closing line. IM Fell English has only one weight, so a bolder one
+     is faked by the browser rather than drawn properly, and the letterforms
+     go soft. A size bump reads as emphasis without that. */
+  .about-text .closing {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+  }
 
   /* ---- Slide-out menu ---- */
   #menuBtn {
@@ -297,7 +304,7 @@
 
       <p>Browse what's on, add an event, pass it on.</p>
 
-      <p>Thank you for supporting The Kirn</p>
+      <p class="closing">Thank you for supporting The Kirn</p>
     </div>
   </main>
 
