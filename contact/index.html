@@ -170,6 +170,14 @@
     margin-bottom: 28px;
     line-height: 1.55;
   }
+  /* The submit form link sits inside a paragraph rather than in the menu,
+     so it keeps the palette's link colour in every state. Browsers colour
+     a link differently once it has been visited, which left this one
+     turning purple for anyone who had used it before. */
+  .intro a,
+  .intro a:visited {
+    color: var(--link);
+  }
 
   .field { margin-bottom: 20px; }
   .field label {
