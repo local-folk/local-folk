@@ -70,10 +70,12 @@
     header { padding-left: 110px; padding-right: 110px; }
   }
   @media (max-width: 619px) {
-    header { flex-direction: column; gap: 10px; }
-    /* A phone has room for the title above the buttons rather than
-       between them, so it can be a size that suits a small screen. */
-    header h1 { font-size: 1.7rem; }
+    header { padding-left: 8px; padding-right: 8px; }
+    /* The header stays a single row at every width - buttons at the ends,
+       title in the middle - so on a phone the title just needs to be a
+       size that fits between them. This heading is long, so it needs to be
+       smaller than the main page's. */
+    header h1 { font-size: 1.5rem; }
   }
   #menuBtn {
     position: absolute;
@@ -118,25 +120,19 @@
     margin-bottom: 3px;
     border: none;
   }
-  /* On a narrow screen the buttons are back in the flow, held apart by
-     the row they sit in. */
-  @media (max-width: 619px) {
-    #menuBtn, #kofiSlot {
-      position: static;
-      transform: none;
-    }
+  /* On a narrow phone the word would push the title into it, so the cup
+     icon carries the button on its own. */
+  @media (max-width: 419px) {
+    .kofi-word { display: none; }
+    .kofi-button .kofiimg { margin-right: 0; }
+    .kofi-button { padding: 6px 9px; }
   }
+  /* The buttons are pinned to the ends of the bar at every width, so the
+     row that holds them only needs to take up no space of its own. */
   .header-btns {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 8px;
-  }
-  /* With both pinned absolutely on a wide screen, the row itself only
-     needs to survive as a container for them. */
-  @media (min-width: 620px) {
-    .header-btns { position: static; display: block; width: 0; height: 0; }
+    display: block;
+    width: 0;
+    height: 0;
   }
   /* IM Fell English. It has only one weight, so it must not be given
      a bolder one or the browser fakes a bold and blurs the letterforms. */
@@ -379,7 +375,7 @@
         <a class="kofi-button" title="Support me on ko-fi.com"
            href="https://ko-fi.com/D7F8284K0C" target="_blank" rel="noopener noreferrer">
           <img class="kofiimg" src="https://storage.ko-fi.com/cdn/cup-border.png"
-               alt="Ko-fi donations">Donate
+               alt="Ko-fi donations"><span class="kofi-word">Donate</span>
         </a>
       </div>
     </div>
