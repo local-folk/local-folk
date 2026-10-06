@@ -70,13 +70,12 @@
     header { padding-left: 110px; padding-right: 110px; }
   }
   @media (max-width: 619px) {
-    header { padding-left: 60px; padding-right: 60px; }
+    header { padding-left: 8px; padding-right: 8px; }
     /* The header stays a single row at every width - buttons at the ends,
-       title in the middle. On a phone the padding reserves the space the
-       buttons sit in, so the title can never slide underneath them: if it
-       is still too wide it wraps instead. This heading is long, so it
-       also needs to be smaller than the main page's. */
-    header h1 { font-size: 1.15rem; }
+       title in the middle. This heading is long, so on a phone it is set
+       small enough to sit on one line between the buttons with room to
+       spare on either side. */
+    header h1 { font-size: 1rem; }
   }
   #menuBtn {
     position: absolute;
