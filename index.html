@@ -1347,6 +1347,7 @@ document.getElementById('eventList').addEventListener('click', ev => {
   }
   const venueLink = ev.target.closest('.venue-jump-inline');
   if (venueLink) {
+    ev.preventDefault();
     jumpToVenue(venueLink.dataset.venueKey);
     return;
   }
