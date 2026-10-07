@@ -29,7 +29,7 @@
     --btn-bg: #f0f0f0;
     --btn-active: #333333;
     --btn-active-text: #ffffff;
-    --fav-empty: #8f8250;
+    --fav-empty: #cc9900;
     --fav-hover: #aa4411;
     --fav-on: #aa4411;
     --fav-on-dark: #7d2f08;
@@ -47,7 +47,7 @@
     --btn-bg: #222222;
     --btn-active: #eeeeee;
     --btn-active-text: #111111;
-    --fav-empty: #6f6440;
+    --fav-empty: #cc9900;
     --fav-hover: #ffcc33;
     --fav-on-dark: #ffcc33;
     --hl-bg: #7a1a1a;
@@ -351,22 +351,31 @@
     text-decoration: none;
   }
 
-  /* Sits beside the ticket link, in the same gold the site's type
-     buttons use so it reads as part of the page rather than bolted on. */
+  /* The share button sits in the title row, to the right of the heart,
+     drawn as an icon in the site's gold. The box is a fixed size and the
+     icon is centred inside it, so it can never move when the title above
+     it wraps onto more lines. */
   .share-btn {
-    display: inline-block;
-    margin-top: 8px;
-    margin-right: 8px;
-    padding: 8px 16px;
-    background: #ffcc33;
-    color: #111111;
-    border: 1px solid #cc9900;
-    border-radius: 16px;
-    font-family: inherit;
-    font-size: 0.95rem;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
+    color: var(--fav-empty);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
   }
-  .share-btn:hover { background: #ffdb66; }
+  .share-btn svg { display: block; width: 1.5rem; height: 1.5rem; }
+  .share-btn:hover { color: var(--fav-hover); }
+  /* Brief confirmation after a link is copied. Gold rather than red, so
+     it doesn't read as an error. */
+  .share-btn.copied { color: #2e7d32; }
+  #modalContent .share-btn { width: 2.75rem; height: 2.75rem; }
+  #modalContent .share-btn svg { width: 1.65rem; height: 1.65rem; }
 
   /* The venue name doubles as a link back to the map pin. */
   #modalContent a.venue-jump {
@@ -421,7 +430,10 @@
 
   /* align-items:center centres each item on the title's margin box,
      so the title's own bottom margin would drag the heart off line.
-     The gap below the row is set here instead. */
+     The gap below the row is set here instead.
+     The heart and the share icon sit together at the right, in a row of
+     their own so the gap between them is even rather than inheriting the
+     wider gap that separates them from the title. */
   .event-head {
     display: flex;
     align-items: center;
@@ -430,6 +442,12 @@
     margin-bottom: 6px;
   }
   .event-head .event-title { flex: 1; margin-bottom: 0; }
+  .head-icons {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+  }
 
   #modalContent .fav-btn { width: 2.75rem; height: 2.75rem; }
   #modalContent .fav-btn svg { width: 1.75rem; height: 1.6rem; }
@@ -796,9 +814,18 @@ function copyToClipboard(text) {
 function shareEvent(e, button) {
   const url = shareUrlFor(e);
   const label = e.title + ' - The Kirn';
+
+  // The button is an icon with no text in it, so the confirmation is a
+  // change of colour plus the tooltip - a screen reader gets the same
+  // news from the aria-live line below.
   const done = function() {
-    button.textContent = 'Link copied';
-    setTimeout(function() { button.textContent = 'Share'; }, 2500);
+    button.classList.add('copied');
+    button.title = 'Link copied';
+    say('Link copied to the clipboard.');
+    setTimeout(function() {
+      button.classList.remove('copied');
+      button.title = 'Share this event';
+    }, 2500);
   };
 
   if (navigator.share) {
@@ -812,9 +839,27 @@ function shareEvent(e, button) {
   }
 
   copyToClipboard(url).then(done, function() {
-    button.textContent = 'Press Ctrl+C';
-    setTimeout(function() { button.textContent = 'Share'; }, 3000);
+    say('Could not copy automatically - please copy the address bar.');
   });
+}
+
+// Announces a short message to a screen reader, and holds it on the page
+// for anyone who needs to read it.
+let sayTimer = null;
+function say(message) {
+  let el = document.getElementById('sayLine');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'sayLine';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    el.style.cssText =
+      'position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;';
+    document.body.appendChild(el);
+  }
+  el.textContent = message;
+  if (sayTimer) clearTimeout(sayTimer);
+  sayTimer = setTimeout(function() { el.textContent = ''; }, 4000);
 }
 
 // EventID is built as date|venue|title, so it survives the sheet
@@ -832,6 +877,24 @@ function toggleFavourite(e) {
   else favIds.add(id);
   saveFavourites();
   render();
+}
+
+// The share button, drawn as an icon rather than a word. Drawn as an SVG
+// like the heart so its shape and size are the same in every browser.
+// The box is fixed and the icon centred inside it, so the button stays
+// put whatever the event title does above it.
+function shareButtonHtml(e) {
+  const icon =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path d="M12 3.6v10.2M8.4 7.2L12 3.6l3.6 3.6" fill="none" stroke="currentColor" ' +
+        'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M6.6 10.6H5.4v8.2a1.6 1.6 0 001.6 1.6h10a1.6 1.6 0 001.6-1.6v-8.2h-1.2" ' +
+        'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" ' +
+        'stroke-linejoin="round"/>' +
+    '</svg>';
+  return '<button type="button" class="share-btn" data-share-id="' + esc(favId(e)) + '"' +
+    ' aria-label="Share this event"' +
+    ' title="Share this event">' + icon + '</button>';
 }
 
 // Outline heart when not favourited, solid when it is.
@@ -1306,13 +1369,15 @@ function paintModal() {
   content.innerHTML =
     '<div class="event-head">' +
       '<div class="event-title">' + esc(e.title) + '</div>' +
-      favButtonHtml(e, 'modal-fav-btn') +
+      '<div class="head-icons">' +
+        shareButtonHtml(e) +
+        favButtonHtml(e, 'modal-fav-btn') +
+      '</div>' +
     '</div>' +
     '<div class="event-line">' + esc(formatDateDisplay(e.date)) +
       (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</div>' +
     '<div class="event-line">' + venueHtml + '</div>' +
     (e.description ? '<div class="event-line">' + esc(e.description) + '</div>' : '') +
-    '<button type="button" class="share-btn" data-share-id="' + esc(favId(e)) + '">Share</button>' +
     (!isGenericListingLink(e.sourceUrl) && isSafeUrl(e.sourceUrl)
       ? '<a class="ticket-link" href="' + esc(e.sourceUrl) + '" target="_blank" rel="noopener noreferrer">More info</a>'
       : '');
