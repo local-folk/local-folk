@@ -296,6 +296,31 @@
   #modalContent > .ticket-link {
     justify-self: start;
   }
+
+  /* The title and the date open the event's details. They are real
+     buttons so they can be reached by keyboard and announced as
+     something to activate, but stripped back so they still read as
+     ordinary text until you point at them. */
+  .event-open {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .event-open:hover { text-decoration: underline; }
+  /* A keyboard user gets no pointer to hover with, so the outline has to
+     appear when the button is focused instead. */
+  .event-open:focus-visible,
+  .fav-btn:focus-visible,
+  .send-btn:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
+  }
   .event-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 6px; }
   .event-line { margin-bottom: 4px; font-size: 0.92rem; opacity: 0.9; }
   .event-line a { color: inherit; }
@@ -1271,10 +1296,11 @@ function render() {
           esc(e.venue) + '</a>'
       : esc(e.venue);
     div.innerHTML =
-      '<div class="event-title">' + esc(e.title) + '</div>' +
+      '<button type="button" class="event-title event-open">' + esc(e.title) + '</button>' +
       favButtonHtml(e) +
-      '<div class="event-line">' + esc(formatDateDisplay(e.date)) +
-        (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</div>' +
+      '<button type="button" class="event-line event-open">' +
+        esc(formatDateDisplay(e.date)) +
+        (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</button>' +
       shareButtonHtml(e) +
       '<div class="event-line">' + venueHtml + '</div>' +
       (e.category ? '<div class="event-line">' + esc(e.category) + '</div>' : '') +
@@ -1568,6 +1594,16 @@ document.getElementById('eventList').addEventListener('click', ev => {
   const moreBtn = ev.target.closest('.more-info-btn');
   if (moreBtn) {
     const e = window.currentFilteredEvents[parseInt(moreBtn.dataset.index, 10)];
+    if (e) openModal(e);
+    return;
+  }
+  // The title and the date open the same details panel as the More info
+  // button. Matched on the card the click landed in rather than on a list
+  // index, so it finds the right event after any filter change.
+  const openBtn = ev.target.closest('.event-open');
+  if (openBtn) {
+    const card = openBtn.closest('.event');
+    const e = card ? allEvents.find(x => x.domId === card.id) : null;
     if (e) openModal(e);
   }
 });
