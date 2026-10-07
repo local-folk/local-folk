@@ -897,7 +897,13 @@ function shareButtonHtml(e) {
         'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" ' +
         'stroke-linejoin="round"/>' +
     '</svg>';
-  return '<button type="button" class="share-btn" data-share-id="' + esc(favId(e)) + '"' +
+  // Carries the same plain domId the heart uses rather than the EventID.
+  // The EventID contains "|" characters and spaces, and those in an
+  // attribute value were enough for Brave Shields to drop the button
+  // altogether - it reported nothing blocked, and with Shields off the
+  // button stayed put. The sanitised id has neither, and resolves to the
+  // same event.
+  return '<button type="button" class="share-btn" data-dom-id="' + e.domId + '"' +
     ' aria-label="Share this event"' +
     ' title="Share this event">' + icon + '</button>';
 }
@@ -1407,7 +1413,7 @@ function paintModal() {
   const shareBtn = content.querySelector('.share-btn');
   if (shareBtn) {
     shareBtn.addEventListener('click', () => {
-      const target = allEvents.find(x => favId(x) === shareBtn.dataset.shareId);
+      const target = allEvents.find(x => x.domId === shareBtn.dataset.domId);
       if (target) shareEvent(target, shareBtn);
     });
   }
@@ -1529,10 +1535,10 @@ document.getElementById('eventList').addEventListener('click', ev => {
   }
   const shareBtn = ev.target.closest('.share-btn');
   if (shareBtn) {
-    // Matched on the EventID rather than the list index, because the list
+    // Matched on the domId rather than the list index, because the list
     // is rebuilt on every filter change and an index would point at
     // whichever event had moved into that place.
-    const e = allEvents.find(x => favId(x) === shareBtn.dataset.shareId);
+    const e = allEvents.find(x => x.domId === shareBtn.dataset.domId);
     if (e) shareEvent(e, shareBtn);
     return;
   }
