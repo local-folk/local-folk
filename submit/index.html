@@ -11,14 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap">
 <style>
-  /* ============================================================
-     PASTE YOUR DEPLOYED WEB APP URL BELOW (see CONFIG in the
-     <script> section at the bottom of this file)
-     ============================================================ */
 
-  /* The site's palette: pale page #ffffea with dark red ink #210000,
-     bright yellow #ffcc33, gold #cc9900, rust button #b04411 and
-     orange link #b82e00. */
   :root {
     --bg: #ffffea;
     --text: #210000;
@@ -50,8 +43,6 @@
     color: var(--text);
   }
 
-  /* The title bar keeps the same dark red in both themes, so its
-     contents are set explicitly rather than inheriting the theme. */
   header {
     display: flex;
     justify-content: center;
@@ -60,18 +51,13 @@
     padding: 14px 16px;
     background: #660000;
   }
-  /* The menu button sits at the left and the Ko-fi button at the right. On
-     a wide screen each is pinned to its own side and the bar is padded
-     either side, so the title stays dead centre without sliding underneath
-     them. */
+
   @media (min-width: 620px) {
     header { padding-left: 110px; padding-right: 110px; }
   }
   @media (max-width: 619px) {
     header { padding-left: 8px; padding-right: 8px; }
-    /* The header stays a single row at every width - buttons at the ends,
-       title in the middle - so on a phone the title just needs to be a
-       size that fits between them. */
+
     header h1 { font-size: 1.9rem; }
   }
   #menuBtn {
@@ -80,19 +66,14 @@
     top: 50%;
     transform: translateY(-50%);
   }
-  /* Ko-fi's own button markup, rebuilt as plain HTML. Their widget uses
-     document.writeln, which can blank the page if it runs late, and it
-     offers no way to say where the button should go. This version sits
-     exactly where the header wants it. The colour, text and account are
-     the three values passed to their init(), kept here instead. */
+
   #kofiSlot {
     position: absolute;
     right: 14px;
     top: 50%;
     transform: translateY(-50%);
   }
-  /* The same yellow and gold as the event type filter buttons, with a
-     rounded pill shape and the same gold outline. */
+
   .kofi-button {
     display: inline-block;
     white-space: nowrap;
@@ -117,22 +98,19 @@
     margin-bottom: 3px;
     border: none;
   }
-  /* On a narrow phone the word would push the title into it, so the cup
-     icon carries the button on its own. */
+
   @media (max-width: 419px) {
     .kofi-word { display: none; }
     .kofi-button .kofiimg { margin-right: 0; }
     .kofi-button { padding: 6px 9px; }
   }
-  /* The buttons are pinned to the ends of the bar at every width, so the
-     row that holds them only needs to take up no space of its own. */
+
   .header-btns {
     display: block;
     width: 0;
     height: 0;
   }
-  /* IM Fell English. It has only one weight, so it must not be given
-     a bolder one or the browser fakes a bold and blurs the letterforms. */
+
   header h1 {
     font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
     font-size: 2.6rem;
@@ -141,10 +119,7 @@
     letter-spacing: 0.03em;
     color: #ffffea;
   }
-  /* The site name is a link home, but drawn as a logo rather than as a
-     hyperlink: no underline, and no colour change on hover. It stays a
-     real link underneath, so a screen reader still announces it as
-     somewhere to go. */
+
   header h1 a {
     color: #ffffea;
     text-decoration: none;
@@ -156,8 +131,6 @@
     padding: 24px 16px 60px;
   }
 
-  /* The page's own title, sitting just under the bar. A size below the
-     site name so "The Kirn" stays the largest text on the screen. */
   .page-title {
     font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
     font-weight: 400;
@@ -167,8 +140,6 @@
     text-align: center;
   }
 
-  /* Sits at the foot of the page, below the form, rather than at the top
-     where it pushed the form down. */
   #backLink {
     display: inline-block;
     color: var(--link);
@@ -216,8 +187,7 @@
     opacity: 0.75;
     margin-top: 5px;
   }
-  /* Set by the browser or by the check below when a required field
-     is left empty, so the person can see which one is missing. */
+
   .field input:invalid,
   .field textarea:invalid {
     border-color: #b04411;
@@ -237,8 +207,6 @@
   }
   #submitBtn:hover { background: #ffdb66; }
 
-  /* Sits after the form for the successful return, and holds the
-     message in the palette's highlight colours. */
   #thanks {
     display: none;
     background: var(--hl-bg);
@@ -279,7 +247,6 @@
   }
   #problem.shown { display: block; }
 
-  /* ---- Slide-out menu ---- */
   #menuBtn {
     border: 1px solid #cc9900;
     background: #ffcc33;
@@ -291,8 +258,7 @@
     height: 32px;
   }
   #menuBtn:hover { background: #ffdb66; }
-  /* Drawn as an SVG rather than a text character, so its shape and its
-     height are the same in every browser. */
+
   #menuBtn svg { display: block; width: 20px; height: 16px; }
   #menuBtn svg line {
     stroke: #210000;
@@ -300,8 +266,6 @@
     stroke-linecap: round;
   }
 
-  /* The shade over the page. Tapping it closes the menu, so it needs a
-     cursor that says so. */
   #menuShade {
     display: none;
     position: fixed;
@@ -311,7 +275,6 @@
   }
   #menuShade.open { display: block; }
 
-  /* The panel itself, sliding in from the left. */
   #menuPanel {
     position: fixed;
     top: 0;
@@ -356,16 +319,13 @@
     text-decoration: none;
     font-size: 1.05rem;
   }
-  /* Only the page you are on is underlined, so the menu says where you
-     are without marking everything as a link. */
+
   .menu-link.current {
     text-decoration: underline;
   }
   .menu-link:hover { text-decoration: underline; }
   .menu-link.current:hover { text-decoration: underline; }
-  /* The dark mode option is a button rather than a link, but it is listed
-     alongside the links and has to look identical to them. Buttons come
-     with a background and a border of their own, so both are cleared. */
+
   .menu-btn {
     display: block;
     width: 100%;
@@ -474,9 +434,6 @@
         <textarea id="f-desc" name="description" maxlength="1000"></textarea>
       </div>
 
-      <!-- Left empty by people and filled in by automated rubbish. The
-           script throws any submission that arrives with this completed
-           away without a word. -->
       <div class="field" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;">
         <label for="f-trap">Leave this field empty</label>
         <input type="text" id="f-trap" name="trap" tabindex="-1" autocomplete="off">
@@ -489,10 +446,7 @@
   </main>
 
 <script>
-// ============================================================
-// CONFIG - paste the URL you get from Deploy > New deployment
-// here. It looks like https://script.google.com/macros/s/AKfycb.../exec
-// ============================================================
+
 const CONFIG = {
   WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbzPeXzOdU-VG3ejWRlKG5VVPczL0px44f6WJrSewRlP4yM_2DYI7xHIubU7jyWAEmHZ/exec'
 };
@@ -513,7 +467,6 @@ function showThanks() {
   intro.style.display = 'none';
 }
 
-// Puts the form back, cleared and ready for the next event.
 function showForm() {
   thanks.classList.remove('shown');
   problem.classList.remove('shown');
@@ -528,9 +481,6 @@ function showForm() {
 
 thanksBtn.addEventListener('click', showForm);
 
-// The mandatory fields are checked here so a person is told which one is
-// missing before the form is sent, in the same message style as the rest
-// of the site.
 function missingField() {
   if (!form.title.value.trim()) return 'Please enter the event title.';
   if (!form.venue.value.trim()) return 'Please enter the venue.';
@@ -547,20 +497,11 @@ form.addEventListener('submit', function(ev) {
     return;
   }
 
-  // The form is sent in the background rather than being handed to the
-  // browser as a normal form post. A normal post would take the visitor
-  // away to a Google address, from where there was no way back to this
-  // page. Sending it like this keeps them here, so the thank you and the
-  // "Submit Another Event" button can be shown on this page.
   ev.preventDefault();
 
-  // Stops a double tap sending the same event twice.
   submitBtn.disabled = true;
   submitBtn.textContent = 'Sending...';
 
-  // A browser will not let this page read the reply from another site,
-  // so the send is fire-and-forget: if it throws, nothing reached
-  // Google, and if it does not, the submission was delivered.
   fetch(CONFIG.WEB_APP_URL, {
     method: 'POST',
     body: new FormData(form),
@@ -576,8 +517,6 @@ form.addEventListener('submit', function(ev) {
   });
 });
 
-// The button names the mode it will switch to, not the one in use, so
-// it reads "Light mode" while dark is on.
 function updateThemeLabel() {
   document.getElementById('darkToggle').textContent =
     document.body.classList.contains('dark') ? 'Light mode' : 'Dark mode';
@@ -590,7 +529,6 @@ document.getElementById('darkToggle').addEventListener('click', () => {
 
 updateThemeLabel();
 
-// ---- Slide-out menu ----
 const menuPanel = document.getElementById('menuPanel');
 const menuBtn = document.getElementById('menuBtn');
 const menuShade = document.getElementById('menuShade');
