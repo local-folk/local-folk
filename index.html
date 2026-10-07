@@ -312,7 +312,10 @@
     color: inherit;
     cursor: pointer;
   }
-  .event-open:hover { text-decoration: underline; }
+  /* Deliberately no underline on hover. The pointer cursor is the only
+     hint that these open the details, which suits the page better than
+     underlining the title of every event in the list. */
+  .event-open:hover { text-decoration: none; }
   /* A keyboard user gets no pointer to hover with, so the outline has to
      appear when the button is focused instead. */
   .event-open:focus-visible,
@@ -471,7 +474,7 @@
     text-decoration: none;
     cursor: pointer;
   }
-  .event-line a.venue-jump-inline:hover { text-decoration: underline; }
+  .event-line a.venue-jump-inline:hover { text-decoration: none; }
 
   /* Padding comes from .filter-row, so this row sits the same distance
      from the date filters as they do from the type filters. */
