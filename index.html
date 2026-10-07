@@ -442,10 +442,15 @@
     margin-bottom: 6px;
   }
   .event-head .event-title { flex: 1; margin-bottom: 0; }
+  /* The heart and the share icon, stacked at the right of the title row:
+     heart on top, share below. A column rather than a row, so the two
+     read as one control group rather than as buttons either side of the
+     title. */
   .head-icons {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 2px;
+    gap: 4px;
     flex-shrink: 0;
   }
 
@@ -1231,7 +1236,10 @@ function render() {
     div.innerHTML =
       '<div class="event-head">' +
         '<div class="event-title">' + esc(e.title) + '</div>' +
-        favButtonHtml(e) +
+        '<div class="head-icons">' +
+          favButtonHtml(e) +
+          shareButtonHtml(e) +
+        '</div>' +
       '</div>' +
       '<div class="event-line">' + esc(formatDateDisplay(e.date)) +
         (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</div>' +
@@ -1370,8 +1378,8 @@ function paintModal() {
     '<div class="event-head">' +
       '<div class="event-title">' + esc(e.title) + '</div>' +
       '<div class="head-icons">' +
-        shareButtonHtml(e) +
         favButtonHtml(e, 'modal-fav-btn') +
+        shareButtonHtml(e) +
       '</div>' +
     '</div>' +
     '<div class="event-line">' + esc(formatDateDisplay(e.date)) +
@@ -1517,6 +1525,15 @@ document.getElementById('eventList').addEventListener('click', ev => {
   const venueLink = ev.target.closest('.venue-jump-inline');
   if (venueLink) {
     jumpToVenue(venueLink.dataset.venueKey);
+    return;
+  }
+  const shareBtn = ev.target.closest('.share-btn');
+  if (shareBtn) {
+    // Matched on the EventID rather than the list index, because the list
+    // is rebuilt on every filter change and an index would point at
+    // whichever event had moved into that place.
+    const e = allEvents.find(x => favId(x) === shareBtn.dataset.shareId);
+    if (e) shareEvent(e, shareBtn);
     return;
   }
   const moreBtn = ev.target.closest('.more-info-btn');
