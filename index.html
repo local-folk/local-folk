@@ -234,11 +234,36 @@
   }
   #submitPrompt a { color: var(--text); text-decoration: underline; }
   #submitPrompt a:hover { text-decoration: none; }
+  /* An event is laid out as two columns: the text on the left, and the
+     icon belonging to that row on the right. The heart is placed in the
+     title's row and the share icon in the date's row, so each lines up
+     with the line it belongs to instead of the two being stacked as one
+     block beside the title.
+     The markup is written in reading order - title, heart, date, share,
+     venue, and so on - and the grid places each item into the next free
+     cell, which puts the icons in the second column automatically. */
   .event {
     padding: 14px 0;
     border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 8px;
+    align-items: center;
   }
   .event:last-child { border-bottom: none; }
+  #modalContent {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 8px;
+    align-items: center;
+    /* Room for the close button in the top right, so the heart on the
+       title row doesn't sit underneath it. */
+    padding-right: 34px;
+  }
+  .event .fav-btn, .event .send-btn,
+  #modalContent .fav-btn, #modalContent .send-btn {
+    justify-self: center;
+  }
   .event-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 6px; }
   .event-line { margin-bottom: 4px; font-size: 0.92rem; opacity: 0.9; }
   .event-line a { color: inherit; }
@@ -337,8 +362,6 @@
   }
   /* Leaves room for the close button in the top right, so the heart
      on the title row doesn't sit underneath it. */
-  #modalContent .event-head { padding-right: 34px; margin-bottom: 10px; }
-  #modalContent .event-head .event-title { margin-bottom: 0; }
   #modalContent .event-title { font-size: 1.2rem; }
   #modalContent .event-line { margin-bottom: 8px; }
   #modalContent a.ticket-link {
@@ -427,32 +450,6 @@
   .fav-btn svg { display: block; width: 1.6rem; height: 1.46rem; }
   .fav-btn:hover { color: var(--fav-hover); }
   .fav-btn.on:hover { color: var(--fav-on-dark); }
-
-  /* align-items:center centres each item on the title's margin box,
-     so the title's own bottom margin would drag the heart off line.
-     The gap below the row is set here instead.
-     The heart and the share icon sit together at the right, in a row of
-     their own so the gap between them is even rather than inheriting the
-     wider gap that separates them from the title. */
-  .event-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 6px;
-  }
-  .event-head .event-title { flex: 1; margin-bottom: 0; }
-  /* The heart and the share icon, stacked at the right of the title row:
-     heart on top, share below. A column rather than a row, so the two
-     read as one control group rather than as buttons either side of the
-     title. */
-  .head-icons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-  }
 
   #modalContent .fav-btn { width: 2.75rem; height: 2.75rem; }
   #modalContent .fav-btn svg { width: 1.75rem; height: 1.6rem; }
@@ -1242,15 +1239,11 @@ function render() {
           esc(e.venue) + '</a>'
       : esc(e.venue);
     div.innerHTML =
-      '<div class="event-head">' +
-        '<div class="event-title">' + esc(e.title) + '</div>' +
-        '<div class="head-icons">' +
-          favButtonHtml(e) +
-          shareButtonHtml(e) +
-        '</div>' +
-      '</div>' +
+      '<div class="event-title">' + esc(e.title) + '</div>' +
+      favButtonHtml(e) +
       '<div class="event-line">' + esc(formatDateDisplay(e.date)) +
         (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</div>' +
+      shareButtonHtml(e) +
       '<div class="event-line">' + venueHtml + '</div>' +
       (e.category ? '<div class="event-line">' + esc(e.category) + '</div>' : '') +
       '<button class="filter-btn more-info-btn" data-index="' + i + '">More info</button>';
@@ -1383,15 +1376,11 @@ function paintModal() {
         esc(e.venue || 'Event location') + '</a>'
     : esc(e.venue);
   content.innerHTML =
-    '<div class="event-head">' +
-      '<div class="event-title">' + esc(e.title) + '</div>' +
-      '<div class="head-icons">' +
-        favButtonHtml(e, 'modal-fav-btn') +
-        shareButtonHtml(e) +
-      '</div>' +
-    '</div>' +
+    '<div class="event-title">' + esc(e.title) + '</div>' +
+    favButtonHtml(e, 'modal-fav-btn') +
     '<div class="event-line">' + esc(formatDateDisplay(e.date)) +
       (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</div>' +
+    shareButtonHtml(e) +
     '<div class="event-line">' + venueHtml + '</div>' +
     (e.description ? '<div class="event-line">' + esc(e.description) + '</div>' : '') +
     (!isGenericListingLink(e.sourceUrl) && isSafeUrl(e.sourceUrl)
