@@ -14,14 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <style>
-  /* ============================================================
-     PASTE YOUR PUBLISHED SHEET CSV LINK BELOW (see CONFIG in the
-     <script> section near the bottom of this file)
-     ============================================================ */
 
-  /* The site's palette: pale page #ffffea with dark red ink #210000,
-     bright yellow #ffcc33, gold #cc9900, rust button #b04411 and
-     orange link #b82e00. */
   :root {
     --bg: #ffffea;
     --text: #210000;
@@ -63,8 +56,6 @@
     color: var(--text);
   }
 
-  /* The title bar keeps the same dark red in both themes, so its
-     contents are set explicitly rather than inheriting the theme. */
   header {
     display: flex;
     justify-content: center;
@@ -73,18 +64,11 @@
     padding: 14px 16px;
     background: #660000;
   }
-  /* The menu button sits at the left and the Ko-fi button at the right. On
-     a wide screen each is pinned to its own side and the bar is padded
-     either side, so the title stays dead centre without sliding underneath
-     them. On a narrow screen there isn't room for that, so both drop below
-     the title instead, where the long heading has room to be as big as it
-     likes. */
+
   @media (min-width: 620px) {
     header { padding-left: 110px; padding-right: 110px; }
   }
-  /* The header stays a single row at every width - buttons at the ends,
-     title in the middle - so on a phone the title just needs to be a size
-     that fits between them. */
+
   @media (max-width: 619px) {
     header { padding-left: 8px; padding-right: 8px; }
     header h1 { font-size: 1.9rem; }
@@ -95,19 +79,14 @@
     top: 50%;
     transform: translateY(-50%);
   }
-  /* Ko-fi's own button markup, rebuilt as plain HTML. Their widget uses
-     document.writeln, which can blank the page if it runs late, and it
-     offers no way to say where the button should go. This version sits
-     exactly where the header wants it. The colour, text and account are
-     the three values passed to their init(), kept here instead. */
+
   #kofiSlot {
     position: absolute;
     right: 14px;
     top: 50%;
     transform: translateY(-50%);
   }
-  /* The same yellow and gold as the event type filter buttons, with a
-     rounded pill shape and the same gold outline. */
+
   .kofi-button {
     display: inline-block;
     white-space: nowrap;
@@ -132,23 +111,19 @@
     margin-bottom: 3px;
     border: none;
   }
-  /* On a narrow phone the word would push the title into it, so the cup
-     icon carries the button on its own. */
+
   @media (max-width: 419px) {
     .kofi-word { display: none; }
     .kofi-button .kofiimg { margin-right: 0; }
     .kofi-button { padding: 6px 9px; }
   }
-  /* The buttons are pinned to the ends of the bar at every width, so the
-     row that holds them only needs to take up no space of its own. */
+
   .header-btns {
     display: block;
     width: 0;
     height: 0;
   }
-  /* IM Fell English. It has only one weight, so it must not be given
-     a bolder one or the browser fakes a bold and blurs the letterforms.
-     The fallbacks are old-style serifs already on most machines. */
+
   header h1 {
     font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
     font-size: 2.6rem;
@@ -157,17 +132,13 @@
     letter-spacing: 0.03em;
     color: #ffffea;
   }
-  /* The site name is a link home, but drawn as a logo rather than as a
-     hyperlink: no underline, and no colour change on hover. It stays a
-     real link underneath, so a screen reader still announces it as
-     somewhere to go. */
+
   header h1 a {
     color: #ffffea;
     text-decoration: none;
   }
   header h1 a:hover { text-decoration: none; }
   #map { height: 260px; width: 100%; }
-
 
   .filter-row {
     display: flex;
@@ -189,8 +160,6 @@
     color: var(--btn-active-text);
   }
 
-  /* Scoped to the event type row so the date filters and the
-     "More info" buttons keep their existing grey look. */
   #typeFilters .filter-btn {
     background: var(--type-btn-bg);
     border-color: var(--type-btn-line);
@@ -219,9 +188,7 @@
   #eventList {
     padding: 0 16px 20px;
   }
-  /* The invitation to submit an event, sat under the list. IM Fell has one
-     weight only, so like the page title it must not be given a bolder one
-     or the browser fakes a bold and blurs the letterforms. */
+
   #submitPrompt {
     font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
     font-size: 1.05rem;
@@ -234,14 +201,7 @@
   }
   #submitPrompt a { color: var(--text); text-decoration: underline; }
   #submitPrompt a:hover { text-decoration: none; }
-  /* An event is laid out as two columns: the text on the left, and the
-     icon belonging to that row on the right. The heart is placed in the
-     title's row and the share icon in the date's row, so each lines up
-     with the line it belongs to instead of the two being stacked as one
-     block beside the title.
-     The markup is written in reading order - title, heart, date, share,
-     venue, and so on - and the grid places each item into the next free
-     cell, which puts the icons in the second column automatically. */
+
   .event {
     padding: 14px 0;
     border-bottom: 1px solid var(--line);
@@ -256,19 +216,10 @@
     grid-template-columns: 1fr auto;
     column-gap: 8px;
     align-items: center;
-    /* Room for the close button in the top right, so the heart on the
-       title row doesn't sit underneath it. */
+
     padding-right: 34px;
   }
-  /* Grid fills every cell in order rather than starting a new row for
-     each item, so without this the venue and category lines would take
-     turns at sitting in the icon column. Everything that is not an icon
-     is confined to the text column, and the two icons are pinned to their
-     own rows beside the line they belong to.
-     The text is held to column 1 rather than spanning both, because a
-     full-width item cannot share a row with an icon that is already
-     sitting in column 2 of that row - it would be pushed to the next row
-     and the heart would end up above the title. */
+
   .event > .event-title,
   .event > .event-line,
   .event > .more-info-btn,
@@ -289,18 +240,12 @@
     grid-row: 2;
     justify-self: center;
   }
-  /* Buttons stretch to fill a grid column by default, which would make
-     these as wide as the text above them. justify-self pulls them back
-     to the width of their own label. */
+
   .event > .more-info-btn,
   #modalContent > .ticket-link {
     justify-self: start;
   }
 
-  /* The title and the date open the event's details. They are real
-     buttons so they can be reached by keyboard and announced as
-     something to activate, but stripped back so they still read as
-     ordinary text until you point at them. */
   .event-open {
     display: block;
     width: 100%;
@@ -312,12 +257,9 @@
     color: inherit;
     cursor: pointer;
   }
-  /* Deliberately no underline on hover. The pointer cursor is the only
-     hint that these open the details, which suits the page better than
-     underlining the title of every event in the list. */
+
   .event-open:hover { text-decoration: none; }
-  /* A keyboard user gets no pointer to hover with, so the outline has to
-     appear when the button is focused instead. */
+
   .event-open:focus-visible,
   .fav-btn:focus-visible,
   .send-btn:focus-visible {
@@ -335,8 +277,7 @@
   .venue-events { max-height: 180px; overflow-y: auto; }
   .venue-event-line {
     display: flex;
-    /* The trailing space in the date/time text is trimmed as a flex
-       item, so the gap supplies the space before the event name. */
+
     gap: 0.3em;
     margin-bottom: 8px;
     font-size: 0.85rem;
@@ -360,15 +301,10 @@
     box-shadow: -16px 0 0 var(--hl-bg), 16px 0 0 var(--hl-bg);
   }
 
-  /* The map tiles are light and can't follow the theme, so the map is
-     framed in the palette's gold to read as a deliberate panel. The
-     popup is restyled to match the rest of the page. */
   #map {
     border-bottom: 2px solid #cc9900;
   }
-  /* Popups sit on a cream panel in both themes, so their text is set
-     to black rather than following the theme. The artist/event name
-     keeps the palette's orange. */
+
   .leaflet-popup-content-wrapper {
     background: #ffffea;
     color: #000000;
@@ -379,8 +315,7 @@
   .leaflet-container a.leaflet-popup-close-button { color: #000000; }
   .leaflet-container a.leaflet-popup-close-button:hover { color: #666666; }
   #map .venue-event-link { color: #b82e00; }
-  /* divIcon draws no box of its own, so the default marker chrome is
-     cleared away. */
+
   .map-pin {
     background: none;
     border: none;
@@ -420,8 +355,7 @@
     cursor: pointer;
     line-height: 1;
   }
-  /* Leaves room for the close button in the top right, so the heart
-     on the title row doesn't sit underneath it. */
+
   #modalContent .event-title { font-size: 1.2rem; }
   #modalContent .event-line { margin-bottom: 8px; }
   #modalContent a.ticket-link {
@@ -434,10 +368,6 @@
     text-decoration: none;
   }
 
-  /* The share button sits in the title row, to the right of the heart,
-     drawn as an icon in the site's gold. The box is a fixed size and the
-     icon is centred inside it, so it can never move when the title above
-     it wraps onto more lines. */
   .send-btn {
     background: none;
     border: none;
@@ -454,21 +384,17 @@
   }
   .send-btn svg { display: block; width: 1.5rem; height: 1.5rem; }
   .send-btn:hover { color: var(--fav-hover); }
-  /* Brief confirmation after a link is copied. Gold rather than red, so
-     it doesn't read as an error. */
+
   .send-btn.copied { color: #2e7d32; }
   #modalContent .send-btn { width: 2.75rem; height: 2.75rem; }
   #modalContent .send-btn svg { width: 1.65rem; height: 1.65rem; }
 
-  /* The venue name doubles as a link back to the map pin. */
   #modalContent a.venue-jump {
     color: var(--link);
     text-decoration: underline;
     cursor: pointer;
   }
 
-  /* In the list the venue keeps the normal text colour and has no
-     underline, so it doesn't read as a link until you point at it. */
   .event-line a.venue-jump-inline {
     color: inherit;
     text-decoration: none;
@@ -476,8 +402,6 @@
   }
   .event-line a.venue-jump-inline:hover { text-decoration: none; }
 
-  /* Padding comes from .filter-row, so this row sits the same distance
-     from the date filters as they do from the type filters. */
   #favFilterRow { align-items: center; }
   #favFilterRow .filter-btn { border-color: #cc9900; color: var(--text); }
   #favFilterRow .filter-btn.active {
@@ -488,10 +412,6 @@
   #favFilterRow .filter-btn:disabled { opacity: 0.45; cursor: default; }
   #favCount { font-size: 0.85rem; opacity: 0.7; }
 
-  /* Drawn as an SVG rather than a text character, so its shape and
-     its height are the same in every browser. The box is fixed, and
-     the heart is centred inside it, so it can never spill below the
-     title line. */
   .fav-btn {
     background: none;
     border: none;
@@ -514,7 +434,6 @@
   #modalContent .fav-btn { width: 2.75rem; height: 2.75rem; }
   #modalContent .fav-btn svg { width: 1.75rem; height: 1.6rem; }
 
-  /* ---- Slide-out menu ---- */
   #menuBtn {
     border: 1px solid #cc9900;
     background: #ffcc33;
@@ -526,8 +445,7 @@
     height: 32px;
   }
   #menuBtn:hover { background: #ffdb66; }
-  /* Drawn as an SVG rather than a text character, so its shape and its
-     height are the same in every browser. */
+
   #menuBtn svg { display: block; width: 20px; height: 16px; }
   #menuBtn svg line {
     stroke: #210000;
@@ -535,8 +453,6 @@
     stroke-linecap: round;
   }
 
-  /* The shade over the page. Tapping it closes the menu, so it needs a
-     cursor that says so. */
   #menuShade {
     display: none;
     position: fixed;
@@ -546,7 +462,6 @@
   }
   #menuShade.open { display: block; }
 
-  /* The panel itself, sliding in from the left. */
   #menuPanel {
     position: fixed;
     top: 0;
@@ -591,16 +506,13 @@
     text-decoration: none;
     font-size: 1.05rem;
   }
-  /* Only the page you are on is underlined, so the menu says where you
-     are without marking everything as a link. */
+
   .menu-link.current {
     text-decoration: underline;
   }
   .menu-link:hover { text-decoration: underline; }
   .menu-link.current:hover { text-decoration: underline; }
-  /* The dark mode option is a button rather than a link, but it is listed
-     alongside the links and has to look identical to them. Buttons come
-     with a background and a border of their own, so both are cleared. */
+
   .menu-btn {
     display: block;
     width: 100%;
@@ -698,18 +610,13 @@
   </div>
 
 <script>
-// ============================================================
-// CONFIG - paste your published Google Sheet CSV link here
-// ============================================================
+
 const CONFIG = {
   CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRtJN8W8AwbpQfUMykoANi9RfW6XA8ghJ-F-vagUGkQ8Ep5PWTbyae6f45kLlCVEpwJS2Mg0U9eKdz4/pub?gid=514788102&single=true&output=csv',
-  // The address that counts this page view. Same one the submit form
-  // posts to, so it must not change.
+
   WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbzPeXzOdU-VG3ejWRlKG5VVPczL0px44f6WJrSewRlP4yM_2DYI7xHIubU7jyWAEmHZ/exec'
 };
 
-// Which of your Sheet's Category values count under each button.
-// Edit these lists any time to match your own category names.
 const TYPE_GROUPS = {
   gigs: ['Folk Music'],
   sessions: ['Music Session'],
@@ -721,11 +628,10 @@ const TYPE_GROUPS = {
 };
 
 let allEvents = [];
-// Newcastle city centre, used as the map's starting point.
+
 const DEFAULT_CENTRE = [54.9783, -1.6178];
 const DEFAULT_ZOOM = 12;
-// Set once the map has opened wide enough to show every pin, so later
-// filter changes leave the visitor's chosen view alone.
+
 let mapHasFitted = false;
 let activeTypes = new Set();
 let activeRange = 'all';
@@ -733,19 +639,12 @@ let favouritesOnly = false;
 let map, markersLayer;
 let venueMarkers = {};
 
-// ---- Favourites ----
-// Stored in this browser only. Never sent anywhere.
-// Do not rename this string: every saved favourite is filed under it, so
-// changing it makes everyone's favourites look as though they had vanished.
 const FAV_KEY = 'newcastleFolkFavourites';
 let favIds = new Set();
 
-// Where the visitor last had the map panned and zoomed to. Also browser
-// only. A separate name from FAV_KEY so the two cannot overwrite each
-// other.
 const MAP_KEY = 'kirnMapView';
 let suppressMapSave = false;
-// True when this visitor had a view of their own from a previous visit.
+
 let hasSavedMapView = false;
 
 function loadFavourites() {
@@ -755,7 +654,7 @@ function loadFavourites() {
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed)) favIds = new Set(parsed.filter(x => typeof x === 'string'));
   } catch (err) {
-    // Storage blocked - favourites still work, just not remembered.
+
     favIds = new Set();
   }
 }
@@ -764,7 +663,7 @@ function saveFavourites() {
   try {
     localStorage.setItem(FAV_KEY, JSON.stringify(Array.from(favIds)));
   } catch (err) {
-    // Could not persist - keep the in-memory copy working.
+
   }
 }
 
@@ -772,20 +671,8 @@ function isFavourite(e) {
   return favIds.has(favId(e));
 }
 
-// ---- Shared event links ----
-// A link to one specific event, so someone who is sent it lands on the
-// page with that event open rather than having to go looking for it.
-//
-// The event is named in the address bar by its EventID, which the sheet
-// builds as date|venue|title - so the link survives the sheet being
-// rewritten, and needs nothing stored anywhere else. A link to an event
-// that has since been removed simply finds nothing and leaves the page
-// as it would normally be.
 const SHARE_PARAM = 'event';
 
-// The site's own address, used as the base for shared links. Read from
-// the page rather than hard-coded, so the links work on a preview or a
-// local copy as well as on the live site.
 function siteBase() {
   return window.location.origin + window.location.pathname;
 }
@@ -795,9 +682,6 @@ function shareUrlFor(e) {
     encodeURIComponent(favId(e));
 }
 
-// The identifier in a shared link. Decoded by hand because
-// decodeURIComponent can throw on a malformed value, and a broken link
-// should leave the page alone rather than break it.
 function readSharedEventId() {
   try {
     const params = new URLSearchParams(window.location.search);
@@ -813,18 +697,13 @@ function readSharedEventId() {
   }
 }
 
-// Opens the event a shared link points at. Runs once, after the events
-// have loaded, and only does anything when the link names an event that
-// is actually on the page.
 function openSharedEvent() {
   const wanted = readSharedEventId();
   if (!wanted) return;
 
   const target = allEvents.find(e => favId(e).toLowerCase().trim() === wanted);
-  if (!target) return; // removed or expired - the page is left as normal
+  if (!target) return;
 
-  // Nothing that filters would be left excluding it, so the event is
-  // visible before it can be pointed at.
   activeTypes.clear();
   activeRange = 'all';
   favouritesOnly = false;
@@ -844,16 +723,11 @@ function openSharedEvent() {
   }
 }
 
-// Puts the link on the clipboard, as the fallback where a phone has no
-// share sheet of its own. Returns a promise so the button can show the
-// visitor that it worked.
 function copyToClipboard(text) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     return navigator.clipboard.writeText(text);
   }
-  // Older browsers, and any page not on a secure connection, have no
-  // clipboard to write to. The old trick still works there: hold the
-  // text in a hidden box and select it, leaving it ready to copy.
+
   try {
     const helper = document.createElement('textarea');
     helper.value = text;
@@ -870,16 +744,10 @@ function copyToClipboard(text) {
   }
 }
 
-// Opens the phone's own share sheet, which offers whatever apps that
-// person already uses. Browsers that don't have one get the link put on
-// the clipboard instead.
 function shareEvent(e, button) {
   const url = shareUrlFor(e);
   const label = e.title + ' - The Kirn';
 
-  // The button is an icon with no text in it, so the confirmation is a
-  // change of colour plus the tooltip - a screen reader gets the same
-  // news from the aria-live line below.
   const done = function() {
     button.classList.add('copied');
     button.title = 'Link copied';
@@ -893,8 +761,7 @@ function shareEvent(e, button) {
   if (navigator.share) {
     navigator.share({ title: label, text: 'Folk events in Newcastle', url: url })
       .then(done)['catch'](function() {
-        // Cancelled, or the sheet wouldn't open. The clipboard is still
-        // worth trying, so closing the sheet doesn't lose the link.
+
         copyToClipboard(url).then(done, function() {});
       });
     return;
@@ -905,8 +772,6 @@ function shareEvent(e, button) {
   });
 }
 
-// Announces a short message to a screen reader, and holds it on the page
-// for anyone who needs to read it.
 let sayTimer = null;
 function say(message) {
   let el = document.getElementById('sayLine');
@@ -924,8 +789,6 @@ function say(message) {
   sayTimer = setTimeout(function() { el.textContent = ''; }, 4000);
 }
 
-// EventID is built as date|venue|title, so it survives the sheet
-// being rewritten. Mirrors that same shape if EventID is blank.
 function favId(e) {
   if (e.eventId) return e.eventId;
   const norm = t => String(t || '').toLowerCase()
@@ -941,17 +804,6 @@ function toggleFavourite(e) {
   render();
 }
 
-// The share button, drawn as an icon rather than a word. Drawn as an SVG
-// like the heart so its shape and size are the same in every browser.
-// The box is fixed and the icon centred inside it, so the button stays
-// put whatever the event title does above it.
-//
-// The markup is kept as close to the heart's as possible, and the class is
-// called send-btn rather than share-btn on purpose. Brave Shields removed
-// this button entirely while leaving the heart alone; with Shields off it
-// stayed put. Filter lists carry cosmetic rules that hide social sharing
-// widgets, and "share" in a class name is what they match on. Nothing here
-// has to be called "share" for the button to work, so it isn't.
 function shareButtonHtml(e) {
   const icon =
     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
@@ -967,7 +819,6 @@ function shareButtonHtml(e) {
     ' title="Share this event">' + icon + '</button>';
 }
 
-// Outline heart when not favourited, solid when it is.
 function favButtonHtml(e, extraClass) {
   const on = isFavourite(e);
   const label = on ? 'Remove from favourites' : 'Add to favourites';
@@ -983,9 +834,6 @@ function favButtonHtml(e, extraClass) {
     ' title="' + label + '">' + heart + '</button>';
 }
 
-// Pins sit at Leaflet's default size when unselected, drawn in the
-// palette's rust. Only the selected pin grows and darkens, so the
-// difference between the two states is easy to pick out.
 const PIN_SELECTED_H = 47;
 
 function pinIcon(selected) {
@@ -1008,10 +856,6 @@ function pinIcon(selected) {
   });
 }
 
-// Leaflet pans to fit a popup on its own, but a long list in a short
-// map can still leave the pin covered. The scrolling list is capped so
-// the popup and the pin fit together, then the map is panned the
-// minimum amount needed to bring the top of the popup into view.
 function showPinWithPopup(marker) {
   const el = marker.getPopup().getElement();
   const listEl = el && el.querySelector('.venue-events');
@@ -1020,7 +864,7 @@ function showPinWithPopup(marker) {
   const chrome = el.offsetHeight - listEl.offsetHeight;
   const roomForList = size.y - PIN_SELECTED_H - chrome - 24;
   listEl.style.maxHeight = Math.max(60, roomForList) + 'px';
-  // Reading the height back forces the layout to settle.
+
   const popupH = el.offsetHeight;
   const tip = map.latLngToContainerPoint(marker.getLatLng());
   const popupTop = tip.y - PIN_SELECTED_H - popupH;
@@ -1038,9 +882,7 @@ function initMap() {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
   markersLayer = L.layerGroup().addTo(map);
-  // Remembering where someone had panned and zoomed to is useful on their
-  // own machine, so it is written back as they move. Kept off the end so
-  // it fires once the move has settled rather than on every frame.
+
   map.on('moveend zoomend', saveMapView);
 }
 
@@ -1056,14 +898,13 @@ function loadSavedMapView() {
     if (zoom < 1 || zoom > 18) return null;
     return { lat: lat, lng: lng, zoom: zoom };
   } catch (err) {
-    // Storage blocked or the value is unreadable - just start normally.
+
     return null;
   }
 }
 
 function saveMapView() {
-  // The automatic fit that happens on a first visit is not a choice the
-  // visitor made, so it is not written down as though it were.
+
   if (suppressMapSave) return;
   try {
     const c = map.getCenter();
@@ -1073,16 +914,10 @@ function saveMapView() {
       zoom: map.getZoom()
     }));
   } catch (err) {
-    // No storage, or no room left - the map still works, it just forgets.
+
   }
 }
 
-// Zooms the map so every pin currently on it is visible, used once on
-// first load so the map opens showing the whole area rather than a fixed
-// stretch of Newcastle that may cut off Whitley Bay, Jarrow or the coast.
-//
-// A single pin would otherwise fill the screen at maximum zoom, so with
-// only one (or none) the normal view is kept.
 function fitMapToPins() {
   if (!map || !map.fitBounds) return false;
   const pts = [];
@@ -1090,20 +925,15 @@ function fitMapToPins() {
     const p = m.getLatLng();
     if (p) pts.push([p.lat, p.lng]);
   });
-  // One pin, or none, would zoom to maximum on a single point, so the
-  // normal Newcastle view is left alone.
+
   if (pts.length < 2) return false;
-  // The map can be asked to fit before it has settled to its real size,
-  // which would give the wrong answer, so make sure it has.
+
   if (map.invalidateSize) map.invalidateSize();
-  // Jumps rather than animates. Leaflet's zoom animation can be left
-  // part-finished when the events are still arriving, and a half-finished
-  // zoom leaves the map at its old level with pins off screen.
+
   map.fitBounds(pts, { padding: [30, 30], maxZoom: DEFAULT_ZOOM, animate: false });
   return true;
 }
 
-// Fits the map, without that choice being remembered as the visitor's own.
 function autoFitMapToPins() {
   suppressMapSave = true;
   try {
@@ -1137,8 +967,7 @@ function loadEvents() {
         }));
       document.getElementById('status').style.display = 'none';
       render();
-      // Only after the events are in - a shared link can only be
-      // resolved once there is something to match it against.
+
       openSharedEvent();
     },
     error: function() {
@@ -1151,20 +980,14 @@ function loadEvents() {
 function todayStr(offsetDays) {
   const d = new Date();
   d.setDate(d.getDate() + (offsetDays || 0));
-  // Built from the local date parts rather than toISOString().
-  // toISOString() reports the date in UTC, which is an hour ahead
-  // of us for most of the year - so late in the evening it would
-  // hand back tomorrow's date and quietly drop today's events out
-  // of the "Today" filter.
+
   const m = ('0' + (d.getMonth() + 1)).slice(-2);
   const day = ('0' + d.getDate()).slice(-2);
   return d.getFullYear() + '-' + m + '-' + day;
 }
 
-// The week starts on Monday, so this returns the Monday of the week
-// that the given date falls in.
 function startOfWeek(date) {
-  const day = date.getDay(); // 0=Sun..6=Sat
+  const day = date.getDay();
   const daysSinceMonday = (day === 0) ? 6 : day - 1;
   const monday = new Date(date);
   monday.setDate(date.getDate() - daysSinceMonday);
@@ -1184,8 +1007,7 @@ function passesDateFilter(dateStr) {
     return eventDate >= monday && eventDate <= sunday;
   }
   if (activeRange === 'weekend') {
-    // The Saturday and Sunday of the week we are currently in, so
-    // Friday looks forward and Sunday looks back at the day before.
+
     const monday = startOfWeek(today);
     const sat = new Date(monday); sat.setDate(monday.getDate() + 5);
     const sun = new Date(sat); sun.setDate(sat.getDate() + 1);
@@ -1212,30 +1034,22 @@ function passesTypeFilter(category) {
   return false;
 }
 
-// Identifies which pin an event belongs to. Grouping ignores the word
-// "The" (case-insensitive) and also uses postcode as a fallback so
-// that venues with slightly different names but the same postcode are
-// grouped together. Shared with the modal so both always agree.
 function venueKeyFor(e) {
   const venueNorm = (e.venue || '')
     .toLowerCase()
-    .replace(/^the\s+/, '')    // strip leading "The"
-    .replace(/\s+the\s+/g, ' ') // strip "The" in the middle
-    .replace(/[^a-z0-9]/g, '')  // remove non-alphanumeric
+    .replace(/^the\s+/, '')
+    .replace(/\s+the\s+/g, ' ')
+    .replace(/[^a-z0-9]/g, '')
     .trim();
-  // Extract postcode from address if available
+
   const postcodeMatch = (e.address || '').match(/([A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2})/i);
   const postcode = postcodeMatch ? postcodeMatch[1].replace(/\s+/g, '') : '';
-  // If we have neither (an event with no venue and no usable address),
-  // fall back to the exact coordinates so those events don't all
-  // collapse onto one pin.
+
   return (venueNorm || postcode) ? venueNorm + '|' + postcode : e.lat + ',' + e.lng;
 }
 
 function render() {
-  // Runs before the list is built, so that removing the last
-  // favourite switches the filter off and the events reappear in the
-  // same pass rather than showing an empty list first.
+
   updateFavCount();
 
   const filtered = allEvents
@@ -1246,7 +1060,6 @@ function render() {
   markersLayer.clearLayers();
   venueMarkers = {};
 
-  // One pin per venue, however many events are on there.
   const venueGroups = {};
   filtered.forEach(e => {
     if (!e.lat || !e.lng) return;
@@ -1261,8 +1074,7 @@ function render() {
     const g = venueGroups[key];
     const marker = L.marker([g.lat, g.lng], { icon: pinIcon(false) }).addTo(markersLayer)
       .bindPopup(buildVenuePopup(g), { maxWidth: 320 });
-    // Darken the pin while its popup is open, so the selected venue is
-    // obvious without having to read the popup.
+
     marker.on('popupopen', () => {
       marker.setIcon(pinIcon(true));
       showPinWithPopup(marker);
@@ -1271,12 +1083,6 @@ function render() {
     venueMarkers[key] = marker;
   });
 
-  // On the very first pass, open the map wide enough to show every pin.
-  // Only once, so that tapping a filter afterwards doesn't yank the view
-  // away from wherever the visitor has moved it.
-  //
-  // Skipped when the map came back at a position the visitor chose
-  // themselves on an earlier visit, as that always beats the automatic fit.
   if (!mapHasFitted && !hasSavedMapView) {
     if (autoFitMapToPins()) mapHasFitted = true;
   }
@@ -1292,7 +1098,7 @@ function render() {
     const div = document.createElement('div');
     div.className = 'event';
     div.id = e.domId;
-    // The venue is clickable when this event has a pin to jump to.
+
     const key = venueKeyFor(e);
     const venueHtml = (e.venue && venueMarkers[key])
       ? '<a href="#" class="venue-jump-inline" data-venue-key="' + esc(key) + '">' +
@@ -1311,8 +1117,6 @@ function render() {
     list.appendChild(div);
   });
 
-  // Store the currently filtered list so the More info buttons
-  // (added just above) can look up the right event by index.
   window.currentFilteredEvents = filtered;
 }
 
@@ -1325,8 +1129,7 @@ function updateFavCount() {
   } else {
     countEl.textContent = n + (n === 1 ? ' favourite' : ' favourites');
   }
-  // With nothing saved, grey the filter out rather than letting
-  // someone click into an empty list.
+
   btn.disabled = (n === 0);
   if (n === 0) {
     favouritesOnly = false;
@@ -1334,9 +1137,6 @@ function updateFavCount() {
   }
 }
 
-// Turns a value from the sheet into something safe to drop into
-// innerHTML, so a stray < or & in a title shows as typed instead of
-// being read as markup.
 function esc(s) {
   return String(s)
     .replace(/&/g, '&amp;')
@@ -1346,9 +1146,6 @@ function esc(s) {
     .replace(/'/g, '&#39;');
 }
 
-// Ticket links come from scraped sources, so only real web addresses
-// are turned into links. Anything else (a javascript: URL, or junk)
-// is ignored rather than made clickable.
 function isSafeUrl(url) {
   return /^https?:\/\//i.test(String(url || '').trim());
 }
@@ -1363,11 +1160,6 @@ function formatDateShort(dateStr) {
   return weekday + ' ' + ordinal(d.getDate()) + ' ' + month;
 }
 
-// Venue name and address at the top, then one clickable line per
-// event: "Sun 25th Oct - 7:30pm - Event title".
-// Only the event title is a link (not the date/time), and when the
-// title wraps to a new line it stays aligned with the start of the
-// title rather than dropping back under the date.
 function buildVenuePopup(g) {
   let html = '<div class="venue-popup"><div class="venue-name">' +
     esc(g.venue || 'Event location') + '</div>';
@@ -1385,8 +1177,6 @@ function buildVenuePopup(g) {
   return html + '</div></div>';
 }
 
-// Closes the map popup and scrolls down to that event in the list,
-// briefly highlighting it so it's easy to spot.
 function scrollToEvent(domId) {
   const el = document.getElementById(domId);
   if (!el) return;
@@ -1396,9 +1186,6 @@ function scrollToEvent(domId) {
   setTimeout(() => el.classList.remove('highlight'), 2000);
 }
 
-// Closes the details popup, scrolls back up to the map and opens that
-// venue's pin. The map is only panned when the pin is off screen, so
-// a venue already in view doesn't jump about.
 function jumpToVenue(venueKey) {
   const marker = venueMarkers[venueKey];
   if (!marker) return;
@@ -1410,9 +1197,6 @@ function jumpToVenue(venueKey) {
   marker.openPopup();
 }
 
-// A link only counts as worth showing if it points somewhere
-// event-specific. Crack Magazine's link is always just the same
-// category listing page, not the actual event, so we hide it there.
 function isGenericListingLink(url) {
   if (!url) return true;
   return url.indexOf('thecrackmagazine.com/whatson') !== -1;
@@ -1430,7 +1214,7 @@ function paintModal() {
   const e = modalEvent;
   if (!e) return;
   const content = document.getElementById('modalContent');
-  // The venue is a link only when this event actually has a pin.
+
   const venueKey = venueKeyFor(e);
   const venueHtml = venueMarkers[venueKey]
     ? '<a href="#" class="venue-jump" onclick="jumpToVenue(\'' + venueKey + '\'); return false;">' +
@@ -1453,15 +1237,13 @@ function paintModal() {
       const target = allEvents.find(x => x.domId === btn.dataset.domId);
       if (!target) return;
       toggleFavourite(target);
-      // render() rebuilds the list but not the modal.
+
       if (document.getElementById('modalOverlay').classList.contains('open')) {
         paintModal();
       }
     });
   }
 
-  // The share button is wired here rather than through the list, because
-  // this panel is rebuilt every time it is painted.
   const shareBtn = content.querySelector('.send-btn');
   if (shareBtn) {
     shareBtn.addEventListener('click', () => {
@@ -1490,8 +1272,7 @@ function ordinal(n) {
 function formatDateDisplay(dateStr) {
   const parts = dateStr.split('-');
   if (parts.length !== 3) return dateStr;
-  // Built from the parts directly (not new Date(dateStr)) so the
-  // displayed day never shifts due to timezone rounding.
+
   const d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
   if (isNaN(d)) return dateStr;
   const weekday = d.toLocaleDateString('en-GB', { weekday: 'long' });
@@ -1502,7 +1283,7 @@ function formatDateDisplay(dateStr) {
 function formatTimeDisplay(timeStr) {
   if (!timeStr) return '';
   const match = timeStr.match(/(\d{1,2}):(\d{2})/);
-  if (!match) return timeStr; // unrecognised format - show as-is rather than hide it
+  if (!match) return timeStr;
   let hour = parseInt(match[1], 10);
   const minute = match[2];
   const suffix = hour >= 12 ? 'pm' : 'am';
@@ -1511,32 +1292,22 @@ function formatTimeDisplay(timeStr) {
   return hour + (minute === '00' ? '' : ':' + minute) + suffix;
 }
 
-// ---- Page view count ----
-// Adds one to today's row in the Web Traffic tab, and sends nothing else:
-// no address, no device, no cookie, no identifier. If it fails, the page
-// carries on exactly as before - the count is not worth an error in front
-// of a visitor.
 function countPageView() {
   if (!CONFIG.WEB_APP_URL) return;
   try {
     fetch(CONFIG.WEB_APP_URL + '?hit=1', {
       mode: 'no-cors',
-      // Keeps this site's address out of the request, so nothing links
-      // the count to where the visitor was.
+
       referrerPolicy: 'no-referrer',
-      // Survives the visitor closing the tab straight away.
+
       keepalive: true,
       cache: 'no-store'
     })['catch'](function() {});
   } catch (err) {
-    // Never let the counter get in the way of the page.
+
   }
 }
 
-// ---- Wiring up the buttons ----
-
-// The button names the mode it will switch to, not the one in use, so
-// it reads "Light mode" while dark is on.
 function updateThemeLabel() {
   document.getElementById('darkToggle').textContent =
     document.body.classList.contains('dark') ? 'Light mode' : 'Dark mode';
@@ -1549,7 +1320,6 @@ document.getElementById('darkToggle').addEventListener('click', () => {
 
 updateThemeLabel();
 
-// ---- Slide-out menu ----
 const menuPanel = document.getElementById('menuPanel');
 const menuBtn = document.getElementById('menuBtn');
 const menuShade = document.getElementById('menuShade');
@@ -1568,11 +1338,6 @@ document.addEventListener('keydown', ev => {
   if (ev.key === 'Escape' && menuPanel.classList.contains('open')) setMenuOpen(false);
 });
 
-// One handler for the whole event list, attached once. Every card is
-// rebuilt on each filter change, so attaching a listener to each
-// button individually meant re-attaching hundreds of them every time
-// a filter was tapped. The list container never changes, so listening
-// on it catches clicks on any card, present or future.
 document.getElementById('eventList').addEventListener('click', ev => {
   const favBtn = ev.target.closest('.fav-btn');
   if (favBtn) {
@@ -1587,9 +1352,7 @@ document.getElementById('eventList').addEventListener('click', ev => {
   }
   const shareBtn = ev.target.closest('.send-btn');
   if (shareBtn) {
-    // Matched on the domId rather than the list index, because the list
-    // is rebuilt on every filter change and an index would point at
-    // whichever event had moved into that place.
+
     const e = allEvents.find(x => x.domId === shareBtn.dataset.domId);
     if (e) shareEvent(e, shareBtn);
     return;
@@ -1600,9 +1363,7 @@ document.getElementById('eventList').addEventListener('click', ev => {
     if (e) openModal(e);
     return;
   }
-  // The title and the date open the same details panel as the More info
-  // button. Matched on the card the click landed in rather than on a list
-  // index, so it finds the right event after any filter change.
+
   const openBtn = ev.target.closest('.event-open');
   if (openBtn) {
     const card = openBtn.closest('.event');
@@ -1626,8 +1387,7 @@ document.querySelectorAll('#typeFilters .filter-btn').forEach(btn => {
 });
 
 function setDateRange(range) {
-  // Pressing the button for the range that is already on switches it
-  // back to All, so a single button turns the filter on and off.
+
   activeRange = (range === activeRange && range !== 'all') ? 'all' : range;
   document.querySelectorAll('#dateFilters .filter-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.range === activeRange);
