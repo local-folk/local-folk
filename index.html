@@ -351,6 +351,23 @@
     text-decoration: none;
   }
 
+  /* Sits beside the ticket link, in the same gold the site's type
+     buttons use so it reads as part of the page rather than bolted on. */
+  .share-btn {
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 8px;
+    padding: 8px 16px;
+    background: #ffcc33;
+    color: #111111;
+    border: 1px solid #cc9900;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  .share-btn:hover { background: #ffdb66; }
+
   /* The venue name doubles as a link back to the map pin. */
   #modalContent a.venue-jump {
     color: var(--link);
@@ -675,6 +692,131 @@ function isFavourite(e) {
   return favIds.has(favId(e));
 }
 
+// ---- Shared event links ----
+// A link to one specific event, so someone who is sent it lands on the
+// page with that event open rather than having to go looking for it.
+//
+// The event is named in the address bar by its EventID, which the sheet
+// builds as date|venue|title - so the link survives the sheet being
+// rewritten, and needs nothing stored anywhere else. A link to an event
+// that has since been removed simply finds nothing and leaves the page
+// as it would normally be.
+const SHARE_PARAM = 'event';
+
+// The site's own address, used as the base for shared links. Read from
+// the page rather than hard-coded, so the links work on a preview or a
+// local copy as well as on the live site.
+function siteBase() {
+  return window.location.origin + window.location.pathname;
+}
+
+function shareUrlFor(e) {
+  return siteBase() + '?' + SHARE_PARAM + '=' +
+    encodeURIComponent(favId(e));
+}
+
+// The identifier in a shared link. Decoded by hand because
+// decodeURIComponent can throw on a malformed value, and a broken link
+// should leave the page alone rather than break it.
+function readSharedEventId() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get(SHARE_PARAM);
+    if (!raw) return '';
+    try {
+      return decodeURIComponent(raw).toLowerCase().trim();
+    } catch (err) {
+      return '';
+    }
+  } catch (err) {
+    return '';
+  }
+}
+
+// Opens the event a shared link points at. Runs once, after the events
+// have loaded, and only does anything when the link names an event that
+// is actually on the page.
+function openSharedEvent() {
+  const wanted = readSharedEventId();
+  if (!wanted) return;
+
+  const target = allEvents.find(e => favId(e).toLowerCase().trim() === wanted);
+  if (!target) return; // removed or expired - the page is left as normal
+
+  // Nothing that filters would be left excluding it, so the event is
+  // visible before it can be pointed at.
+  activeTypes.clear();
+  activeRange = 'all';
+  favouritesOnly = false;
+  document.querySelectorAll('#typeFilters .filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#dateFilters .filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.range === 'all');
+  });
+  document.getElementById('dateRangeBox').style.display = 'none';
+  document.getElementById('favFilter').classList.remove('active');
+  render();
+
+  openModal(target);
+  const el = document.getElementById(target.domId);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.add('highlight');
+  }
+}
+
+// Puts the link on the clipboard, as the fallback where a phone has no
+// share sheet of its own. Returns a promise so the button can show the
+// visitor that it worked.
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text);
+  }
+  // Older browsers, and any page not on a secure connection, have no
+  // clipboard to write to. The old trick still works there: hold the
+  // text in a hidden box and select it, leaving it ready to copy.
+  try {
+    const helper = document.createElement('textarea');
+    helper.value = text;
+    helper.setAttribute('readonly', '');
+    helper.style.position = 'absolute';
+    helper.style.left = '-9999px';
+    document.body.appendChild(helper);
+    helper.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(helper);
+    return ok ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+  } catch (err) {
+    return Promise.reject(err);
+  }
+}
+
+// Opens the phone's own share sheet, which offers whatever apps that
+// person already uses. Browsers that don't have one get the link put on
+// the clipboard instead.
+function shareEvent(e, button) {
+  const url = shareUrlFor(e);
+  const label = e.title + ' - The Kirn';
+  const done = function() {
+    button.textContent = 'Link copied';
+    setTimeout(function() { button.textContent = 'Share'; }, 2500);
+  };
+
+  if (navigator.share) {
+    navigator.share({ title: label, text: 'Folk events in Newcastle', url: url })
+      .then(done)['catch'](function() {
+        // Cancelled, or the sheet wouldn't open. The clipboard is still
+        // worth trying, so closing the sheet doesn't lose the link.
+        copyToClipboard(url).then(done, function() {});
+      });
+    return;
+  }
+
+  copyToClipboard(url).then(done, function() {
+    button.textContent = 'Press Ctrl+C';
+    setTimeout(function() { button.textContent = 'Share'; }, 3000);
+  });
+}
+
 // EventID is built as date|venue|title, so it survives the sheet
 // being rewritten. Mirrors that same shape if EventID is blank.
 function favId(e) {
@@ -862,6 +1004,9 @@ function loadEvents() {
         }));
       document.getElementById('status').style.display = 'none';
       render();
+      // Only after the events are in - a shared link can only be
+      // resolved once there is something to match it against.
+      openSharedEvent();
     },
     error: function() {
       document.getElementById('status').textContent =
@@ -1167,6 +1312,7 @@ function paintModal() {
       (e.startTime ? ', ' + esc(formatTimeDisplay(e.startTime)) : '') + '</div>' +
     '<div class="event-line">' + venueHtml + '</div>' +
     (e.description ? '<div class="event-line">' + esc(e.description) + '</div>' : '') +
+    '<button type="button" class="share-btn" data-share-id="' + esc(favId(e)) + '">Share</button>' +
     (!isGenericListingLink(e.sourceUrl) && isSafeUrl(e.sourceUrl)
       ? '<a class="ticket-link" href="' + esc(e.sourceUrl) + '" target="_blank" rel="noopener noreferrer">More info</a>'
       : '');
@@ -1180,6 +1326,16 @@ function paintModal() {
       if (document.getElementById('modalOverlay').classList.contains('open')) {
         paintModal();
       }
+    });
+  }
+
+  // The share button is wired here rather than through the list, because
+  // this panel is rebuilt every time it is painted.
+  const shareBtn = content.querySelector('.share-btn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', () => {
+      const target = allEvents.find(x => favId(x) === shareBtn.dataset.shareId);
+      if (target) shareEvent(target, shareBtn);
     });
   }
 }
