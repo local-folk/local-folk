@@ -260,8 +260,33 @@
        title row doesn't sit underneath it. */
     padding-right: 34px;
   }
-  .event .fav-btn, .event .send-btn,
-  #modalContent .fav-btn, #modalContent .send-btn {
+  /* Grid fills every cell in order rather than starting a new row for
+     each item, so without this the venue and category lines would take
+     turns at sitting in the icon column. Everything that is not an icon
+     is confined to the text column, and the two icons are pinned to their
+     own rows beside the line they belong to.
+     The text is held to column 1 rather than spanning both, because a
+     full-width item cannot share a row with an icon that is already
+     sitting in column 2 of that row - it would be pushed to the next row
+     and the heart would end up above the title. */
+  .event > .event-title,
+  .event > .event-line,
+  .event > .more-info-btn,
+  #modalContent > .event-title,
+  #modalContent > .event-line,
+  #modalContent > .ticket-link {
+    grid-column: 1;
+  }
+  .event > .fav-btn,
+  #modalContent > .fav-btn {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+  }
+  .event > .send-btn,
+  #modalContent > .send-btn {
+    grid-column: 2;
+    grid-row: 2;
     justify-self: center;
   }
   .event-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 6px; }
