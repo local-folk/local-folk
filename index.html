@@ -355,7 +355,7 @@
      drawn as an icon in the site's gold. The box is a fixed size and the
      icon is centred inside it, so it can never move when the title above
      it wraps onto more lines. */
-  .share-btn {
+  .send-btn {
     background: none;
     border: none;
     padding: 0;
@@ -369,13 +369,13 @@
     height: 2.5rem;
     flex-shrink: 0;
   }
-  .share-btn svg { display: block; width: 1.5rem; height: 1.5rem; }
-  .share-btn:hover { color: var(--fav-hover); }
+  .send-btn svg { display: block; width: 1.5rem; height: 1.5rem; }
+  .send-btn:hover { color: var(--fav-hover); }
   /* Brief confirmation after a link is copied. Gold rather than red, so
      it doesn't read as an error. */
-  .share-btn.copied { color: #2e7d32; }
-  #modalContent .share-btn { width: 2.75rem; height: 2.75rem; }
-  #modalContent .share-btn svg { width: 1.65rem; height: 1.65rem; }
+  .send-btn.copied { color: #2e7d32; }
+  #modalContent .send-btn { width: 2.75rem; height: 2.75rem; }
+  #modalContent .send-btn svg { width: 1.65rem; height: 1.65rem; }
 
   /* The venue name doubles as a link back to the map pin. */
   #modalContent a.venue-jump {
@@ -888,6 +888,13 @@ function toggleFavourite(e) {
 // like the heart so its shape and size are the same in every browser.
 // The box is fixed and the icon centred inside it, so the button stays
 // put whatever the event title does above it.
+//
+// The markup is kept as close to the heart's as possible, and the class is
+// called send-btn rather than share-btn on purpose. Brave Shields removed
+// this button entirely while leaving the heart alone; with Shields off it
+// stayed put. Filter lists carry cosmetic rules that hide social sharing
+// widgets, and "share" in a class name is what they match on. Nothing here
+// has to be called "share" for the button to work, so it isn't.
 function shareButtonHtml(e) {
   const icon =
     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
@@ -897,13 +904,8 @@ function shareButtonHtml(e) {
         'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" ' +
         'stroke-linejoin="round"/>' +
     '</svg>';
-  // Carries the same plain domId the heart uses rather than the EventID.
-  // The EventID contains "|" characters and spaces, and those in an
-  // attribute value were enough for Brave Shields to drop the button
-  // altogether - it reported nothing blocked, and with Shields off the
-  // button stayed put. The sanitised id has neither, and resolves to the
-  // same event.
-  return '<button type="button" class="share-btn" data-dom-id="' + e.domId + '"' +
+  return '<button class="send-btn" data-dom-id="' + e.domId + '"' +
+    ' aria-pressed="false"' +
     ' aria-label="Share this event"' +
     ' title="Share this event">' + icon + '</button>';
 }
@@ -1410,7 +1412,7 @@ function paintModal() {
 
   // The share button is wired here rather than through the list, because
   // this panel is rebuilt every time it is painted.
-  const shareBtn = content.querySelector('.share-btn');
+  const shareBtn = content.querySelector('.send-btn');
   if (shareBtn) {
     shareBtn.addEventListener('click', () => {
       const target = allEvents.find(x => x.domId === shareBtn.dataset.domId);
@@ -1533,7 +1535,7 @@ document.getElementById('eventList').addEventListener('click', ev => {
     jumpToVenue(venueLink.dataset.venueKey);
     return;
   }
-  const shareBtn = ev.target.closest('.share-btn');
+  const shareBtn = ev.target.closest('.send-btn');
   if (shareBtn) {
     // Matched on the domId rather than the list index, because the list
     // is rebuilt on every filter change and an index would point at
