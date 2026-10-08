@@ -65,6 +65,9 @@
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -91,7 +94,7 @@
       "longitude": -1.615727
     }
   },
-  "about": "Folk Music",
+  "about": "Gigs",
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",
@@ -108,20 +111,20 @@
 <body>
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
-  <span class="chip">Folk Music</span>
-  <h2 class="title">Student Performances</h2>
+  <span class="chip">Gigs</span>
+  <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-10-22%7Ckings%20hall%20armstrong%20building%20newcastle%20university%20queen%20victoria%20road%20newcastle%20ne1%207ru%7Cstudent%20performances">Student Performances</a></h2>
   <p class="line"><strong>Thursday 22nd October, 4pm</strong></p>
-  <p class="line venue">King&#39;s Hall</p>
-  <p class="line muted">Armstrong Building, Newcastle University, Queen Victoria Road, Newcastle, NE1 7RU</p>
+  <p class="line venue"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=King&#39;s%20Hall%2C%20Armstrong%20Building%2C%20Newcastle%20University%2C%20Queen%20Victoria%20Road%2C%20Newcastle%2C%20NE1%207RU" target="_blank" rel="noopener noreferrer">King&#39;s Hall</a></p>
+  <p class="line muted"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=King&#39;s%20Hall%2C%20Armstrong%20Building%2C%20Newcastle%20University%2C%20Queen%20Victoria%20Road%2C%20Newcastle%2C%20NE1%207RU" target="_blank" rel="noopener noreferrer">Armstrong Building, Newcastle University, Queen Victoria Road, Newcastle, NE1 7RU</a></p>
   <p class="line">Sol Sayal (fiddle), Rory Emson (guitar), Brad Lewis (voice), Ed Gray (tuba).</p>
   <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="https://thekirn.co.uk/?event=2026-10-22%7Ckings%20hall%20armstrong%20building%20newcastle%20university%20queen%20victoria%20road%20newcastle%20ne1%207ru%7Cstudent%20performances">See on the map</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=54.980327,-1.615727" target="_blank" rel="noopener noreferrer">Directions</a>
+    <a class="btn" href="https://thekirn.co.uk/?venue=kingshall%7CNE17RU">See on the map</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=King&#39;s%20Hall%2C%20Armstrong%20Building%2C%20Newcastle%20University%2C%20Queen%20Victoria%20Road%2C%20Newcastle%2C%20NE1%207RU" target="_blank" rel="noopener noreferrer">Directions</a>
   </div>
-  <p class="more"><a class="btn" href="https://www.ncl.ac.uk/university-events/live-music/" target="_blank" rel="noopener noreferrer">More info</a></p>
+  <p class="more"><a class="btn" href="https://thekirn.co.uk/">View All Events</a></p>
   <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>

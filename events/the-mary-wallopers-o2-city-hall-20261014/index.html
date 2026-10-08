@@ -65,6 +65,9 @@
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -91,7 +94,7 @@
       "longitude": -1.6102258
     }
   },
-  "about": "Folk Music",
+  "about": "Gigs",
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",
@@ -108,20 +111,20 @@
 <body>
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
-  <span class="chip">Folk Music</span>
-  <h2 class="title">The Mary Wallopers</h2>
+  <span class="chip">Gigs</span>
+  <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-10-14%7Co2%20city%20hall%20northumberland%20road%20newcastle%20ne1%208sf%7Cthe%20mary%20wallopers">The Mary Wallopers</a></h2>
   <p class="line"><strong>Wednesday 14th October, 7pm</strong></p>
-  <p class="line venue">O2 City Hall</p>
-  <p class="line muted">Northumberland Road, Newcastle, NE1 8SF</p>
+  <p class="line venue"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=O2%20City%20Hall%2C%20Northumberland%20Road%2C%20Newcastle%2C%20NE1%208SF" target="_blank" rel="noopener noreferrer">O2 City Hall</a></p>
+  <p class="line muted"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=O2%20City%20Hall%2C%20Northumberland%20Road%2C%20Newcastle%2C%20NE1%208SF" target="_blank" rel="noopener noreferrer">Northumberland Road, Newcastle, NE1 8SF</a></p>
   <p class="line">A folk group from Dundalk breathing new life into both well known &amp; rare ballads. Travelling the length &amp; breadth of the country singing &amp; collecting songs, they exude a raw energy that could be described as the Clancy Brothers meet John Lydon.</p>
   <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="https://thekirn.co.uk/?event=2026-10-14%7Co2%20city%20hall%20northumberland%20road%20newcastle%20ne1%208sf%7Cthe%20mary%20wallopers">See on the map</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=54.977377,-1.6102258" target="_blank" rel="noopener noreferrer">Directions</a>
+    <a class="btn" href="https://thekirn.co.uk/?venue=o2cityhall%7CNE18SF">See on the map</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=O2%20City%20Hall%2C%20Northumberland%20Road%2C%20Newcastle%2C%20NE1%208SF" target="_blank" rel="noopener noreferrer">Directions</a>
   </div>
-  <p class="more"><a class="btn" href="https://www.academymusicgroup.com/o2cityhallnewcastle/events" target="_blank" rel="noopener noreferrer">More info</a></p>
+  <p class="more"><a class="btn" href="https://thekirn.co.uk/">View All Events</a></p>
   <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>

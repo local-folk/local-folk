@@ -65,6 +65,9 @@
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -91,7 +94,7 @@
       "longitude": -1.592361
     }
   },
-  "about": "Folk Music",
+  "about": "Gigs",
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",
@@ -108,20 +111,20 @@
 <body>
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
-  <span class="chip">Folk Music</span>
-  <h2 class="title">Toby Shaer, Archie Moss and Jack Warnock</h2>
+  <span class="chip">Gigs</span>
+  <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-11-10%7Cthe%20cluny%202%2034%20lime%20street%20ouseburn%20newcastle%20ne1%202pq%7Ctoby%20shaer%20archie%20moss%20and%20jack%20warnock">Toby Shaer, Archie Moss and Jack Warnock</a></h2>
   <p class="line"><strong>Tuesday 10th November, 7:30pm</strong></p>
-  <p class="line venue">The Cluny 2</p>
-  <p class="line muted">34 Lime Street, Ouseburn, Newcastle, NE1 2PQ</p>
+  <p class="line venue"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=The%20Cluny%202%2C%2034%20Lime%20Street%2C%20Ouseburn%2C%20Newcastle%2C%20NE1%202PQ" target="_blank" rel="noopener noreferrer">The Cluny 2</a></p>
+  <p class="line muted"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=The%20Cluny%202%2C%2034%20Lime%20Street%2C%20Ouseburn%2C%20Newcastle%2C%20NE1%202PQ" target="_blank" rel="noopener noreferrer">34 Lime Street, Ouseburn, Newcastle, NE1 2PQ</a></p>
   <p class="line">A brand-new trio born out of a shared love for traditional music from the UK, Ireland, and mainland Europe.</p>
   <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="https://thekirn.co.uk/?event=2026-11-10%7Cthe%20cluny%202%2034%20lime%20street%20ouseburn%20newcastle%20ne1%202pq%7Ctoby%20shaer%20archie%20moss%20and%20jack%20warnock">See on the map</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=54.974814,-1.592361" target="_blank" rel="noopener noreferrer">Directions</a>
+    <a class="btn" href="https://thekirn.co.uk/?venue=cluny2%7CNE12PQ">See on the map</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=The%20Cluny%202%2C%2034%20Lime%20Street%2C%20Ouseburn%2C%20Newcastle%2C%20NE1%202PQ" target="_blank" rel="noopener noreferrer">Directions</a>
   </div>
-  <p class="more"><a class="btn" href="https://thecluny.com/gigs/" target="_blank" rel="noopener noreferrer">More info</a></p>
+  <p class="more"><a class="btn" href="https://thekirn.co.uk/">View All Events</a></p>
   <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>

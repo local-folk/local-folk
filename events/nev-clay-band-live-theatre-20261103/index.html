@@ -65,6 +65,9 @@
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -91,7 +94,7 @@
       "longitude": -1.604285
     }
   },
-  "about": "Folk Music",
+  "about": "Gigs",
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",
@@ -108,20 +111,20 @@
 <body>
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
-  <span class="chip">Folk Music</span>
-  <h2 class="title">Nev Clay &amp; Band</h2>
+  <span class="chip">Gigs</span>
+  <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-11-03%7Clive%20theatre%7Cnev%20clay%20band">Nev Clay &amp; Band</a></h2>
   <p class="line"><strong>Tuesday 3rd November</strong></p>
-  <p class="line venue">Live Theatre</p>
-  <p class="line muted">Broad Chare, Quayside, Newcastle upon Tyne, NE1 3DQ</p>
+  <p class="line venue"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Live%20Theatre%2C%20Broad%20Chare%2C%20Quayside%2C%20Newcastle%20upon%20Tyne%2C%20NE1%203DQ" target="_blank" rel="noopener noreferrer">Live Theatre</a></p>
+  <p class="line muted"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Live%20Theatre%2C%20Broad%20Chare%2C%20Quayside%2C%20Newcastle%20upon%20Tyne%2C%20NE1%203DQ" target="_blank" rel="noopener noreferrer">Broad Chare, Quayside, Newcastle upon Tyne, NE1 3DQ</a></p>
   <p class="line">Join Live Theatre for a very special gig this November! Nev Clay and band (Richard Dawson, Sally Pilkington, Phil Tyler, Gary Lang, Catherine Stephens, Robin Fry, Dave Scott) will be taking to the stage on both dates to perform songs from Nev&#39;s back c.</p>
   <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="https://thekirn.co.uk/?event=2026-11-03%7Clive%20theatre%7Cnev%20clay%20band">See on the map</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=54.96966,-1.604285" target="_blank" rel="noopener noreferrer">Directions</a>
+    <a class="btn" href="https://thekirn.co.uk/?venue=livetheatre%7CNE13DQ">See on the map</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Live%20Theatre%2C%20Broad%20Chare%2C%20Quayside%2C%20Newcastle%20upon%20Tyne%2C%20NE1%203DQ" target="_blank" rel="noopener noreferrer">Directions</a>
   </div>
-  <p class="more"><a class="btn" href="https://www.live.org.uk/whats-on" target="_blank" rel="noopener noreferrer">More info</a></p>
+  <p class="more"><a class="btn" href="https://thekirn.co.uk/">View All Events</a></p>
   <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>

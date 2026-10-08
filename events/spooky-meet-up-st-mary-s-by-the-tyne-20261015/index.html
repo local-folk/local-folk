@@ -65,6 +65,9 @@
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -109,19 +112,19 @@
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
   <span class="chip">Spoken Word</span>
-  <h2 class="title">Spooky Meet Up</h2>
+  <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-10-15%7Cst%20marys%20by%20the%20tyne%7Cspooky%20meet%20up">Spooky Meet Up</a></h2>
   <p class="line"><strong>Thursday 15th October, 6pm</strong></p>
-  <p class="line venue">St Mary&#39;s By The Tyne</p>
-  <p class="line muted">Oakwellgate, Gateshead, NE8 2AU</p>
+  <p class="line venue"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=St%20Mary&#39;s%20By%20The%20Tyne%2C%20Oakwellgate%2C%20Gateshead%2C%20NE8%202AU" target="_blank" rel="noopener noreferrer">St Mary&#39;s By The Tyne</a></p>
+  <p class="line muted"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=St%20Mary&#39;s%20By%20The%20Tyne%2C%20Oakwellgate%2C%20Gateshead%2C%20NE8%202AU" target="_blank" rel="noopener noreferrer">Oakwellgate, Gateshead, NE8 2AU</a></p>
   <p class="line">Join us at St Mary&#39;s by the Tyne (NE8 2AU) at 6pm for our next meet up. Join in (or sit and enjoy) a spooky open mic from 7pm: sharing the dark folklore, ghosts, and witches of North East&#39;s history through story, song, poems, or music.</p>
   <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="https://thekirn.co.uk/?event=2026-10-15%7Cst%20marys%20by%20the%20tyne%7Cspooky%20meet%20up">See on the map</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=54.967125,-1.604075" target="_blank" rel="noopener noreferrer">Directions</a>
+    <a class="btn" href="https://thekirn.co.uk/?venue=stmarysbytyne%7CNE82AU">See on the map</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=St%20Mary&#39;s%20By%20The%20Tyne%2C%20Oakwellgate%2C%20Gateshead%2C%20NE8%202AU" target="_blank" rel="noopener noreferrer">Directions</a>
   </div>
-  <p class="more"><a class="btn" href="https://pci.jotform.com/form/262302776180354" target="_blank" rel="noopener noreferrer">More info</a></p>
+  <p class="more"><a class="btn" href="https://thekirn.co.uk/">View All Events</a></p>
   <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>

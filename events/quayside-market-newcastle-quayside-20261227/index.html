@@ -65,6 +65,9 @@
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -91,7 +94,7 @@
       "longitude": -1.604554
     }
   },
-  "about": "Market",
+  "about": "Markets",
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",
@@ -108,20 +111,20 @@
 <body>
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
-  <span class="chip">Market</span>
-  <h2 class="title">Quayside Market</h2>
+  <span class="chip">Markets</span>
+  <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-12-27%7Cnewcastle%20quayside%7Cquayside%20market">Quayside Market</a></h2>
   <p class="line"><strong>Sunday 27th December, 10:30am</strong></p>
-  <p class="line venue">Newcastle Quayside</p>
-  <p class="line muted">Swing Bridge to Gateshead Millennium Bridge, Newcastle Upon Tyne, Tyne And Wear, NE1 3DE</p>
+  <p class="line venue"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Newcastle%20Quayside%2C%20Swing%20Bridge%20to%20Gateshead%20Millennium%20Bridge%2C%20Newcastle%20Upon%20Tyne%2C%20Tyne%20And%20Wear%2C%20NE1%203DE" target="_blank" rel="noopener noreferrer">Newcastle Quayside</a></p>
+  <p class="line muted"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Newcastle%20Quayside%2C%20Swing%20Bridge%20to%20Gateshead%20Millennium%20Bridge%2C%20Newcastle%20Upon%20Tyne%2C%20Tyne%20And%20Wear%2C%20NE1%203DE" target="_blank" rel="noopener noreferrer">Swing Bridge to Gateshead Millennium Bridge, Newcastle Upon Tyne, Tyne And Wear, NE1 3DE</a></p>
   <p class="line">Newcastle Quayside Market has been part of North East culture for as long as anyone can remember. Taking place every Sunday between 9am and 4pm on Newcastle Quayside, the outdoor Quayside Sunday Market features independent traders from all over the region selling handcrafted goods and local products.</p>
   <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="https://thekirn.co.uk/?event=2026-12-27%7Cnewcastle%20quayside%7Cquayside%20market">See on the map</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=54.969265,-1.604554" target="_blank" rel="noopener noreferrer">Directions</a>
+    <a class="btn" href="https://thekirn.co.uk/?venue=newcastlequayside%7CNE13DE">See on the map</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Newcastle%20Quayside%2C%20Swing%20Bridge%20to%20Gateshead%20Millennium%20Bridge%2C%20Newcastle%20Upon%20Tyne%2C%20Tyne%20And%20Wear%2C%20NE1%203DE" target="_blank" rel="noopener noreferrer">Directions</a>
   </div>
-  <p class="more"><a class="btn" href="https://newcastlegateshead.com/business-directory/shopping/quayside-market" target="_blank" rel="noopener noreferrer">More info</a></p>
+  <p class="more"><a class="btn" href="https://thekirn.co.uk/">View All Events</a></p>
   <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>

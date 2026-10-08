@@ -65,6 +65,9 @@
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -91,7 +94,7 @@
       "longitude": -1.446822
     }
   },
-  "about": "Ceilidh / Social Dance",
+  "about": "Dance",
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",
@@ -108,20 +111,20 @@
 <body>
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
-  <span class="chip">Ceilidh / Social Dance</span>
-  <h2 class="title">Ceilidh at the Coast</h2>
+  <span class="chip">Dance</span>
+  <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-12-18%7Cwhitley%20bay%20big%20local%20305%20whitley%20road%20whitley%20bay%20tyne%20and%20wear%20ne26%202hu%7Cceilidh%20at%20the%20coast">Ceilidh at the Coast</a></h2>
   <p class="line"><strong>Friday 18th December, 7:30pm</strong></p>
-  <p class="line venue">Whitley Bay Big Local</p>
-  <p class="line muted">305 Whitley Road, Whitley Bay, Tyne and Wear, NE26 2HU</p>
+  <p class="line venue"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Whitley%20Bay%20Big%20Local%2C%20305%20Whitley%20Road%2C%20Whitley%20Bay%2C%20Tyne%20and%20Wear%2C%20NE26%202HU" target="_blank" rel="noopener noreferrer">Whitley Bay Big Local</a></p>
+  <p class="line muted"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Whitley%20Bay%20Big%20Local%2C%20305%20Whitley%20Road%2C%20Whitley%20Bay%2C%20Tyne%20and%20Wear%2C%20NE26%202HU" target="_blank" rel="noopener noreferrer">305 Whitley Road, Whitley Bay, Tyne and Wear, NE26 2HU</a></p>
   <p class="line">An evening of ceilidh dancing at the Whitley Bay Big Local. The High Tide Ceilidh Band will provide high-energy music, alongside experienced caller, Chris Faulkner, who will explain every dance before it starts. Expect an evening packed with great live music, high energy dancing, and a warm atmosphere.</p>
   <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="https://thekirn.co.uk/?event=2026-12-18%7Cwhitley%20bay%20big%20local%20305%20whitley%20road%20whitley%20bay%20tyne%20and%20wear%20ne26%202hu%7Cceilidh%20at%20the%20coast">See on the map</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=55.04179,-1.446822" target="_blank" rel="noopener noreferrer">Directions</a>
+    <a class="btn" href="https://thekirn.co.uk/?venue=whitleybaybiglocal%7CNE262HU">See on the map</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Whitley%20Bay%20Big%20Local%2C%20305%20Whitley%20Road%2C%20Whitley%20Bay%2C%20Tyne%20and%20Wear%2C%20NE26%202HU" target="_blank" rel="noopener noreferrer">Directions</a>
   </div>
-  <p class="more"><a class="btn" href="https://www.ntbiglocal.org/guide" target="_blank" rel="noopener noreferrer">More info</a></p>
+  <p class="more"><a class="btn" href="https://thekirn.co.uk/">View All Events</a></p>
   <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>

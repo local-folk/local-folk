@@ -65,6 +65,9 @@
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -91,7 +94,7 @@
       "longitude": -1.711182
     }
   },
-  "about": "Heritage Workshop",
+  "about": "Crafts",
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",
@@ -108,20 +111,20 @@
 <body>
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
-  <span class="chip">Heritage Workshop</span>
-  <h2 class="title">Christmas Willow Wreath Workshop</h2>
+  <span class="chip">Crafts</span>
+  <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-11-28%7Cland%20of%20oak%20iron%20heritage%20centre%7Cchristmas%20willow%20wreath%20workshop">Christmas Willow Wreath Workshop</a></h2>
   <p class="line"><strong>Saturday 28th November, 10am</strong></p>
-  <p class="line venue">Land of Oak &amp; Iron Heritage Centre</p>
-  <p class="line muted">Spa Well Road, Winlaton Mill, Blaydon, NE21 6RU</p>
+  <p class="line venue"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Land%20of%20Oak%20%26%20Iron%20Heritage%20Centre%2C%20Spa%20Well%20Road%2C%20Winlaton%20Mill%2C%20Blaydon%2C%20NE21%206RU" target="_blank" rel="noopener noreferrer">Land of Oak &amp; Iron Heritage Centre</a></p>
+  <p class="line muted"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Land%20of%20Oak%20%26%20Iron%20Heritage%20Centre%2C%20Spa%20Well%20Road%2C%20Winlaton%20Mill%2C%20Blaydon%2C%20NE21%206RU" target="_blank" rel="noopener noreferrer">Spa Well Road, Winlaton Mill, Blaydon, NE21 6RU</a></p>
   <p class="line">Get festive and creative with this fantastic workshop which will show you how to weave with natural willow. Develop skills and techniques to create your own unique Christmas Wreath for your home.</p>
   <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="https://thekirn.co.uk/?event=2026-11-28%7Cland%20of%20oak%20iron%20heritage%20centre%7Cchristmas%20willow%20wreath%20workshop">See on the map</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=54.942516,-1.711182" target="_blank" rel="noopener noreferrer">Directions</a>
+    <a class="btn" href="https://thekirn.co.uk/?venue=landofoakironheritagecentre%7CNE216RU">See on the map</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Land%20of%20Oak%20%26%20Iron%20Heritage%20Centre%2C%20Spa%20Well%20Road%2C%20Winlaton%20Mill%2C%20Blaydon%2C%20NE21%206RU" target="_blank" rel="noopener noreferrer">Directions</a>
   </div>
-  <p class="more"><a class="btn" href="https://landofoakandiron.org.uk/event-directory/" target="_blank" rel="noopener noreferrer">More info</a></p>
+  <p class="more"><a class="btn" href="https://thekirn.co.uk/">View All Events</a></p>
   <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>

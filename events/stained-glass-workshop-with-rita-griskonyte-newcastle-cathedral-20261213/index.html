@@ -65,6 +65,9 @@
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -91,7 +94,7 @@
       "longitude": -1.610183
     }
   },
-  "about": "Heritage Workshop",
+  "about": "Crafts",
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",
@@ -108,20 +111,20 @@
 <body>
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
-  <span class="chip">Heritage Workshop</span>
-  <h2 class="title">Stained Glass Workshop with Rita Griskonyte</h2>
+  <span class="chip">Crafts</span>
+  <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-12-13%7Cnewcastle%20cathedral%7Cstained%20glass%20workshop%20with%20rita%20griskonyte">Stained Glass Workshop with Rita Griskonyte</a></h2>
   <p class="line"><strong>Sunday 13th December</strong></p>
-  <p class="line venue">Newcastle Cathedral</p>
-  <p class="line muted">St. Nicholas Square, Newcastle upon Tyne, NE1 1PF</p>
+  <p class="line venue"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Newcastle%20Cathedral%2C%20St.%20Nicholas%20Square%2C%20Newcastle%20upon%20Tyne%2C%20NE1%201PF" target="_blank" rel="noopener noreferrer">Newcastle Cathedral</a></p>
+  <p class="line muted"><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Newcastle%20Cathedral%2C%20St.%20Nicholas%20Square%2C%20Newcastle%20upon%20Tyne%2C%20NE1%201PF" target="_blank" rel="noopener noreferrer">St. Nicholas Square, Newcastle upon Tyne, NE1 1PF</a></p>
   <p class="line">Join local artist Rita Griskonyte at Newcastle Cathedral this December, and learn how to make your very own piece of stained glass art! Working through the essentials of glass cutting, copper foiling and soldering, you&#39;ll create your very own Christma.</p>
   <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="https://thekirn.co.uk/?event=2026-12-13%7Cnewcastle%20cathedral%7Cstained%20glass%20workshop%20with%20rita%20griskonyte">See on the map</a>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=54.970263,-1.610183" target="_blank" rel="noopener noreferrer">Directions</a>
+    <a class="btn" href="https://thekirn.co.uk/?venue=newcastlecathedral%7CNE11PF">See on the map</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Newcastle%20Cathedral%2C%20St.%20Nicholas%20Square%2C%20Newcastle%20upon%20Tyne%2C%20NE1%201PF" target="_blank" rel="noopener noreferrer">Directions</a>
   </div>
-  <p class="more"><a class="btn" href="https://newcastlecathedral.org.uk/whats-on/" target="_blank" rel="noopener noreferrer">More info</a></p>
+  <p class="more"><a class="btn" href="https://thekirn.co.uk/">View All Events</a></p>
   <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>
