@@ -1,0 +1,55 @@
+# Keeps the static event pages in sync with the Google Sheet.
+#
+# The event list lives in a spreadsheet that changes daily, but link previews
+# need real HTML files (WhatsApp and Facebook do not run JavaScript). This
+# workflow regenerates those files on a schedule and commits any changes.
+#
+# Setup: Settings > Pages > Source must be "Deploy from a branch", main branch,
+# / (root). GitHub Pages will then serve both the hand-edited pages and the
+# generated events/ directory.
+
+name: Generate event pages
+
+on:
+  schedule:
+    # 03:17 UTC daily. Off-the-hour so this does not pile onto GitHub's
+    # scheduled-run congestion at midnight.
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'generate-events.js'
+      - '.github/workflows/generate-events.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-events
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate event pages
+        run: node generate-events.js
+
+      - name: Commit changes
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes - pages already up to date."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add events sitemap.xml
+          git commit -m "Update event pages"
+          git push
