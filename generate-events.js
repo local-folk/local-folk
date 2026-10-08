@@ -192,6 +192,64 @@ function isGenericListingLink(url) {
   return String(url).indexOf('thecrackmagazine.com/whatson') !== -1;
 }
 
+// ---------------------------------------------------------------------------
+// Category -> public label
+//
+// The spreadsheet stores the organiser-facing category ("Heritage Workshop").
+// The website shows a shorter public label ("Crafts"). Rather than duplicating
+// that mapping, we read TYPE_GROUPS straight out of index.html so there is one
+// source of truth: change a label there and this picks it up automatically.
+// ---------------------------------------------------------------------------
+
+function loadTypeGroups() {
+  const indexPath = path.join(__dirname, 'index.html');
+  const html = fs.readFileSync(indexPath, 'utf8');
+
+  const filterMatch = html.match(
+    /<div class="filter-row" id="typeFilters">([\s\S]*?)<\/div>/);
+  if (!filterMatch) {
+    throw new Error('Could not find #typeFilters in index.html');
+  }
+
+  // Public label for each filter key, read off the buttons themselves.
+  const labels = {};
+  const btnRe = /<button class="filter-btn" data-type="([^"]+)">([^<]*)<\/button>/g;
+  let m;
+  while ((m = btnRe.exec(filterMatch[1])) !== null) {
+    labels[m[1]] = m[2].trim();
+  }
+
+  // Which spreadsheet categories belong to each key.
+  const groupsMatch = html.match(/const\s+TYPE_GROUPS\s*=\s*\{([\s\S]*?)\n\};/);
+  if (!groupsMatch) {
+    throw new Error('Could not find TYPE_GROUPS in index.html');
+  }
+
+  const byCategory = {};
+  const arrRe = /(\w+)\s*:\s*\[([^\]]*)\]/g;
+  while ((m = arrRe.exec(groupsMatch[1])) !== null) {
+    const key = m[1];
+    const cats = (m[2].match(/'([^']*)'/g) || [])
+      .map(s => s.slice(1, -1));
+    const label = labels[key];
+    if (!label) {
+      throw new Error('Filter key "' + key + '" in TYPE_GROUPS has no matching button in #typeFilters');
+    }
+    cats.forEach(cat => { byCategory[cat] = label; });
+  }
+
+  return { labels, byCategory };
+}
+
+const TYPE_MAP = loadTypeGroups();
+
+/** "Heritage Workshop" -> "Crafts". Unknown categories fall through unchanged. */
+function publicCategory(sheetCategory) {
+  const cat = String(sheetCategory || '').trim();
+  if (!cat) return '';
+  return TYPE_MAP.byCategory[cat] || cat;
+}
+
 function todayStr() {
   const d = new Date();
   const m = ('0' + (d.getMonth() + 1)).slice(-2);
@@ -219,8 +277,6 @@ function buildEventPage(ev) {
     : '';
   const whenLine = [dateLong, timeRange].filter(Boolean).join(', ');
 
-  const showMoreInfo = !isGenericListingLink(ev.sourceUrl) && isSafeUrl(ev.sourceUrl);
-
   const title = clamp(ev.title + ' – ' + (ev.venue || 'Newcastle'), 58) + ' | The Kirn';
   const shareTitle = ev.title + (ev.venue ? ' – ' + ev.venue : '');
   const shareText = [ev.title, ev.venue, formatDateShort(ev.date), time]
@@ -232,9 +288,17 @@ function buildEventPage(ev) {
   const lat = parseFloat(ev.lat);
   const lng = parseFloat(ev.lng);
   const hasGeo = !isNaN(lat) && !isNaN(lng);
-  const mapUrl = hasGeo
-    ? 'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lng
-    : null;
+
+  /* Search Google Maps for the venue by name and address rather than dropping
+     the visitor on a pair of coordinates, which is a pin in the middle of a
+     field rather than the front door. Falls back to coordinates only if the
+     sheet has no venue name or address to search for. */
+  const mapQuery = [ev.venue, ev.address].filter(Boolean).join(', ');
+  const mapUrl = mapQuery
+    ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(mapQuery)
+    : (hasGeo
+      ? 'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lng
+      : null);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -261,6 +325,8 @@ function buildEventPage(ev) {
   jsonLd.superOrganizer = jsonLd.organizer;
 
   const homeHref = origin + '/?event=' + encodeURIComponent(ev.favId);
+  const venueHref = origin + '/?venue=' + encodeURIComponent(ev.venueKey);
+  const allEventsHref = origin + '/';
 
   return `<!DOCTYPE html>
 <html lang="en-GB">
@@ -329,6 +395,9 @@ function buildEventPage(ev) {
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
+  a.titlelink { color: inherit; text-decoration: none; }
+  a.titlelink:hover { text-decoration: underline; }
+  a.maplink { color: var(--link); }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -341,14 +410,15 @@ ${JSON.stringify(jsonLd, null, 2)}
 <body>
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
-${ev.category ? '  <span class="chip">' + esc(ev.category) + '</span>\n' : ''}  <h2 class="title">${esc(ev.title)}</h2>
+${ev.category ? '  <span class="chip">' + esc(ev.category) + '</span>\n' : ''}  <h2 class="title"><a class="titlelink" href="${esc(homeHref)}">${esc(ev.title)}</a></h2>
   <p class="line"><strong>${esc(whenLine)}</strong></p>
-${ev.venue ? '  <p class="line venue">' + esc(ev.venue) + '</p>\n' : ''}${ev.address ? '  <p class="line muted">' + esc(ev.address) + '</p>\n' : ''}${ev.description ? '  <p class="line">' + esc(ev.description) + '</p>\n' : ''}  <div class="actions">
+${ev.venue ? '  <p class="line venue">' + venueHtml(ev.venue, mapUrl) + '</p>\n' : ''}${ev.address ? '  <p class="line muted">' + venueHtml(ev.address, mapUrl) + '</p>\n' : ''}${ev.description ? '  <p class="line">' + esc(ev.description) + '</p>\n' : ''}  <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="${esc(homeHref)}">See on the map</a>
+    <a class="btn" href="${esc(venueHref)}">See on the map</a>
 ${mapUrl ? '    <a class="btn" href="' + esc(mapUrl) + '" target="_blank" rel="noopener noreferrer">Directions</a>\n' : ''}  </div>
-${showMoreInfo ? '  <p class="more"><a class="btn" href="' + esc(ev.sourceUrl) + '" target="_blank" rel="noopener noreferrer">More info</a></p>\n' : ''}  <hr>
-  <p class="muted">Listed on The Kirn, a collection of folk and traditional events across Newcastle and the North East.</p>
+  <p class="more"><a class="btn" href="${esc(allEventsHref)}">View All Events</a></p>
+  <hr>
+  <p class="muted">Listed on The Kirn, folk and traditional events across Newcastle and the North East.</p>
   <p><a href="/">&larr; All events</a></p>
 </main>
 <footer>
@@ -377,6 +447,28 @@ ${showMoreInfo ? '  <p class="more"><a class="btn" href="' + esc(ev.sourceUrl) +
 </body>
 </html>
 `;
+}
+
+/** Venue name / address, linked so it opens that venue on Google Maps. */
+function venueHtml(text, mapUrl) {
+  if (!mapUrl) return esc(text);
+  return '<a class="maplink" href="' + esc(mapUrl) + '" target="_blank" rel="noopener noreferrer">' +
+    esc(text) + '</a>';
+}
+
+/** Matches venueKeyFor() in index.html - the key the map groups markers by. */
+function venueKeyFor(ev) {
+  const venueNorm = (ev.venue || '')
+    .toLowerCase()
+    .replace(/^the\s+/, '')
+    .replace(/\s+the\s+/g, ' ')
+    .replace(/[^a-z0-9]/g, '')
+    .trim();
+
+  const postcodeMatch = (ev.address || '').match(/([A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2})/i);
+  const postcode = postcodeMatch ? postcodeMatch[1].replace(/\s+/g, '') : '';
+
+  return (venueNorm || postcode) ? venueNorm + '|' + postcode : ev.lat + ',' + ev.lng;
 }
 
 function padTime(t) {
@@ -525,12 +617,12 @@ async function main() {
     }
     used.set(slug, true);
 
-    events.push({
+    const ev = {
       slug,
       favId: favId(row),
       title: row.Title,
       description: row.Description || '',
-      category: row.Category || '',
+      category: publicCategory(row.Category),
       date: row.Date.trim(),
       startTime: (row.StartTime || '').trim(),
       endTime: (row.EndTime || '').trim(),
@@ -539,6 +631,12 @@ async function main() {
       lat: row.Lat,
       lng: row.Lng,
       sourceUrl: row.SourceURL || ''
+    };
+
+    // Must match venueKeyFor() in index.html so ?venue= resolves to a marker.
+    ev.venueKey = venueKeyFor(ev);
+
+    events.push(ev);
     });
   }
 
