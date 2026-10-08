@@ -412,6 +412,32 @@
   #favFilterRow .filter-btn:disabled { opacity: 0.45; cursor: default; }
   #favCount { font-size: 0.85rem; opacity: 0.7; }
 
+  #toTop {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid #cc9900;
+    background: #ffcc33;
+    color: #210000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  #toTop.show { opacity: 1; visibility: visible; }
+  #toTop:hover { background: #ffd75e; }
+  #toTop:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+  #toTop svg { display: block; width: 22px; height: 22px; }
+
   .fav-btn {
     background: none;
     border: none;
@@ -608,6 +634,13 @@
 
   <p id="submitPrompt">Something missing? Submit an event <a href="/submit/">here</a></p>
 
+  <button id="toTop" aria-label="Back to top of page" title="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 19.2V5.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M5.4 11.6L12 5l6.6 6.6" fill="none" stroke="currentColor" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
   <div id="modalOverlay">
     <div id="modalBox">
       <button id="modalClose">&times;</button>
@@ -1435,6 +1468,44 @@ loadFavourites();
 initMap();
 loadEvents();
 countPageView();
+
+const TOP_HIDE_DELAY = 1000;
+let topHideTimer = null;
+
+function topButtonPastFilters() {
+  const anchor = document.getElementById('favFilterRow');
+  if (!anchor) return false;
+  return anchor.getBoundingClientRect().bottom < 0;
+}
+
+function showTopButton() {
+  if (topHideTimer !== null) {
+    clearTimeout(topHideTimer);
+    topHideTimer = null;
+  }
+  document.getElementById('toTop').classList.add('show');
+}
+
+function scheduleTopButtonHide() {
+  if (topHideTimer !== null) clearTimeout(topHideTimer);
+  topHideTimer = setTimeout(function () {
+    topHideTimer = null;
+    document.getElementById('toTop').classList.remove('show');
+  }, TOP_HIDE_DELAY);
+}
+
+function updateTopButton() {
+  if (topButtonPastFilters()) showTopButton();
+  else scheduleTopButtonHide();
+}
+
+document.getElementById('toTop').addEventListener('click', function () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+window.addEventListener('scroll', updateTopButton, { passive: true });
+window.addEventListener('resize', updateTopButton);
+updateTopButton();
 </script>
 </body>
 </html>
