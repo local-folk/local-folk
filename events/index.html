@@ -26,15 +26,27 @@
   body { margin:0; background:#ffffea; color:#210000;
     font-family:-apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height:1.55; }
   header { background:#660000; padding:14px 16px; text-align:center; }
-  header h1 { margin:0; font-size:1.9rem; font-family:'IM Fell English', Georgia, serif; }
+  header h1 { margin:0; font-size:1.9rem; font-weight:400;
+    font-family:'IM Fell English', Georgia, serif; }
   header a { color:#ffffea; text-decoration:none; }
-  main { max-width:720px; margin:0 auto; padding:26px 18px 60px; }
+  main { max-width:820px; margin:0 auto; padding:26px 18px 60px; }
   h2 { font-family:'IM Fell English', Georgia, serif; font-weight:400;
-    font-size:1.5rem; margin:28px 0 10px; }
+    font-size:1.5rem; margin:30px 0 8px; display:flex;
+    align-items:baseline; gap:10px; scroll-margin-top:12px; }
+  h2 .count { font-family:-apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size:.85rem; color:#6b4a3a; }
   ul { list-style:none; padding:0; margin:0; }
-  li { padding:8px 0; border-bottom:1px solid #c9c2a0; }
+  li { border-bottom:1px solid #c9c2a0; }
+  li a { display:block; padding:9px 0; color:#210000; text-decoration:none;
+    font-size:.97rem; line-height:1.45; }
+  li a:hover, li a:focus { color:#b82e00; }
+  /* Fixed-width date keeps every line's time and venue in a neat column. */
+  .d { display:inline-block; min-width:5.2em; font-variant-numeric:tabular-nums;
+    color:#6b4a3a; }
+  .t { display:inline-block; min-width:4.2em; }
+  .jump { margin:0 0 6px; font-size:.9rem; }
+  .jump a { display:inline-block; margin:0 8px 6px 0; }
   a { color:#b82e00; }
-  .muted { color:#6b4a3a; font-size:.9rem; }
   footer { border-top:1px solid #c9c2a0; padding:18px; text-align:center; font-size:.9rem; }
 </style>
 </head>
@@ -42,253 +54,254 @@
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
   <p>236 upcoming events. <a href="/">Browse them on the map</a>.</p>
-  <h2>October 2026</h2>
+  <p class="jump">Jump to: <a href="#october-2026">October 2026</a><a href="#november-2026">November 2026</a><a href="#december-2026">December 2026</a><a href="#january-2027">January 2027</a></p>
+  <h2 id="october-2026">October 2026<span class="count">76</span></h2>
   <ul>
-    <li><a href="/events/student-performances-king-s-hall-20261008/">Student Performances</a> <span class="muted">4pm</span> <span class="muted">– King&#39;s Hall</span></li>
-    <li><a href="/events/fresh-thursday-claire-vine-lucy-huzzard-cobalt-studios-20261008/">Fresh Thursday // Claire Vine + Lucy Huzzard</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/cloth-eared-mule-sugarwell-hill-the-globe-20261008/">Cloth Eared Mule + Sugarwell Hill</a> <span class="muted">8pm</span> <span class="muted">– The Globe</span></li>
-    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261008/">Old Time Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261008/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/luna-halloween-market-jarrow-hall-20261009/">Luna Halloween Market</a> <span class="muted">5pm</span> <span class="muted">– Jarrow Hall</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261009/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cabinet-of-curiosities-jarrow-hall-20261010/">Cabinet of Curiosities</a> <span class="muted">10am</span> <span class="muted">– Jarrow Hall</span></li>
-    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261010/">Ouseburn Heritage Guided Walk</a> <span class="muted">10:30am</span> <span class="muted">– Ouseburn Trust at 51 Lime Street</span></li>
-    <li><a href="/events/beyond-the-moor-2026-gosforth-civic-theatre-20261010/">Beyond the Moor 2026</a> <span class="muted">2:30pm</span> <span class="muted">– Gosforth Civic Theatre</span></li>
-    <li><a href="/events/candlelight-gig-offgrid-maar-glad-town-ghost-cobalt-studios-20261010/">*CANDLELIGHT GIG* – OFFGRID: MAAR + Glad Town Ghost</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261011/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/midcentury-home-market-boiler-shop-20261011/">Midcentury Home Market</a> <span class="muted">– Boiler Shop</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261011/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/anne-alderson-bridge-hotel-20261012/">Anne Alderson</a> <span class="muted">7pm</span> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/halloween-thoughts-the-fairy-the-angel-and-the-nymph-the-lit-phil-20261012/">Halloween Thoughts | The Fairy, the Angel and the Nymph</a> <span class="muted">– The Lit &amp; Phil</span></li>
-    <li><a href="/events/natural-coil-pot-workshop-tyne-theatre-opera-house-20261012/">Natural Coil Pot Workshop</a> <span class="muted">– Tyne Theatre &amp; Opera House</span></li>
-    <li><a href="/events/come-all-ye-singing-session-the-cumberland-arms-20261013/">Come All Ye&#39; Singing Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261013/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261013/">Tyneside Ceilidh Club</a> <span class="muted">– Gateshead Masonic Hall</span></li>
-    <li><a href="/events/the-mary-wallopers-o2-city-hall-20261014/">The Mary Wallopers</a> <span class="muted">7pm</span> <span class="muted">– O2 City Hall</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261014/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-tarren-benedictine-social-centre-20261014/">Cramlington Folk Club: Tarren</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261014/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/singaround-the-brewery-20261014/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/student-performances-king-s-hall-20261015/">Student Performances</a> <span class="muted">4pm</span> <span class="muted">– King&#39;s Hall</span></li>
-    <li><a href="/events/spooky-meet-up-st-mary-s-by-the-tyne-20261015/">Spooky Meet Up</a> <span class="muted">6pm</span> <span class="muted">– St Mary&#39;s By The Tyne</span></li>
-    <li><a href="/events/fresh-thursday-right-of-way-raveloe-cobalt-studios-20261015/">Fresh Thursday // Right of Way + Raveloe</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/singaround-at-12-30-central-bar-20261015/">Singaround at 12:30</a> <span class="muted">– Central Bar</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261015/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/the-magic-of-theatre-superstition-ghosts-and-the-scottish-play-tyne-theatre-opera-house-20261016/">The Magic of Theatre: Superstition, Ghosts, and the Scottish Play</a> <span class="muted">1pm</span> <span class="muted">– Tyne Theatre &amp; Opera House</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261016/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/jake-vaadeland-the-sturgeon-river-boys-the-cluny-2-20261016/">Jake Vaadeland &amp; The Sturgeon River Boys</a> <span class="muted">– The Cluny 2</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261018/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261018/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/icy-sedgwick-hauntings-on-tyneside-north-shields-community-hub-and-library-20261019/">Icy Sedgwick - Hauntings on Tyneside</a> <span class="muted">6pm</span> <span class="muted">– North Shields Community Hub and Library</span></li>
-    <li><a href="/events/halloween-thoughts-the-devil-the-demon-and-the-vampire-the-lit-phil-20261019/">Halloween Thoughts | The Devil, the Demon and the Vampire</a> <span class="muted">– The Lit &amp; Phil</span></li>
-    <li><a href="/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261019/">Mariners &amp; Marras: Shanties and trad work songs</a> <span class="muted">– Enigma Tap</span></li>
-    <li><a href="/events/singaround-bridge-hotel-20261019/">Singaround</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/global-music-session-the-cumberland-arms-20261020/">Global Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261020/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/keelman-s-talks-o-pity-my-unhappy-state-st-mary-s-by-the-tyne-20261021/">Keelman&#39;s Talks: &#39;O pity my unhappy state&#39;</a> <span class="muted">6pm</span> <span class="muted">– St Mary&#39;s By The Tyne</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261021/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261021/">Cramlington Folk Club</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261021/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/sexytadhg-the-cluny-2-20261021/">SexyTadhg</a> <span class="muted">– The Cluny 2</span></li>
-    <li><a href="/events/singaround-the-brewery-20261021/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/student-performances-king-s-hall-20261022/">Student Performances</a> <span class="muted">4pm</span> <span class="muted">– King&#39;s Hall</span></li>
-    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261022/">Old Time Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261022/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/worms-monkeys-and-killer-pigs-the-strange-folk-tales-of-county-durham-the-common-room-20261022/">Worms, Monkeys and Killer Pigs: The Strange Folk Tales of County Durham</a> <span class="muted">– The Common Room</span></li>
-    <li><a href="/events/diy-ceilidh-lubber-fiend-20261023/">DIY Ceilidh</a> <span class="muted">6:30pm</span> <span class="muted">– Lubber Fiend</span></li>
-    <li><a href="/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261023/">Willow Star Workshop</a> <span class="muted">7pm</span> <span class="muted">– The Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261023/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cabinet-of-curiosities-jarrow-hall-20261024/">Cabinet of Curiosities</a> <span class="muted">10am</span> <span class="muted">– Jarrow Hall</span></li>
-    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261024/">Ouseburn Heritage Guided Walk</a> <span class="muted">10:30am</span> <span class="muted">– Ouseburn Trust at 51 Lime Street</span></li>
-    <li><a href="/events/experimental-basketweaving-with-rachael-eden-cobalt-studios-20261024/">Experimental Basketweaving with Rachael Eden</a> <span class="muted">11am</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261025/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/ger-o-donnell-the-cluny-2-20261025/">Ger O’Donnell</a> <span class="muted">7:30pm</span> <span class="muted">– The Cluny 2</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261025/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/halloween-thoughts-the-ghost-the-skull-and-the-sheet-the-lit-phil-20261026/">Halloween Thoughts | The Ghost, the Skull and the Sheet</a> <span class="muted">– The Lit &amp; Phil</span></li>
-    <li><a href="/events/singaround-bridge-hotel-20261026/">Singaround</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/dr-katie-liddane-witch-haunting-the-ghosts-of-witches-in-the-north-east-and-beyond-north-shields-community-hub-and-library-20261027/">Dr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East and Beyond</a> <span class="muted">6pm</span> <span class="muted">– North Shields Community Hub and Library</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261027/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/introduction-to-leathercraft-with-minuel-designs-cobalt-studios-20261028/">Introduction to Leathercraft with Minuel Designs</a> <span class="muted">6:30pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/martin-simpson-the-glasshouse-20261028/">Martin Simpson</a> <span class="muted">8pm</span> <span class="muted">– The Glasshouse</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261028/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-the-brothers-gillespie-benedictine-social-centre-20261028/">Cramlington Folk Club: The Brothers Gillespie</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261028/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/singaround-the-brewery-20261028/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/winter-makers-market-by-endless-love-creative-baltic-20261028/">Winter Makers Market by Endless Love Creative</a> <span class="muted">– BALTIC</span></li>
-    <li><a href="/events/lunchtime-concert-king-s-hall-20261029/">Lunchtime Concert</a> <span class="muted">1:15pm</span> <span class="muted">– King&#39;s Hall</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261029/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261030/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cabinet-of-curiosities-jarrow-hall-20261031/">Cabinet of Curiosities</a> <span class="muted">10am</span> <span class="muted">– Jarrow Hall</span></li>
-    <li><a href="/events/polymer-clay-pumpkin-carving-with-jed-buttress-cobalt-studios-20261031/">Polymer (Clay) Pumpkin Carving with Jed Buttress</a> <span class="muted">11am</span> <span class="muted">– Cobalt Studios</span></li>
+    <li><a href="/events/student-performances-king-s-hall-20261008/"><span class="d">08/10/26</span> - Student Performances - <span class="t">4pm</span> - King&#39;s Hall</a></li>
+    <li><a href="/events/fresh-thursday-claire-vine-lucy-huzzard-cobalt-studios-20261008/"><span class="d">08/10/26</span> - Fresh Thursday // Claire Vine + Lucy Huzzard - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/cloth-eared-mule-sugarwell-hill-the-globe-20261008/"><span class="d">08/10/26</span> - Cloth Eared Mule + Sugarwell Hill - <span class="t">8pm</span> - The Globe</a></li>
+    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261008/"><span class="d">08/10/26</span> - Old Time Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261008/"><span class="d">08/10/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/luna-halloween-market-jarrow-hall-20261009/"><span class="d">09/10/26</span> - Luna Halloween Market - <span class="t">5pm</span> - Jarrow Hall</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261009/"><span class="d">09/10/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cabinet-of-curiosities-jarrow-hall-20261010/"><span class="d">10/10/26</span> - Cabinet of Curiosities - <span class="t">10am</span> - Jarrow Hall</a></li>
+    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261010/"><span class="d">10/10/26</span> - Ouseburn Heritage Guided Walk - <span class="t">10:30am</span> - Ouseburn Trust at 51 Lime Street</a></li>
+    <li><a href="/events/beyond-the-moor-2026-gosforth-civic-theatre-20261010/"><span class="d">10/10/26</span> - Beyond the Moor 2026 - <span class="t">2:30pm</span> - Gosforth Civic Theatre</a></li>
+    <li><a href="/events/candlelight-gig-offgrid-maar-glad-town-ghost-cobalt-studios-20261010/"><span class="d">10/10/26</span> - *CANDLELIGHT GIG* – OFFGRID: MAAR + Glad Town Ghost - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261011/"><span class="d">11/10/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/midcentury-home-market-boiler-shop-20261011/"><span class="d">11/10/26</span> - Midcentury Home Market - Boiler Shop</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261011/"><span class="d">11/10/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/anne-alderson-bridge-hotel-20261012/"><span class="d">12/10/26</span> - Anne Alderson - <span class="t">7pm</span> - Bridge Hotel</a></li>
+    <li><a href="/events/halloween-thoughts-the-fairy-the-angel-and-the-nymph-the-lit-phil-20261012/"><span class="d">12/10/26</span> - Halloween Thoughts | The Fairy, the Angel and the Nymph - The Lit &amp; Phil</a></li>
+    <li><a href="/events/natural-coil-pot-workshop-tyne-theatre-opera-house-20261012/"><span class="d">12/10/26</span> - Natural Coil Pot Workshop - Tyne Theatre &amp; Opera House</a></li>
+    <li><a href="/events/come-all-ye-singing-session-the-cumberland-arms-20261013/"><span class="d">13/10/26</span> - Come All Ye&#39; Singing Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261013/"><span class="d">13/10/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261013/"><span class="d">13/10/26</span> - Tyneside Ceilidh Club - Gateshead Masonic Hall</a></li>
+    <li><a href="/events/the-mary-wallopers-o2-city-hall-20261014/"><span class="d">14/10/26</span> - The Mary Wallopers - <span class="t">7pm</span> - O2 City Hall</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261014/"><span class="d">14/10/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-tarren-benedictine-social-centre-20261014/"><span class="d">14/10/26</span> - Cramlington Folk Club: Tarren - Benedictine Social Centre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261014/"><span class="d">14/10/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/singaround-the-brewery-20261014/"><span class="d">14/10/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/student-performances-king-s-hall-20261015/"><span class="d">15/10/26</span> - Student Performances - <span class="t">4pm</span> - King&#39;s Hall</a></li>
+    <li><a href="/events/spooky-meet-up-st-mary-s-by-the-tyne-20261015/"><span class="d">15/10/26</span> - Spooky Meet Up - <span class="t">6pm</span> - St Mary&#39;s By The Tyne</a></li>
+    <li><a href="/events/fresh-thursday-right-of-way-raveloe-cobalt-studios-20261015/"><span class="d">15/10/26</span> - Fresh Thursday // Right of Way + Raveloe - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/singaround-at-12-30-central-bar-20261015/"><span class="d">15/10/26</span> - Singaround at 12:30 - Central Bar</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261015/"><span class="d">15/10/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/the-magic-of-theatre-superstition-ghosts-and-the-scottish-play-tyne-theatre-opera-house-20261016/"><span class="d">16/10/26</span> - The Magic of Theatre: Superstition, Ghosts, and the Scottish Play - <span class="t">1pm</span> - Tyne Theatre &amp; Opera House</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261016/"><span class="d">16/10/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/jake-vaadeland-the-sturgeon-river-boys-the-cluny-2-20261016/"><span class="d">16/10/26</span> - Jake Vaadeland &amp; The Sturgeon River Boys - The Cluny 2</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261018/"><span class="d">18/10/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261018/"><span class="d">18/10/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/icy-sedgwick-hauntings-on-tyneside-north-shields-community-hub-and-library-20261019/"><span class="d">19/10/26</span> - Icy Sedgwick - Hauntings on Tyneside - <span class="t">6pm</span> - North Shields Community Hub and Library</a></li>
+    <li><a href="/events/halloween-thoughts-the-devil-the-demon-and-the-vampire-the-lit-phil-20261019/"><span class="d">19/10/26</span> - Halloween Thoughts | The Devil, the Demon and the Vampire - The Lit &amp; Phil</a></li>
+    <li><a href="/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261019/"><span class="d">19/10/26</span> - Mariners &amp; Marras: Shanties and trad work songs - Enigma Tap</a></li>
+    <li><a href="/events/singaround-bridge-hotel-20261019/"><span class="d">19/10/26</span> - Singaround - Bridge Hotel</a></li>
+    <li><a href="/events/global-music-session-the-cumberland-arms-20261020/"><span class="d">20/10/26</span> - Global Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261020/"><span class="d">20/10/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/keelman-s-talks-o-pity-my-unhappy-state-st-mary-s-by-the-tyne-20261021/"><span class="d">21/10/26</span> - Keelman&#39;s Talks: &#39;O pity my unhappy state&#39; - <span class="t">6pm</span> - St Mary&#39;s By The Tyne</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261021/"><span class="d">21/10/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261021/"><span class="d">21/10/26</span> - Cramlington Folk Club - Benedictine Social Centre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261021/"><span class="d">21/10/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/sexytadhg-the-cluny-2-20261021/"><span class="d">21/10/26</span> - SexyTadhg - The Cluny 2</a></li>
+    <li><a href="/events/singaround-the-brewery-20261021/"><span class="d">21/10/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/student-performances-king-s-hall-20261022/"><span class="d">22/10/26</span> - Student Performances - <span class="t">4pm</span> - King&#39;s Hall</a></li>
+    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261022/"><span class="d">22/10/26</span> - Old Time Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261022/"><span class="d">22/10/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/worms-monkeys-and-killer-pigs-the-strange-folk-tales-of-county-durham-the-common-room-20261022/"><span class="d">22/10/26</span> - Worms, Monkeys and Killer Pigs: The Strange Folk Tales of County Durham - The Common Room</a></li>
+    <li><a href="/events/diy-ceilidh-lubber-fiend-20261023/"><span class="d">23/10/26</span> - DIY Ceilidh - <span class="t">6:30pm</span> - Lubber Fiend</a></li>
+    <li><a href="/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261023/"><span class="d">23/10/26</span> - Willow Star Workshop - <span class="t">7pm</span> - The Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261023/"><span class="d">23/10/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cabinet-of-curiosities-jarrow-hall-20261024/"><span class="d">24/10/26</span> - Cabinet of Curiosities - <span class="t">10am</span> - Jarrow Hall</a></li>
+    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261024/"><span class="d">24/10/26</span> - Ouseburn Heritage Guided Walk - <span class="t">10:30am</span> - Ouseburn Trust at 51 Lime Street</a></li>
+    <li><a href="/events/experimental-basketweaving-with-rachael-eden-cobalt-studios-20261024/"><span class="d">24/10/26</span> - Experimental Basketweaving with Rachael Eden - <span class="t">11am</span> - Cobalt Studios</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261025/"><span class="d">25/10/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/ger-o-donnell-the-cluny-2-20261025/"><span class="d">25/10/26</span> - Ger O’Donnell - <span class="t">7:30pm</span> - The Cluny 2</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261025/"><span class="d">25/10/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/halloween-thoughts-the-ghost-the-skull-and-the-sheet-the-lit-phil-20261026/"><span class="d">26/10/26</span> - Halloween Thoughts | The Ghost, the Skull and the Sheet - The Lit &amp; Phil</a></li>
+    <li><a href="/events/singaround-bridge-hotel-20261026/"><span class="d">26/10/26</span> - Singaround - Bridge Hotel</a></li>
+    <li><a href="/events/dr-katie-liddane-witch-haunting-the-ghosts-of-witches-in-the-north-east-and-beyond-north-shields-community-hub-and-library-20261027/"><span class="d">27/10/26</span> - Dr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East and Beyond - <span class="t">6pm</span> - North Shields Community Hub and Library</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261027/"><span class="d">27/10/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/introduction-to-leathercraft-with-minuel-designs-cobalt-studios-20261028/"><span class="d">28/10/26</span> - Introduction to Leathercraft with Minuel Designs - <span class="t">6:30pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/martin-simpson-the-glasshouse-20261028/"><span class="d">28/10/26</span> - Martin Simpson - <span class="t">8pm</span> - The Glasshouse</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261028/"><span class="d">28/10/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-the-brothers-gillespie-benedictine-social-centre-20261028/"><span class="d">28/10/26</span> - Cramlington Folk Club: The Brothers Gillespie - Benedictine Social Centre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261028/"><span class="d">28/10/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/singaround-the-brewery-20261028/"><span class="d">28/10/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/winter-makers-market-by-endless-love-creative-baltic-20261028/"><span class="d">28/10/26</span> - Winter Makers Market by Endless Love Creative - BALTIC</a></li>
+    <li><a href="/events/lunchtime-concert-king-s-hall-20261029/"><span class="d">29/10/26</span> - Lunchtime Concert - <span class="t">1:15pm</span> - King&#39;s Hall</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261029/"><span class="d">29/10/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261030/"><span class="d">30/10/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cabinet-of-curiosities-jarrow-hall-20261031/"><span class="d">31/10/26</span> - Cabinet of Curiosities - <span class="t">10am</span> - Jarrow Hall</a></li>
+    <li><a href="/events/polymer-clay-pumpkin-carving-with-jed-buttress-cobalt-studios-20261031/"><span class="d">31/10/26</span> - Polymer (Clay) Pumpkin Carving with Jed Buttress - <span class="t">11am</span> - Cobalt Studios</a></li>
   </ul>
-  <h2>November 2026</h2>
+  <h2 id="november-2026">November 2026<span class="count">85</span></h2>
   <ul>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261101/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/ballad-club-the-cumberland-arms-20261101/">Ballad Club</a> <span class="muted">2pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/holly-the-reivers-presents-samhain-songs-cobalt-studios-20261101/">Holly &amp; The Reivers presents: ‘Samhain Songs’</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261101/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/a-night-of-balfolk-cobalt-studios-20261102/">A Night Of Balfolk</a> <span class="muted">6:30pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/diy-ceilidh-presents-a-night-of-balfolk-cobalt-studios-20261102/">DIY Ceilidh presents A Night of Balfolk</a> <span class="muted">6:30pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261102/">Mariners &amp; Marras: Shanties and trad work songs</a> <span class="muted">– Enigma Tap</span></li>
-    <li><a href="/events/sally-ironmonger-and-brian-carter-bridge-hotel-20261102/">Sally Ironmonger and Brian Carter</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/radical-choir-with-bethany-elen-03-11-cobalt-studios-20261103/">Radical Choir with Bethany Elen (03/11)</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/global-music-session-the-cumberland-arms-20261103/">Global Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261103/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/nev-clay-band-live-theatre-20261103/">Nev Clay &amp; Band</a> <span class="muted">– Live Theatre</span></li>
-    <li><a href="/events/siobhan-miller-band-the-cluny-20261104/">Siobhan Miller Band</a> <span class="muted">7:30pm</span> <span class="muted">– The Cluny</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261104/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261104/">Cramlington Folk Club</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/nev-clay-band-live-theatre-20261104/">Nev Clay &amp; Band</a> <span class="muted">– Live Theatre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261104/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/singaround-the-brewery-20261104/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261105/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261106/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261107/">Ouseburn Heritage Guided Walk</a> <span class="muted">10:30am</span> <span class="muted">– Ouseburn Trust at 51 Lime Street</span></li>
-    <li><a href="/events/writing-as-a-visual-act-with-victoria-doyle-cobalt-studios-20261107/">Writing as a Visual Act with Victoria Doyle</a> <span class="muted">11am</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/catch-the-sparrow-the-cumberland-arms-20261107/">Catch The Sparrow</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-often-herd-the-cluny-2-20261107/">The Often Herd</a> <span class="muted">– The Cluny 2</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261108/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/willow-star-workshop-cumberland-arms-20261108/">Willow Star Workshop</a> <span class="muted">2pm</span> <span class="muted">– Cumberland Arms</span></li>
-    <li><a href="/events/birdvox-cluny-2-20261108/">Birdvox</a> <span class="muted">7:30pm</span> <span class="muted">– Cluny 2</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261108/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/singaround-bridge-hotel-20261109/">Singaround</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/toby-shaer-archie-moss-and-jack-warnock-the-cluny-2-20261110/">Toby Shaer, Archie Moss and Jack Warnock</a> <span class="muted">7:30pm</span> <span class="muted">– The Cluny 2</span></li>
-    <li><a href="/events/come-all-ye-singing-session-the-cumberland-arms-20261110/">Come All Ye&#39; Singing Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261110/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261110/">Tyneside Ceilidh Club</a> <span class="muted">– Gateshead Masonic Hall</span></li>
-    <li><a href="/events/bellowhead-the-glasshouse-20261111/">Bellowhead</a> <span class="muted">7pm</span> <span class="muted">– The Glasshouse</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261111/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-the-carrivik-sisters-benedictine-social-centre-20261111/">Cramlington Folk Club: The Carrivik Sisters</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261111/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/singaround-the-brewery-20261111/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261112/">Old Time Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261112/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/spafford-campbell-watersmeet-cobalt-studios-20261113/">Spafford Campbell + Watersmeet</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/torridon-cluny-2-20261113/">Torridon</a> <span class="muted">7:30pm</span> <span class="muted">– Cluny 2</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261113/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/clay-idols-with-bethany-stead-cobalt-studios-20261114/">Clay Idols with Bethany Stead</a> <span class="muted">11am</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/an-dannsa-dub-cluny-2-20261114/">An Dannsa Dub</a> <span class="muted">7:30pm</span> <span class="muted">– Cluny 2</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261115/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261115/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/pipe-dream-bridge-hotel-20261116/">Pipe Dream</a> <span class="muted">7pm</span> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261116/">Mariners &amp; Marras: Shanties and trad work songs</a> <span class="muted">– Enigma Tap</span></li>
-    <li><a href="/events/global-music-session-the-cumberland-arms-20261117/">Global Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261117/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261118/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261118/">Cramlington Folk Club</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261118/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/singaround-the-brewery-20261118/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/abigail-lappell-cluny-2-20261119/">Abigail Lappell</a> <span class="muted">7:30pm</span> <span class="muted">– Cluny 2</span></li>
-    <li><a href="/events/singaround-at-12-30-central-bar-20261119/">Singaround at 12:30</a> <span class="muted">– Central Bar</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261119/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/diy-ceilidh-lubber-fiend-20261120/">DIY Ceilidh</a> <span class="muted">6:30pm</span> <span class="muted">– Lubber Fiend</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261120/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/driven-serious-the-cumberland-arms-20261120/">Driven Serious</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261121/">Ouseburn Heritage Guided Walk</a> <span class="muted">10:30am</span> <span class="muted">– Ouseburn Trust at 51 Lime Street</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261122/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261122/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/singaround-bridge-hotel-20261123/">Singaround</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261124/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/festive-lino-printing-workshop-tyne-theatre-opera-house-20261124/">Festive Lino Printing Workshop</a> <span class="muted">– Tyne Theatre &amp; Opera House</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261125/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-clive-gregson-and-the-hayes-sisters-benedictine-social-centre-20261125/">Cramlington Folk Club: Clive Gregson and the Hayes Sisters</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261125/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/singaround-the-brewery-20261125/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261126/">Old Time Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261126/">Festive Wreath Making Workshop at Tyneside Cinema</a> <span class="muted">– Tyneside Cinema</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261126/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261127/">Willow Star Workshop</a> <span class="muted">7pm</span> <span class="muted">– The Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261127/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/christmas-willow-wreath-workshop-land-of-oak-iron-heritage-centre-20261128/">Christmas Willow Wreath Workshop</a> <span class="muted">10am</span> <span class="muted">– Land of Oak &amp; Iron Heritage Centre</span></li>
-    <li><a href="/events/world-building-map-making-with-mark-bletcher-cobalt-studios-20261128/">World Building &amp; Map Making with Mark Bletcher</a> <span class="muted">11am</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/rob-heron-conrad-bird-cluny-2-20261128/">Rob Heron &amp; Conrad Bird</a> <span class="muted">7:30pm</span> <span class="muted">– Cluny 2</span></li>
-    <li><a href="/events/bob-fox-and-stu-luckley-the-glasshouse-20261128/">Bob Fox and Stu Luckley</a> <span class="muted">8pm</span> <span class="muted">– The Glasshouse</span></li>
-    <li><a href="/events/northern-gothic-hexmas-market-the-common-room-20261128/">Northern Gothic Hexmas Market</a> <span class="muted">– The Common Room</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261129/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261129/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/the-crafty-bazaar-it-s-christmas-maker-s-market-wylam-brewery-20261129/">The Crafty Bazaar - It&#39;s Christmas! Maker&#39;s Market</a> <span class="muted">– Wylam Brewery</span></li>
-    <li><a href="/events/singaround-bridge-hotel-20261130/">Singaround</a> <span class="muted">– Bridge Hotel</span></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261101/"><span class="d">01/11/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/ballad-club-the-cumberland-arms-20261101/"><span class="d">01/11/26</span> - Ballad Club - <span class="t">2pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/holly-the-reivers-presents-samhain-songs-cobalt-studios-20261101/"><span class="d">01/11/26</span> - Holly &amp; The Reivers presents: ‘Samhain Songs’ - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261101/"><span class="d">01/11/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/a-night-of-balfolk-cobalt-studios-20261102/"><span class="d">02/11/26</span> - A Night Of Balfolk - <span class="t">6:30pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/diy-ceilidh-presents-a-night-of-balfolk-cobalt-studios-20261102/"><span class="d">02/11/26</span> - DIY Ceilidh presents A Night of Balfolk - <span class="t">6:30pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261102/"><span class="d">02/11/26</span> - Mariners &amp; Marras: Shanties and trad work songs - Enigma Tap</a></li>
+    <li><a href="/events/sally-ironmonger-and-brian-carter-bridge-hotel-20261102/"><span class="d">02/11/26</span> - Sally Ironmonger and Brian Carter - Bridge Hotel</a></li>
+    <li><a href="/events/radical-choir-with-bethany-elen-03-11-cobalt-studios-20261103/"><span class="d">03/11/26</span> - Radical Choir with Bethany Elen (03/11) - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/global-music-session-the-cumberland-arms-20261103/"><span class="d">03/11/26</span> - Global Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261103/"><span class="d">03/11/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/nev-clay-band-live-theatre-20261103/"><span class="d">03/11/26</span> - Nev Clay &amp; Band - Live Theatre</a></li>
+    <li><a href="/events/siobhan-miller-band-the-cluny-20261104/"><span class="d">04/11/26</span> - Siobhan Miller Band - <span class="t">7:30pm</span> - The Cluny</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261104/"><span class="d">04/11/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261104/"><span class="d">04/11/26</span> - Cramlington Folk Club - Benedictine Social Centre</a></li>
+    <li><a href="/events/nev-clay-band-live-theatre-20261104/"><span class="d">04/11/26</span> - Nev Clay &amp; Band - Live Theatre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261104/"><span class="d">04/11/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/singaround-the-brewery-20261104/"><span class="d">04/11/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261105/"><span class="d">05/11/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261106/"><span class="d">06/11/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261107/"><span class="d">07/11/26</span> - Ouseburn Heritage Guided Walk - <span class="t">10:30am</span> - Ouseburn Trust at 51 Lime Street</a></li>
+    <li><a href="/events/writing-as-a-visual-act-with-victoria-doyle-cobalt-studios-20261107/"><span class="d">07/11/26</span> - Writing as a Visual Act with Victoria Doyle - <span class="t">11am</span> - Cobalt Studios</a></li>
+    <li><a href="/events/catch-the-sparrow-the-cumberland-arms-20261107/"><span class="d">07/11/26</span> - Catch The Sparrow - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-often-herd-the-cluny-2-20261107/"><span class="d">07/11/26</span> - The Often Herd - The Cluny 2</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261108/"><span class="d">08/11/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/willow-star-workshop-cumberland-arms-20261108/"><span class="d">08/11/26</span> - Willow Star Workshop - <span class="t">2pm</span> - Cumberland Arms</a></li>
+    <li><a href="/events/birdvox-cluny-2-20261108/"><span class="d">08/11/26</span> - Birdvox - <span class="t">7:30pm</span> - Cluny 2</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261108/"><span class="d">08/11/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/singaround-bridge-hotel-20261109/"><span class="d">09/11/26</span> - Singaround - Bridge Hotel</a></li>
+    <li><a href="/events/toby-shaer-archie-moss-and-jack-warnock-the-cluny-2-20261110/"><span class="d">10/11/26</span> - Toby Shaer, Archie Moss and Jack Warnock - <span class="t">7:30pm</span> - The Cluny 2</a></li>
+    <li><a href="/events/come-all-ye-singing-session-the-cumberland-arms-20261110/"><span class="d">10/11/26</span> - Come All Ye&#39; Singing Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261110/"><span class="d">10/11/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261110/"><span class="d">10/11/26</span> - Tyneside Ceilidh Club - Gateshead Masonic Hall</a></li>
+    <li><a href="/events/bellowhead-the-glasshouse-20261111/"><span class="d">11/11/26</span> - Bellowhead - <span class="t">7pm</span> - The Glasshouse</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261111/"><span class="d">11/11/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-the-carrivik-sisters-benedictine-social-centre-20261111/"><span class="d">11/11/26</span> - Cramlington Folk Club: The Carrivik Sisters - Benedictine Social Centre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261111/"><span class="d">11/11/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/singaround-the-brewery-20261111/"><span class="d">11/11/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261112/"><span class="d">12/11/26</span> - Old Time Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261112/"><span class="d">12/11/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/spafford-campbell-watersmeet-cobalt-studios-20261113/"><span class="d">13/11/26</span> - Spafford Campbell + Watersmeet - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/torridon-cluny-2-20261113/"><span class="d">13/11/26</span> - Torridon - <span class="t">7:30pm</span> - Cluny 2</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261113/"><span class="d">13/11/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/clay-idols-with-bethany-stead-cobalt-studios-20261114/"><span class="d">14/11/26</span> - Clay Idols with Bethany Stead - <span class="t">11am</span> - Cobalt Studios</a></li>
+    <li><a href="/events/an-dannsa-dub-cluny-2-20261114/"><span class="d">14/11/26</span> - An Dannsa Dub - <span class="t">7:30pm</span> - Cluny 2</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261115/"><span class="d">15/11/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261115/"><span class="d">15/11/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/pipe-dream-bridge-hotel-20261116/"><span class="d">16/11/26</span> - Pipe Dream - <span class="t">7pm</span> - Bridge Hotel</a></li>
+    <li><a href="/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261116/"><span class="d">16/11/26</span> - Mariners &amp; Marras: Shanties and trad work songs - Enigma Tap</a></li>
+    <li><a href="/events/global-music-session-the-cumberland-arms-20261117/"><span class="d">17/11/26</span> - Global Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261117/"><span class="d">17/11/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261118/"><span class="d">18/11/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261118/"><span class="d">18/11/26</span> - Cramlington Folk Club - Benedictine Social Centre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261118/"><span class="d">18/11/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/singaround-the-brewery-20261118/"><span class="d">18/11/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/abigail-lappell-cluny-2-20261119/"><span class="d">19/11/26</span> - Abigail Lappell - <span class="t">7:30pm</span> - Cluny 2</a></li>
+    <li><a href="/events/singaround-at-12-30-central-bar-20261119/"><span class="d">19/11/26</span> - Singaround at 12:30 - Central Bar</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261119/"><span class="d">19/11/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/diy-ceilidh-lubber-fiend-20261120/"><span class="d">20/11/26</span> - DIY Ceilidh - <span class="t">6:30pm</span> - Lubber Fiend</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261120/"><span class="d">20/11/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/driven-serious-the-cumberland-arms-20261120/"><span class="d">20/11/26</span> - Driven Serious - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261121/"><span class="d">21/11/26</span> - Ouseburn Heritage Guided Walk - <span class="t">10:30am</span> - Ouseburn Trust at 51 Lime Street</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261122/"><span class="d">22/11/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261122/"><span class="d">22/11/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/singaround-bridge-hotel-20261123/"><span class="d">23/11/26</span> - Singaround - Bridge Hotel</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261124/"><span class="d">24/11/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/festive-lino-printing-workshop-tyne-theatre-opera-house-20261124/"><span class="d">24/11/26</span> - Festive Lino Printing Workshop - Tyne Theatre &amp; Opera House</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261125/"><span class="d">25/11/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-clive-gregson-and-the-hayes-sisters-benedictine-social-centre-20261125/"><span class="d">25/11/26</span> - Cramlington Folk Club: Clive Gregson and the Hayes Sisters - Benedictine Social Centre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261125/"><span class="d">25/11/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/singaround-the-brewery-20261125/"><span class="d">25/11/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261126/"><span class="d">26/11/26</span> - Old Time Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261126/"><span class="d">26/11/26</span> - Festive Wreath Making Workshop at Tyneside Cinema - Tyneside Cinema</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261126/"><span class="d">26/11/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261127/"><span class="d">27/11/26</span> - Willow Star Workshop - <span class="t">7pm</span> - The Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261127/"><span class="d">27/11/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/christmas-willow-wreath-workshop-land-of-oak-iron-heritage-centre-20261128/"><span class="d">28/11/26</span> - Christmas Willow Wreath Workshop - <span class="t">10am</span> - Land of Oak &amp; Iron Heritage Centre</a></li>
+    <li><a href="/events/world-building-map-making-with-mark-bletcher-cobalt-studios-20261128/"><span class="d">28/11/26</span> - World Building &amp; Map Making with Mark Bletcher - <span class="t">11am</span> - Cobalt Studios</a></li>
+    <li><a href="/events/rob-heron-conrad-bird-cluny-2-20261128/"><span class="d">28/11/26</span> - Rob Heron &amp; Conrad Bird - <span class="t">7:30pm</span> - Cluny 2</a></li>
+    <li><a href="/events/bob-fox-and-stu-luckley-the-glasshouse-20261128/"><span class="d">28/11/26</span> - Bob Fox and Stu Luckley - <span class="t">8pm</span> - The Glasshouse</a></li>
+    <li><a href="/events/northern-gothic-hexmas-market-the-common-room-20261128/"><span class="d">28/11/26</span> - Northern Gothic Hexmas Market - The Common Room</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261129/"><span class="d">29/11/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261129/"><span class="d">29/11/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/the-crafty-bazaar-it-s-christmas-maker-s-market-wylam-brewery-20261129/"><span class="d">29/11/26</span> - The Crafty Bazaar - It&#39;s Christmas! Maker&#39;s Market - Wylam Brewery</a></li>
+    <li><a href="/events/singaround-bridge-hotel-20261130/"><span class="d">30/11/26</span> - Singaround - Bridge Hotel</a></li>
   </ul>
-  <h2>December 2026</h2>
+  <h2 id="december-2026">December 2026<span class="count">68</span></h2>
   <ul>
-    <li><a href="/events/sacred-harp-singing-workshop-cobalt-studios-20261201/">Sacred Harp Singing Workshop</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/global-music-session-the-cumberland-arms-20261201/">Global Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261201/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/the-rabbitts-cluny-2-20261202/">The Rabbitts</a> <span class="muted">7:30pm</span> <span class="muted">– Cluny 2</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261202/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261202/">Cramlington Folk Club</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261202/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/singaround-the-brewery-20261202/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/fresh-thursday-salt-house-maja-bugge-dave-evans-cobalt-studios-20261203/">Fresh Thursday // Salt House + Maja Bugge &amp; Dave Evans</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261203/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/ladr-ache-powtes-cobalt-studios-20261204/">ladr ache + Powtes</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261204/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261204/">Festive Wreath Making Workshop at Tyneside Cinema</a> <span class="muted">– Tyneside Cinema</span></li>
-    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261205/">Ouseburn Heritage Guided Walk</a> <span class="muted">10:30am</span> <span class="muted">– Ouseburn Trust at 51 Lime Street</span></li>
-    <li><a href="/events/blackfriars-christmas-market-blackfriars-restaurant-20261205/">Blackfriars&#39; Christmas Market</a> <span class="muted">– Blackfriars Restaurant</span></li>
-    <li><a href="/events/made-up-north-winter-market-boiler-shop-20261206/">Made Up North - Winter Market</a> <span class="muted">10am</span> <span class="muted">– Boiler Shop</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261206/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/ballad-club-the-cumberland-arms-20261206/">Ballad Club</a> <span class="muted">2pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/blackfriars-christmas-market-blackfriars-restaurant-20261206/">Blackfriars&#39; Christmas Market</a> <span class="muted">– Blackfriars Restaurant</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261206/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/a-night-of-balfolk-cobalt-studios-20261207/">A Night Of Balfolk</a> <span class="muted">6:30pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/diy-ceilidh-presents-a-night-of-balfolk-cobalt-studios-20261207/">DIY Ceilidh presents A Night of Balfolk</a> <span class="muted">6:30pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/fundraiser-singaround-for-crisis-bridge-hotel-20261207/">Fundraiser singaround for Crisis</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261207/">Mariners &amp; Marras: Shanties and trad work songs</a> <span class="muted">– Enigma Tap</span></li>
-    <li><a href="/events/radical-choir-with-bethany-elen-08-12-cobalt-studios-20261208/">Radical Choir with Bethany Elen (08/12)</a> <span class="muted">7pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/come-all-ye-singing-session-the-cumberland-arms-20261208/">Come All Ye&#39; Singing Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261208/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261208/">Tyneside Ceilidh Club</a> <span class="muted">– Gateshead Masonic Hall</span></li>
-    <li><a href="/events/xmas-wild-wreaths-with-common-c-collective-cobalt-studios-20261209/">Xmas Wild Wreaths with Common C Collective</a> <span class="muted">6:30pm</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261209/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261209/">Cramlington Folk Club</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261209/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/singaround-the-brewery-20261209/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261210/">Old Time Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261210/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261211/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/intro-to-chainmail-jewellery-helm-chain-with-ellie-grassick-cobalt-studios-20261212/">Intro to Chainmail Jewellery: Helm Chain with Ellie Grassick</a> <span class="muted">11am</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261213/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261213/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/stained-glass-workshop-with-rita-griskonyte-newcastle-cathedral-20261213/">Stained Glass Workshop with Rita Griskonyte</a> <span class="muted">– Newcastle Cathedral</span></li>
-    <li><a href="/events/salty-dog-bridge-hotel-20261214/">Salty Dog</a> <span class="muted">7pm</span> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/festive-folk-hearken-quartet-ouseburn-folk-choir-ouseburn-folk-band-tapyard-20261215/">FESTIVE FOLK: Hearken Quartet// Ouseburn Folk Choir // Ouseburn Folk Band</a> <span class="muted">7pm</span> <span class="muted">– Tapyard</span></li>
-    <li><a href="/events/global-music-session-the-cumberland-arms-20261215/">Global Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261215/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/the-deadlians-cluny-2-20261216/">The Deadlians</a> <span class="muted">7:30pm</span> <span class="muted">– Cluny 2</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261216/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/cramlington-folk-club-jez-lowe-christmas-show-benedictine-social-centre-20261216/">Cramlington Folk Club: Jez Lowe Christmas Show</a> <span class="muted">– Benedictine Social Centre</span></li>
-    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261216/">Sacred Harp Singing Workshop</a> <span class="muted">– Bridge Hotel</span></li>
-    <li><a href="/events/singaround-the-brewery-20261216/">Singaround</a> <span class="muted">– The Brewery</span></li>
-    <li><a href="/events/singaround-at-12-30-central-bar-20261217/">Singaround at 12:30</a> <span class="muted">– Central Bar</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261217/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/diy-ceilidh-lubber-fiend-20261218/">DIY Ceilidh</a> <span class="muted">6:30pm</span> <span class="muted">– Lubber Fiend</span></li>
-    <li><a href="/events/ceilidh-at-the-coast-whitley-bay-big-local-20261218/">Ceilidh at the Coast</a> <span class="muted">7:30pm</span> <span class="muted">– Whitley Bay Big Local</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261218/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/bookbinding-with-victoria-doyle-cobalt-studios-20261219/">Bookbinding with Victoria Doyle</a> <span class="muted">11am</span> <span class="muted">– Cobalt Studios</span></li>
-    <li><a href="/events/lindisfarne-o2-city-hall-20261219/">Lindisfarne</a> <span class="muted">6:45pm</span> <span class="muted">– O2 City Hall</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261220/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261220/">Monkey Folk Club</a> <span class="muted">– Monkseaton Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261222/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261223/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261224/">Old Time Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261224/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261225/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20261227/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/global-music-session-the-cumberland-arms-20261229/">Global Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261229/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261230/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261231/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
+    <li><a href="/events/sacred-harp-singing-workshop-cobalt-studios-20261201/"><span class="d">01/12/26</span> - Sacred Harp Singing Workshop - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/global-music-session-the-cumberland-arms-20261201/"><span class="d">01/12/26</span> - Global Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261201/"><span class="d">01/12/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/the-rabbitts-cluny-2-20261202/"><span class="d">02/12/26</span> - The Rabbitts - <span class="t">7:30pm</span> - Cluny 2</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261202/"><span class="d">02/12/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261202/"><span class="d">02/12/26</span> - Cramlington Folk Club - Benedictine Social Centre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261202/"><span class="d">02/12/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/singaround-the-brewery-20261202/"><span class="d">02/12/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/fresh-thursday-salt-house-maja-bugge-dave-evans-cobalt-studios-20261203/"><span class="d">03/12/26</span> - Fresh Thursday // Salt House + Maja Bugge &amp; Dave Evans - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261203/"><span class="d">03/12/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/ladr-ache-powtes-cobalt-studios-20261204/"><span class="d">04/12/26</span> - ladr ache + Powtes - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261204/"><span class="d">04/12/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261204/"><span class="d">04/12/26</span> - Festive Wreath Making Workshop at Tyneside Cinema - Tyneside Cinema</a></li>
+    <li><a href="/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261205/"><span class="d">05/12/26</span> - Ouseburn Heritage Guided Walk - <span class="t">10:30am</span> - Ouseburn Trust at 51 Lime Street</a></li>
+    <li><a href="/events/blackfriars-christmas-market-blackfriars-restaurant-20261205/"><span class="d">05/12/26</span> - Blackfriars&#39; Christmas Market - Blackfriars Restaurant</a></li>
+    <li><a href="/events/made-up-north-winter-market-boiler-shop-20261206/"><span class="d">06/12/26</span> - Made Up North - Winter Market - <span class="t">10am</span> - Boiler Shop</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261206/"><span class="d">06/12/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/ballad-club-the-cumberland-arms-20261206/"><span class="d">06/12/26</span> - Ballad Club - <span class="t">2pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/blackfriars-christmas-market-blackfriars-restaurant-20261206/"><span class="d">06/12/26</span> - Blackfriars&#39; Christmas Market - Blackfriars Restaurant</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261206/"><span class="d">06/12/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/a-night-of-balfolk-cobalt-studios-20261207/"><span class="d">07/12/26</span> - A Night Of Balfolk - <span class="t">6:30pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/diy-ceilidh-presents-a-night-of-balfolk-cobalt-studios-20261207/"><span class="d">07/12/26</span> - DIY Ceilidh presents A Night of Balfolk - <span class="t">6:30pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/fundraiser-singaround-for-crisis-bridge-hotel-20261207/"><span class="d">07/12/26</span> - Fundraiser singaround for Crisis - Bridge Hotel</a></li>
+    <li><a href="/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261207/"><span class="d">07/12/26</span> - Mariners &amp; Marras: Shanties and trad work songs - Enigma Tap</a></li>
+    <li><a href="/events/radical-choir-with-bethany-elen-08-12-cobalt-studios-20261208/"><span class="d">08/12/26</span> - Radical Choir with Bethany Elen (08/12) - <span class="t">7pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/come-all-ye-singing-session-the-cumberland-arms-20261208/"><span class="d">08/12/26</span> - Come All Ye&#39; Singing Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261208/"><span class="d">08/12/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261208/"><span class="d">08/12/26</span> - Tyneside Ceilidh Club - Gateshead Masonic Hall</a></li>
+    <li><a href="/events/xmas-wild-wreaths-with-common-c-collective-cobalt-studios-20261209/"><span class="d">09/12/26</span> - Xmas Wild Wreaths with Common C Collective - <span class="t">6:30pm</span> - Cobalt Studios</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261209/"><span class="d">09/12/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-benedictine-social-centre-20261209/"><span class="d">09/12/26</span> - Cramlington Folk Club - Benedictine Social Centre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261209/"><span class="d">09/12/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/singaround-the-brewery-20261209/"><span class="d">09/12/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261210/"><span class="d">10/12/26</span> - Old Time Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261210/"><span class="d">10/12/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261211/"><span class="d">11/12/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/intro-to-chainmail-jewellery-helm-chain-with-ellie-grassick-cobalt-studios-20261212/"><span class="d">12/12/26</span> - Intro to Chainmail Jewellery: Helm Chain with Ellie Grassick - <span class="t">11am</span> - Cobalt Studios</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261213/"><span class="d">13/12/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261213/"><span class="d">13/12/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/stained-glass-workshop-with-rita-griskonyte-newcastle-cathedral-20261213/"><span class="d">13/12/26</span> - Stained Glass Workshop with Rita Griskonyte - Newcastle Cathedral</a></li>
+    <li><a href="/events/salty-dog-bridge-hotel-20261214/"><span class="d">14/12/26</span> - Salty Dog - <span class="t">7pm</span> - Bridge Hotel</a></li>
+    <li><a href="/events/festive-folk-hearken-quartet-ouseburn-folk-choir-ouseburn-folk-band-tapyard-20261215/"><span class="d">15/12/26</span> - FESTIVE FOLK: Hearken Quartet// Ouseburn Folk Choir // Ouseburn Folk Band - <span class="t">7pm</span> - Tapyard</a></li>
+    <li><a href="/events/global-music-session-the-cumberland-arms-20261215/"><span class="d">15/12/26</span> - Global Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261215/"><span class="d">15/12/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/the-deadlians-cluny-2-20261216/"><span class="d">16/12/26</span> - The Deadlians - <span class="t">7:30pm</span> - Cluny 2</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261216/"><span class="d">16/12/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/cramlington-folk-club-jez-lowe-christmas-show-benedictine-social-centre-20261216/"><span class="d">16/12/26</span> - Cramlington Folk Club: Jez Lowe Christmas Show - Benedictine Social Centre</a></li>
+    <li><a href="/events/sacred-harp-singing-workshop-bridge-hotel-20261216/"><span class="d">16/12/26</span> - Sacred Harp Singing Workshop - Bridge Hotel</a></li>
+    <li><a href="/events/singaround-the-brewery-20261216/"><span class="d">16/12/26</span> - Singaround - The Brewery</a></li>
+    <li><a href="/events/singaround-at-12-30-central-bar-20261217/"><span class="d">17/12/26</span> - Singaround at 12:30 - Central Bar</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261217/"><span class="d">17/12/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/diy-ceilidh-lubber-fiend-20261218/"><span class="d">18/12/26</span> - DIY Ceilidh - <span class="t">6:30pm</span> - Lubber Fiend</a></li>
+    <li><a href="/events/ceilidh-at-the-coast-whitley-bay-big-local-20261218/"><span class="d">18/12/26</span> - Ceilidh at the Coast - <span class="t">7:30pm</span> - Whitley Bay Big Local</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261218/"><span class="d">18/12/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/bookbinding-with-victoria-doyle-cobalt-studios-20261219/"><span class="d">19/12/26</span> - Bookbinding with Victoria Doyle - <span class="t">11am</span> - Cobalt Studios</a></li>
+    <li><a href="/events/lindisfarne-o2-city-hall-20261219/"><span class="d">19/12/26</span> - Lindisfarne - <span class="t">6:45pm</span> - O2 City Hall</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261220/"><span class="d">20/12/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/monkey-folk-club-monkseaton-arms-20261220/"><span class="d">20/12/26</span> - Monkey Folk Club - Monkseaton Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261222/"><span class="d">22/12/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261223/"><span class="d">23/12/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/old-time-music-session-the-cumberland-arms-20261224/"><span class="d">24/12/26</span> - Old Time Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261224/"><span class="d">24/12/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261225/"><span class="d">25/12/26</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20261227/"><span class="d">27/12/26</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/global-music-session-the-cumberland-arms-20261229/"><span class="d">29/12/26</span> - Global Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261229/"><span class="d">29/12/26</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20261230/"><span class="d">30/12/26</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20261231/"><span class="d">31/12/26</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
   </ul>
-  <h2>January 2027</h2>
+  <h2 id="january-2027">January 2027<span class="count">7</span></h2>
   <ul>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270101/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/quayside-market-newcastle-quayside-20270103/">Quayside Market</a> <span class="muted">10:30am</span> <span class="muted">– Newcastle Quayside</span></li>
-    <li><a href="/events/global-music-session-the-cumberland-arms-20270105/">Global Music Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270105/">The Wheatsheaf Session</a> <span class="muted">9pm</span> <span class="muted">– The Wheatsheaf, Felling</span></li>
-    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20270106/">Mostly Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
-    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20270107/">Tyneside Irish Centre Session</a> <span class="muted">– Tyneside Irish Centre</span></li>
-    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270108/">An Crúiscín Làn&#39; Irish Session</a> <span class="muted">8pm</span> <span class="muted">– The Cumberland Arms</span></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270101/"><span class="d">01/01/27</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/quayside-market-newcastle-quayside-20270103/"><span class="d">03/01/27</span> - Quayside Market - <span class="t">10:30am</span> - Newcastle Quayside</a></li>
+    <li><a href="/events/global-music-session-the-cumberland-arms-20270105/"><span class="d">05/01/27</span> - Global Music Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270105/"><span class="d">05/01/27</span> - The Wheatsheaf Session - <span class="t">9pm</span> - The Wheatsheaf, Felling</a></li>
+    <li><a href="/events/mostly-irish-session-the-cumberland-arms-20270106/"><span class="d">06/01/27</span> - Mostly Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
+    <li><a href="/events/tyneside-irish-centre-session-tyneside-irish-centre-20270107/"><span class="d">07/01/27</span> - Tyneside Irish Centre Session - Tyneside Irish Centre</a></li>
+    <li><a href="/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270108/"><span class="d">08/01/27</span> - An Crúiscín Làn&#39; Irish Session - <span class="t">8pm</span> - The Cumberland Arms</a></li>
   </ul>
   <p><a href="/">&larr; All events</a></p>
 </main>
