@@ -791,9 +791,36 @@ function siteBase() {
   return window.location.origin + window.location.pathname;
 }
 
+/* Mirrors slugPart() in generate-events.js. Keep the two in step: the generator
+   asserts they agree so a mismatch fails the build rather than producing dead
+   share links. */
+function slugPart(s) {
+  return String(s || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function eventSlug(e) {
+  const date = String(e.date || '').replace(/[^0-9]/g, '');
+  return [slugPart(e.title), slugPart(e.venue), date].filter(Boolean).join('-');
+}
+
 function shareUrlFor(e) {
-  return siteBase() + '?' + SHARE_PARAM + '=' +
-    encodeURIComponent(favId(e));
+  return window.location.origin + '/events/' + eventSlug(e) + '/';
+}
+
+/* "An Criscán Ln' Irish Session – The Cumberland Arms, Tue 13 Oct, 8pm" */
+function shareTextFor(e) {
+  const bits = [
+    e.title,
+    e.venue,
+    e.date ? formatDateShort(e.date) : '',
+    formatTimeDisplay(e.startTime)
+  ];
+  return bits.filter(Boolean).join(', ');
 }
 
 function readSharedEventId() {
@@ -861,6 +888,7 @@ function copyToClipboard(text) {
 function shareEvent(e, button) {
   const url = shareUrlFor(e);
   const label = e.title + ' - The Kirn';
+  const text = shareTextFor(e);
 
   const done = function() {
     button.classList.add('copied');
@@ -873,7 +901,7 @@ function shareEvent(e, button) {
   };
 
   if (navigator.share) {
-    navigator.share({ title: label, text: 'Folk events in Newcastle', url: url })
+    navigator.share({ title: label, text: text, url: url })
       .then(done)['catch'](function() {
 
         copyToClipboard(url).then(done, function() {});
