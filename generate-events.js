@@ -637,7 +637,6 @@ async function main() {
     ev.venueKey = venueKeyFor(ev);
 
     events.push(ev);
-    });
   }
 
   events.sort((a, b) =>
