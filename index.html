@@ -667,6 +667,15 @@ function saveFavourites() {
   }
 }
 
+function pruneFavourites() {
+  if (!allEvents.length) return;
+  const live = new Set(allEvents.map(e => favId(e)));
+  const kept = Array.from(favIds).filter(id => live.has(id));
+  if (kept.length === favIds.size) return;
+  favIds = new Set(kept);
+  saveFavourites();
+}
+
 function isFavourite(e) {
   return favIds.has(favId(e));
 }
@@ -966,6 +975,7 @@ function loadEvents() {
           sourceUrl: row.SourceURL || ''
         }));
       document.getElementById('status').style.display = 'none';
+      pruneFavourites();
       render();
 
       openSharedEvent();
