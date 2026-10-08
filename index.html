@@ -786,6 +786,12 @@ function isFavourite(e) {
 }
 
 const SHARE_PARAM = 'event';
+const VENUE_PARAM = 'venue';
+
+/* Zoom used when arriving from an event page's "See on the map" link. Close
+   enough to pick out the building, not so close the surrounding streets are
+   lost. */
+const VENUE_ZOOM = 16;
 
 function siteBase() {
   return window.location.origin + window.location.pathname;
@@ -838,13 +844,26 @@ function readSharedEventId() {
   }
 }
 
-function openSharedEvent() {
-  const wanted = readSharedEventId();
-  if (!wanted) return;
+/* A generated event page links here as /?venue=<venueKey> so the map opens
+   centred on the venue with its pin selected, rather than at the last place
+   the visitor was looking. */
+function readSharedVenueKey() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get(VENUE_PARAM);
+    if (!raw) return '';
+    try {
+      return decodeURIComponent(raw).toLowerCase().trim();
+    } catch (err) {
+      return '';
+    }
+  } catch (err) {
+    return '';
+  }
+}
 
-  const target = allEvents.find(e => favId(e).toLowerCase().trim() === wanted);
-  if (!target) return;
-
+/* Filters are cleared first so the venue marker is actually on the map. */
+function clearFiltersForDeepLink() {
   activeTypes.clear();
   activeRange = 'all';
   favouritesOnly = false;
@@ -854,6 +873,16 @@ function openSharedEvent() {
   });
   document.getElementById('dateRangeBox').style.display = 'none';
   document.getElementById('favFilter').classList.remove('active');
+}
+
+function openSharedEvent() {
+  const wanted = readSharedEventId();
+  if (!wanted) return false;
+
+  const target = allEvents.find(e => favId(e).toLowerCase().trim() === wanted);
+  if (!target) return false;
+
+  clearFiltersForDeepLink();
   render();
 
   openModal(target);
@@ -862,6 +891,28 @@ function openSharedEvent() {
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     el.classList.add('highlight');
   }
+  return true;
+}
+
+function openSharedVenue() {
+  const wanted = readSharedVenueKey();
+  if (!wanted) return false;
+
+  clearFiltersForDeepLink();
+  render();
+
+  const marker = venueMarkers[wanted];
+  if (!marker) return false;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  map.setView(marker.getLatLng(), VENUE_ZOOM);
+  marker.openPopup();
+  return true;
+}
+
+function openSharedLink() {
+  if (openSharedEvent()) return;
+  openSharedVenue();
 }
 
 function copyToClipboard(text) {
@@ -1125,7 +1176,7 @@ function loadEvents() {
       pruneFavourites();
       render();
 
-      openSharedEvent();
+      openSharedLink();
     },
     error: function() {
       document.getElementById('status').textContent =
