@@ -154,6 +154,21 @@ function formatDateShort(dateStr) {
 }
 
 /** "8pm" - matches formatTimeDisplay() in index.html */
+/** "08/10/26" - unambiguous UK day/month/year, short enough to lead a list line */
+function formatDateNumeric(dateStr) {
+  const d = parseDate(dateStr);
+  if (!d) return String(dateStr || '');
+  const dd = ('0' + d.getUTCDate()).slice(-2);
+  const mm = ('0' + (d.getUTCMonth() + 1)).slice(-2);
+  const yy = ('0' + d.getUTCFullYear()).slice(-2);
+  return dd + '/' + mm + '/' + yy;
+}
+
+/** Anchor id for a month heading: "October 2026" -> "october-2026" */
+function monthSlug(month) {
+  return String(month).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
 function formatTime(timeStr) {
   if (!timeStr) return '';
   const m = String(timeStr).match(/(\d{1,2}):(\d{2})/);
@@ -668,13 +683,21 @@ function buildEventsIndex(events) {
   const sections = [...byMonth.entries()].map(([month, list]) => {
     const items = list.map(ev => {
       const time = formatTime(ev.startTime);
-      return `    <li><a href="/events/${esc(ev.slug)}/">${esc(ev.title)}</a>` +
-        (time ? ` <span class="muted">${esc(time)}</span>` : '') +
-        (ev.venue ? ` <span class="muted">– ${esc(ev.venue)}</span>` : '') +
-        `</li>`;
+      // "08/10/26 - Event Name - 8pm - The Globe"
+      return `    <li><a href="/events/${esc(ev.slug)}/">` +
+        `<span class="d">${esc(formatDateNumeric(ev.date))}</span> - ` +
+        esc(ev.title) +
+        (time ? ` - <span class="t">${esc(time)}</span>` : '') +
+        (ev.venue ? ` - ${esc(ev.venue)}` : '') +
+        '</a></li>';
     }).join('\n');
-    return `  <h2>${esc(month)}</h2>\n  <ul>\n${items}\n  </ul>`;
+    return `  <h2 id="${esc(monthSlug(month))}">${esc(month)}` +
+      `<span class="count">${list.length}</span></h2>\n  <ul>\n${items}\n  </ul>`;
   }).join('\n');
+
+  const months = [...byMonth.keys()]
+    .map(m => `<a href="#${esc(monthSlug(m))}">${esc(m)}</a>`)
+    .join('');
 
   return `<!DOCTYPE html>
 <html lang="en-GB">
@@ -704,15 +727,27 @@ function buildEventsIndex(events) {
   body { margin:0; background:#ffffea; color:#210000;
     font-family:-apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height:1.55; }
   header { background:#660000; padding:14px 16px; text-align:center; }
-  header h1 { margin:0; font-size:1.9rem; font-family:'IM Fell English', Georgia, serif; }
+  header h1 { margin:0; font-size:1.9rem; font-weight:400;
+    font-family:'IM Fell English', Georgia, serif; }
   header a { color:#ffffea; text-decoration:none; }
-  main { max-width:720px; margin:0 auto; padding:26px 18px 60px; }
+  main { max-width:820px; margin:0 auto; padding:26px 18px 60px; }
   h2 { font-family:'IM Fell English', Georgia, serif; font-weight:400;
-    font-size:1.5rem; margin:28px 0 10px; }
+    font-size:1.5rem; margin:30px 0 8px; display:flex;
+    align-items:baseline; gap:10px; scroll-margin-top:12px; }
+  h2 .count { font-family:-apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size:.85rem; color:#6b4a3a; }
   ul { list-style:none; padding:0; margin:0; }
-  li { padding:8px 0; border-bottom:1px solid #c9c2a0; }
+  li { border-bottom:1px solid #c9c2a0; }
+  li a { display:block; padding:9px 0; color:#210000; text-decoration:none;
+    font-size:.97rem; line-height:1.45; }
+  li a:hover, li a:focus { color:#b82e00; }
+  /* Fixed-width date keeps every line's time and venue in a neat column. */
+  .d { display:inline-block; min-width:5.2em; font-variant-numeric:tabular-nums;
+    color:#6b4a3a; }
+  .t { display:inline-block; min-width:4.2em; }
+  .jump { margin:0 0 6px; font-size:.9rem; }
+  .jump a { display:inline-block; margin:0 8px 6px 0; }
   a { color:#b82e00; }
-  .muted { color:#6b4a3a; font-size:.9rem; }
   footer { border-top:1px solid #c9c2a0; padding:18px; text-align:center; font-size:.9rem; }
 </style>
 </head>
@@ -720,6 +755,7 @@ function buildEventsIndex(events) {
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
   <p>${events.length} upcoming events. <a href="/">Browse them on the map</a>.</p>
+  <p class="jump">Jump to: ${months}</p>
 ${sections}
   <p><a href="/">&larr; All events</a></p>
 </main>
