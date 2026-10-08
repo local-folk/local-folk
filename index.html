@@ -322,6 +322,21 @@
     cursor: pointer;
   }
 
+  /* The pin's venue name. Visually hidden, but read out by a screen reader so
+     each pin is announced as the venue it stands for rather than as an
+     unnamed button. */
+  .pin-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
   #modalOverlay {
     display: none;
     position: fixed;
@@ -884,12 +899,24 @@ function favButtonHtml(e, extraClass) {
 
 const PIN_SELECTED_H = 47;
 
-function pinIcon(selected) {
+// The text a screen reader announces for a map pin, and the tooltip a mouse
+// user gets. Leaflet gives every marker role="button" but no name of its own,
+// so without this it reads out as dozens of identical unnamed buttons with no
+// way to tell one venue from another.
+const PIN_UNNAMED = 'Event location';
+
+function pinLabel(g) {
+  const n = g.events.length;
+  return (g.venue || PIN_UNNAMED) + ' - ' + n + (n === 1 ? ' event' : ' events');
+}
+
+function pinIcon(selected, g) {
   const w = selected ? 29 : 25;
   const h = selected ? 47 : 41;
   const body = selected ? '#7A1A0A' : '#B04411';
   const edge = selected ? '#3A0D02' : '#7A1A0A';
   const html =
+    '<span class="pin-name">' + esc(pinLabel(g)) + '</span>' +
     '<svg viewBox="0 0 24 36" width="' + w + '" height="' + h + '" aria-hidden="true">' +
       '<path d="M12 35.2C12 35.2 22 22.6 22 12.4A10 10 0 0 0 2 12.4C2 22.6 12 35.2 12 35.2Z" ' +
         'fill="' + body + '" stroke="' + edge + '" stroke-width="1.6"/>' +
@@ -900,7 +927,9 @@ function pinIcon(selected) {
     className: 'map-pin',
     iconSize: [w, h],
     iconAnchor: [w / 2, h],
-    popupAnchor: [0, -h]
+    popupAnchor: [0, -h],
+    alt: pinLabel(g),
+    title: pinLabel(g)
   });
 }
 
@@ -1121,14 +1150,14 @@ function render() {
   });
   Object.keys(venueGroups).forEach(key => {
     const g = venueGroups[key];
-    const marker = L.marker([g.lat, g.lng], { icon: pinIcon(false) }).addTo(markersLayer)
+    const marker = L.marker([g.lat, g.lng], { icon: pinIcon(false, g), alt: pinLabel(g), title: pinLabel(g) }).addTo(markersLayer)
       .bindPopup(buildVenuePopup(g), { maxWidth: 320 });
 
     marker.on('popupopen', () => {
-      marker.setIcon(pinIcon(true));
+      marker.setIcon(pinIcon(true, g));
       showPinWithPopup(marker);
     });
-    marker.on('popupclose', () => marker.setIcon(pinIcon(false)));
+    marker.on('popupclose', () => marker.setIcon(pinIcon(false, g)));
     venueMarkers[key] = marker;
   });
 
