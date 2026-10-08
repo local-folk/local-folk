@@ -34,6 +34,12 @@
   :root {
     --bg: #ffffea; --text: #210000; --line: #c9c2a0; --link: #b82e00;
     --band: #660000; --onband: #ffffea; --chip: #ffe680;
+    --btn-bg: #f0f0f0; --muted: #6b4a3a; --panel: #ffffea; --menu-text: #210000;
+  }
+  body.dark {
+    --bg: #210000; --text: #ffffea; --line: #5c3828; --link: #ffcc33;
+    --chip: #7a1a1a; --btn-bg: #222222; --muted: #d8a58f;
+    --panel: #2b0d0d; --menu-text: #ffffea;
   }
   * { box-sizing: border-box; }
   body {
@@ -41,33 +47,105 @@
     font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     line-height: 1.55;
   }
-  header { background: var(--band); padding: 14px 16px; text-align: center; }
-  header h1 { margin: 0; font-size: 1.9rem; font-family: 'IM Fell English', Georgia, serif; }
-  header a { color: var(--onband); text-decoration: none; }
+
+  /* Header matches the main site: title centred, menu left, donate right. */
+  header { background: var(--band); padding: 14px 16px; text-align: center; position: relative; }
+  @media (min-width: 620px) { header { padding-left: 110px; padding-right: 110px; } }
+  header h1 {
+    margin: 0; font-family: 'IM Fell English', 'Palatino Linotype', Palatino,
+      'Book Antiqua', Georgia, serif;
+    font-size: 2.6rem; font-weight: 400; letter-spacing: 0.03em;
+    color: #ffffea;
+  }
+  @media (max-width: 619px) { header h1 { font-size: 1.9rem; } }
+  header h1 a { color: #ffffea; text-decoration: none; }
+  header h1 a:hover { text-decoration: none; }
+
+  #menuBtn {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    border: 1px solid #cc9900; background: #ffcc33; border-radius: 20px;
+    padding: 6px 12px; cursor: pointer; display: flex; align-items: center; height: 32px;
+  }
+  #menuBtn:hover { background: #ffdb66; }
+  #menuBtn svg { display: block; width: 20px; height: 16px; }
+  #menuBtn svg line { stroke: #210000; stroke-width: 2.2; stroke-linecap: round; }
+
+  #kofiSlot { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); }
+  .kofi-button {
+    display: inline-block; white-space: nowrap; padding: 6px 14px;
+    border-radius: 16px; background-color: #ffcc33; border: 1px solid #cc9900;
+    color: #111111; text-decoration: none; font-size: 0.9rem; font-weight: 600;
+  }
+  .kofi-button:hover { text-decoration: none; background-color: #ffdb66; }
+  .kofi-button .kofiimg {
+    vertical-align: middle; height: 13px; width: 20px; margin-right: 6px;
+    margin-bottom: 3px; border: none;
+  }
+  @media (max-width: 419px) {
+    .kofi-word { display: none; }
+    .kofi-button .kofiimg { margin-right: 0; }
+    .kofi-button { padding: 6px 9px; }
+  }
+
+  #menuShade {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 40;
+  }
+  #menuShade.open { display: block; }
+  #menuPanel {
+    display: none; position: fixed; top: 0; left: 0; bottom: 0; width: 250px;
+    max-width: 82vw; background: var(--panel); z-index: 50;
+    padding: 16px 18px 30px; overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  }
+  #menuPanel.open { display: block; }
+  #menuClose {
+    background: none; border: 0; color: var(--menu-text); font-size: 2rem;
+    line-height: 1; cursor: pointer; padding: 0 6px 6px 0;
+  }
+  #menuHeading {
+    font-family: 'IM Fell English', Georgia, serif; font-size: 1.5rem;
+    color: var(--menu-text); margin: 4px 0 14px;
+  }
+  .menu-link {
+    display: block; padding: 9px 0; color: var(--menu-text);
+    text-decoration: none; font-size: 1.05rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .menu-link:hover { text-decoration: underline; }
+  .menu-btn {
+    margin-top: 16px; background: var(--btn-bg); color: var(--text);
+    border: 1px solid var(--line); border-radius: 8px; padding: 9px 14px;
+    font-size: 1rem; cursor: pointer; font-family: inherit;
+  }
+
   main { max-width: 660px; margin: 0 auto; padding: 26px 18px 60px; }
   .chip {
     display: inline-block; background: var(--chip); border: 1px solid var(--line);
     border-radius: 12px; padding: 2px 12px; font-size: .82rem; margin-bottom: 14px;
   }
   h2.title {
-    font-family: 'IM Fell English', Georgia, serif;
+    font-family: 'IM Fell English', 'Palatino Linotype', Palatino,
+      'Book Antiqua', Georgia, serif;
     font-size: clamp(1.7rem, 5.2vw, 2.4rem); font-weight: 400;
     margin: 0 0 14px; line-height: 1.2;
   }
   .line { margin: 0 0 10px; }
   .venue { font-weight: 600; }
-  .muted { color: #6b4a3a; }
+  .muted { color: var(--muted); }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
   .btn {
     display: inline-block; padding: 9px 16px; border-radius: 8px;
-    border: 1px solid var(--line); background: #fff; color: var(--text);
+    border: 1px solid var(--line); background: var(--btn-bg); color: var(--text);
     text-decoration: none; font-size: .95rem; cursor: pointer; font-family: inherit;
   }
   .btn.primary { background: var(--band); border-color: var(--band); color: var(--onband); }
   .btn:hover { text-decoration: underline; }
   a.titlelink { color: inherit; text-decoration: none; }
   a.titlelink:hover { text-decoration: underline; }
-  a.maplink { color: var(--link); }
+  /* Venue and address read as links but are not underlined, matching the
+     weight of the surrounding text rather than shouting over it. */
+  a.maplink { color: var(--link); text-decoration: none; }
+  a.maplink:hover { text-decoration: underline; }
   hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0 18px; }
   .more { margin-top: 26px; }
   footer { border-top: 1px solid var(--line); padding: 18px; text-align: center; font-size: .9rem; }
@@ -108,8 +186,46 @@
 }
 </script>
 </head>
-<body>
-<header><h1><a href="/">The Kirn</a></h1></header>
+<body class="dark">
+<script>
+/* Applied before first paint so a visitor who chose dark mode never sees a
+   flash of the light theme. Mirrors the main site. */
+(function () {
+  try {
+    if (localStorage.getItem('kirnTheme') === 'light') document.body.classList.remove('dark');
+  } catch (err) {}
+})();
+</script>
+<header>
+  <h1><a href="/">The Kirn</a></h1>
+  <button id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
+    <svg viewBox="0 0 20 16" aria-hidden="true" focusable="false">
+      <line x1="0" y1="2" x2="20" y2="2"/>
+      <line x1="0" y1="8" x2="20" y2="8"/>
+      <line x1="0" y1="14" x2="20" y2="14"/>
+    </svg>
+  </button>
+  <div id="kofiSlot">
+    <a class="kofi-button" title="Support me on ko-fi.com"
+       href="https://ko-fi.com/D7F8284K0C" target="_blank" rel="noopener noreferrer">
+      <img class="kofiimg" src="https://storage.ko-fi.com/cdn/cup-border.png"
+           alt="Ko-fi donations"><span class="kofi-word">Donate</span>
+    </a>
+  </div>
+</header>
+
+<div id="menuShade"></div>
+<div id="menuPanel">
+  <button id="menuClose" aria-label="Close menu">&times;</button>
+  <div id="menuHeading">Menu</div>
+  <a class="menu-link" href="/">Home</a>
+  <a class="menu-link" href="/about/">About</a>
+  <a class="menu-link" href="/submit/">Submit An Event</a>
+  <a class="menu-link" href="https://ko-fi.com/thekirn" target="_blank" rel="noopener noreferrer">Donate</a>
+  <a class="menu-link" href="/contact/">Contact</a>
+  <button id="darkToggle" class="menu-btn">Dark mode</button>
+</div>
+
 <main>
   <span class="chip">Sessions</span>
   <h2 class="title"><a class="titlelink" href="https://thekirn.co.uk/?event=2026-11-12%7Ctyneside%20irish%20centre%7Ctyneside%20irish%20centre%20session">Tyneside Irish Centre Session</a></h2>
@@ -131,19 +247,76 @@
 <script>
 (function () {
   var btn = document.getElementById('shareBtn');
-  if (!btn) return;
-  var data = { title: "Tyneside Irish Centre Session – Tyneside Irish Centre", text: "Tyneside Irish Centre Session, Tyneside Irish Centre, Thu 12 Nov", url: "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261112/" };
-  btn.addEventListener('click', function () {
-    if (navigator.share) {
-      navigator.share(data)['catch'](function () {});
-      return;
+  if (btn) {
+    var data = { title: "Tyneside Irish Centre Session – Tyneside Irish Centre", text: "Tyneside Irish Centre Session, Tyneside Irish Centre, Thu 12 Nov", url: "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261112/" };
+    btn.addEventListener('click', function () {
+      if (navigator.share) {
+        navigator.share(data)['catch'](function () {});
+        return;
+      }
+      var done = function () {
+        btn.textContent = 'Link copied';
+        setTimeout(function () { btn.textContent = 'Share this event'; }, 2500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(data.url).then(done, function () {});
+      }
+    });
+  }
+
+  /* Dark mode, sharing the same preference key as the rest of the site so the
+     choice follows the visitor from page to page. */
+  var darkToggle = document.getElementById('darkToggle');
+  function updateThemeLabel() {
+    if (!darkToggle) return;
+    darkToggle.textContent =
+      document.body.classList.contains('dark') ? 'Light mode' : 'Dark mode';
+  }
+  try {
+    if (localStorage.getItem('kirnTheme') === 'dark') {
+      document.body.classList.add('dark');
     }
-    var done = function () {
-      btn.textContent = 'Link copied';
-      setTimeout(function () { btn.textContent = 'Share this event'; }, 2500);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, function () {});
+  } catch (err) {}
+  updateThemeLabel();
+  if (darkToggle) {
+    darkToggle.addEventListener('click', function () {
+      document.body.classList.toggle('dark');
+      try {
+        localStorage.setItem('kirnTheme',
+          document.body.classList.contains('dark') ? 'dark' : 'light');
+      } catch (err) {}
+      updateThemeLabel();
+    });
+  }
+
+  /* Slide-out menu, matching the main site. */
+  var menuPanel = document.getElementById('menuPanel');
+  var menuBtn = document.getElementById('menuBtn');
+  var menuShade = document.getElementById('menuShade');
+  var menuClose = document.getElementById('menuClose');
+
+  function setMenuOpen(open) {
+    if (!menuPanel || !menuShade || !menuBtn) return;
+    menuPanel.classList.toggle('open', open);
+    menuShade.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) menuPanel.scrollTop = 0;
+  }
+
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () {
+      setMenuOpen(!menuPanel.classList.contains('open'));
+    });
+  }
+  if (menuClose) {
+    menuClose.addEventListener('click', function () { setMenuOpen(false); });
+  }
+  if (menuShade) {
+    menuShade.addEventListener('click', function () { setMenuOpen(false); });
+  }
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape' && menuPanel && menuPanel.classList.contains('open')) {
+      setMenuOpen(false);
     }
   });
 })();
