@@ -901,13 +901,24 @@ function openSharedVenue() {
   clearFiltersForDeepLink();
   render();
 
-  const marker = venueMarkers[wanted];
+  const marker = findVenueMarker(wanted);
   if (!marker) return false;
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
   map.setView(marker.getLatLng(), VENUE_ZOOM);
   marker.openPopup();
   return true;
+}
+
+/* venueKeyFor() keeps the postcode's original casing (cumberlandarms|NE61LD),
+   while a URL arriving here has been lower-cased. Match on a case-insensitive
+   basis so the deep link cannot fail on a capital letter. */
+function findVenueMarker(key) {
+  if (!key) return null;
+  if (venueMarkers[key]) return venueMarkers[key];
+  const wanted = key.toLowerCase();
+  const match = Object.keys(venueMarkers).find(k => k.toLowerCase() === wanted);
+  return match ? venueMarkers[match] : null;
 }
 
 function openSharedLink() {
