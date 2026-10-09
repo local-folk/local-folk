@@ -302,15 +302,20 @@ function selectFor(variant, events, posted, now) {
   const grouped = [];
   for (const item of trimmed) {
     const heading = WEEKDAYS[item.date.getUTCDay()].toUpperCase() + ' - ' + formatDayMonth(item.date);
-    const line = [tidyText(item.event.Title), tidyText(item.event.Venue)]
-      .filter(Boolean).join(' - ');
+    // Title and venue stay separate so the image can put the venue on its own
+    // line underneath. Tidied independently, which also shortens the widest
+    // line the renderer has to fit.
+    const entry = {
+      title: tidyText(item.event.Title),
+      venue: tidyText(item.event.Venue)
+    };
 
     let bucket = grouped.find((g) => g.day === heading);
     if (!bucket) {
       bucket = { day: heading, events: [] };
       grouped.push(bucket);
     }
-    bucket.events.push(line);
+    bucket.events.push(entry);
   }
 
   return { grouped, trimmed };
@@ -412,8 +417,9 @@ async function main() {
 
     console.log('OK    ' + variant.label + ' - ' + trimmed.length + ' event(s), cap ' + variant.maxEvents);
     for (const g of grouped) {
-      for (const line of g.events) {
-        console.log('        ' + g.day + '  ' + line);
+      for (const e of g.events) {
+        const combined = [e.title, e.venue].filter(Boolean).join(' - ');
+        console.log('        ' + g.day + '  ' + combined);
       }
     }
     console.log('');
