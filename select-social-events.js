@@ -167,6 +167,117 @@ function eventKey(e) {
 }
 
 /* ------------------------------------------------------------------ *
+ * Ranking
+ *
+ * The owner asked for events to be chosen by how good they are, not merely by
+ * which day they fall on. Two signals, combined:
+ *
+ *   1. Category - the owner's stated order. Folk Music leads, Spoken Word
+ *      next, then crafts and dance, then markets, with Music Session
+ *      deliberately last. Sessions are 111 of 234 rows, so without this they
+ *      would dominate every post.
+ *
+ *   2. Venue size - the stand-in for "is this a big deal". The sheet carries no
+ *      popularity signal, but venue capacity is a good proxy: the Mary Wallopers
+ *      at the O2 City Hall outranks a pub session on the same night. Ratings
+ *      are inferred, not data.
+ *
+ * score = category * 10 - venueSize, so a lower score is better. Multiplying by
+ * 10 guarantees category always outranks size, which is the owner's intent: a
+ * Spoken Word event at the O2 still beats a Folk Music event in a pub.
+ * ------------------------------------------------------------------ */
+
+const CATEGORY_RANK = {
+  'Folk Music': 1,
+  'Spoken Word': 2,
+  'Heritage Workshop': 3,
+  'Ceilidh / Social Dance': 3.5,
+  'Traditional Dance': 3.5,
+  'Market': 4,
+  'Music Session': 5,
+  'Other': 6
+};
+
+/* Venue capacity, 1 (small) to 5 (large). Inferred - the sheet has no capacity
+   data. Extend this when a notable venue appears; unknown venues fall back
+   to 2, which is a reasonable guess for a pub. */
+const VENUE_SIZE = {
+  'O2 City Hall': 5,
+  "King's Hall": 5,
+  'Gosforth Civic Theatre': 5,
+  'Tyne Theatre & Opera House': 5,
+  'Glasshouse': 5,
+  'Cluny 2': 4,
+  'The Cluny 2': 4,
+  'The Cluny': 4,
+  'Cobalt Studios': 3,
+  'The Brewery': 3,
+  'Newcastle Quayside': 3,
+  'Tyneside Irish Centre': 3,
+  'Benedictine Social Centre': 3,
+  'Enigma Tap': 3,
+  'Lubber Fiend': 3,
+  'Jarrow Hall': 3,
+  'Newcastle Cathedral': 3,
+  'BALTIC': 3,
+  'Boiler Shop': 3,
+  'Tyneside Cinema': 3,
+  'Gateshead Masonic Hall': 2,
+  'Cumberland Arms': 2,
+  'Bridge Hotel': 2,
+  'Wheatsheaf, Felling': 2,
+  'Monkseaton Arms': 2,
+  'Ouseburn Trust': 2,
+  'Central Bar': 2,
+  'The Lit & Phil': 2,
+  'St Marys By The Tyne': 2,
+  'The Hearth Arts Centre': 2,
+  'Live Theatre': 2,
+  'Blackfriars Restaurant': 1,
+  'The Common Room': 1
+};
+
+// Lowercased, diacritics stripped, punctuation to spaces. This is what makes the
+// sheet's inconsistent venue spellings ("Cluny 2", "The Cluny 2", "The Cluny")
+// resolve to the same rating instead of three different fallbacks.
+const normVenue = (s) => String(s || '')
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, ' ')
+  .trim();
+
+const NORMALISED_VENUE_SIZE = Object.keys(VENUE_SIZE).reduce((acc, key) => {
+  acc[normVenue(key)] = VENUE_SIZE[key];
+  return acc;
+}, {});
+
+function venueSize(venue) {
+  const n = normVenue(venue);
+  if (!n) return 2;
+
+  if (NORMALISED_VENUE_SIZE[n] !== undefined) return NORMALISED_VENUE_SIZE[n];
+
+  // Longest substring match, so "The Wheatsheaf, Felling" still finds its entry.
+  let best = 2;
+  let bestLen = 0;
+  for (const key of Object.keys(NORMALISED_VENUE_SIZE)) {
+    if (key.length > bestLen && n.includes(key)) {
+      best = NORMALISED_VENUE_SIZE[key];
+      bestLen = key.length;
+    }
+  }
+  return best;
+}
+
+/* Lower is better. */
+function rankOf(event) {
+  const cat = CATEGORY_RANK[event.Category];
+  const catRank = cat === undefined ? 6 : cat;
+  return catRank * 10 - venueSize(event.Venue);
+}
+
+/* ------------------------------------------------------------------ *
  * Title clean-up
  *
  * Scraped titles carry their own punctuation: pipes used as separators, double
@@ -248,14 +359,24 @@ function selectFor(variant, events, posted, now) {
       .map((e) => {
         const key = eventKey(e);
         const last = posted[key];
-        return { event: e, key, lastPosted: last || null, score: last ? Date.parse(last) : 0 };
+        return {
+          event: e,
+          key,
+          rank: rankOf(e),
+          lastPosted: last || null,
+          recency: last ? Date.parse(last) : 0
+        };
       })
       .filter((c) => !usedKeys.has(c.key))
       .sort((a, b) => {
-        // Never-posted first, then least recently posted.
+        // Rank first: category, then venue size.
+        if (a.rank !== b.rank) return a.rank - b.rank;
+        // Rotation only breaks ties within the same rank, so two similarly
+        // prominent gigs alternate instead of the same one repeating weekly,
+        // while a genuinely bigger event still wins outright.
         if (a.lastPosted === null && b.lastPosted !== null) return -1;
         if (b.lastPosted === null && a.lastPosted !== null) return 1;
-        if (a.score !== b.score) return a.score - b.score;
+        if (a.recency !== b.recency) return a.recency - b.recency;
         return String(a.event.Title || '').localeCompare(String(b.event.Title || ''));
       });
   };
@@ -268,7 +389,13 @@ function selectFor(variant, events, posted, now) {
 
     const chosen = candidates[0];
     usedKeys.add(chosen.key);
-    picked.push({ date: new Date(dateMs), event: chosen.event, key: chosen.key });
+    picked.push({
+      date: new Date(dateMs),
+      event: chosen.event,
+      key: chosen.key,
+      rank: chosen.rank,
+      size: venueSize(chosen.event.Venue)
+    });
   }
 
   // Two passes. Pass one gives every day one event. Pass two sweeps the window
@@ -286,7 +413,13 @@ function selectFor(variant, events, posted, now) {
 
       const chosen = candidates[0];
       usedKeys.add(chosen.key);
-      picked.push({ date: new Date(dateMs), event: chosen.event, key: chosen.key });
+      picked.push({
+        date: new Date(dateMs),
+        event: chosen.event,
+        key: chosen.key,
+        rank: chosen.rank,
+        size: venueSize(chosen.event.Venue)
+      });
       swept = true;
     }
 
@@ -307,7 +440,12 @@ function selectFor(variant, events, posted, now) {
     // line the renderer has to fit.
     const entry = {
       title: tidyText(item.event.Title),
-      venue: tidyText(item.event.Venue)
+      venue: tidyText(item.event.Venue),
+      // Kept alongside for the console report, so it is clear why an event
+      // was chosen. Not used by the renderer.
+      rank: item.rank,
+      size: item.size,
+      category: item.event.Category
     };
 
     let bucket = grouped.find((g) => g.day === heading);
@@ -419,7 +557,9 @@ async function main() {
     for (const g of grouped) {
       for (const e of g.events) {
         const combined = [e.title, e.venue].filter(Boolean).join(' - ');
+        const meta = 'rank ' + e.rank.toFixed(1) + '  size ' + e.size + '  ' + e.category;
         console.log('        ' + g.day + '  ' + combined);
+        console.log('                 ' + meta);
       }
     }
     console.log('');
