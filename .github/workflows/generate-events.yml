@@ -25,31 +25,49 @@ on:
 permissions:
   contents: write
 
+# Never let two runs fight over the same branch.
 concurrency:
   group: generate-events
   cancel-in-progress: false
 
 jobs:
   generate:
-    runs-on: ubuntu-latest
+    # Pinned rather than ubuntu-latest, so an upcoming runner-image migration
+    # cannot change the environment underneath us without warning.
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Generate event pages
         run: node generate-events.js
 
       - name: Commit changes
         run: |
+          set -euo pipefail
+
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes - pages already up to date."
+            echo "No changes - the published pages are already up to date."
             exit 0
           fi
+
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add events sitemap.xml
           git commit -m "Update event pages"
-          git push
+
+          if ! git push; then
+            echo ""
+            echo "::error::The commit was rejected when pushing to the branch."
+            echo ""
+            echo "The most common cause is branch protection on main."
+            echo "Check  Settings > Branches > Branch protection rules."
+            echo "If 'main' is protected, either remove the rule, or allow"
+            echo "GitHub Actions to bypass it, then re-run this workflow."
+            exit 1
+          fi
+
+          echo "Pushed. GitHub Pages should rebuild in about a minute."
