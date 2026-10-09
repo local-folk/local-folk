@@ -1,0 +1,20 @@
+{
+  "name": "thekirn-social-images",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Generates social post images for thekirn.co.uk roundups",
+  "scripts": {
+    "select": "node select-social-events.js",
+    "select:dry": "node select-social-events.js --dry",
+    "select:all": "node select-social-events.js --all",
+    "select:dry:all": "node select-social-events.js --dry --all",
+    "record": "node select-social-events.js --record-only",
+    "images": "node generate-social-images.js",
+    "images:dry": "node generate-social-images.js --dry",
+    "social": "npm run select && npm run images && npm run record"
+  },
+  "dependencies": {
+    "opentype.js": "^1.3.4",
+    "sharp": "^0.33.5"
+  }
+}
