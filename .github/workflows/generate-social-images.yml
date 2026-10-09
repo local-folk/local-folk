@@ -54,10 +54,28 @@ jobs:
           fi
 
       - name: Select events
-        run: node select-social-events.js
+        # workflow_dispatch can fire on any weekday. When run manually, both
+        # variants are selected so a test run produces images to look at;
+        # on the scheduled days selection picks the one that is due.
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            node select-social-events.js --all
+          else
+            node select-social-events.js
+          fi
 
       - name: Render images
-        run: node generate-social-images.js
+        # Nothing due today (selection is Monday/Thursday only, and a manual
+        # run can land on any weekday). Succeed quietly rather than failing on
+        # a missing social-posts.json.
+        run: |
+          set -euo pipefail
+          if [ ! -f social-posts.json ]; then
+            echo "No social-posts.json - nothing due today. Nothing to render."
+            exit 0
+          fi
+          node generate-social-images.js
 
       - name: Record rotation history
         # Marks the events just rendered as used, so the next run rotates away
@@ -67,7 +85,13 @@ jobs:
         # Deliberately reads back social-posts.json rather than re-selecting,
         # which would rotate to different events and leave image and history
         # disagreeing.
-        run: node select-social-events.js --record-only
+        run: |
+          set -euo pipefail
+          if [ ! -f social-posts.json ]; then
+            echo "Nothing rendered, so nothing to record."
+            exit 0
+          fi
+          node select-social-events.js --record-only
 
       - name: Commit archive
         run: |
