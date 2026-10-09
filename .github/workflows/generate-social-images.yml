@@ -1,0 +1,96 @@
+# Renders the roundup images for thekirn.co.uk social posts.
+#
+# Two variants: Weekly (Monday 7am) and Weekend (Thursday 12pm). Both render to
+# social/archive/ so there is a permanent, browsable history on the site.
+#
+# The crons below are fixed UTC values with no daylight-saving awareness.
+# See section 5a of SOCIAL-POSTS-SPEC.md: from 25 October 2026 these need to
+# become '0 6 * * 1' and '0 11 * * 4' to keep hitting 7am and 12pm UK time.
+#
+# Setup: nothing to configure. Fonts are committed under fonts/ and embedded in
+# the SVG, so there is no build-time download to fail. Rendering only - posting
+# to Facebook and Instagram is a separate workflow, post-social.yml.
+
+name: Generate social images
+
+on:
+  schedule:
+    # 07:00 UTC Monday - Weekly Roundup (07:00 BST, 07:00 GMT)
+    - cron: '0 7 * * 1'
+    # 12:00 UTC Thursday - Weekend Roundup (13:00 BST, 12:00 GMT)
+    - cron: '0 12 * * 4'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: social-images
+  cancel-in-progress: false
+
+jobs:
+  images:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        # `npm ci` needs package-lock.json to exist. Until one is committed
+        # this falls back to `npm install` and generates it, so the first run
+        # succeeds. Once the lockfile is committed, `npm ci` takes over and
+        # installs exactly the pinned versions.
+        run: |
+          set -euo pipefail
+          if [ -f package-lock.json ]; then
+            npm ci --no-audit --no-fund
+          else
+            echo "No package-lock.json yet - installing and generating one."
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Select events
+        run: node select-social-events.js
+
+      - name: Render images
+        run: node generate-social-images.js
+
+      - name: Record rotation history
+        # Marks the events just rendered as used, so the next run rotates away
+        # from them. Committed alongside the images, because the history has to
+        # survive between runner sessions - a fresh checkout each run would
+        # otherwise always pick the same events.
+        # Deliberately reads back social-posts.json rather than re-selecting,
+        # which would rotate to different events and leave image and history
+        # disagreeing.
+        run: node select-social-events.js --record-only
+
+      - name: Commit archive
+        run: |
+          set -euo pipefail
+
+          if [ -z "$(git status --porcelain -- social)" ]; then
+            echo "No new images - nothing to commit."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add social
+          git commit -m "Add social images"
+
+          if ! git push; then
+            echo ""
+            echo "::error::The commit was rejected when pushing to the branch."
+            echo ""
+            echo "Check  Settings > Branches > Branch protection rules."
+            echo "If 'main' is protected, either remove the rule, or allow"
+            echo "GitHub Actions to bypass it, then re-run this workflow."
+            exit 1
+          fi
+
+          echo "Pushed. GitHub Pages should rebuild in about a minute."
