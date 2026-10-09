@@ -42,7 +42,11 @@ const COLOURS = {
 const LAYOUT = {
   width: 1080,
   height: 1350,
-  wordTop: 72,
+  // The wordmark must sit inside the centre 1080x1080 square, because
+  // Instagram's profile grid crops 4:5 to 1:1 from the middle - 135px is lost
+  // off the top and 135px off the bottom. At y=72 the wordmark was sliced in
+  // half in the grid view.
+  wordTop: 148,
   wordSize: 88,
   daySize: 48,
   itemSize: 46,
@@ -55,7 +59,9 @@ const LAYOUT = {
   // events, so the pair reads as one unit.
   titleVenueGap: 9,
   footerSize: 40,
-  footerBottom: 64,
+  // Sits above the grid crop's lower edge (1215px) so the footer survives the
+  // 1:1 profile grid view.
+  footerBottom: 178,
   // Side margin. Wide enough that a long title shrinks the type rather than
   // crowding the edge, since Instagram crops 4:5 to 1:1 in the profile grid.
   textMargin: 74,
@@ -394,6 +400,16 @@ async function main() {
       .toFile(target);
 
     console.log('      wrote ' + path.relative(__dirname, target));
+
+    // Instagram's publishing API accepts JPEG only. The PNG above stays as the
+    // archive master because it is lossless, and a JPEG copy is written
+    // alongside for Meta to fetch by URL.
+    const jpgTarget = target.replace(/\.png$/, '.jpg');
+    await sharp(Buffer.from(svg, 'utf8'))
+      .jpeg({ quality: 92, chromaSubsampling: '4:4:4' })
+      .toFile(jpgTarget);
+
+    console.log('      wrote ' + path.relative(__dirname, jpgTarget) + '  (for Instagram)');
   }
 
   console.log('');
