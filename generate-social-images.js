@@ -46,9 +46,14 @@ const LAYOUT = {
   wordSize: 88,
   daySize: 48,
   itemSize: 46,
+  // Venue sits on its own line under the event title, slightly smaller.
+  venueSize: 38,
   itemGap: 12,
   dayGap: 20,
   blockGap: 32,
+  // Gap between a title and its venue. Tighter than the gap between separate
+  // events, so the pair reads as one unit.
+  titleVenueGap: 9,
   footerSize: 40,
   footerBottom: 64,
   // Side margin. Wide enough that a long title shrinks the type rather than
@@ -172,14 +177,32 @@ function buildLayout(rows) {
   const wordBottom = LAYOUT.wordTop + (LAYOUT.wordSize * lineFactor);
   const footerTop = LAYOUT.height - LAYOUT.footerBottom - footerHeight;
 
+  // Accepts either {title, venue} objects or plain strings, so an older
+  // social-posts.json still renders rather than throwing.
+  const linesOf = (event) => {
+    if (typeof event === 'string') return [{ text: event, size: LAYOUT.itemSize, key: 'display', role: 'title' }];
+    const out = [];
+    if (event && event.title) out.push({ text: event.title, size: LAYOUT.itemSize, key: 'display', role: 'title' });
+    if (event && event.venue) out.push({ text: event.venue, size: LAYOUT.venueSize, key: 'display', role: 'venue' });
+    return out;
+  };
+
   // Event lines are never wrapped. The owner's instruction is that a line
   // should shrink the whole section rather than break onto a second line, so
   // width is a constraint on the scale, never a reason to wrap.
   let widest = footerWidth;
+  let longest = '';
   for (const row of rows) {
-    widest = Math.max(widest, widthOf(row.day, LAYOUT.daySize, 'heading'));
+    const dayW = widthOf(row.day, LAYOUT.daySize, 'heading');
+    widest = Math.max(widest, dayW);
+    if (dayW >= widthOf(longest, LAYOUT.itemSize, 'display')) longest = row.day;
+
     for (const event of row.events) {
-      widest = Math.max(widest, widthOf(event, LAYOUT.itemSize, 'display'));
+      for (const line of linesOf(event)) {
+        const w = widthOf(line.text, line.size, line.key);
+        widest = Math.max(widest, w);
+        if (w >= widthOf(longest, LAYOUT.itemSize, 'display')) longest = line.text;
+      }
     }
   }
 
@@ -187,7 +210,11 @@ function buildLayout(rows) {
   for (const row of rows) {
     bodyHeight += LAYOUT.daySize * lineFactor + LAYOUT.dayGap;
     for (const event of row.events) {
-      bodyHeight += LAYOUT.itemSize * lineFactor + LAYOUT.itemGap;
+      const lines = linesOf(event);
+      for (let i = 0; i < lines.length; i++) {
+        bodyHeight += lines[i].size * lineFactor;
+        bodyHeight += (i < lines.length - 1) ? LAYOUT.titleVenueGap : LAYOUT.itemGap;
+      }
     }
     bodyHeight += LAYOUT.blockGap;
   }
@@ -207,18 +234,9 @@ function buildLayout(rows) {
   }
   if (scale > LAYOUT.maxScale) scale = LAYOUT.maxScale;
 
-  // Track the widest line so a clip report can name the offender.
-  let longest = '';
-  for (const row of rows) {
-    if (widthOf(row.day, LAYOUT.daySize, 'heading') > widthOf(longest, LAYOUT.itemSize, 'display') && row.day) {
-      longest = row.day;
-    }
-    for (const event of row.events) {
-      if (widthOf(event, LAYOUT.itemSize, 'display') > widthOf(longest, LAYOUT.itemSize, 'display')) {
-        longest = event;
-      }
-    }
-  }
+  // venueSize and titleVenueGap scale with everything else.
+  const venueSize = LAYOUT.venueSize * scale;
+  const titleVenueGap = LAYOUT.titleVenueGap * scale;
 
   return {
     scale, clipped, lineFactor, ascentFactor,
@@ -226,6 +244,7 @@ function buildLayout(rows) {
     wordBaseline, wordBottom, footerTop,
     daySize: LAYOUT.daySize * scale,
     itemSize: LAYOUT.itemSize * scale,
+    venueSize, titleVenueGap, linesOf,
     dayGap: LAYOUT.dayGap * scale,
     itemGap: LAYOUT.itemGap * scale,
     blockGap: LAYOUT.blockGap * scale,
@@ -259,8 +278,15 @@ function renderSvg(rows) {
     top += L.daySize * L.lineFactor + L.dayGap;
 
     for (const event of row.events) {
-      parts.push(pathFor(event, L.itemSize, 'display', centreX, top + (L.itemSize * L.ascentFactor), COLOURS.cream));
-      top += L.itemSize * L.lineFactor + L.itemGap;
+      const lines = L.linesOf(event);
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        // Explicit, rather than comparing sizes back to the base layout.
+        const size = line.role === 'venue' ? L.venueSize : L.itemSize;
+        parts.push(pathFor(line.text, size, line.key, centreX, top + (size * L.ascentFactor), COLOURS.cream));
+        top += size * L.lineFactor;
+        top += (i < lines.length - 1) ? L.titleVenueGap : L.itemGap;
+      }
     }
     top += L.blockGap;
   }
