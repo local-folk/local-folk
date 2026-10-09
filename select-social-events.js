@@ -167,6 +167,41 @@ function eventKey(e) {
 }
 
 /* ------------------------------------------------------------------ *
+ * Title clean-up
+ *
+ * Scraped titles carry their own punctuation: pipes used as separators, double
+ * slashes, and the word "and" spelled out. On an image these read as noise, so
+ * they are tidied to match the house style.
+ *
+ * Applied to the title and venue only, never to anything the pipeline needs.
+ * EventID, Date and the rotation key come from the raw values, so cleaning the
+ * display text cannot affect deduplication.
+ * ------------------------------------------------------------------ */
+
+function tidyText(value) {
+  let s = String(value == null ? '' : value);
+
+  // Double slashes become a hyphen: "Fresh Thursday // Right of Way" reads
+  // better as "Fresh Thursday - Right of Way" than with the slashes left in.
+  s = s.replace(/\s*\/\/\s*/g, ' - ');
+
+  // Pipes become hyphens, matching the title-to-venue separator.
+  s = s.replace(/\s*\|\s*/g, ' - ');
+
+  // Whole-word "and" only. A bare replace would turn "Anderson" into "&erson".
+  s = s.replace(/\band\b/g, '&');
+
+  // Collapse runs of separators and spaces that the above leaves behind,
+  // e.g. "A - - B", "A &  B", or a separator now stranded at an edge.
+  s = s.replace(/\s*-\s*-\s*/g, ' - ');
+  s = s.replace(/[ \t]{2,}/g, ' ');
+  s = s.replace(/^\s*-\s*/, '');
+  s = s.replace(/\s*-\s*$/, '');
+
+  return s.replace(/\s+/g, ' ').trim();
+}
+
+/* ------------------------------------------------------------------ *
  * Selection
  * ------------------------------------------------------------------ */
 
@@ -267,7 +302,8 @@ function selectFor(variant, events, posted, now) {
   const grouped = [];
   for (const item of trimmed) {
     const heading = WEEKDAYS[item.date.getUTCDay()].toUpperCase() + ' - ' + formatDayMonth(item.date);
-    const line = [item.event.Title, item.event.Venue].filter(Boolean).join(' - ');
+    const line = [tidyText(item.event.Title), tidyText(item.event.Venue)]
+      .filter(Boolean).join(' - ');
 
     let bucket = grouped.find((g) => g.day === heading);
     if (!bucket) {
@@ -322,7 +358,8 @@ async function main() {
   // events just rendered.
   if (recordOnly) {
     if (!fs.existsSync(OUTPUT)) {
-      throw new Error('--record-only given but ' + path.basename(OUTPUT) + ' does not exist. Run selection first.');
+      console.log('No social-posts.json, so nothing to record.');
+      return;
     }
     const chosen = JSON.parse(fs.readFileSync(OUTPUT, 'utf8'));
     const stamp = now.toISOString();
