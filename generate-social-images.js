@@ -51,9 +51,15 @@ const LAYOUT = {
   blockGap: 32,
   footerSize: 40,
   footerBottom: 64,
-  textMargin: 62,
+  // Side margin. Wide enough that a long title shrinks the type rather than
+  // crowding the edge, since Instagram crops 4:5 to 1:1 in the profile grid.
+  textMargin: 74,
   minGap: 46,          // breathing room between list and title / footer
-  minScale: 0.55,      // below this we error rather than clip
+  // A long event title shrinks the whole section rather than wrapping or running
+  // off the edge, so the width constraint is allowed to win outright. hardFloor
+  // is the point at which text stops being readable on a phone; below it the run
+  // fails rather than producing a technically-valid but useless image.
+  hardFloor: 0.55,
   maxScale: 1.18       // above this a quiet week reads as a billboard
 };
 
@@ -62,8 +68,8 @@ const FOOTER = ['See full list of events at', 'thekirn.co.uk'];
 /* ------------------------------------------------------------------ *
  * Fonts
  *
- * Both are embedded in the SVG as base64. Nothing depends on a font being
- * installed on the runner, and no build-time download can fail.
+ * Both are committed here and their glyph outlines are emitted as SVG paths, so
+ * no font has to be installed on the runner and no build-time download can fail.
  *
  * IM Fell English has no italic cut, so the footer uses the regular one.
  * Day headings use EB Garamond because IM Fell English's old-style figures
@@ -102,7 +108,6 @@ function loadFonts() {
     const buffer = fs.readFileSync(file);
     loaded[key] = {
       spec,
-      base64: buffer.toString('base64'),
       font: opentype.parse(
         buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength)
       )
@@ -119,56 +124,25 @@ function widthOf(text, size, fontKey) {
   return loaded[fontKey].font.getAdvanceWidth(text, size);
 }
 
-/* Break on spaces so a line fits maxWidth. Always returns at least one line. */
-function wrapText(text, size, fontKey, maxWidth) {
-  if (!text) return [''];
-  if (widthOf(text, size, fontKey) <= maxWidth) return [text];
-
-  const words = String(text).split(/\s+/);
-  const lines = [];
-  let current = '';
-
-  for (const word of words) {
-    const candidate = current === '' ? word : current + ' ' + word;
-    if (widthOf(candidate, size, fontKey) <= maxWidth || current === '') {
-      current = candidate;
-    } else {
-      lines.push(current);
-      current = word;
-    }
-  }
-  if (current !== '') lines.push(current);
-  return lines;
-}
-
-/* ------------------------------------------------------------------ *
- * SVG helpers
- * ------------------------------------------------------------------ */
-
-function escapeXml(value) {
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
-}
-
-function fontFaceCss() {
-  return Object.keys(FONTS).map((key) => {
-    const f = loaded[key];
-    return `@font-face {
-  font-family: '${f.spec.family}';
-  src: url(data:font/ttf;base64,${f.base64}) format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}`;
-  }).join('\n');
-}
-
-/* One centred line of text. */
-function textLine(text, size, colour, y, fontKey, extra) {
-  return `<text x="${LAYOUT.width / 2}" y="${y}" fill="${colour}" font-family="${FONTS[fontKey].family}" font-size="${size}" text-anchor="middle"${extra || ''}>${escapeXml(text)}</text>`;
+/*
+ * Text as vector paths, not as <text> elements.
+ *
+ * sharp bundles librsvg, which ignores @font-face with base64 data URIs and
+ * silently falls back to a generic serif. Confirmed by rendering: a test string
+ * intended as IM Fell English came out as DejaVu Serif. That is why the workflow
+ * images looked wrong on the runner even though local PowerShell previews were
+ * fine - System.Drawing had the fonts installed, librsvg does not.
+ *
+ * Emitting glyph outlines sidesteps the problem entirely: the letterforms are
+ * in the SVG, so nothing has to be installed or resolved at render time. It also
+ * makes output deterministic across machines, which matters for an archive.
+ */
+function pathFor(text, size, fontKey, centreX, baselineY, colour) {
+  const font = loaded[fontKey].font;
+  const x = centreX - (font.getAdvanceWidth(text, size) / 2);
+  const path = font.getPath(text, x, baselineY, size);
+  if (!path.commands.length) return '';
+  return '<path d="' + path.toPathData(3) + '" fill="' + colour + '"/>';
 }
 
 /* ------------------------------------------------------------------ *
@@ -181,78 +155,81 @@ function textLine(text, size, colour, y, fontKey, extra) {
 function buildLayout(rows) {
   const maxTextWidth = LAYOUT.width - (2 * LAYOUT.textMargin);
 
-  // Measure the wordmark and footer at fixed size.
-  //
   // Line height comes from the font's own vertical metrics, normalised by
   // unitsPerEm so it applies at any pixel size. Using raw font units here
   // against a pixel size is what made the first render overflow.
   const displayMetrics = loaded.display.font;
   const lineFactor = ((displayMetrics.ascender - displayMetrics.descender) / displayMetrics.unitsPerEm) * 1.02;
-  const wordHeight = LAYOUT.wordSize * lineFactor;
 
-  const footerLines = FOOTER.map((line) => {
-    const w = widthOf(line, LAYOUT.footerSize, 'display');
-    return { text: line, width: w };
-  });
-  const footerWidth = footerLines.reduce((max, l) => Math.max(max, l.width), 0);
-  const footerHeight = footerLines.length * LAYOUT.footerSize * lineFactor;
+  // Ascent, as a fraction of font size. Text is positioned by its baseline, so
+  // we need to know how far above the baseline the ink starts.
+  const ascentFactor = displayMetrics.ascender / displayMetrics.unitsPerEm;
 
-  const titleBottom = LAYOUT.wordTop + wordHeight;
+  const footerWidth = FOOTER.reduce((max, line) => Math.max(max, widthOf(line, LAYOUT.footerSize, 'display')), 0);
+  const footerHeight = FOOTER.length * LAYOUT.footerSize * lineFactor;
+
+  const wordBaseline = LAYOUT.wordTop + (LAYOUT.wordSize * ascentFactor);
+  const wordBottom = LAYOUT.wordTop + (LAYOUT.wordSize * lineFactor);
   const footerTop = LAYOUT.height - LAYOUT.footerBottom - footerHeight;
 
-  // Wrap every line at base size and measure the block.
-  const blocks = rows.map((row) => {
-    const heading = wrapText(row.day, LAYOUT.daySize, 'heading', maxTextWidth);
-    const events = [];
+  // Event lines are never wrapped. The owner's instruction is that a line
+  // should shrink the whole section rather than break onto a second line, so
+  // width is a constraint on the scale, never a reason to wrap.
+  let widest = footerWidth;
+  for (const row of rows) {
+    widest = Math.max(widest, widthOf(row.day, LAYOUT.daySize, 'heading'));
     for (const event of row.events) {
-      const wrapped = wrapText(event, LAYOUT.itemSize, 'display', maxTextWidth);
-      events.push(wrapped);
+      widest = Math.max(widest, widthOf(event, LAYOUT.itemSize, 'display'));
     }
-    return { day: row.day, heading, events };
-  });
+  }
 
   let bodyHeight = 0;
-  let widest = footerWidth;
-  for (const block of blocks) {
-    for (const line of block.heading) {
-      bodyHeight += LAYOUT.daySize * lineFactor;
-      widest = Math.max(widest, widthOf(line, LAYOUT.daySize, 'heading'));
-    }
-    bodyHeight += LAYOUT.dayGap;
-    for (const wrapped of block.events) {
-      for (const line of wrapped) {
-        bodyHeight += LAYOUT.itemSize * lineFactor;
-        widest = Math.max(widest, widthOf(line, LAYOUT.itemSize, 'display'));
-      }
-      bodyHeight += LAYOUT.itemGap;
+  for (const row of rows) {
+    bodyHeight += LAYOUT.daySize * lineFactor + LAYOUT.dayGap;
+    for (const event of row.events) {
+      bodyHeight += LAYOUT.itemSize * lineFactor + LAYOUT.itemGap;
     }
     bodyHeight += LAYOUT.blockGap;
   }
 
-  // Scale to fill the gap between title and footer, bounded by height and width.
-  const gap = footerTop - titleBottom;
+  // Scale to fill the gap between wordmark and footer, bounded by height and
+  // by the widest single line.
+  const gap = footerTop - wordBottom;
   const available = gap - (2 * LAYOUT.minGap);
 
   let scale = Math.min(available / bodyHeight, maxTextWidth / widest);
   let clipped = false;
-  if (scale < LAYOUT.minScale) {
+  if (scale < LAYOUT.hardFloor) {
+    // A single line is so long that even at the smallest readable size it will
+    // not fit. Refuse rather than write an image with text off the edge.
     clipped = true;
-    scale = LAYOUT.minScale;
+    scale = LAYOUT.hardFloor;
   }
   if (scale > LAYOUT.maxScale) scale = LAYOUT.maxScale;
 
-  const daySize = LAYOUT.daySize * scale;
-  const itemSize = LAYOUT.itemSize * scale;
-  const dayGap = LAYOUT.dayGap * scale;
-  const itemGap = LAYOUT.itemGap * scale;
-  const blockGap = LAYOUT.blockGap * scale;
+  // Track the widest line so a clip report can name the offender.
+  let longest = '';
+  for (const row of rows) {
+    if (widthOf(row.day, LAYOUT.daySize, 'heading') > widthOf(longest, LAYOUT.itemSize, 'display') && row.day) {
+      longest = row.day;
+    }
+    for (const event of row.events) {
+      if (widthOf(event, LAYOUT.itemSize, 'display') > widthOf(longest, LAYOUT.itemSize, 'display')) {
+        longest = event;
+      }
+    }
+  }
 
   return {
-    scale, clipped, blocks, footerLines, lineFactor,
-    titleBottom, footerTop, footerWidth, footerHeight,
-    wordHeight,
-    daySize, itemSize, dayGap, itemGap, blockGap,
-    bodyHeight, maxTextWidth, available
+    scale, clipped, lineFactor, ascentFactor,
+    rows, footerWidth, footerHeight, longest,
+    wordBaseline, wordBottom, footerTop,
+    daySize: LAYOUT.daySize * scale,
+    itemSize: LAYOUT.itemSize * scale,
+    dayGap: LAYOUT.dayGap * scale,
+    itemGap: LAYOUT.itemGap * scale,
+    blockGap: LAYOUT.blockGap * scale,
+    bodyHeight, maxTextWidth, available, widest
   };
 }
 
@@ -263,42 +240,36 @@ function buildLayout(rows) {
 function renderSvg(rows) {
   const L = buildLayout(rows);
   const parts = [];
+  const centreX = LAYOUT.width / 2;
 
   parts.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${LAYOUT.width}" height="${LAYOUT.height}" viewBox="0 0 ${LAYOUT.width} ${LAYOUT.height}">`);
-  parts.push('<style>');
-  parts.push(fontFaceCss());
-  parts.push('text { paint-order: stroke; }');
-  parts.push('</style>');
   parts.push(`<rect width="${LAYOUT.width}" height="${LAYOUT.height}" fill="${COLOURS.background}"/>`);
 
-  // Wordmark, top centre.
-  parts.push(textLine('The Kirn', LAYOUT.wordSize, COLOURS.gold, LAYOUT.wordTop, 'display',
-    ' dominant-baseline="hanging"'));
+  // All text is emitted as glyph outlines, so no @font-face is needed and the
+  // renderer never has to resolve a font by name.
+
+  // Wordmark, top centre, positioned by its baseline.
+  parts.push(pathFor('The Kirn', LAYOUT.wordSize, 'display', centreX, L.wordBaseline, COLOURS.gold));
 
   // Event list, centred in the gap between the wordmark and the footer.
-  let y = L.titleBottom + LAYOUT.minGap + Math.max(0, (L.available - L.bodyHeight * L.scale) / 2);
+  let top = L.wordBottom + LAYOUT.minGap + Math.max(0, (L.available - L.bodyHeight * L.scale) / 2);
 
-  for (const block of L.blocks) {
-    for (const line of block.heading) {
-      parts.push(textLine(line, L.daySize, COLOURS.cream, y, 'heading', ' dominant-baseline="hanging"'));
-      y += L.daySize * L.lineFactor;
+  for (const row of L.rows) {
+    parts.push(pathFor(row.day, L.daySize, 'heading', centreX, top + (L.daySize * L.ascentFactor), COLOURS.cream));
+    top += L.daySize * L.lineFactor + L.dayGap;
+
+    for (const event of row.events) {
+      parts.push(pathFor(event, L.itemSize, 'display', centreX, top + (L.itemSize * L.ascentFactor), COLOURS.cream));
+      top += L.itemSize * L.lineFactor + L.itemGap;
     }
-    y += L.dayGap;
-    for (const wrapped of block.events) {
-      for (const line of wrapped) {
-        parts.push(textLine(line, L.itemSize, COLOURS.cream, y, 'display', ' dominant-baseline="hanging"'));
-        y += L.itemSize * L.lineFactor;
-      }
-      y += L.itemGap;
-    }
-    y += L.blockGap;
+    top += L.blockGap;
   }
 
   // Footer, two centred lines.
-  let fy = LAYOUT.height - LAYOUT.footerBottom - L.footerHeight;
-  for (const line of L.footerLines) {
-    parts.push(textLine(line.text, LAYOUT.footerSize, COLOURS.cream, fy, 'display', ' dominant-baseline="hanging"'));
-    fy += LAYOUT.footerSize * L.lineFactor;
+  let fTop = LAYOUT.height - LAYOUT.footerBottom - L.footerHeight;
+  for (const line of FOOTER) {
+    parts.push(pathFor(line, LAYOUT.footerSize, 'display', centreX, fTop + (LAYOUT.footerSize * L.ascentFactor), COLOURS.cream));
+    fTop += LAYOUT.footerSize * L.lineFactor;
   }
 
   parts.push('</svg>');
@@ -316,10 +287,11 @@ function renderSvg(rows) {
 function readInput() {
   const inputPath = path.join(__dirname, 'social-posts.json');
   if (!fs.existsSync(inputPath)) {
-    throw new Error(
-      'No social-posts.json found.\n' +
-      'Expected shape: { "posts": [ { "variant": "Weekly", "rows": [ { "day": "MONDAY - 12/10", "events": ["..."] } ] } ] }'
-    );
+    // Not an error: selection only produces this file on Monday and Thursday.
+    // A manual workflow run on any other weekday legitimately has nothing to
+    // render, and should finish green rather than fail.
+    console.log('No social-posts.json - nothing due today. Nothing to render.');
+    return { posts: [] };
   }
   return JSON.parse(fs.readFileSync(inputPath, 'utf8'));
 }
@@ -342,7 +314,7 @@ async function main() {
   const posts = Array.isArray(input.posts) ? input.posts : [];
 
   if (posts.length === 0) {
-    console.log('No posts to render.');
+    console.log('Nothing to render.');
     return;
   }
 
@@ -368,10 +340,19 @@ async function main() {
 
     if (layout.clipped) {
       failures++;
-      console.log('CLIP  ' + filename + ' - will not fit at minimum scale. Reduce the event count.');
+      // Do not write the image. A clipped image has text running off the edge,
+      // which is worse than no image at all - the archive would look complete
+      // while containing something unusable.
+      console.log('FAIL  ' + filename + ' - a line is too long to fit at a readable size.');
+      console.log('      Longest line: "' + layout.longest + '"');
+      console.log('      Needs scale ' + (layout.maxTextWidth / layout.widest).toFixed(2) +
+        ', floor is ' + LAYOUT.hardFloor + '.');
+      console.log('      Shorten the title in the sheet, or reduce the event count.');
+      continue;
     } else {
       console.log('OK    ' + filename + '  scale=' + layout.scale.toFixed(2) +
-        '  events=' + rows.reduce((n, r) => n + r.events.length, 0));
+        '  events=' + rows.reduce((n, r) => n + r.events.length, 0) +
+        '  width=' + Math.round(layout.widest) + '/' + layout.maxTextWidth);
     }
 
     if (dry) {
