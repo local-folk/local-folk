@@ -2,6 +2,13 @@
 .DS_Store
 Thumbs.db
 node_modules/
+
+# Local throwaway design previews. The real images are committed under
+# social/archive/ by the workflow; these are only for eyeballing changes locally.
 social-preview/
 social/preview-*.svg
+
+# The generated input. Rebuilt by the workflow on every run, so there is no
+# point committing it. social/posted.json IS committed - it is the rotation
+# history and must survive between runner sessions.
 social-posts.json
