@@ -2,3 +2,6 @@
 .DS_Store
 Thumbs.db
 node_modules/
+social-preview/
+social/preview-*.svg
+social-posts.json
