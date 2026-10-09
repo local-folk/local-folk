@@ -682,12 +682,10 @@ function buildEventsIndex(events) {
 
   const sections = [...byMonth.entries()].map(([month, list]) => {
     const items = list.map(ev => {
-      const time = formatTime(ev.startTime);
-      // "08/10/26 - Event Name - 8pm - The Globe"
+      // "08/10/26  Event Name - The Cumberland Arms"
       return `    <li><a href="/events/${esc(ev.slug)}/">` +
-        `<span class="d">${esc(formatDateNumeric(ev.date))}</span> - ` +
+        `<span class="d">${esc(formatDateNumeric(ev.date))}</span> ` +
         esc(ev.title) +
-        (time ? ` - <span class="t">${esc(time)}</span>` : '') +
         (ev.venue ? ` - ${esc(ev.venue)}` : '') +
         '</a></li>';
     }).join('\n');
@@ -741,10 +739,9 @@ function buildEventsIndex(events) {
   li a { display:block; padding:9px 0; color:#210000; text-decoration:none;
     font-size:.97rem; line-height:1.45; }
   li a:hover, li a:focus { color:#b82e00; }
-  /* Fixed-width date keeps every line's time and venue in a neat column. */
-  .d { display:inline-block; min-width:5.2em; font-variant-numeric:tabular-nums;
+  /* Fixed-width date keeps every line's title in a neat column. */
+  .d { display:inline-block; min-width:4.6em; font-variant-numeric:tabular-nums;
     color:#6b4a3a; }
-  .t { display:inline-block; min-width:4.2em; }
   .jump { margin:0 0 6px; font-size:.9rem; }
   .jump a { display:inline-block; margin:0 8px 6px 0; }
   a { color:#b82e00; }
