@@ -8,7 +8,18 @@ node_modules/
 social-preview/
 social/preview-*.svg
 
+# Local test harness for the Apps Script logic, like check-meta-setup.js.
+selftest-social.js
+
 # The generated input. Rebuilt by the workflow on every run, so there is no
 # point committing it. social/posted.json IS committed - it is the rotation
 # history and must survive between runner sessions.
 social-posts.json
+
+# Generated caption drafts. Rebuilt by the workflow, so no need to commit.
+social/drafts/
+
+# NOTE: social/queue.json is NOT ignored, and must not be. It is the hand-off
+# to Apps Script, which reads it from the deployed site to build the Social tab
+# row and send the approval email. If it is not committed, no post is ever
+# approved. It is overwritten each run, so it stays one small file.
