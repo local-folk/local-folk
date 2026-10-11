@@ -1,24 +1,32 @@
-# Renders the roundup images for thekirn.co.uk social posts.
+# Renders the roundup images for thekirn.co.uk social posts, and builds the
+# queue the approval email is made from.
 #
-# Two variants: Weekly (Monday 7am) and Weekend (Thursday 12pm). Both render to
-# social/archive/ so there is a permanent, browsable history on the site.
+# Two variants: Weekly (posted Monday 07:00 UTC) and Weekend (posted Thursday
+# 12:00 UTC). Images render to social/archive/ so there is a permanent,
+# browsable history on the site, and social/queue.json is committed so Apps
+# Script can pick the post up, email it for approval, and later publish it.
 #
-# The crons below are fixed UTC values with no daylight-saving awareness.
-# See section 5a of SOCIAL-POSTS-SPEC.md: from 25 October 2026 these need to
-# become '0 6 * * 1' and '0 11 * * 4' to keep hitting 7am and 12pm UK time.
+# This workflow only generates. It never calls Meta and holds no Meta
+# credentials - publishing is Apps Script's job (social.gs).
 #
 # Setup: nothing to configure. Fonts are committed under fonts/ and embedded in
-# the SVG, so there is no build-time download to fail. Rendering only - posting
-# to Facebook and Instagram is a separate workflow, post-social.yml.
+# the SVG, so there is no build-time download to fail.
 
 name: Generate social images
 
 on:
   schedule:
-    # 07:00 UTC Monday - Weekly Roundup (07:00 BST, 07:00 GMT)
-    - cron: '0 7 * * 1'
-    # 12:00 UTC Thursday - Weekend Roundup (13:00 BST, 12:00 GMT)
-    - cron: '0 12 * * 4'
+    # 03:17 UTC Monday - Weekly Roundup, ready for the 07:00 post.
+    # 03:17 UTC Thursday - Weekend Roundup, ready for the 12:00 post.
+    #
+    # These run at 03:17 rather than at the posting times on purpose. This
+    # workflow now builds social/queue.json, which is what makes Apps Script
+    # send the approval email - so it has to finish early enough for the owner
+    # to read it and press Approve. Generating at 07:00 and posting at 07:00
+    # would leave no review window at all, and a single combined run would
+    # mean a draft goes live seconds after it is approved.
+    - cron: '17 3 * * 1'
+    - cron: '17 3 * * 4'
   workflow_dispatch:
 
 permissions:
@@ -76,6 +84,22 @@ jobs:
             exit 0
           fi
           node generate-social-images.js
+
+      - name: Build captions and queue
+        # Writes the review markdown to social/drafts/ (gitignored) and the
+        # machine-readable hand-off to social/queue.json (committed).
+        #
+        # The queue file is what Apps Script reads from the deployed site to
+        # build the Social tab row and send the approval email. Without this
+        # step the images are generated but nothing ever reaches the owner for
+        # approval, and nothing posts.
+        run: |
+          set -euo pipefail
+          if [ ! -f social-posts.json ]; then
+            echo "No social-posts.json - nothing due today. No queue entry."
+            exit 0
+          fi
+          node build-captions.js
 
       - name: Record rotation history
         # Marks the events just rendered as used, so the next run rotates away
