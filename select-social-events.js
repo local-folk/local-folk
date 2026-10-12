@@ -166,6 +166,124 @@ function eventKey(e) {
   return e.EventID || [e.Date, e.Venue, e.Title].join('|');
 }
 
+/* Is this title specific enough to post on its own?
+ *
+ * Used only as a final tie-break, when two events score identically and neither
+ * has been posted before. "Student Performances" names no performers and is a
+ * generic listing; "Fresh Thursday // Right of Way + Raveloe" names two acts.
+ * Between equals, the one naming who is playing is the better post.
+ *
+ * Deliberately conservative - it only rejects the obviously generic. Anything
+ * unfamiliar is treated as specific, so this cannot quietly drop a good event.
+ */
+function namesPerformers_(title) {
+  const t = String(title || '').trim();
+  if (!t) return false;
+
+  // Has a digit: "Singaround at 12:30", a date, a price.
+  if (/\d/.test(t)) return true;
+
+  // Two or more words, and not one of the generic listings.
+  const generic = [
+    /^student performances?$/i,
+    /^performances?$/i,
+    /^live music$/i,
+    /^music$/i,
+    /^gig$/i,
+    /^festival$/i,
+    /^open mic$/i,
+    /^session$/i,
+    /^singaround$/i,
+    /^singaround \/ .+$/i
+  ];
+  if (generic.some((re) => re.test(t))) return false;
+
+  // Capitalised words usually indicate proper nouns (band or artist names).
+  const properNouns = (t.match(/\b[A-Z][a-z]+/g) || []).length;
+  return properNouns >= 2;
+}
+
+/* ------------------------------------------------------------------ *
+ * Rotation history and posts that never went out
+ * ------------------------------------------------------------------ */
+
+/* Which posts actually reached a platform?
+ *
+ * The queue file records every post that has been drafted, including drafts
+ * that were never approved and never posted. But rotation history used to be
+ * written at RENDER time, from social-posts.json - so simply generating a draft
+ * consumed the events in it, whether or not anyone ever posted them.
+ *
+ * That is how "Fresh Thursday // Right of Way + Raveloe" ended up excluded from
+ * the Monday 12 October roundup on the 9th: a draft had been rendered for it
+ * and recorded, but no post was ever published, and rotation then treated it as
+ * already-used.
+ *
+ * The fix is to reconcile history against what was really published rather
+ * than against what was merely generated. social/queue.json is committed and
+ * holds the Status the Apps Script publishes with, so it is the record of
+ * truth.
+ *
+ * Returns true when the queue proves the post was published, or when there is no
+ * record at all - a genuine first run, where being pessimistic would wipe real
+ * history.
+ */
+function postWasPublished_(queue, postId) {
+  if (!queue || !queue.posts || !queue.posts.length) return true; // no record yet
+  const row = queue.posts.find((p) => p.PostID === postId);
+  if (!row) return true; // not in the current queue; leave history alone
+  return row.Status === 'Posted';
+}
+
+/* Drops rotation entries belonging to posts that were drafted but never
+ * published, so the events in them become selectable again.
+ *
+ * Only entries OLDER than the newest published post are considered. Anything
+ * more recent belongs to a post still in flight - generated this morning,
+ * awaiting approval - and forgetting it would let the same events be selected
+ * again for the very post that is waiting to be approved. */
+function forgetUnpublishedPosts_(posted) {
+  let queue;
+  try {
+    const q = path.join(__dirname, 'social', 'queue.json');
+    if (!fs.existsSync(q)) return;
+    queue = JSON.parse(fs.readFileSync(q, 'utf8'));
+  } catch (err) {
+    return;
+  }
+
+  const unpublished = (queue.posts || []).filter((p) => !postWasPublished_(queue, p.PostID));
+  if (!unpublished.length) return;
+
+  const drafts = unpublished.map((p) => {
+    return String(p.EventIDs || '').split(',').map((s) => s.trim()).filter(Boolean);
+  });
+  const draftKeys = new Set([].concat.apply([], drafts));
+
+  const newestPublished = (queue.posts || [])
+    .filter((p) => postWasPublished_(queue, p.PostID))
+    .map((p) => Date.parse(p.ScheduledFor))
+    .filter((t) => !isNaN(t))
+    .sort((a, b) => b - a)[0];
+
+  let freed = 0;
+  for (const key of draftKeys) {
+    if (!posted[key]) continue;
+    // Still leave anything at or after the newest published post alone.
+    if (newestPublished && Date.parse(posted[key]) >= newestPublished) continue;
+    delete posted[key];
+    freed++;
+  }
+
+  if (!freed) return;
+
+  fs.writeFileSync(POSTED_LOG, JSON.stringify(posted, null, 2) + '\n', 'utf8');
+  console.log('Freed ' + freed + ' event(s) from draft(s) never published: ' +
+    unpublished.map((p) => p.PostID).join(', '));
+  console.log('Those events can be selected again.');
+  console.log('');
+}
+
 /* ------------------------------------------------------------------ *
  * Ranking
  *
@@ -203,6 +321,16 @@ const CATEGORY_RANK = {
    to 2, which is a reasonable guess for a pub. */
 const VENUE_SIZE = {
   'O2 City Hall': 5,
+  // LOWERED from 5 to 3 on 12 October 2026.
+  //
+  // King's Hall is a university concert hall, big but not a music venue in the
+  // way the O2 or the Glasshouse are. Rated 5 it outranked a named folk act at
+  // Cobalt Studios purely on room size, so the Thursday 15 October slot went to
+  // a generic "Student Performances" listing instead of
+  // "Fresh Thursday // Right of Way + Raveloe".
+  //
+  // 3 now matches the dedicated folk and community venues. Raise it if genuine
+  // big-name bookings there warrant it.
   "King's Hall": 3,
   'Gosforth Civic Theatre': 5,
   'Tyne Theatre & Opera House': 5,
@@ -223,14 +351,14 @@ const VENUE_SIZE = {
   'Boiler Shop': 3,
   'Tyneside Cinema': 3,
   'Gateshead Masonic Hall': 2,
-  'Cumberland Arms': 4,
+  'Cumberland Arms': 2,
   'Bridge Hotel': 2,
   'Wheatsheaf, Felling': 2,
   'Monkseaton Arms': 2,
   'Ouseburn Trust': 2,
   'Central Bar': 2,
-  'The Lit & Phil': 3,
-  'St Marys By The Tyne': 3,
+  'The Lit & Phil': 2,
+  'St Marys By The Tyne': 2,
   'The Hearth Arts Centre': 2,
   'Live Theatre': 2,
   'Blackfriars Restaurant': 1,
@@ -292,9 +420,14 @@ function rankOf(event) {
 function tidyText(value) {
   let s = String(value == null ? '' : value);
 
-  // Double slashes become a hyphen: "Fresh Thursday // Right of Way" reads
-  // better as "Fresh Thursday - Right of Way" than with the slashes left in.
-  s = s.replace(/\s*\/\/\s*/g, ' - ');
+  // CHANGED 12 October 2026: "Fresh Thursday // Right of Way + Raveloe" now
+  // keeps its double slashes, because the owner puts them there to separate the
+  // two named acts and they are part of the event's own naming. They used to be
+  // rewritten to a hyphen here, which silently altered the event's name on the
+  // image and in the caption.
+  //
+  // Pipes are still tidied, which is a different case - "Halloween Thoughts |
+  // The Fairy..." is a scraping artefact rather than a name.
 
   // Pipes become hyphens, matching the title-to-venue separator.
   s = s.replace(/\s*\|\s*/g, ' - ');
@@ -377,6 +510,14 @@ function selectFor(variant, events, posted, now) {
         if (a.lastPosted === null && b.lastPosted !== null) return -1;
         if (b.lastPosted === null && a.lastPosted !== null) return 1;
         if (a.recency !== b.recency) return a.recency - b.recency;
+        // Final tie-break. Alphabetical was arbitrary - it made the choice
+        // depend on the letter an event's title began with, so on 12 October
+        // "Student Performances" beat "Fresh Thursday" purely because S > F.
+        // Specific beats generic instead: an event naming its performers is a
+        // better thing to post than "Student Performances", which names nobody.
+        const aNamed = namesPerformers_(a.event.Title);
+        const bNamed = namesPerformers_(b.event.Title);
+        if (aNamed !== bNamed) return aNamed ? -1 : 1;
         return String(a.event.Title || '').localeCompare(String(b.event.Title || ''));
       });
   };
@@ -519,6 +660,12 @@ async function main() {
       Object.keys(posted).length + ' entries.');
     return;
   }
+
+  // Forget events from posts that never went out. See the note on
+  // postWasPublished() below: rotation history has to mean "appeared in a
+  // published post", or a draft nobody approved permanently pushes good events
+  // down the list.
+  forgetUnpublishedPosts_(posted);
 
   const posts = [];
 
