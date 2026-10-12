@@ -39,6 +39,62 @@ const COLOURS = {
 };
 
 // One layout, used by both variants.
+/* ------------------------------------------------------------------ *
+ * Background treatments - planning only
+ * ------------------------------------------------------------------ *
+ *
+ * The damask backgrounds are readable but busy: the pattern sits at the same
+ * scale and weight as the text, so ornament and letterforms compete. Contrast
+ * analysis passes all of them (worst case 6.9:1), which is exactly why the
+ * problem only shows up in a render rather than in a number.
+ *
+ * Two ways to push the pattern back, applied to the background only - the text
+ * is never touched:
+ *
+ *   SCRIM  darkens the background by a fixed factor. Cheaper than editing the
+ *          source files and reversible, but it shifts the hue toward black, so
+ *          a red background goes muddy rather than staying red.
+ *
+ *   BLUR   softens the pattern's edges so it stops competing. Preserves the
+ *          colour exactly, which is why the two are worth comparing separately
+ *          rather than assumed to be interchangeable.
+ *
+ * Both values are here rather than hard-coded in the composite so they can be
+ * tuned by eye against a real render.
+ */
+const BG_SCRIM = 0.62;   // brightness multiplier; 0.62 = 38% darker
+
+/* Blur sigma, in pixels on the final 1080x1350 image.
+ *
+ * 14 was far too much - it turned the damask into an indistinct mottled wash
+ * and lost the pattern entirely, which defeats the point of having patterned
+ * backgrounds. 4 keeps the motif readable as a motif while taking the hard
+ * edges off it, so it stops competing with the letterforms without looking
+ * out of focus.
+ *
+ * Sigma is not linear in perception: 14 looks like a heavy gaussian, 4 looks
+ * like a gentle softening. Worth re-rendering rather than halving.
+ */
+const BG_BLUR = 4;
+
+/* The ways each background is rendered, so the treatment can be chosen on
+ * evidence rather than taste.
+ *
+ * "plain" and "scrim" are retained so the combined result still has something
+ * to be compared against. Blur-only was dropped: the scrim is what actually
+ * moves the numbers, and blur-only left the pattern edges just soft enough to
+ * still be busy rather than calm. Kept as its own entry if it is ever wanted.
+ */
+const TREATMENTS = [
+  { key: 'plain', blur: 0, brightness: 1 },
+  { key: 'scrim', blur: 0, brightness: BG_SCRIM },
+  { key: 'both', blur: BG_BLUR, brightness: BG_SCRIM }
+];
+
+// Whether to protect the Instagram profile grid. See the note below - this has
+// to be declared before LAYOUT, which reads it.
+const GRID_SAFE = true;
+
 const LAYOUT = {
   width: 1080,
   height: 1350,
@@ -46,16 +102,36 @@ const LAYOUT = {
   // Instagram's profile grid crops 4:5 to 1:1 from the middle - 135px is lost
   // off the top and 135px off the bottom. At y=72 the wordmark was sliced in
   // half in the grid view.
-  wordTop: 148,
-  wordSize: 88,
-  // Subtitle: "// 12-16 OCT // WEEKLY ROUNDUP". Same size as the wordmark by
-  // the owner's instruction, so it is defined in terms of it rather than as an
-  // independent number that could drift away from wordSize.
-  subtitleSize: 88,
-  subtitleGap: 26,
+  wordTop: 140,
+  // The frame is 1350px tall and every element in it is competing for the same
+  // height, so these three numbers trade directly against each other.
+  //
+  // Measured across the whole grid on real data (scale = how large the event
+  // list renders; below 0.55 the generator refuses to write the image):
+  //
+  //   word 96  sub 64  2 lines  scale 0.57   <- previous, subtitle too big
+  //   word 88  sub 64  2 lines  scale 0.54   rejected
+  //   word 64  sub 64  2 lines  scale 0.57   previous, wordmark too small
+  //
+  //   word 96  sub 46  2 lines  scale 0.61   <- chosen
+  //   word 88  sub 46  2 lines  scale 0.62
+  //
+  // The wordmark is big again, the subtitle is clearly subordinate to it, and
+  // the events are larger than before. Those three could not all be true at
+  // 64/64.
+  //
+  // On ignoring the profile-grid crop entirely (see GRID_SAFE): events reach
+  // scale 0.73, but the wordmark is sliced in half on the profile. Worth
+  // flipping if the grid matters less than size in the feed.
+  wordSize: 96,
+  // Subtitle: "// 12-16 OCT //" then "WEEKLY ROUNDUP", two centred lines.
+  // Deliberately smaller than the wordmark - it is information, not branding,
+  // and at 88px it crowded out the events.
+  subtitleSize: 46,
+  subtitleGap: 16,
   // Gap between the two subtitle lines. Tighter than the gap to the event list,
   // so the pair reads as one block.
-  subtitleLineGap: 10,
+  subtitleLineGap: 6,
   daySize: 48,
   itemSize: 46,
   // Venue sits on its own line under the event title, slightly smaller.
@@ -70,19 +146,33 @@ const LAYOUT = {
   // footer. The caption already carries that line, and Instagram cannot make
   // it clickable anyway, so it was taking two lines of image for nothing.
   //
-  // Bottom margin for the event list.
+  // Bottom margin for the event list, and the top margin above the wordmark,
+  // exist for ONE reason: Instagram's profile grid shows posts as 1:1 squares
+  // cut from the centre of a 4:5 image, which discards 135px off the top and
+  // 135px off the bottom. Between them these margins give up 20% of the frame.
   //
-  // Was 178 while the footer lived here, which is what lifted that footer above
-  // the grid crop's lower edge. With the footer gone there is nothing to lift,
-  // so this is now 135 - the exact edge of Instagram's 1:1 centre square
-  // (height 1350, minus 135px lost off the bottom). The list may therefore use
-  // the 43px the old margin was reserving, which is what keeps the events
-  // legible now the subtitle has claimed space above them.
-  bottomEdge: 135,
-  // Side margin. Wide enough that a long title shrinks the type rather than
-  // crowding the edge, since Instagram crops 4:5 to 1:1 in the profile grid.
-  textMargin: 74,
-  minGap: 46,          // breathing room between list and title / footer
+  // The owner's point that "the feed shows all of it anyway" is correct - in the
+  // feed nothing is cropped. But the profile grid is the shop window: if the
+  // wordmark is sliced in half there, that is what a visitor scrolling the
+  // profile sees. So the margins stay by default.
+  //
+  // Setting GRID_SAFE to false fills the frame instead. The events grow from
+  // scale 0.61 to about 0.73 - much more legible - and the wordmark is cut in
+  // the profile grid. A deliberate trade, not an oversight.
+  //
+  // Both were verified by rendering the actual 1:1 centre crop and looking at
+  // it, not by reasoning about it.
+
+  // Top margin above the wordmark, and bottom margin below the last event.
+  // Both are the minimum that keeps their content inside the grid crop when
+  // GRID_SAFE is true, and near-flush with the frame when it is false.
+  wordTop: GRID_SAFE ? 140 : 64,
+  bottomEdge: GRID_SAFE ? 135 : 56,
+  // Side margin. Was 74; the event list is height-constrained rather than
+  // width-constrained, so this is free to tighten - it just gives long titles a
+  // little more room before they have to shrink.
+  textMargin: 60,
+  minGap: 34,          // breathing room between list and subtitle
   // A long event title shrinks the whole section rather than wrapping or running
   // off the edge, so the width constraint is allowed to win outright. hardFloor
   // is the point at which text stops being readable on a phone; below it the run
@@ -125,11 +215,65 @@ const LAYOUT = {
  * If the subtitle is ever wanted at exactly the wordmark's size, both must
  * come down to about 64px - see SUBTITLE_EQUAL_SIZE below.
  */
-const { header } = require('./post-header.js');
+/* The subtitle lines, built by post-header.js - the same module the caption
+ * builder uses, so the image and the post text cannot disagree about the date.
+ */
+const { splitLines } = require('./post-header.js');
 
-// Set to 64 to make the subtitle literally the same size as the wordmark, at
-// the cost of shrinking both and dropping the event list to scale 0.57.
-const SUBTITLE_EQUAL_SIZE = null;
+/* ------------------------------------------------------------------ *
+ * Background rotation
+ * ------------------------------------------------------------------ */
+
+/* Picks the background for a post from social/backgrounds/.
+ *
+ * The files carry a numeric prefix, and that prefix IS the rotation order -
+ * lock-backgrounds.js chose it so that consecutive numbers are the most
+ * different pairs of colours available. So the order in which the files are
+ * named is doing the work, and selecting the nth file by index preserves it.
+ *
+ * Selection is by ISO week number rather than a stored counter, so it needs no
+ * state between runs and gives the same answer on any machine. Consecutive
+ * weeks land on consecutive indexes, which is exactly the property the ordering
+ * was built for.
+ *
+ * The Monday and Thursday posts of the same week therefore share a background,
+ * which reads as deliberate - one look for the week - rather than as a bug.
+ *
+ * The backgrounds already have the scrim and blur baked in, so nothing is
+ * applied here. Adding either again would darken them a second time.
+ */
+function pickBackground(date) {
+  const dir = path.join(__dirname, 'social', 'backgrounds');
+  if (!fs.existsSync(dir)) return null;
+
+  const files = fs.readdirSync(dir)
+    .filter((f) => /\.(png|jpe?g)$/i.test(f))
+    .sort();
+
+  if (!files.length) return null;
+
+  const week = isoWeekNumber_(date || new Date());
+  const chosen = files[week % files.length];
+
+  // Guard the wrap: week 0 of the year must not pick a negative index.
+  const idx = ((week % files.length) + files.length) % files.length;
+
+  return { file: path.join(dir, files[idx]), name: files[idx], index: idx, total: files.length, week };
+}
+
+/* ISO 8601 week number, 1-53. The naive "day of year / 7" is wrong around
+ * year boundaries, which is precisely when a rotation is most likely to be
+ * looked at closely. */
+function isoWeekNumber_(date) {
+  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const dayNum = (d.getUTCDay() + 6) % 7;          // Monday = 0
+  d.setUTCDate(d.getUTCDate() - dayNum + 3);      // Thursday of this week
+  const isoYear = d.getUTCFullYear();
+  const firstThursday = new Date(Date.UTC(isoYear, 0, 4));
+  const firstDayNum = (firstThursday.getUTCDay() + 6) % 7;
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - firstDayNum + 3);
+  return 1 + Math.round((d - firstThursday) / (7 * 24 * 3600 * 1000));
+}
 
 /* ------------------------------------------------------------------ *
  * Fonts
@@ -242,12 +386,11 @@ function buildLayout(rows, subtitle) {
   // which render "12-16" with a short 1 that reads like "1o" - the same reason
   // the day headings use EB Garamond. A date range is mostly digits, so it is
   // exactly the case that hurts most.
-  const subLines = (subtitle && subtitle.length) ? [subtitle] : [];
+  const subLines = (subtitle && subtitle.length) ? subtitle : [];
   const fittedSub = [];
 
   subLines.forEach(function (line) {
-    const want = SUBTITLE_EQUAL_SIZE || LAYOUT.subtitleSize;
-    let size = want;
+    let size = LAYOUT.subtitleSize;
     let w = widthOf(line, size, 'heading');
     if (w > maxTextWidth) {
       size = size * (maxTextWidth / w);
@@ -258,9 +401,10 @@ function buildLayout(rows, subtitle) {
 
   const subtitleBaselines = [];
   let subCursor = wordBottom + LAYOUT.subtitleGap;
-  fittedSub.forEach(function (line) {
+  fittedSub.forEach(function (line, i) {
     subtitleBaselines.push(subCursor + (line.size * ascentFactor));
     subCursor += line.size * lineFactor;
+    if (i < fittedSub.length - 1) subCursor += LAYOUT.subtitleLineGap;
   });
 
   const subtitleBottom = fittedSub.length ? subCursor : wordBottom;
@@ -354,13 +498,19 @@ function buildLayout(rows, subtitle) {
  * Render
  * ------------------------------------------------------------------ */
 
-function renderSvg(rows, subtitle) {
+function renderSvg(rows, subtitle, solidBackground) {
   const L = buildLayout(rows, subtitle);
   const parts = [];
   const centreX = LAYOUT.width / 2;
 
   parts.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${LAYOUT.width}" height="${LAYOUT.height}" viewBox="0 0 ${LAYOUT.width} ${LAYOUT.height}">`);
-  parts.push(`<rect width="${LAYOUT.width}" height="${LAYOUT.height}" fill="${COLOURS.background}"/>`);
+
+  // Omitted when a background image is going to be composited underneath, so the
+  // SVG carries only the text and the image shows through. The transparent
+  // background is what lets that work.
+  if (solidBackground !== false) {
+    parts.push(`<rect width="${LAYOUT.width}" height="${LAYOUT.height}" fill="${COLOURS.background}"/>`);
+  }
 
   // All text is emitted as glyph outlines, so no @font-face is needed and the
   // renderer never has to resolve a font by name.
@@ -429,6 +579,113 @@ function archiveName(variant, dateLabel) {
 }
 
 /* ------------------------------------------------------------------ *
+ * Background preview - planning only
+ * ------------------------------------------------------------------ */
+
+/* Renders every post against every background in social/backgrounds/, plus the
+ * existing solid colour, so the options can be compared.
+ *
+ * The solid colour is included deliberately: it is the design that has been in
+ * use, and any new background has to be judged against it rather than on its
+ * own. It is rendered through the identical code path, so the comparison is
+ * fair.
+ */
+async function previewBackgrounds_(posts) {
+  const bgDir = path.join(__dirname, 'social', 'backgrounds');
+  const outDir = path.join(__dirname, 'social', 'background-preview');
+
+  if (!fs.existsSync(bgDir)) {
+    console.log('No social/backgrounds/ folder - nothing to preview.');
+    console.log('Create it and drop PNG or JPG images in.');
+    return;
+  }
+
+  const files = fs.readdirSync(bgDir)
+    .filter((f) => /\.(png|jpe?g|webp)$/i.test(f))
+    .sort();
+
+  if (!files.length) {
+    console.log('social/backgrounds/ has no images. Nothing to preview.');
+    return;
+  }
+
+  // Wiped each run, so a removed background does not leave a stale preview
+  // behind to be mistaken for a current one.
+  if (fs.existsSync(outDir)) fs.rmSync(outDir, { recursive: true, force: true });
+  fs.mkdirSync(outDir, { recursive: true });
+
+  console.log('Background preview - ' + files.length + ' background(s) x ' +
+    posts.length + ' post(s) x ' + TREATMENTS.length + ' treatment(s)');
+  console.log('Writing to social/background-preview/ (the live archive is untouched)');
+  console.log('');
+
+  for (const post of posts) {
+    const rows = post.rows || [];
+    if (!rows.length) continue;
+
+    const subtitle = splitLines(post);
+    const name = archiveName(post.variant, post.dateLabel || '').replace(/\.png$/, '');
+
+    // Two renders of the same layout: one opaque for the solid baseline, one
+    // transparent so a background image can show through. An opaque SVG over an
+    // image background simply paints over it, which is exactly the bug that
+    // made every first attempt come out maroon.
+    const solidRender = renderSvg(rows, subtitle, true);
+    const overlayRender = renderSvg(rows, subtitle, false);
+
+    if (solidRender.layout.clipped) {
+      console.log('SKIP  ' + name + ' - the event list does not fit on this post.');
+      continue;
+    }
+
+    // The existing design, rendered first and labelled as the baseline.
+    const solid = path.join(outDir, name + '--00-solid-current.png');
+    await sharp(Buffer.from(solidRender.svg, 'utf8'))
+      .png({ compressionLevel: 9 })
+      .toFile(solid);
+    console.log('  00  solid ' + COLOURS.background + '   (the design in use now)');
+
+    // One render per background per treatment, so scrim and blur can be judged
+    // on their own merits rather than assumed to be interchangeable.
+    for (const t of TREATMENTS) {
+      const text = await sharp(Buffer.from(overlayRender.svg, 'utf8')).png().toBuffer();
+
+      for (let i = 0; i < files.length; i++) {
+        const f = files[i];
+        const slug = f.replace(/\.[^.]+$/, '').replace(/[^A-Za-z0-9]+/g, '-');
+        const target = path.join(outDir,
+          name + '--' + t.key + '-' + String(i + 1).padStart(2, '0') + '-' + slug + '.png');
+
+        try {
+          // Resize first, then treat, so the blur radius is in final-image
+          // pixels rather than the source's - otherwise a 542x678 background
+          // gets a much softer blur than a 1536x1920 one and the comparison
+          // stops being like-for-like.
+          let bg = sharp(path.join(bgDir, f))
+            .resize(LAYOUT.width, LAYOUT.height, { fit: 'cover', position: 'centre' });
+
+          if (t.blur) bg = bg.blur(t.blur);
+          if (t.brightness) bg = bg.modulate({ brightness: t.brightness });
+
+          await bg
+            .composite([{ input: text }])
+            .png({ compressionLevel: 9 })
+            .toFile(target);
+        } catch (err) {
+          console.log('  ' + t.key + '  ' + f + '  FAILED: ' + err.message);
+        }
+      }
+      console.log('  ' + t.key.padEnd(6) + 'rendered ' + files.length + ' background(s)');
+    }
+  }
+
+  console.log('');
+  console.log('Preview images are in social/background-preview/.');
+  console.log('Run "node analyse-backgrounds.js" for the readability report.');
+}
+
+
+/* ------------------------------------------------------------------ *
  * Main
  * ------------------------------------------------------------------ */
 
@@ -441,6 +698,16 @@ async function main() {
 
   if (posts.length === 0) {
     console.log('Nothing to render.');
+    return;
+  }
+
+  // --backgrounds is a planning aid: it renders every post against every image
+  // in social/backgrounds/ so the options can be compared side by side.
+  //
+  // It writes to social/background-preview/ and never touches social/archive/,
+  // so it cannot affect what gets published or what the queue file points at.
+  if (process.argv.includes('--backgrounds')) {
+    await previewBackgrounds_(posts);
     return;
   }
 
@@ -460,7 +727,16 @@ async function main() {
       continue;
     }
 
-    const { svg, layout } = renderSvg(rows, header(post));
+    // Background chosen by ISO week, so each week rotates to the next colour.
+    // A missing or unreadable backgrounds folder is not fatal: the post simply
+    // renders on the brand's solid maroon, which is what it has always done.
+    const background = pickBackground(new Date());
+    if (background) {
+      console.log('      background: ' + background.name +
+        '  (week ' + background.week + ', ' + (background.index + 1) + '/' + background.total + ')');
+    }
+
+    const { svg, layout } = renderSvg(rows, splitLines(post), !background);
     const filename = archiveName(post.variant, post.dateLabel || '');
     const target = path.join(archiveDir, filename);
 
@@ -489,7 +765,22 @@ async function main() {
       continue;
     }
 
-    await sharp(Buffer.from(svg, 'utf8'))
+    // The background is the BASE of the image and the text goes on top.
+    //
+    // The text layer must have a transparent background, or it becomes an
+    // opaque white rectangle that hides the background completely - which is
+    // what an earlier version did, rendering the post with invisible cream text
+    // on white. That is why renderSvg was called with solidBackground=false:
+    // the SVG then carries no <rect> at all.
+    const textLayer = background
+      ? await sharp(Buffer.from(svg, 'utf8')).png().toBuffer()
+      : null;
+
+    const compose = (pipeline) => background
+      ? sharp(background.file).composite([{ input: textLayer }])
+      : pipeline;
+
+    await compose(sharp(Buffer.from(svg, 'utf8')))
       .png({ compressionLevel: 9 })
       .toFile(target);
 
@@ -499,7 +790,7 @@ async function main() {
     // archive master because it is lossless, and a JPEG copy is written
     // alongside for Meta to fetch by URL.
     const jpgTarget = target.replace(/\.png$/, '.jpg');
-    await sharp(Buffer.from(svg, 'utf8'))
+    await compose(sharp(Buffer.from(svg, 'utf8')))
       .jpeg({ quality: 92, chromaSubsampling: '4:4:4' })
       .toFile(jpgTarget);
 
@@ -513,7 +804,17 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  console.error('Failed: ' + err.message);
-  process.exitCode = 1;
-});
+/* Exported so the layout can be rendered in isolation - by the background
+ * comparison sheet, and by tests - without running the whole pipeline. Guarded
+ * by require.main so running the script from the command line is unaffected. */
+module.exports = {
+  renderSvg, buildLayout, splitLines, pickBackground, isoWeekNumber_,
+  loadFonts, LAYOUT, COLOURS
+};
+
+if (require.main === module) {
+  main().catch((err) => {
+    console.error('Failed: ' + err.message);
+    process.exitCode = 1;
+  });
+}
