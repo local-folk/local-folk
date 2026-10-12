@@ -74,52 +74,9 @@ const SEE_FULL_LIST = 'See full list of events on the website.';
 const FB_CLOSER = 'Link: thekirn.co.uk';
 const IG_CLOSER = 'Link in bio.';
 
-const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
-                'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-
-/* The header line: "// 12-16 OCT // WEEKLY ROUNDUP".
- *
- * The date span is the roundup's own window - first to last day covered - not
- * the run date, so a Monday post reads "12-16 OCT" rather than a single day.
- * Read off the events themselves, which is what the caption then lists, so the
- * span can never disagree with the days underneath it.
- *
- * Built from the event dates rather than the window arithmetic in
- * select-social-events.js: this script only has the selection to hand, and
- * deriving the span from the same rows the caption prints is the version that
- * cannot drift. A day with no events is simply not in the span, which is the
- * honest reading anyway.
- */
-function header(post) {
-  const dates = [];
-  for (const row of post.rows || []) {
-    for (const ev of row.events || []) {
-      // row.day is "MONDAY - 12/10"
-      const m = /(\d{2})\/(\d{2})\s*$/.exec(row.day || '');
-      if (m) dates.push({ dd: Number(m[1]), mm: Number(m[2]) });
-    }
-  }
-
-  let span = '';
-  if (dates.length) {
-    // Sort numerically, not lexically, so 09/10 sorts before 12/10.
-    const sorted = dates.slice().sort((a, b) =>
-      (a.mm - b.mm) || (a.dd - b.dd));
-    const first = sorted[0];
-    const last = sorted[sorted.length - 1];
-
-    const pad = (n) => (n < 10 ? '0' + n : String(n));
-    if (first.mm === last.mm) {
-      span = pad(first.dd) + '-' + pad(last.dd) + ' ' + MONTHS[first.mm - 1];
-    } else {
-      span = pad(first.dd) + ' ' + MONTHS[first.mm - 1] +
-             ' - ' + pad(last.dd) + ' ' + MONTHS[last.mm - 1];
-    }
-  }
-
-  const label = (post.subtitle || post.variant || 'Roundup').toUpperCase();
-  return span ? '// ' + span + ' // ' + label : '// ' + label;
-}
+/* The header line comes from post-header.js, which the image generator uses
+ * too. The caption and the image must not be able to disagree about it. */
+const { header } = require('./post-header.js');
 
 function readInput() {
   if (!fs.existsSync(INPUT)) {
