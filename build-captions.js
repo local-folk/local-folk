@@ -54,18 +54,72 @@ const SLOTS = {
   Weekend: { dow: 4, hour: 12 }   // Thursday 12:00
 };
 
+/* Hashtags, in the order they appear. Changed 12 October 2026 to add
+ * #sessions and move it after #folkmusic. */
 const HASHTAGS = [
   '#newcastle',
   '#northeast',
   '#folk',
   '#folkmusic',
+  '#sessions',
   '#crafts',
   '#markets',
   '#thekirn'
 ];
 
+/* The line immediately above the link, on both platforms. Added 12 October
+ * 2026. */
+const SEE_FULL_LIST = 'See full list of events on the website.';
+
 const FB_CLOSER = 'Link: thekirn.co.uk';
 const IG_CLOSER = 'Link in bio.';
+
+const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+                'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+/* The header line: "// 12-16 OCT // WEEKLY ROUNDUP".
+ *
+ * The date span is the roundup's own window - first to last day covered - not
+ * the run date, so a Monday post reads "12-16 OCT" rather than a single day.
+ * Read off the events themselves, which is what the caption then lists, so the
+ * span can never disagree with the days underneath it.
+ *
+ * Built from the event dates rather than the window arithmetic in
+ * select-social-events.js: this script only has the selection to hand, and
+ * deriving the span from the same rows the caption prints is the version that
+ * cannot drift. A day with no events is simply not in the span, which is the
+ * honest reading anyway.
+ */
+function header(post) {
+  const dates = [];
+  for (const row of post.rows || []) {
+    for (const ev of row.events || []) {
+      // row.day is "MONDAY - 12/10"
+      const m = /(\d{2})\/(\d{2})\s*$/.exec(row.day || '');
+      if (m) dates.push({ dd: Number(m[1]), mm: Number(m[2]) });
+    }
+  }
+
+  let span = '';
+  if (dates.length) {
+    // Sort numerically, not lexically, so 09/10 sorts before 12/10.
+    const sorted = dates.slice().sort((a, b) =>
+      (a.mm - b.mm) || (a.dd - b.dd));
+    const first = sorted[0];
+    const last = sorted[sorted.length - 1];
+
+    const pad = (n) => (n < 10 ? '0' + n : String(n));
+    if (first.mm === last.mm) {
+      span = pad(first.dd) + '-' + pad(last.dd) + ' ' + MONTHS[first.mm - 1];
+    } else {
+      span = pad(first.dd) + ' ' + MONTHS[first.mm - 1] +
+             ' - ' + pad(last.dd) + ' ' + MONTHS[last.mm - 1];
+    }
+  }
+
+  const label = (post.subtitle || post.variant || 'Roundup').toUpperCase();
+  return span ? '// ' + span + ' // ' + label : '// ' + label;
+}
 
 function readInput() {
   if (!fs.existsSync(INPUT)) {
@@ -75,9 +129,9 @@ function readInput() {
   return JSON.parse(fs.readFileSync(INPUT, 'utf8'));
 }
 
-/* The body is the same on both platforms: variant, then each day's events. */
+/* The body is the same on both platforms: header, then each day's events. */
 function body(post) {
-  const lines = [post.subtitle || post.variant, ''];
+  const lines = [header(post), ''];
 
   for (const row of post.rows) {
     lines.push(row.day);
@@ -95,8 +149,32 @@ function body(post) {
   return lines.join('\n').trimEnd();
 }
 
+/* Full caption. Identical on both platforms except the closing link line:
+ *
+ *   // 12-16 OCT // WEEKLY ROUNDUP
+ *
+ *   MONDAY - 12/10
+ *   Anne Alderson
+ *   Bridge Hotel
+ *   ...
+ *
+ *   See full list of events on the website.
+ *   Link: thekirn.co.uk
+ *
+ *   #newcastle ...
+ *
+ * The "See full list" line and the link are separate lines - the first is the
+ * call to action, the second is the destination, and they differ by platform
+ * because only Facebook can carry a clickable link. */
 function captionFor(post, closer) {
-  return [body(post), '', closer, '', HASHTAGS.join(' ')].join('\n');
+  return [
+    body(post),
+    '',
+    SEE_FULL_LIST,
+    closer,
+    '',
+    HASHTAGS.join(' ')
+  ].join('\n');
 }
 
 function slug(s) {
