@@ -93,7 +93,16 @@ const TREATMENTS = [
 
 // Whether to protect the Instagram profile grid. See the note below - this has
 // to be declared before LAYOUT, which reads it.
-const GRID_SAFE = true;
+//
+// FLIPPED TO FALSE on 13 October 2026, at the owner's instruction, after seeing
+// a real published post. With it true the image had thick black borders and text
+// too small to read comfortably in the feed - which is where a post is actually
+// read. The only thing given up is a clean crop in the Instagram *profile* grid,
+// which costs the top and bottom of the wordmark on a page most visitors never
+// open. The feed matters more than the grid.
+//
+// To go back: set true. Nothing else needs changing.
+const GRID_SAFE = false;
 
 const LAYOUT = {
   width: 1080,
@@ -181,9 +190,6 @@ const LAYOUT = {
   maxScale: 1.18       // above this a quiet week reads as a billboard
 };
 
-// The subtitle, e.g. "// 12-16 OCT // WEEKLY ROUNDUP". Built by post-header.js,
-// the same module the caption uses, so the image and the post text cannot
-// disagree about the date range.
 /* The subtitle, e.g. "// 12-16 OCT // WEEKLY ROUNDUP". Built by post-header.js,
  * the same module the caption uses, so the image and the post text cannot
  * disagree about the date range.
@@ -758,7 +764,11 @@ async function main() {
     }
 
     if (dry) {
-      const payload = path.join(__dirname, 'social', 'preview-' + filename.replace(/\.png$/, '.svg'));
+      // Previews go in social-preview/ at the project root, not in social/.
+      // social/ is committed and deployed to the website, so dropping scratch
+      // SVGs in there put files on the public site for no reason.
+      const payload = path.join(__dirname, 'social-preview',
+        filename.replace(/\.png$/, '.svg'));
       fs.mkdirSync(path.dirname(payload), { recursive: true });
       fs.writeFileSync(payload, svg, 'utf8');
       console.log('      wrote ' + path.relative(__dirname, payload));
