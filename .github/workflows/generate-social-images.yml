@@ -29,6 +29,16 @@ on:
     # would leave no review window at all.
     - cron: '17 3 * * 1'
     - cron: '17 3 * * 5'
+    # Fired by Apps Script when the owner changes their event choices on the
+    # approval page. Rebuilds the post so the image matches the new list, then
+    # the owner is emailed again to approve that one.
+    #
+    # The choices do NOT come through here. Apps Script holds a trigger-only
+    # token and cannot push, so they travel via the published "Post Choices"
+    # sheet, read below as POST_CHOICES_URL. That is what keeps the token from
+    # being able to alter anything - see SOCIAL-POST-CHOICES.md.
+    - repository_dispatch:
+        types: [social-rebuild]
   workflow_dispatch:
 
 permissions:
@@ -67,13 +77,28 @@ jobs:
         # workflow_dispatch can fire on any weekday. When run manually, both
         # variants are selected so a test run produces images to look at;
         # on the scheduled days selection picks the one that is due.
+        #
+        # A social-rebuild behaves like workflow_dispatch: the owner's change
+        # names a specific post, and re-selecting both variants would rebuild a
+        # post nobody asked to change.
         run: |
           set -euo pipefail
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || \
+             [ "${{ github.event_name }}" = "repository_dispatch" ]; then
             node select-social-events.js --all
           else
             node select-social-events.js
           fi
+
+      - name: Apply the owner's event choices
+        # Only meaningful on a rebuild. On the ordinary Monday and Friday runs
+        # POST_CHOICES_URL is unset, the script says so and does nothing - which
+        # is why this step is safe to run every time.
+        env:
+          POST_CHOICES_URL: ${{ vars.POST_CHOICES_URL }}
+        run: |
+          set -euo pipefail
+          node apply-choices.js
 
       - name: Render images
         # Nothing due today (selection is Monday/Thursday only, and a manual
