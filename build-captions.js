@@ -45,13 +45,22 @@ const QUEUE_FILE = path.join(__dirname, 'social', 'queue.json');
  * has to be an absolute address on the live site, not a repo path. */
 const SITE_URL = 'https://thekirn.co.uk';
 
-/* When each variant is due to go out, in UTC, matching the Apps Script
- * triggers. These mirror SOCIAL_SLOTS in social.gs - the two have to agree,
- * because Apps Script reads ScheduledFor out of this file and refuses to post
- * early. */
+/* When each variant belongs to, in UTC.
+ *
+ * ScheduledFor is now a LABEL, not the thing that decides when a post goes out.
+ * Since 12 October 2026 the publishing time comes from the 11:00 cutoff in
+ * social.gs, and approval decides whether a post waits for the cutoff or goes
+ * immediately. This file only records which roundup a post is, so the Social tab
+ * reads sensibly.
+ *
+ * The hours here are therefore not the posting times and are not enforced
+ * anywhere. The days are, though, and they must match VARIANTS.runOn in
+ * select-social-events.js and DRAFT_DAYS in social.gs - if a post is built on a
+ * Friday but labelled as a Thursday post, the email arrives on the wrong day.
+ */
 const SLOTS = {
-  Weekly: { dow: 1, hour: 7 },    // Monday 07:00
-  Weekend: { dow: 4, hour: 12 }   // Thursday 12:00
+  Weekly: { dow: 1, hour: 7 },    // Monday
+  Weekend: { dow: 5, hour: 7 }    // Friday
 };
 
 /* Hashtags, in the order they appear. Changed 12 October 2026 to add
