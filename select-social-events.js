@@ -66,7 +66,10 @@ const VARIANTS = {
   },
   Weekend: {
     label: 'Weekend Roundup',
-    runOn: 4,                 // Thursday
+    // CHANGED 13 October 2026: Thursday (4) -> Friday (5), at the owner's
+    // request. The Weekend roundup is now built, emailed and posted on a Friday
+    // rather than being built on Thursday and waiting over a day.
+    runOn: 5,                 // Friday
     windowDays: [5, 6, 0],    // Friday, Saturday, Sunday
     maxEvents: 6,
     subtitle: 'Weekend Roundup'
