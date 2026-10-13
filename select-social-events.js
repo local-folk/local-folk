@@ -525,10 +525,35 @@ function selectFor(variant, events, posted, now) {
       });
   };
 
+  // Every candidate per day, in ranked order - not just the ones picked.
+  //
+  // Added 13 October 2026. The owner asked to see what the post could have
+  // contained as well as what it does contain, so the approval page can offer
+  // alternatives. The chosen events were being thrown away here, along with
+  // the reasoning behind them, so this keeps the whole field per day.
+  const candidatesByDay = [];
+
   // Pass one: one event per day.
   for (const { dow, offset } of offsets) {
     const dateMs = today.getTime() + (offset * DAY_MS);
     const candidates = candidatesFor(dateMs);
+
+    candidatesByDay.push({
+      date: new Date(dateMs).toISOString().slice(0, 10),
+      day: WEEKDAYS[new Date(dateMs).getUTCDay()],
+      events: candidates.map(function (c) {
+        return {
+          eventId: c.key,
+          title: tidyText(c.event.Title),
+          venue: tidyText(c.event.Venue),
+          category: c.event.Category,
+          rank: c.rank,
+          size: venueSize(c.event.Venue),
+          lastPosted: c.lastPosted
+        };
+      })
+    });
+
     if (candidates.length === 0) continue;
 
     const chosen = candidates[0];
@@ -600,7 +625,7 @@ function selectFor(variant, events, posted, now) {
     bucket.events.push(entry);
   }
 
-  return { grouped, trimmed };
+  return { grouped, trimmed, candidatesByDay };
 }
 
 /* ------------------------------------------------------------------ *
@@ -682,7 +707,7 @@ async function main() {
       continue;
     }
 
-    const { grouped, trimmed } = selectFor(variant, rows, posted, now);
+    const { grouped, trimmed, candidatesByDay } = selectFor(variant, rows, posted, now);
 
     if (grouped.length === 0) {
       console.log('SKIP  ' + variant.label + ' - no events in the window.');
@@ -695,6 +720,9 @@ async function main() {
       subtitle: variant.subtitle,
       dateLabel: formatCompact(first),
       rows: grouped,
+      // The whole field per day, so the approval page can offer alternatives.
+      // Populated 13 October 2026.
+      candidatesByDay: candidatesByDay,
       events: trimmed.map((t) => ({
         eventId: t.key,
         date: t.date.toISOString().slice(0, 10),
