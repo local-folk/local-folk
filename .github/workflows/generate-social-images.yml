@@ -29,16 +29,19 @@ on:
     # would leave no review window at all.
     - cron: '17 3 * * 1'
     - cron: '17 3 * * 5'
-    # Fired by Apps Script when the owner changes their event choices on the
-    # approval page. Rebuilds the post so the image matches the new list, then
-    # the owner is emailed again to approve that one.
-    #
-    # The choices do NOT come through here. Apps Script holds a trigger-only
-    # token and cannot push, so they travel via the published "Post Choices"
-    # sheet, read below as POST_CHOICES_URL. That is what keeps the token from
-    # being able to alter anything - see SOCIAL-POST-CHOICES.md.
-    - repository_dispatch:
-        types: [social-rebuild]
+  # Fired by Apps Script when the owner changes their event choices on the
+  # approval page. Rebuilds the post so the image matches the new list, then
+  # the owner is emailed again to approve that one.
+  #
+  # A SIBLING of `schedule`, not another entry in its list. GitHub rejects the
+  # whole file otherwise, which is what happened the first time this was added.
+  #
+  # The choices do NOT come through here. Apps Script holds a trigger-only
+  # token and cannot push, so they travel via the published "Post Choices"
+  # sheet, read below as POST_CHOICES_URL. That is what keeps the token from
+  # being able to alter anything - see SOCIAL-POST-CHOICES.md.
+  repository_dispatch:
+    types: [social-rebuild]
   workflow_dispatch:
 
 permissions:
