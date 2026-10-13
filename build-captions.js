@@ -151,31 +151,45 @@ function slug(s) {
  * When this post is due
  * ------------------------------------------------------------------ */
 
-/* The next occurrence of this variant's slot, strictly after `now`, in UTC.
+/* When this post is "for" - the moment its first listed event happens.
  *
- * Strictly-after is what produces the review gap. The draft is built at
- * 03:17 UTC, so on a Monday morning the next Weekly slot is that same
- * morning at 07:00 - about four hours later, which is the window the
- * owner reads the email and presses Approve. Choosing "today at 07:00"
- * regardless would have been the same answer here, but choosing "the
- * next one" without the comparison would skip a week every time the
- * draft was built after its slot had passed.
+ * This used to be "the next slot after now", which was right while publishing
+ * was driven by this field. It is not any more, and it produced a genuinely
+ * wrong label: a manual run at 13:31 UTC on Monday 12 October was past the
+ * Monday 07:00 slot, so the date rolled forward to Monday 19 October - while the
+ * events, the caption and the image all still said 12-16 October. The email read
+ * "Weekly Roundup (Mon 19 Oct, 08:00 UK time)" over a 12-16 October roundup.
+ *
+ * Deriving it from the events means the label can never contradict the content,
+ * whichever day the workflow happens to run on.
  */
-function nextSlot(variant, now) {
+function scheduledFor(variant, post) {
   const slot = SLOTS[variant];
   if (!slot) throw new Error('No slot defined for variant "' + variant + '".');
 
-  const d = new Date(now.getTime());
-  d.setUTCHours(slot.hour, 0, 0, 0);
-
-  // getUTCDay(): 0 = Sunday. Walk forward to the right weekday.
-  const delta = (slot.dow - d.getUTCDay() + 7) % 7;
-  d.setUTCDate(d.getUTCDate() + delta);
-
-  // If that instant has already passed, the slot is the following week.
-  if (d.getTime() <= now.getTime()) {
-    d.setUTCDate(d.getUTCDate() + 7);
+  const events = (post && post.events) || [];
+  if (!events.length) {
+    throw new Error('Post "' + (post && post.variant) + '" has no events, ' +
+      'so it has no date. Refusing to write a queue entry that would be ' +
+      'labelled with a made-up date.');
   }
+
+  // Events are already in date order from the selector. Take the first one, and
+  // fall back to the rest if it somehow is not parseable.
+  let dateStr = null;
+  for (const e of events) {
+    if (e && e.date && !isNaN(Date.parse(e.date))) {
+      dateStr = e.date;
+      break;
+    }
+  }
+  if (!dateStr) {
+    throw new Error('None of the events for "' + variant + '" has a readable ' +
+      'date, so the post cannot be labelled.');
+  }
+
+  const d = new Date(dateStr + 'T00:00:00Z');
+  d.setUTCHours(slot.hour, 0, 0, 0);
   return d;
 }
 
@@ -230,13 +244,36 @@ function main() {
      * EventIDs go in because the spec derives last-posted dates from the
      * EventIDs and ScheduledFor columns of the Social tab, which is how
      * rotation avoids repeating an event. */
-    const scheduled = nextSlot(post.variant, now);
+    const scheduled = scheduledFor(post.variant, post);
     queue.push({
       PostID: name,
       PostType: post.subtitle || post.variant,
       Status: 'Draft',
       ScheduledFor: scheduled.toISOString(),
       EventIDs: (post.events || []).map(function (e) { return e.eventId; }).filter(Boolean).join(','),
+      // Every candidate for every day, chosen or not. Added 13 October 2026 so
+      // the approval page can show the whole field and let the owner swap an
+      // event out. Apps Script reads this from the deployed queue file.
+      //
+      // Capped so a long week cannot make queue.json enormous: 12 per day is
+      // far more than the owner would ever choose between, and anything beyond
+      // that is a low-ranked event that would never win anyway.
+      Candidates: (post.candidatesByDay || []).map(function (d) {
+        return {
+          date: d.date,
+          day: d.day,
+          events: (d.events || []).slice(0, 12).map(function (e) {
+            return {
+              id: e.eventId,
+              title: e.title,
+              venue: e.venue,
+              category: e.category,
+              rank: e.rank,
+              size: e.size
+            };
+          })
+        };
+      }),
       FBCaption: fb,
       IGCaption: ig,
       ImageVariant: name,
