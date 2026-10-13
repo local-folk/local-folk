@@ -16,17 +16,19 @@ name: Generate social images
 
 on:
   schedule:
-    # 03:17 UTC Monday - Weekly Roundup, ready for the 07:00 post.
-    # 03:17 UTC Thursday - Weekend Roundup, ready for the 12:00 post.
+    # 03:17 UTC Monday - Weekly Roundup.
+    # 03:17 UTC Friday  - Weekend Roundup.
     #
-    # These run at 03:17 rather than at the posting times on purpose. This
-    # workflow now builds social/queue.json, which is what makes Apps Script
-    # send the approval email - so it has to finish early enough for the owner
-    # to read it and press Approve. Generating at 07:00 and posting at 07:00
-    # would leave no review window at all, and a single combined run would
-    # mean a draft goes live seconds after it is approved.
+    # CHANGED 13 October 2026: Thursday -> Friday, at the owner's request. The
+    # Weekend post is now emailed on a Friday morning and goes out at 11am that
+    # same day, rather than being built on Thursday and sitting over a day.
+    #
+    # These run early because this workflow builds social/queue.json, which is
+    # what makes Apps Script send the approval email - so it has to finish in
+    # time for the owner to read it before the 11:00 cutoff. Generating at 11:00
+    # would leave no review window at all.
     - cron: '17 3 * * 1'
-    - cron: '17 3 * * 4'
+    - cron: '17 3 * * 5'
   workflow_dispatch:
 
 permissions:
