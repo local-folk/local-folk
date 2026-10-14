@@ -4,6 +4,23 @@
  *
  * Applies the owner's event choices, if any are waiting, to social-posts.json.
  *
+ * THE CACHE, AND WHY THERE IS NO --wait IN THE WORKFLOW
+ * ------------------------------------------------------
+ * Google serves a published CSV with `Cache-Control: private, max-age=300`.
+ * Apps Script saves the owner's choice and starts the rebuild about a second
+ * apart, so the workflow was reading the sheet as it was BEFORE the owner
+ * pressed Approve - no waiting choices, and a rebuild with the old events under
+ * the old PostID. Nothing errored and no second email arrived.
+ * (Observed 14 October 2026.)
+ *
+ * The fix is in Apps Script: requestRegeneration_ schedules the rebuild six
+ * minutes out rather than firing it immediately, so this script always reads a
+ * settled sheet. That was chosen over polling here because it costs only the
+ * swaps that need it, and it needs no change to this repository.
+ *
+ * --wait still exists below for offline testing of a deliberately early read. It
+ * is NOT used by generate-social-images.yml.
+ *
  * WHY THIS EXISTS
  * ---------------
  * The approval page is a chooser: it lists every candidate event for every day
@@ -37,6 +54,8 @@
  * Usage:
  *   node apply-choices.js                  uses POST_CHOICES_URL from the env
  *   node apply-choices.js --from-file X    reads a saved CSV, for offline runs
+ *   node apply-choices.js --wait 420       re-reads the sheet for up to 7 minutes,
+ *                                         for rebuild runs only - see waitForChoices
  *   node apply-choices.js --dry            report what it would do, change nothing
  */
 
@@ -191,14 +210,28 @@ function applyToPost(post, picks) {
   });
 
   // The post's identity follows its first event, so a change that drops that
-  // day produces a different PostID. Recorded so the rebuild email matches.
+  // day produces a different PostID.
   const firstDay = dayOf[picks[0]];
   if (firstDay) {
     const d = firstDay.date;
     const dd = ('0' + d.slice(8, 10)).slice(-2);
     const mm = ('0' + d.slice(5, 7)).slice(-2);
     const yy = d.slice(2, 4);
-    post.dateLabel = dd + mm + yy;
+    // ...plus a revision stamp, ALWAYS.
+    //
+    // This is not decoration. Apps Script keys "have I already drafted this?"
+    // off PostID, so a rebuilt post that kept its original ID was silently
+    // treated as already known and NO approval email was ever sent - the
+    // rebuild happened, but the owner was never asked to approve it, and the
+    // old image went out instead of the new one. Observed 13 October 2026:
+    // the owner's choices were applied, the image was redrawn, and nothing
+    // arrived in the inbox.
+    //
+    // Stamping the revision is what makes the rebuilt post a genuinely new
+    // post, so it is drafted, emailed and approved on its own merits.
+    const rev = Date.now().toString(36).slice(-5);
+    post.dateLabel = dd + mm + yy + '-r' + rev;
+    post.rebuilt = true;
   }
 
   return grouped;
@@ -225,17 +258,75 @@ async function fetchChoicesText() {
   return await res.text();
 }
 
+/* Reads the sheet, then keeps re-reading it until the choices turn up.
+ *
+ * GOOGLE CACHES THE PUBLISHED CSV FOR UP TO FIVE MINUTES.
+ * Measured on the live choices sheet on 14 October 2026:
+ * `Cache-Control: private, max-age=300`.
+ *
+ * That matters because Apps Script writes the owner's choice and dispatches the
+ * rebuild within about a second of each other. The workflow then fetched the
+ * sheet roughly ten seconds later and was served the version from BEFORE the
+ * owner pressed Approve - no waiting choices, so the rebuild ran with the old
+ * events and the old PostID, no second email was sent, and nothing in the log
+ * looked wrong. Observed 14 October 2026.
+ *
+ * A cache-busting query parameter is not an option: Google answers HTTP 400 to
+ * an unrecognised one on a published URL. So the fix is to wait the cache out.
+ *
+ * `sleep` is injectable so the behaviour can be tested without real waiting.
+ * Timeouts are NOT failures - if the choices never appear the run continues
+ * exactly as it would have before, because a rebuild with the owner's old
+ * events is still better than a failed build that emails nothing at all.
+ */
+const CACHE_TTL_MS = 300000;
+const POLL_EVERY_MS = 30000;
+
+async function waitForChoices(budgetMs, sleep) {
+  const nap = sleep || ((ms) => new Promise((r) => setTimeout(r, ms)));
+  const deadline = Date.now() + budgetMs;
+  let waited = 0;
+
+  for (;;) {
+    const text = await fetchChoicesText();
+    if (text === null) return {};           // no URL configured - nothing to wait for
+    const choices = readChoices(text, Date.now());
+    if (Object.keys(choices).length) return choices;
+
+    if (waited >= budgetMs) return {};
+    const remaining = Math.min(POLL_EVERY_MS, budgetMs - waited, deadline - Date.now());
+    console.log('No waiting choices yet. Google caches the published sheet for ' +
+      '5 minutes, and the rebuild was dispatched moments after the owner saved ' +
+      'their choice, so an early read sees the sheet as it was before they ' +
+      'pressed Approve. Waiting ' + Math.round(remaining / 1000) + 's (' +
+      Math.round(waited / 1000) + 's of ' + Math.round(budgetMs / 1000) + 's used).');
+    await nap(remaining);
+    waited += remaining;
+  }
+}
+
 async function main() {
   const dry = process.argv.includes('--dry');
   const now = Date.now();
 
-  const text = await fetchChoicesText();
-  if (text === null) {
-    console.log('No POST_CHOICES_URL set - no choices to apply. Normal run.');
-    return;
+  const waitIdx = process.argv.indexOf('--wait');
+  const waitSeconds = waitIdx === -1 ? 0 : (parseInt(process.argv[waitIdx + 1], 10) || 0);
+  const waitMs = waitSeconds * 1000;
+
+  let choices;
+  if (waitMs > 0) {
+    console.log('Rebuild run - the owner has just saved a choice, so the sheet ' +
+      'is read repeatedly for up to ' + waitSeconds + 's.');
+    choices = await waitForChoices(waitMs);
+  } else {
+    const text = await fetchChoicesText();
+    if (text === null) {
+      console.log('No POST_CHOICES_URL set - no choices to apply. Normal run.');
+      return;
+    }
+    choices = readChoices(text, now);
   }
 
-  const choices = readChoices(text, now);
   const ids = Object.keys(choices);
   if (!ids.length) {
     console.log('No waiting event choices. Normal run.');
@@ -286,9 +377,21 @@ async function main() {
   console.log('Wrote social-posts.json with the owner\'s choices.');
 }
 
-main().catch((err) => {
-  console.error('apply-choices failed: ' + err.message);
-  // A non-zero exit fails the workflow step, so the owner is not emailed an
-  // approval for an image that was built from the wrong events.
-  process.exitCode = 1;
-});
+// Guarded so the tests can require the functions without running a build.
+if (require.main === module) {
+  main().catch((err) => {
+    console.error('apply-choices failed: ' + err.message);
+    // A non-zero exit fails the workflow step, so the owner is not emailed an
+    // approval for an image that was built from the wrong events.
+    process.exitCode = 1;
+  });
+}
+
+module.exports = {
+  parseCsv,
+  readChoices,
+  applyToPost,
+  waitForChoices,
+  CACHE_TTL_MS,
+  POLL_EVERY_MS
+};
