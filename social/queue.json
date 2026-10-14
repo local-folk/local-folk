@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-14T12:31:11.811Z",
+  "generatedAt": "2026-10-14T13:00:15.753Z",
   "posts": [
     {
       "PostID": "Weekly-141026",
       "PostType": "Weekly Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-10-14T07:00:00.000Z",
-      "EventIDs": "2026-10-14|o2 city hall northumberland road newcastle ne1 8sf|the mary wallopers,2026-10-15|cobalt studios|fresh thursday right of way raveloe,2026-10-16|the cluny 2|jake vaadeland the sturgeon river boys,2026-10-19|the lit phil|halloween thoughts the devil the demon and the vampire,2026-10-20|the cumberland arms|global music session",
+      "EventIDs": "2026-10-14|benedictine social centre|cramlington folk club tarren,2026-10-15|st marys by the tyne|spooky meet up,2026-10-16|tyne theatre and opera house 111 westgate road newcastle ne1 4ag|the magic of theatre superstition ghosts and the scottish play,2026-10-19|north shields community hub and library|icy sedgwick hauntings on tyneside,2026-10-20|the wheatsheaf felling|the wheatsheaf session",
       "Candidates": [
         {
           "date": "2026-10-14",
@@ -59,17 +59,17 @@
           "day": "Thursday",
           "events": [
             {
-              "id": "2026-10-15|kings hall armstrong building newcastle university queen victoria road newcastle ne1 7ru|student performances",
-              "title": "Student Performances",
-              "venue": "King's Hall",
+              "id": "2026-10-15|cobalt studios|fresh thursday right of way raveloe",
+              "title": "Fresh Thursday // Right of Way + Raveloe",
+              "venue": "Cobalt Studios",
               "category": "Folk Music",
               "rank": 7,
               "size": 3
             },
             {
-              "id": "2026-10-15|cobalt studios|fresh thursday right of way raveloe",
-              "title": "Fresh Thursday // Right of Way + Raveloe",
-              "venue": "Cobalt Studios",
+              "id": "2026-10-15|kings hall armstrong building newcastle university queen victoria road newcastle ne1 7ru|student performances",
+              "title": "Student Performances",
+              "venue": "King's Hall",
               "category": "Folk Music",
               "rank": 7,
               "size": 3
@@ -191,8 +191,8 @@
           ]
         }
       ],
-      "FBCaption": "// 14-20 OCT // WEEKLY ROUNDUP\n\nWEDNESDAY - 14/10\nThe Mary Wallopers\nO2 City Hall\n\nTHURSDAY - 15/10\nFresh Thursday // Right of Way + Raveloe\nCobalt Studios\n\nFRIDAY - 16/10\nJake Vaadeland & The Sturgeon River Boys\nThe Cluny 2\n\nMONDAY - 19/10\nHalloween Thoughts - The Devil, the Demon & the Vampire\nThe Lit & Phil\n\nTUESDAY - 20/10\nGlobal Music Session\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 14-20 OCT // WEEKLY ROUNDUP\n\nWEDNESDAY - 14/10\nThe Mary Wallopers\nO2 City Hall\n\nTHURSDAY - 15/10\nFresh Thursday // Right of Way + Raveloe\nCobalt Studios\n\nFRIDAY - 16/10\nJake Vaadeland & The Sturgeon River Boys\nThe Cluny 2\n\nMONDAY - 19/10\nHalloween Thoughts - The Devil, the Demon & the Vampire\nThe Lit & Phil\n\nTUESDAY - 20/10\nGlobal Music Session\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "FBCaption": "// 14-20 OCT // WEEKLY ROUNDUP\n\nWEDNESDAY - 14/10\nCramlington Folk Club: Tarren\nBenedictine Social Centre\n\nTHURSDAY - 15/10\nSpooky Meet Up\nSt Mary's By The Tyne\n\nFRIDAY - 16/10\nThe Magic of Theatre: Superstition, Ghosts, & the Scottish Play\nTyne Theatre & Opera House\n\nMONDAY - 19/10\nIcy Sedgwick - Hauntings on Tyneside\nNorth Shields Community Hub & Library\n\nTUESDAY - 20/10\nThe Wheatsheaf Session\nThe Wheatsheaf, Felling\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 14-20 OCT // WEEKLY ROUNDUP\n\nWEDNESDAY - 14/10\nCramlington Folk Club: Tarren\nBenedictine Social Centre\n\nTHURSDAY - 15/10\nSpooky Meet Up\nSt Mary's By The Tyne\n\nFRIDAY - 16/10\nThe Magic of Theatre: Superstition, Ghosts, & the Scottish Play\nTyne Theatre & Opera House\n\nMONDAY - 19/10\nIcy Sedgwick - Hauntings on Tyneside\nNorth Shields Community Hub & Library\n\nTUESDAY - 20/10\nThe Wheatsheaf Session\nThe Wheatsheaf, Felling\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
       "ImageVariant": "Weekly-141026",
       "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-141026.png",
       "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-141026.jpg",
