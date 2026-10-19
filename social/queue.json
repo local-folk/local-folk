@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-19T03:52:18.847Z",
+  "generatedAt": "2026-10-19T05:59:07.497Z",
   "posts": [
     {
-      "PostID": "Weekly-191026",
+      "PostID": "Weekly-191026-ruggyx",
       "PostType": "Weekly Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-10-19T07:00:00.000Z",
-      "EventIDs": "2026-10-19|the lit phil|halloween thoughts the devil the demon and the vampire,2026-10-20|the cumberland arms|global music session,2026-10-21|the cluny 2|sexytadhg,2026-10-22|kings hall armstrong building newcastle university queen victoria road newcastle ne1 7ru|student performances,2026-10-23|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
+      "EventIDs": "2026-10-19|enigma tap|mariners marras shanties and trad work songs,2026-10-20|the cumberland arms|global music session,2026-10-21|the cluny 2|sexytadhg,2026-10-22|tyneside irish centre|tyneside irish centre session,2026-10-23|lubber fiend|diy ceilidh",
       "Candidates": [
         {
           "date": "2026-10-19",
@@ -191,11 +191,126 @@
           ]
         }
       ],
-      "FBCaption": "// 19-23 OCT // WEEKLY ROUNDUP\n\nMONDAY - 19/10\nHalloween Thoughts - The Devil, the Demon & the Vampire\nThe Lit & Phil\n\nTUESDAY - 20/10\nGlobal Music Session\nThe Cumberland Arms\n\nWEDNESDAY - 21/10\nSexyTadhg\nThe Cluny 2\n\nTHURSDAY - 22/10\nStudent Performances\nKing's Hall\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 19-23 OCT // WEEKLY ROUNDUP\n\nMONDAY - 19/10\nHalloween Thoughts - The Devil, the Demon & the Vampire\nThe Lit & Phil\n\nTUESDAY - 20/10\nGlobal Music Session\nThe Cumberland Arms\n\nWEDNESDAY - 21/10\nSexyTadhg\nThe Cluny 2\n\nTHURSDAY - 22/10\nStudent Performances\nKing's Hall\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekly-191026",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-191026.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-191026.jpg",
+      "FBCaption": "// 19-23 OCT // WEEKLY ROUNDUP\n\nMONDAY - 19/10\nMariners & Marras: Shanties & trad work songs\nEnigma Tap\n\nTUESDAY - 20/10\nGlobal Music Session\nThe Cumberland Arms\n\nWEDNESDAY - 21/10\nSexyTadhg\nThe Cluny 2\n\nTHURSDAY - 22/10\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 23/10\nDIY Ceilidh\nLubber Fiend\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 19-23 OCT // WEEKLY ROUNDUP\n\nMONDAY - 19/10\nMariners & Marras: Shanties & trad work songs\nEnigma Tap\n\nTUESDAY - 20/10\nGlobal Music Session\nThe Cumberland Arms\n\nWEDNESDAY - 21/10\nSexyTadhg\nThe Cluny 2\n\nTHURSDAY - 22/10\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 23/10\nDIY Ceilidh\nLubber Fiend\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekly-191026-ruggyx",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-191026-ruggyx.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-191026-ruggyx.jpg",
+      "FBPostID": "",
+      "IGPostID": "",
+      "Notes": ""
+    },
+    {
+      "PostID": "Weekend-231026",
+      "PostType": "Weekend Roundup",
+      "Status": "Draft",
+      "ScheduledFor": "2026-10-23T07:00:00.000Z",
+      "EventIDs": "2026-10-23|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop,2026-10-23|lubber fiend|diy ceilidh,2026-10-24|jarrow hall|cabinet of curiosities,2026-10-24|cobalt studios|experimental basketweaving with rachael eden,2026-10-25|the cluny 2 34 lime street ouseburn newcastle ne1 2pq|ger odonnell,2026-10-25|cumberland arms|gabriel bath chlo mulhall danny marshall hyem",
+      "Candidates": [
+        {
+          "date": "2026-10-23",
+          "day": "Friday",
+          "events": [
+            {
+              "id": "2026-10-23|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
+              "title": "Willow Star Workshop",
+              "venue": "The Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT",
+              "category": "Heritage Workshop",
+              "rank": 28,
+              "size": 2
+            },
+            {
+              "id": "2026-10-23|lubber fiend|diy ceilidh",
+              "title": "DIY Ceilidh",
+              "venue": "Lubber Fiend",
+              "category": "Ceilidh / Social Dance",
+              "rank": 32,
+              "size": 3
+            },
+            {
+              "id": "2026-10-23|the cumberland arms|an criscn ln irish session",
+              "title": "An Crúiscín Làn' Irish Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-10-24",
+          "day": "Saturday",
+          "events": [
+            {
+              "id": "2026-10-24|jarrow hall|cabinet of curiosities",
+              "title": "Cabinet of Curiosities",
+              "venue": "Jarrow Hall",
+              "category": "Folk Music",
+              "rank": 7,
+              "size": 3
+            },
+            {
+              "id": "2026-10-24|cobalt studios|experimental basketweaving with rachael eden",
+              "title": "Experimental Basketweaving with Rachael Eden",
+              "venue": "Cobalt Studios",
+              "category": "Heritage Workshop",
+              "rank": 27,
+              "size": 3
+            },
+            {
+              "id": "2026-10-24|ouseburn trust at 51 lime street|ouseburn heritage guided walk",
+              "title": "Ouseburn Heritage Guided Walk",
+              "venue": "Ouseburn Trust",
+              "category": "Other",
+              "rank": 58,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-10-25",
+          "day": "Sunday",
+          "events": [
+            {
+              "id": "2026-10-25|the cluny 2 34 lime street ouseburn newcastle ne1 2pq|ger odonnell",
+              "title": "Ger O’Donnell",
+              "venue": "The Cluny 2",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-10-25|cumberland arms|gabriel bath chlo mulhall danny marshall hyem",
+              "title": "Gabriel Bath + Chloë Mulhall & Danny Marshall + Hyem",
+              "venue": "Cumberland Arms",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-10-25|newcastle quayside|quayside market",
+              "title": "Quayside Market",
+              "venue": "Newcastle Quayside",
+              "category": "Market",
+              "rank": 37,
+              "size": 3
+            },
+            {
+              "id": "2026-10-25|monkseaton arms|monkey folk club",
+              "title": "Monkey Folk Club",
+              "venue": "Monkseaton Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        }
+      ],
+      "FBCaption": "// 23-25 OCT // WEEKEND ROUNDUP\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\nDIY Ceilidh\nLubber Fiend\n\nSATURDAY - 24/10\nCabinet of Curiosities\nJarrow Hall\nExperimental Basketweaving with Rachael Eden\nCobalt Studios\n\nSUNDAY - 25/10\nGer O’Donnell\nThe Cluny 2\nGabriel Bath + Chloë Mulhall & Danny Marshall + Hyem\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 23-25 OCT // WEEKEND ROUNDUP\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\nDIY Ceilidh\nLubber Fiend\n\nSATURDAY - 24/10\nCabinet of Curiosities\nJarrow Hall\nExperimental Basketweaving with Rachael Eden\nCobalt Studios\n\nSUNDAY - 25/10\nGer O’Donnell\nThe Cluny 2\nGabriel Bath + Chloë Mulhall & Danny Marshall + Hyem\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-231026",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
