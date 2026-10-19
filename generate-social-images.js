@@ -578,11 +578,11 @@ function readInput() {
   return JSON.parse(fs.readFileSync(inputPath, 'utf8'));
 }
 
-/* Archive filenames, e.g. "Weekly 121026" -> "Weekly-121026.png". */
-function archiveName(variant, dateLabel) {
-  const clean = String(dateLabel).replace(/[^0-9A-Za-z]/g, '');
-  return variant + '-' + clean + '.png';
-}
+/* Archive filenames now come from the shared helper, because two
+ * implementations of this rule is what broke rebuilt posts on 19 Oct 2026.
+ * The renderer writes the file; build-captions.js has to name it identically
+ * or ImageVariant points at a file that was never created. */
+const { archiveName } = require('./archive-name.js');
 
 /* ------------------------------------------------------------------ *
  * Background preview - planning only

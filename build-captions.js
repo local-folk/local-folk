@@ -147,6 +147,21 @@ function slug(s) {
   return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
+/* The archive image filename, from the one shared rule.
+ *
+ * This MUST agree exactly with the name generate-social-images.js wrote the
+ * file under, or ImageVariant points at an image that does not exist.
+ *
+ * It did not agree until 19 October 2026. This used slug() above, which KEEPS
+ * a dash, while the renderer stripped dashes out. The two only matched while
+ * the date label had no dash in it - and a rebuilt post's date label always
+ * has one ("191026-r<stamp>"). So every rebuilt post pointed at a 404: no
+ * image in the approval email, and Facebook/Instagram both refused the post.
+ *
+ * Do not inline a replacement here, and do not "fix" slug() to match. One
+ * rule, one place. */
+const { archiveBase } = require('./archive-name.js');
+
 /* ------------------------------------------------------------------ *
  * When this post is due
  * ------------------------------------------------------------------ */
@@ -209,7 +224,7 @@ function main() {
   const queue = [];
 
   for (const post of posts) {
-    const name = post.variant + '-' + slug(post.dateLabel);
+    const name = archiveBase(post.variant, post.dateLabel);
     const fb = captionFor(post, FB_CLOSER);
     const ig = captionFor(post, IG_CLOSER);
 
