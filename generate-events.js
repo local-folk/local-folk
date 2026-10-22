@@ -27,8 +27,39 @@ const path = require('path');
 
 const CONFIG = {
   siteOrigin: 'https://thekirn.co.uk',
+
+  // The Published tab. The scraper moves an event over to the Archive tab
+  // the day after it happens, so this holds what is still to come, plus
+  // anything that happened in the last day or two.
   csvUrl:
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vRtJN8W8AwbpQfUMykoANi9RfW6XA8ghJ-F-vagUGkQ8Ep5PWTbyae6f45kLlCVEpwJS2Mg0U9eKdz4/pub?gid=514788102&single=true&output=csv',
+
+  // The site's public copy of past events.
+  //
+  // These live in a second spreadsheet, "The Kirn Site", which holds nothing
+  // but the events that were published and have since happened. It is
+  // published to the web in its entirety, so publishing it publishes nothing
+  // but the site's own data.
+  //
+  // It is a separate sheet on purpose. The Archive tab of The Kirn holds the
+  // decisions as well - the events that were rejected, the artists that were
+  // turned down - so The Kirn is published to the web as the Published tab
+  // only and those stay private.
+  //
+  // PUT THE PUBLISHED LINK FOR "The Kirn Site" HERE. The scraper creates the
+  // sheet when setupSiteArchive() is run, and it logs the link to publish.
+  //
+  // Published 22 October 2026 as "Entire document". It has one tab,
+  // Archive, holding only events that were published and have since
+  // happened.
+  archiveCsvUrl:
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4ZOkaGicLUQoD7ubgMRDiN-HGkY3EhGzzkfueGmg6jQY3U8D6_HPjHexj5r0Lj5aUMFa349ikxgq1/pub?gid=335963804&single=true&output=csv',
+
+  // How long an event's page stays online after the event has happened.
+  // After this, the event is still in the Archive tab - the sheet keeps
+  // everything - but it no longer gets a page.
+  archiveRetentionMonths: 6,
+
   eventsDir: path.join(__dirname, 'events'),
   sitemapPath: path.join(__dirname, 'sitemap.xml'),
   logoImage: '/og-image.png',
@@ -126,6 +157,98 @@ function clientSideSlug(row) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
   return [norm(title), norm(venue), date].filter(Boolean).join('-');
+}
+
+/**
+ * The rows that belong on the site at all.
+ *
+ * A row needs a title and a real date, and its Status has to be Published.
+ * A row with any other status - approved by hand, recalled, expired - is not
+ * published and must not appear on the site.
+ *
+ * Note that this says nothing about the date being in the past. A published
+ * event that has already happened still belongs on the site: it keeps its own
+ * page for as long as the scraper keeps its row in the Published tab.
+ */
+function isPublishedRow(r) {
+  return !!(r.Title && r.Date) &&
+    String(r.Status || 'Published').trim().toLowerCase() === 'published' &&
+    /^\d{4}-\d{2}-\d{2}$/.test(String(r.Date).trim());
+}
+
+/**
+ * Whether an event is still to come. Events that have already happened are
+ * left out of the listing - the index page and the sitemap - but they still
+ * get a page of their own.
+ */
+function isUpcoming(ev, today) {
+  return String(ev.date || '') >= today;
+}
+
+/**
+ * A YYYY-MM-DD date a whole number of months ago.
+ *
+ * Used for the archive window. Month arithmetic from a date at the end of a
+ * month can land a few days off - six months from 31 August is 3 March, not
+ * 28 February - which is a day or two of slack either way on a window that
+ * only has to be about six months.
+ */
+function monthsAgoStr(months) {
+  const d = new Date();
+  d.setMonth(d.getMonth() - months);
+  const m = ('0' + (d.getMonth() + 1)).slice(-2);
+  const day = ('0' + d.getDate()).slice(-2);
+  return d.getFullYear() + '-' + m + '-' + day;
+}
+
+/**
+ * The rows from the Archive tab that should still have a page.
+ *
+ * The Archive tab holds three kinds of row:
+ *
+ *   - events that were published and have now happened (Status "Published");
+ *   - events that were rejected (Status "Rejected");
+ *   - events that expired in Pending without ever being reviewed
+ *     (Status "Expired - Not Reviewed").
+ *
+ * Only the first kind was ever public. The second and third must never
+ * appear on the site, so they are filtered out here rather than further up.
+ *
+ * An event's page lives for CONFIG.archiveRetentionMonths after the event.
+ * After that its row is still in the Archive tab, but it no longer gets a
+ * page, and the build drops the page it had.
+ */
+function isArchivedButStillPublic(row, cutoff) {
+  return isPublishedRow(row) && String(row.Date).trim() >= cutoff;
+}
+
+/**
+ * Fetches one published CSV.
+ *
+ * A failure here stops the build. That is deliberate: the build wipes the
+ * events directory and writes it again from scratch, so if the Archive tab
+ * could not be read and the build carried on, every event that has already
+ * happened would lose its page. Stopping leaves the published site as it
+ * was, which is much better than quietly emptying it.
+ */
+async function fetchRows_(url, label) {
+  // A link that has not been filled in yet. Caught here, with an
+  // explanation, rather than as a 401 that looks like a publishing problem.
+  if (!url || url.indexOf('PUBLISHED_URL') !== -1) {
+    throw new Error('The ' + label +
+      ' link has not been set in generate-events.js yet. For the Archive ' +
+      'tab it is the published link for the "The Kirn Site" sheet.');
+  }
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(label + ' CSV fetch failed: HTTP ' + res.status +
+      '. Check that the tab is published to the web - run check-published-tabs.js.');
+  }
+  const text = await res.text();
+  const rows = parseCsv(text);
+  console.log('Parsed ' + rows.length + ' rows from ' + label + '.');
+  return rows;
 }
 
 function parseDate(dateStr) {
@@ -281,7 +404,7 @@ function clamp(s, n) {
 // Per-event page
 // ---------------------------------------------------------------------------
 
-function buildEventPage(ev) {
+function buildEventPage(ev, isPast) {
   const origin = CONFIG.siteOrigin;
   const url = origin + '/events/' + ev.slug + '/';
 
@@ -292,13 +415,22 @@ function buildEventPage(ev) {
     : '';
   const whenLine = [dateLong, timeRange].filter(Boolean).join(', ');
 
-  const title = clamp(ev.title + ' – ' + (ev.venue || 'Newcastle'), 58) + ' | The Kirn';
-  const shareTitle = ev.title + (ev.venue ? ' – ' + ev.venue : '');
+  // The marker that says an event has already happened. It goes in front of
+  // the event's title, wherever the title is shown, so that someone arriving
+  // at a link they saved weeks ago can see at once that it is over.
+  //
+  // clamp() cuts from the end, so putting the marker first means it can
+  // never be the thing that gets cut off.
+  const pastFlag = isPast ? 'PAST EVENT - ' : '';
+
+  const title = clamp(pastFlag + ev.title + ' – ' + (ev.venue || 'Newcastle'), 58) + ' | The Kirn';
+  const shareTitle = pastFlag + ev.title + (ev.venue ? ' – ' + ev.venue : '');
   const shareText = [ev.title, ev.venue, formatDateShort(ev.date), time]
     .filter(Boolean).join(', ');
 
   const metaDesc = clamp(
-    [whenLine, ev.venue, ev.description].filter(Boolean).join('. ') + '.', 158);
+    [isPast ? 'This event has passed' : '', whenLine, ev.venue, ev.description]
+      .filter(Boolean).join('. ') + '.', 158);
 
   const lat = parseFloat(ev.lat);
   const lng = parseFloat(ev.lng);
@@ -320,12 +452,17 @@ function buildEventPage(ev) {
     '@type': 'Event',
     name: ev.title,
     startDate: ev.date + (ev.startTime ? 'T' + padTime(ev.startTime) : ''),
-    eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     url: url,
     description: ev.description || shareText,
     inLanguage: 'en-GB'
   };
+  // eventStatus is left off a page for an event that has already happened.
+  // The schema.org EventStatusType enumeration has no member that means
+  // "this has ended" - its members are EventCancelled, EventMovedOnline,
+  // EventPostponed, EventRescheduled and EventScheduled - so every one of
+  // them would be wrong. Saying nothing is the accurate answer.
+  if (!isPast) jsonLd.eventStatus = 'https://schema.org/EventScheduled';
   if (ev.endTime) jsonLd.endDate = ev.date + 'T' + padTime(ev.endTime);
   jsonLd.location = {
     '@type': 'Place',
@@ -339,7 +476,12 @@ function buildEventPage(ev) {
   jsonLd.organizer = { '@type': 'Organization', name: 'The Kirn', url: origin + '/' };
   jsonLd.superOrganizer = jsonLd.organizer;
 
-  const homeHref = origin + '/?event=' + encodeURIComponent(ev.favId);
+  // A past event is not in the homepage's list, so linking to it with the
+  // event id would land on a page that cannot find it. Link to the homepage
+  // itself instead.
+  const homeHref = isPast
+    ? origin + '/'
+    : origin + '/?event=' + encodeURIComponent(ev.favId);
   const venueHref = origin + '/?venue=' + encodeURIComponent(ev.venueKey);
   const allEventsHref = origin + '/';
 
@@ -477,6 +619,12 @@ function buildEventPage(ev) {
   .line { margin: 0 0 10px; }
   .venue { font-weight: 600; }
   .muted { color: var(--muted); }
+  /* The note on the page of an event that has already happened. */
+  .passed { color: var(--muted); font-style: italic; }
+  /* The marker that goes in front of the title of an event that has already
+     happened. It is a label, not part of the event's name, so it is kept
+     outside the link and set apart from the title itself. */
+  .pastflag { color: var(--muted); font-style: italic; }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
   .btn {
     display: inline-block; padding: 9px 16px; border-radius: 8px;
@@ -541,11 +689,11 @@ ${JSON.stringify(jsonLd, null, 2)}
 </div>
 
 <main>
-${ev.category ? '  <span class="chip">' + esc(ev.category) + '</span>\n' : ''}  <h2 class="title"><a class="titlelink" href="${esc(homeHref)}">${esc(ev.title)}</a></h2>
+${ev.category ? '  <span class="chip">' + esc(ev.category) + '</span>\n' : ''}  <h2 class="title">${isPast ? '<span class="pastflag">PAST EVENT - </span>' : ''}<a class="titlelink" href="${esc(homeHref)}">${esc(ev.title)}</a></h2>
   <p class="line"><strong>${esc(whenLine)}</strong></p>
-${ev.venue ? '  <p class="line venue">' + venueHtml(ev.venue, mapUrl) + '</p>\n' : ''}${ev.address ? '  <p class="line muted">' + venueHtml(ev.address, mapUrl) + '</p>\n' : ''}${ev.description ? '  <p class="line">' + esc(ev.description) + '</p>\n' : ''}  <div class="actions">
+${isPast ? '  <p class="line passed"><strong>This event has passed.</strong></p>\n' : ''}${ev.venue ? '  <p class="line venue">' + venueHtml(ev.venue, mapUrl) + '</p>\n' : ''}${ev.address ? '  <p class="line muted">' + venueHtml(ev.address, mapUrl) + '</p>\n' : ''}${ev.description ? '  <p class="line">' + esc(ev.description) + '</p>\n' : ''}  <div class="actions">
     <button class="btn primary" id="shareBtn" type="button">Share this event</button>
-    <a class="btn" href="${esc(venueHref)}">See on the map</a>
+    <a class="btn" href="${esc(venueHref)}">${isPast ? 'See upcoming events at this venue' : 'See on the map'}</a>
 ${mapUrl ? '    <a class="btn" href="' + esc(mapUrl) + '" target="_blank" rel="noopener noreferrer">Directions</a>\n' : ''}  </div>
   <p class="more"><a class="btn" href="${esc(allEventsHref)}">View All Events</a></p>
   <hr>
@@ -762,7 +910,21 @@ ${sections}
 `;
 }
 
-function buildSitemap(events) {
+/**
+ * The sitemap.
+ *
+ * Upcoming events first, then the events that have already happened, at the
+ * bottom. The two lists are separate because the same event moves from one
+ * to the other when it happens, and its URL has to stay exactly the same
+ * across that move - a link someone saved must not stop working the day
+ * after the event.
+ *
+ * The slug is worked out from the title, the venue and the date, and none of
+ * those change when the event is moved from one tab to the other, so the URL
+ * is the same in both lists. That is the whole point of splitting them here
+ * rather than rebuilding the list from scratch.
+ */
+function buildSitemap(upcoming, past) {
   const origin = CONFIG.siteOrigin;
   const today = todayStr();
   const statics = [
@@ -772,11 +934,15 @@ function buildSitemap(events) {
     { loc: origin + '/submit/', priority: '0.7', freq: 'monthly' },
     { loc: origin + '/contact/', priority: '0.3', freq: 'yearly' }
   ];
+  const eventUrl = ev =>
+    `  <url>\n    <loc>${esc(origin + '/events/' + ev.slug + '/')}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`;
+
   const urls = statics.map(s =>
     `  <url>\n    <loc>${esc(s.loc)}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${s.freq}</changefreq>\n    <priority>${s.priority}</priority>\n  </url>`
-  ).concat(events.map(ev =>
-    `  <url>\n    <loc>${esc(origin + '/events/' + ev.slug + '/')}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`
-  ));
+  )
+    .concat((upcoming || []).map(eventUrl))
+    .concat((past || []).map(eventUrl));
+
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
 }
 
@@ -785,32 +951,58 @@ function buildSitemap(events) {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log('Fetching CSV…');
-  const res = await fetch(CONFIG.csvUrl);
-  if (!res.ok) throw new Error('CSV fetch failed: HTTP ' + res.status);
-  const text = await res.text();
-  const rows = parseCsv(text);
-  console.log('Parsed ' + rows.length + ' rows.');
+  console.log('Fetching Published CSV…');
+  const publishedRows = await fetchRows_(CONFIG.csvUrl, 'Published');
+
+  console.log('Fetching Archive CSV…');
+  const archivedRows = await fetchRows_(CONFIG.archiveCsvUrl, 'Archive');
 
   const today = todayStr();
+  const cutoff = monthsAgoStr(CONFIG.archiveRetentionMonths);
 
-  // Keep only published, upcoming, well-formed events.
-  const kept = rows.filter(r =>
-    r.Title && r.Date &&
-    String(r.Status || 'Published').trim().toLowerCase() === 'published' &&
-    /^\d{4}-\d{2}-\d{2}$/.test(r.Date.trim()) &&
-    r.Date.trim() >= today);
+  // The events that get a page come from two tabs.
+  //
+  // From Published: everything that is published and well-formed. These are
+  // the events that are still to come, plus any that happened in the last day
+  // or two and have not been moved over yet.
+  //
+  // From Archive: the events that were published and have since happened,
+  // as long as they are still inside the retention window. An event's page
+  // lives for about six months after the event and no longer.
+  const published = publishedRows.filter(isPublishedRow);
 
-  const droppedPast = rows.filter(r => r.Date && r.Date.trim() < today).length;
-  console.log('Kept ' + kept.length + ' upcoming events (' + droppedPast + ' past events dropped).');
+  const archived = archivedRows.filter(row => isArchivedButStillPublic(row, cutoff));
+
+  const publishedDropped = publishedRows.length - published.length;
+  const archivedDropped = archivedRows.length - archived.length;
+
+  console.log('Kept ' + published.length + ' published event(s) from Published (' +
+    publishedDropped + ' not published or malformed).');
+  console.log('Kept ' + archived.length + ' archived event(s) still inside the ' +
+    CONFIG.archiveRetentionMonths + '-month window (' + archivedDropped +
+    ' older than that, rejected, or never reviewed).');
 
   // Build events, de-duplicating slugs.
   const used = new Map();
   const events = [];
   let collisions = 0;
   let slugMismatches = 0;
+  let repeats = 0;
 
-  for (const row of kept) {
+  // The same event can be in the sheet more than once. The Archive tab has
+  // a row of The Glasshouse's Shawn Colvin in it twice, for instance. They
+  // are the same event, so they get one page - not two, one of which would
+  // be called "...-2".
+  const seenIds = new Set();
+
+  for (const row of published.concat(archived)) {
+    const eventId = String(row.EventID || '').trim();
+    if (eventId && seenIds.has(eventId)) {
+      repeats++;
+      continue;
+    }
+    if (eventId) seenIds.add(eventId);
+
     const base = eventSlug(row);
     if (clientSideSlug(row) !== base) slugMismatches++;
 
@@ -857,10 +1049,22 @@ async function main() {
   if (collisions) {
     console.log('NOTE: ' + collisions + ' duplicate slug(s) received -2, -3 suffixes.');
   }
+  if (repeats) {
+    console.log('NOTE: ' + repeats + ' row(s) repeated an event that was already ' +
+      'written, and were written once.');
+  }
+
+  // Upcoming events are listed on the events index and come first in the
+  // sitemap. Events that have already happened keep their page - and their
+  // URL - but they are not linked from the index, and they sit at the bottom
+  // of the sitemap.
+  const listed = events.filter(ev => isUpcoming(ev, today));
+  const expired = events.filter(ev => !isUpcoming(ev, today));
 
   if (CONFIG.dryRun) {
-    console.log('\n--dry-run: nothing written. First 5 slugs:');
-    events.slice(0, 5).forEach(ev => console.log('  /events/' + ev.slug + '/'));
+    console.log('\n--dry-run: nothing written. First 5 upcoming slugs:');
+    listed.slice(0, 5).forEach(ev => console.log('  /events/' + ev.slug + '/'));
+    console.log('  ...and ' + expired.length + ' past event(s) that keep their pages.');
     return;
   }
 
@@ -870,18 +1074,41 @@ async function main() {
 
   let written = 0;
   for (const ev of events) {
+    const isPast = !isUpcoming(ev, today);
     const dir = path.join(CONFIG.eventsDir, ev.slug);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), buildEventPage(ev), 'utf8');
+    fs.writeFileSync(path.join(dir, 'index.html'), buildEventPage(ev, isPast), 'utf8');
     written++;
   }
-  fs.writeFileSync(path.join(CONFIG.eventsDir, 'index.html'), buildEventsIndex(events), 'utf8');
-  fs.writeFileSync(CONFIG.sitemapPath, buildSitemap(events), 'utf8');
 
-  console.log('Wrote ' + written + ' event pages, events/index.html and sitemap.xml.');
+  fs.writeFileSync(path.join(CONFIG.eventsDir, 'index.html'), buildEventsIndex(listed), 'utf8');
+  fs.writeFileSync(CONFIG.sitemapPath, buildSitemap(listed, expired), 'utf8');
+
+  console.log('Wrote ' + written + ' event pages (' + listed.length +
+    ' upcoming and listed, ' + expired.length + ' past and kept), ' +
+    'events/index.html and sitemap.xml.');
 }
 
-main().catch(err => {
-  console.error('FAILED: ' + err.message);
-  process.exit(1);
-});
+// Run the build when this file is run directly, which is what the workflow
+// does. Requiring it instead just gives the functions above, so the tests can
+// use the real code rather than a copy of it.
+if (require.main === module) {
+  main().catch(err => {
+    console.error('FAILED: ' + err.message);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  CONFIG: CONFIG,
+  main: main,
+  parseCsv: parseCsv,
+  isPublishedRow: isPublishedRow,
+  isUpcoming: isUpcoming,
+  isArchivedButStillPublic: isArchivedButStillPublic,
+  monthsAgoStr: monthsAgoStr,
+  eventSlug: eventSlug,
+  buildEventPage: buildEventPage,
+  buildEventsIndex: buildEventsIndex,
+  buildSitemap: buildSitemap
+};
