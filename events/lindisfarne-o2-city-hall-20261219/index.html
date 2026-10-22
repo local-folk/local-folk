@@ -132,6 +132,12 @@
   .line { margin: 0 0 10px; }
   .venue { font-weight: 600; }
   .muted { color: var(--muted); }
+  /* The note on the page of an event that has already happened. */
+  .passed { color: var(--muted); font-style: italic; }
+  /* The marker that goes in front of the title of an event that has already
+     happened. It is a label, not part of the event's name, so it is kept
+     outside the link and set apart from the title itself. */
+  .pastflag { color: var(--muted); font-style: italic; }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
   .btn {
     display: inline-block; padding: 9px 16px; border-radius: 8px;
@@ -157,11 +163,11 @@
   "@type": "Event",
   "name": "Lindisfarne",
   "startDate": "2026-12-19T18:45",
-  "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/lindisfarne-o2-city-hall-20261219/",
   "description": "Security - Bag Policy: Large bags including rucksacks are not allowed. There are no facilities to leave large bags or luggage. If you really have to bring a bag -- and it's preferable you don't, please make sure it's small. Only one small bag per person is permitted and it must not be bigger than A4 size. Height: 28.7cm Width: 21cm Depth 15cm",
   "inLanguage": "en-GB",
+  "eventStatus": "https://schema.org/EventScheduled",
   "location": {
     "@type": "Place",
     "name": "O2 City Hall",

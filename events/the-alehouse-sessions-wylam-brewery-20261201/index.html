@@ -132,6 +132,12 @@
   .line { margin: 0 0 10px; }
   .venue { font-weight: 600; }
   .muted { color: var(--muted); }
+  /* The note on the page of an event that has already happened. */
+  .passed { color: var(--muted); font-style: italic; }
+  /* The marker that goes in front of the title of an event that has already
+     happened. It is a label, not part of the event's name, so it is kept
+     outside the link and set apart from the title itself. */
+  .pastflag { color: var(--muted); font-style: italic; }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
   .btn {
     display: inline-block; padding: 9px 16px; border-radius: 8px;
@@ -157,11 +163,11 @@
   "@type": "Event",
   "name": "The Alehouse Sessions",
   "startDate": "2026-12-01T18:30",
-  "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/the-alehouse-sessions-wylam-brewery-20261201/",
   "description": "The Alehouse Sessions – curated and devised by Bjarte Eike – is an ever changing and evolving insight into the music of a 17th century tavern. It gives audiences a window into this tumultuous period through overtures, English sea shanties, and Scandinavian folk songs. This diversion from the traditional concert model is what is at the heart of the Sessions. Through the medium of these well-loved tunes, a story of the period is interwoven into the music making; creating a unique environment between audience and performer. Using their own arrangement of the tunes, these ‘Alehouse Boys’ combine this unique format with humour, an unrivalled virtuosity and flare for improvisation.",
   "inLanguage": "en-GB",
+  "eventStatus": "https://schema.org/EventScheduled",
   "location": {
     "@type": "Place",
     "name": "Wylam Brewery",

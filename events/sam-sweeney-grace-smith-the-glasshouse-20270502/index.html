@@ -132,6 +132,12 @@
   .line { margin: 0 0 10px; }
   .venue { font-weight: 600; }
   .muted { color: var(--muted); }
+  /* The note on the page of an event that has already happened. */
+  .passed { color: var(--muted); font-style: italic; }
+  /* The marker that goes in front of the title of an event that has already
+     happened. It is a label, not part of the event's name, so it is kept
+     outside the link and set apart from the title itself. */
+  .pastflag { color: var(--muted); font-style: italic; }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
   .btn {
     display: inline-block; padding: 9px 16px; border-radius: 8px;
@@ -157,11 +163,11 @@
   "@type": "Event",
   "name": "Sam Sweeney & Grace Smith",
   "startDate": "2027-05-02T20:00",
-  "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/sam-sweeney-grace-smith-the-glasshouse-20270502/",
   "description": "Rich. Inventive. Traditional fiddle music reimagined. Sam Sweeney and Grace Smith are two of England’s leading fiddle players, known for their powerful, expressive playing and deep connection to traditional music. Sam, a BBC Folk Award winner and veteran of Bellowhead and Leveret, has been called “Britain’s Premier Fiddler” (Songlines), while Grace, a rising star with her acclaimed trio and work with Katie Doherty & the Navigators, brings a fresh, creative voice to the tradition. Both are passionate educators and innovative performers, combining archive inspiration with new compositions to create music that is richly rooted and boldly contemporary. Don’t miss your chance to see them in Sage Two in 2027.",
   "inLanguage": "en-GB",
+  "eventStatus": "https://schema.org/EventScheduled",
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",

@@ -132,6 +132,12 @@
   .line { margin: 0 0 10px; }
   .venue { font-weight: 600; }
   .muted { color: var(--muted); }
+  /* The note on the page of an event that has already happened. */
+  .passed { color: var(--muted); font-style: italic; }
+  /* The marker that goes in front of the title of an event that has already
+     happened. It is a label, not part of the event's name, so it is kept
+     outside the link and set apart from the title itself. */
+  .pastflag { color: var(--muted); font-style: italic; }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
   .btn {
     display: inline-block; padding: 9px 16px; border-radius: 8px;
@@ -157,11 +163,11 @@
   "@type": "Event",
   "name": "Rhiannon Giddens",
   "startDate": "2026-12-08T20:00",
-  "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/rhiannon-giddens-the-glasshouse-20261208/",
   "description": "Rhiannon Giddens has made a singular, iconic career out of stretching her brand of folk music, with its miles-deep historical roots and contemporary sensibilities, into just about every field imaginable. A two-time GRAMMY Award-winning singer and multi-instrumentalist, MacArthur “Genius” grant recipient, Pulitzer Prize winner, and composer of opera, ballet, and film, Giddens has centered her work around the mission of lifting up people whose contributions to American musical history have previously been overlooked or erased, and advocating for a more accurate understanding of the country’s musical origins through art. Giddens has released three albums under her own name and two in collaboration with Italian multi-instrumentalist Francesco Turrisi, all on Nonesuch Records. American Railroad , her first album in collaboration with the Silkroad Ensemble, was released in November 2024, and her most recent album, a collaboration with Justin Robinson, What Did the Blackbird Say to the Crow , released in April 2025. As Pitchfork once said, “few artists are so fearless and so ravenous in their exploration”—a journey that has led to NPR naming her one of its 25 Most Influential Women Musicians of the 21st Century and to American Songwriter calling her “one of the most important musical minds currently walking the planet.” rhiannongiddens.com",
   "inLanguage": "en-GB",
+  "eventStatus": "https://schema.org/EventScheduled",
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",

@@ -132,6 +132,12 @@
   .line { margin: 0 0 10px; }
   .venue { font-weight: 600; }
   .muted { color: var(--muted); }
+  /* The note on the page of an event that has already happened. */
+  .passed { color: var(--muted); font-style: italic; }
+  /* The marker that goes in front of the title of an event that has already
+     happened. It is a label, not part of the event's name, so it is kept
+     outside the link and set apart from the title itself. */
+  .pastflag { color: var(--muted); font-style: italic; }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
   .btn {
     display: inline-block; padding: 9px 16px; border-radius: 8px;
@@ -157,11 +163,11 @@
   "@type": "Event",
   "name": "Martin Simpson",
   "startDate": "2026-10-28T20:00",
-  "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/martin-simpson-the-glasshouse-20261028/",
   "description": "A gifted and influential guitarist, banjoist, singer, and songwriter, Martin Simpson is one of the most visible examples of the relationship between the traditional folk music of the United Kingdom and American roots music.",
   "inLanguage": "en-GB",
+  "eventStatus": "https://schema.org/EventScheduled",
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",

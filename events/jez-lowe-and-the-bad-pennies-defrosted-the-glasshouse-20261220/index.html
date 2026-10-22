@@ -132,6 +132,12 @@
   .line { margin: 0 0 10px; }
   .venue { font-weight: 600; }
   .muted { color: var(--muted); }
+  /* The note on the page of an event that has already happened. */
+  .passed { color: var(--muted); font-style: italic; }
+  /* The marker that goes in front of the title of an event that has already
+     happened. It is a label, not part of the event's name, so it is kept
+     outside the link and set apart from the title itself. */
+  .pastflag { color: var(--muted); font-style: italic; }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
   .btn {
     display: inline-block; padding: 9px 16px; border-radius: 8px;
@@ -157,11 +163,11 @@
   "@type": "Event",
   "name": "Jez Lowe and the Bad Pennies Defrosted!",
   "startDate": "2026-12-20T14:00",
-  "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/jez-lowe-and-the-bad-pennies-defrosted-the-glasshouse-20261220/",
   "description": "Toe-tapping. Uplifting. A North East Christmas institution. Who’s performed at The Glasshouse more than any other artist? Yes, it’s Jez Lowe. He’s back again this year with his band The Bad Pennies and their infectious mixture of seasonal songs, old favourites, toe-tapping tunes and witty banter. Once more you can join award-winning songwriter and BBC Radio 4 presenter Jez Lowe for a whistle stop tour of the music and traditions of County Durham, Tyneside and Northumberland. Featuring Jez’s trademark songwriting artistry and a good dose of laughs along the way. With harmony vocals, guitars, fiddle, Northumbrian pipes, bass and piano. Make sure you book early to get your Jez Lowe Christmas fix for 2026.",
   "inLanguage": "en-GB",
+  "eventStatus": "https://schema.org/EventScheduled",
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",

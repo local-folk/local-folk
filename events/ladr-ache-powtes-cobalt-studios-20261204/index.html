@@ -132,6 +132,12 @@
   .line { margin: 0 0 10px; }
   .venue { font-weight: 600; }
   .muted { color: var(--muted); }
+  /* The note on the page of an event that has already happened. */
+  .passed { color: var(--muted); font-style: italic; }
+  /* The marker that goes in front of the title of an event that has already
+     happened. It is a label, not part of the event's name, so it is kept
+     outside the link and set apart from the title itself. */
+  .pastflag { color: var(--muted); font-style: italic; }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
   .btn {
     display: inline-block; padding: 9px 16px; border-radius: 8px;
@@ -157,11 +163,11 @@
   "@type": "Event",
   "name": "ladr ache + Powtes",
   "startDate": "2026-12-04T19:00",
-  "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/ladr-ache-powtes-cobalt-studios-20261204/",
   "description": "ladr ache ladr ache is a six-piece collective from Brussels that combines polyphonic singing with hypnotic rhythms and raw punk energy. They start from traditional polyphony, but open this up to the world of electronic music. Live, the collective takes you to imaginary landscapes where pounding drums clash with buzzing drones, mechanical pulses clash with enchanting voices. A gem from the French-speaking underground. listen here — Powtes Powtes are a six piece collective which brings together musicians from Newcastle’s folk and improvised music scene. They share an interest in drones, acoustic textures and unusual approaches to folk songs. They perform sensitive ballads which sit upon a rich foundation of twin fiddles, banjo, harp, whistle, one row melodeon, trombone and guitar. The music of Powtes is at once gentle and overwhelming. The group regularly performs in an intimate, acoustic context, often playing in the round. FFO: Lankum, Adrianne Lenker, Shovel Dance Collective, Pentangle. powtes.bandcamp.com — This event is delivered with financial support from The Liveline Fund, backed by LIVE Trust Charity & delivered by Music Venue Trust in partnership with Save Our Scene & The Association of Independent Promoters. #LivelineFund #LiveTrust —",
   "inLanguage": "en-GB",
+  "eventStatus": "https://schema.org/EventScheduled",
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
