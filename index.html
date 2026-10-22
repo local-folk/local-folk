@@ -1166,8 +1166,15 @@ function loadEvents() {
     download: true,
     header: true,
     complete: function(results) {
+      // Only events that are still to come are listed here.
+      //
+      // The Published tab also holds events that have already happened: the
+      // scraper keeps each one for six months after the event so its own
+      // page stays online. Those are not part of the list, the map or the
+      // favourites, so they are dropped as the list is built.
       allEvents = results.data
         .filter(row => row.Title && row.Date)
+        .filter(row => !isPastDate(row.Date))
         .map((row, idx) => ({
           eventId: row.EventID || '',
           domId: 'event-' + idx + '-' + (row.EventID || row.Title).replace(/[^a-zA-Z0-9]/g, '').slice(0, 40),
@@ -1211,6 +1218,19 @@ function startOfWeek(date) {
   const monday = new Date(date);
   monday.setDate(date.getDate() - daysSinceMonday);
   return monday;
+}
+
+/* An event that has already happened is not listed on the homepage.
+   The Published tab keeps it for six months after the event so that its own
+   page stays online, but the list and the map are for what is still to come.
+
+   A date that is not in the expected format is left alone rather than dropped
+   on the floor - a broken date is a bug in the sheet, not a reason to hide an
+   event without saying so. */
+function isPastDate(dateStr) {
+  const s = String(dateStr || '').trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
+  return s < todayStr();
 }
 
 function passesDateFilter(dateStr) {
