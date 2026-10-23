@@ -1,12 +1,187 @@
 {
-  "generatedAt": "2026-10-23T03:47:49.795Z",
+  "generatedAt": "2026-10-23T07:32:07.307Z",
   "posts": [
     {
-      "PostID": "Weekend-231026",
+      "PostID": "Weekly-231026",
+      "PostType": "Weekly Roundup",
+      "Status": "Draft",
+      "ScheduledFor": "2026-10-23T07:00:00.000Z",
+      "EventIDs": "2026-10-23|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop,2026-10-26|the lit phil|halloween thoughts the ghost the skull and the sheet,2026-10-27|north shields community hub and library|dr katie liddane witchhaunting the ghosts of witches in the north east and beyond,2026-10-28|the glasshouse gateshead quays ne8 2yr|martin simpson,2026-10-29|kings hall armstrong building newcastle university queen victoria road newcastle ne1 7ru|lunchtime concert",
+      "Candidates": [
+        {
+          "date": "2026-10-23",
+          "day": "Friday",
+          "events": [
+            {
+              "id": "2026-10-23|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
+              "title": "Willow Star Workshop",
+              "venue": "The Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT",
+              "category": "Heritage Workshop",
+              "rank": 28,
+              "size": 2
+            },
+            {
+              "id": "2026-10-23|lubber fiend|diy ceilidh",
+              "title": "DIY Ceilidh",
+              "venue": "Lubber Fiend",
+              "category": "Ceilidh / Social Dance",
+              "rank": 32,
+              "size": 3
+            },
+            {
+              "id": "2026-10-23|the cumberland arms|an criscn ln irish session",
+              "title": "An Crúiscín Làn' Irish Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-10-26",
+          "day": "Monday",
+          "events": [
+            {
+              "id": "2026-10-26|the lit phil|halloween thoughts the ghost the skull and the sheet",
+              "title": "Halloween Thoughts - The Ghost, the Skull & the Sheet",
+              "venue": "The Lit & Phil",
+              "category": "Spoken Word",
+              "rank": 18,
+              "size": 2
+            },
+            {
+              "id": "2026-10-26|bridge hotel|singaround",
+              "title": "Singaround",
+              "venue": "Bridge Hotel",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-10-27",
+          "day": "Tuesday",
+          "events": [
+            {
+              "id": "2026-10-27|north shields community hub and library|dr katie liddane witchhaunting the ghosts of witches in the north east and beyond",
+              "title": "Dr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond",
+              "venue": "North Shields Community Hub & Library",
+              "category": "Spoken Word",
+              "rank": 18,
+              "size": 2
+            },
+            {
+              "id": "2026-10-27|the wheatsheaf felling|the wheatsheaf session",
+              "title": "The Wheatsheaf Session",
+              "venue": "The Wheatsheaf, Felling",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-10-28",
+          "day": "Wednesday",
+          "events": [
+            {
+              "id": "2026-10-28|the glasshouse gateshead quays ne8 2yr|martin simpson",
+              "title": "Martin Simpson",
+              "venue": "The Glasshouse",
+              "category": "Folk Music",
+              "rank": 5,
+              "size": 5
+            },
+            {
+              "id": "2026-10-28|benedictine social centre|cramlington folk club the brothers gillespie",
+              "title": "Cramlington Folk Club: The Brothers Gillespie",
+              "venue": "Benedictine Social Centre",
+              "category": "Folk Music",
+              "rank": 7,
+              "size": 3
+            },
+            {
+              "id": "2026-10-28|cobalt studios|introduction to leathercraft with minuel designs",
+              "title": "Introduction to Leathercraft with Minuel Designs",
+              "venue": "Cobalt Studios",
+              "category": "Heritage Workshop",
+              "rank": 27,
+              "size": 3
+            },
+            {
+              "id": "2026-10-28|baltic centre for contemporary art|winter makers market by endless love creative",
+              "title": "Winter Makers Market by Endless Love Creative",
+              "venue": "BALTIC",
+              "category": "Market",
+              "rank": 37,
+              "size": 3
+            },
+            {
+              "id": "2026-10-28|the brewery|singaround",
+              "title": "Singaround",
+              "venue": "The Brewery",
+              "category": "Music Session",
+              "rank": 47,
+              "size": 3
+            },
+            {
+              "id": "2026-10-28|the cumberland arms|mostly irish session",
+              "title": "Mostly Irish Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            },
+            {
+              "id": "2026-10-28|bridge hotel|Sacred Harp Singing Workshop",
+              "title": "Sacred Harp Singing Workshop",
+              "venue": "Bridge Hotel",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-10-29",
+          "day": "Thursday",
+          "events": [
+            {
+              "id": "2026-10-29|kings hall armstrong building newcastle university queen victoria road newcastle ne1 7ru|lunchtime concert",
+              "title": "Lunchtime Concert",
+              "venue": "King's Hall",
+              "category": "Folk Music",
+              "rank": 7,
+              "size": 3
+            },
+            {
+              "id": "2026-10-29|tyneside irish centre|tyneside irish centre session",
+              "title": "Tyneside Irish Centre Session",
+              "venue": "Tyneside Irish Centre",
+              "category": "Music Session",
+              "rank": 47,
+              "size": 3
+            }
+          ]
+        }
+      ],
+      "FBCaption": "// 23-29 OCT // WEEKLY ROUNDUP\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\n\nTHURSDAY - 29/10\nLunchtime Concert\nKing's Hall\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 23-29 OCT // WEEKLY ROUNDUP\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\n\nTHURSDAY - 29/10\nLunchtime Concert\nKing's Hall\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekly-231026",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-231026.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-231026.jpg",
+      "FBPostID": "",
+      "IGPostID": "",
+      "Notes": ""
+    },
+    {
+      "PostID": "Weekend-231026rnjgt0",
       "PostType": "Weekend Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-10-23T07:00:00.000Z",
-      "EventIDs": "2026-10-23|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop,2026-10-23|lubber fiend|diy ceilidh,2026-10-24|jarrow hall|cabinet of curiosities,2026-10-24|cobalt studios|experimental basketweaving with rachael eden,2026-10-25|the cluny 2 34 lime street ouseburn newcastle ne1 2pq|ger odonnell,2026-10-25|cumberland arms|gabriel bath chlo mulhall danny marshall hyem",
+      "EventIDs": "2026-10-23|lubber fiend|diy ceilidh,2026-10-23|the cumberland arms|an criscn ln irish session,2026-10-24|jarrow hall|cabinet of curiosities,2026-10-24|cobalt studios|experimental basketweaving with rachael eden,2026-10-25|the cluny 2 34 lime street ouseburn newcastle ne1 2pq|ger odonnell,2026-10-25|cumberland arms|gabriel bath chlo mulhall danny marshall hyem",
       "Candidates": [
         {
           "date": "2026-10-23",
@@ -107,11 +282,11 @@
           ]
         }
       ],
-      "FBCaption": "// 23-25 OCT // WEEKEND ROUNDUP\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\nDIY Ceilidh\nLubber Fiend\n\nSATURDAY - 24/10\nCabinet of Curiosities\nJarrow Hall\nExperimental Basketweaving with Rachael Eden\nCobalt Studios\n\nSUNDAY - 25/10\nGer O’Donnell\nThe Cluny 2\nGabriel Bath + Chloë Mulhall & Danny Marshall + Hyem\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 23-25 OCT // WEEKEND ROUNDUP\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\nDIY Ceilidh\nLubber Fiend\n\nSATURDAY - 24/10\nCabinet of Curiosities\nJarrow Hall\nExperimental Basketweaving with Rachael Eden\nCobalt Studios\n\nSUNDAY - 25/10\nGer O’Donnell\nThe Cluny 2\nGabriel Bath + Chloë Mulhall & Danny Marshall + Hyem\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekend-231026",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026.jpg",
+      "FBCaption": "// 23-25 OCT // WEEKEND ROUNDUP\n\nFRIDAY - 23/10\nDIY Ceilidh\nLubber Fiend\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 24/10\nCabinet of Curiosities\nJarrow Hall\nExperimental Basketweaving with Rachael Eden\nCobalt Studios\n\nSUNDAY - 25/10\nGer O’Donnell\nThe Cluny 2\nGabriel Bath + Chloë Mulhall & Danny Marshall + Hyem\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 23-25 OCT // WEEKEND ROUNDUP\n\nFRIDAY - 23/10\nDIY Ceilidh\nLubber Fiend\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 24/10\nCabinet of Curiosities\nJarrow Hall\nExperimental Basketweaving with Rachael Eden\nCobalt Studios\n\nSUNDAY - 25/10\nGer O’Donnell\nThe Cluny 2\nGabriel Bath + Chloë Mulhall & Danny Marshall + Hyem\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-231026rnjgt0",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026rnjgt0.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026rnjgt0.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
