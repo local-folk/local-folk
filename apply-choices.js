@@ -63,6 +63,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { archiveBase } = require('./archive-name.js');
 
 const INPUT = path.join(__dirname, 'social-posts.json');
 
@@ -348,7 +349,7 @@ async function main() {
   // when the owner swaps that day's event.
   let applied = 0;
   posts.forEach((post) => {
-    const slug = post.variant + '-' + post.dateLabel;
+    const slug = archiveBase(post.variant, post.dateLabel);
     let picks = choices[post.PostID || slug] || choices[post.variant];
     if (!picks) return;
 
