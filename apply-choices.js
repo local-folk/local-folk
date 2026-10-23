@@ -124,6 +124,13 @@ function readChoices(text, now) {
     const id = String(r[idCol] || '').trim();
     if (!id) return;
 
+    // Strip the revision stamp (-rxxxxx) so every rebuild of the same post
+    // lands on one key, and the latest row in the sheet wins. Without this,
+    // a freshly stamped dateLabel never matches the key the choice was saved
+    // under, so the old unstamped choice is always applied instead.
+    const normId = id.replace(/-r[0-9a-z]+$/i, '');
+    if (!normId) return;
+
     if (whenCol !== -1) {
       const when = Date.parse(String(r[whenCol] || '').trim());
       if (!isNaN(when)) {
@@ -146,7 +153,7 @@ function readChoices(text, now) {
       .map((s) => s.trim()).filter(Boolean);
     if (!picks.length) return;
     // Later rows for the same post replace earlier ones.
-    out[id] = picks;
+    out[normId] = picks;
   });
 
   return out;
@@ -349,7 +356,10 @@ async function main() {
   // when the owner swaps that day's event.
   let applied = 0;
   posts.forEach((post) => {
-    const slug = archiveBase(post.variant, post.dateLabel);
+    // Match on the date without the revision stamp, so a stamped post still
+    // finds the choice saved under its unstamped key.
+    const cleanDate = String(post.dateLabel || '').replace(/-r[0-9a-z]+$/i, '');
+    const slug = archiveBase(post.variant, cleanDate);
     let picks = choices[post.PostID || slug] || choices[post.variant];
     if (!picks) return;
 
