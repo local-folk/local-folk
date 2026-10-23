@@ -61,7 +61,14 @@ const CONFIG = {
   archiveRetentionMonths: 6,
 
   eventsDir: path.join(__dirname, 'events'),
+  // The past-events page. It lists the event pages that are still inside the
+  // retention window but no longer upcoming, so they are reachable by a link
+  // rather than existing only in the sitemap.
+  archiveDir: path.join(__dirname, 'archive'),
   sitemapPath: path.join(__dirname, 'sitemap.xml'),
+  // The lastmod memory. See buildSitemap() for why this is a file rather than
+  // "today" on every entry.
+  lastmodPath: path.join(__dirname, 'lastmod.json'),
   logoImage: '/og-image.png',
   dryRun: process.argv.includes('--dry-run')
 };
@@ -401,6 +408,128 @@ function clamp(s, n) {
 }
 
 // ---------------------------------------------------------------------------
+// Structured data helpers
+// ---------------------------------------------------------------------------
+
+/**
+ * The UTC offset for a London wall-clock time, as "+01:00" or "+00:00".
+ *
+ * Event startDate was previously written without an offset ("2026-11-29T19:30").
+ * Google falls back to the location's timezone in that case, which happens to
+ * be right while every event is in Newcastle, but it is a guess. An explicit
+ * offset removes the guess and fixes the event to the correct instant across
+ * the March and October clock changes.
+ *
+ * The offset is worked out by treating the wall-clock time as UTC, formatting
+ * that instant in Europe/London, and reading back the difference. That uses the
+ * platform's own timezone rules, so it follows the real transition dates rather
+ * than a hard-coded month boundary.
+ */
+function londonOffsetSuffix_(dateStr, timeStr) {
+  const d = parseDate(dateStr);
+  if (!d) return '';
+  const m = String(timeStr || '').match(/^(\d{1,2}):(\d{2})/);
+  const hours = m ? parseInt(m[1], 10) : 0;
+  const minutes = m ? parseInt(m[2], 10) : 0;
+  if (hours > 23 || minutes > 59) return '';
+
+  const guess = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(),
+    hours, minutes);
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/London',
+    hour12: false,
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit'
+  }).formatToParts(new Date(guess));
+
+  const value = type => {
+    const found = parts.find(p => p.type === type);
+    return found ? parseInt(found.value, 10) : 0;
+  };
+  const asUtc = Date.UTC(value('year'), value('month') - 1, value('day'),
+    value('hour') % 24, value('minute'));
+
+  const offsetMinutes = Math.round((asUtc - guess) / 60000);
+  const sign = offsetMinutes < 0 ? '-' : '+';
+  const abs = Math.abs(offsetMinutes);
+  return sign + ('0' + Math.floor(abs / 60)).slice(-2) + ':' +
+    ('0' + (abs % 60)).slice(-2);
+}
+
+/**
+ * A schema.org PostalAddress from the sheet's single-line address.
+ *
+ * The sheet holds addresses like
+ *   "James Place Street, Ouseburn, Newcastle, NE6 1LD"
+ *   "Main Road, Ryton, Gateshead, England, NE40 3RX, United Kingdom"
+ *   "Church Bank, Jarrow NE32 3DY"
+ * and sometimes nothing at all. Google's Event documentation wants
+ * location.address to be a PostalAddress rather than a plain string, so this
+ * splits off the postcode and the final place name and hands the rest over as
+ * the street address.
+ *
+ * It never invents anything: if no postcode is recognised, the address is kept
+ * whole as the street address, which is still a valid PostalAddress.
+ */
+function postalAddress_(raw) {
+  const text = String(raw || '').trim();
+  if (!text) return null;
+
+  // Country names are not part of the street address, and addressCountry is
+  // set from the site's own location rather than parsed from the text.
+  let parts = text.split(',')
+    .map(s => s.trim())
+    .filter(Boolean)
+    .filter(s => !/^(united kingdom|great britain|england|scotland|wales|uk|gb)\.?$/i.test(s));
+  if (!parts.length) parts = [text];
+
+  let postalCode = '';
+  const last = parts[parts.length - 1];
+  const code = last.match(/([A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2})\s*$/i);
+  if (code) {
+    postalCode = code[1].toUpperCase().replace(/\s+/g, ' ');
+    const before = last.slice(0, code.index).replace(/[,\s]+$/, '').trim();
+    if (before) parts[parts.length - 1] = before;
+    else parts.pop();
+  }
+  if (!parts.length) return null;
+
+  // The last remaining part is the town, unless it is all there is.
+  const locality = parts.length > 1 ? parts[parts.length - 1] : '';
+  const street = parts.length > 1 ? parts.slice(0, -1).join(', ') : parts[0];
+
+  const address = { '@type': 'PostalAddress' };
+  if (street) address.streetAddress = street;
+  if (locality) address.addressLocality = locality;
+  if (postalCode) address.postalCode = postalCode;
+  address.addressCountry = 'GB';
+  return address;
+}
+
+/**
+ * The acts named in an event title, or null when they cannot be told apart.
+ *
+ * Several listings name more than one act with " + ", for example
+ * "Craven + Sam Baxter and Merle Harbron + Frankie Insley". Splitting on that
+ * separator gives real performer names.
+ *
+ * Titles that also carry a promoter or series prefix ("Fresh Thursday //
+ * Salt House + Maja Bugge & Dave Evans", "OFFGRID: MAAR + Glad Town Ghost")
+ * are left alone: splitting them would publish the prefix as part of the act's
+ * name, and a wrong name is worse than no performer field. Google lists
+ * performer as recommended, not required, so omitting it costs nothing.
+ */
+function performersFor_(title) {
+  const parts = String(title || '')
+    .split(' + ')
+    .map(s => s.trim())
+    .filter(Boolean);
+  if (parts.length < 2) return null;
+  if (parts.some(p => p.indexOf('//') !== -1 || p.indexOf(':') !== -1)) return null;
+  return parts.map(name => ({ '@type': 'PerformingGroup', name: name }));
+}
+
+// ---------------------------------------------------------------------------
 // Per-event page
 // ---------------------------------------------------------------------------
 
@@ -447,11 +576,22 @@ function buildEventPage(ev, isPast) {
       ? 'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lng
       : null);
 
+  // An explicit UTC offset makes the start and end times unambiguous. The
+  // offset is per event, because it changes with the clocks.
+  const startOffset = ev.startTime ? londonOffsetSuffix_(ev.date, ev.startTime) : '';
+  const endOffset = ev.endTime ? londonOffsetSuffix_(ev.date, ev.endTime) : '';
+  const startDate = ev.startTime
+    ? ev.date + 'T' + padTime(ev.startTime) + ':00' + startOffset
+    : ev.date;
+  const endDate = ev.endTime
+    ? ev.date + 'T' + padTime(ev.endTime) + ':00' + endOffset
+    : '';
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: ev.title,
-    startDate: ev.date + (ev.startTime ? 'T' + padTime(ev.startTime) : ''),
+    startDate: startDate,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     url: url,
     description: ev.description || shareText,
@@ -463,16 +603,27 @@ function buildEventPage(ev, isPast) {
   // EventPostponed, EventRescheduled and EventScheduled - so every one of
   // them would be wrong. Saying nothing is the accurate answer.
   if (!isPast) jsonLd.eventStatus = 'https://schema.org/EventScheduled';
-  if (ev.endTime) jsonLd.endDate = ev.date + 'T' + padTime(ev.endTime);
+  if (endDate) jsonLd.endDate = endDate;
+
+  const addressText = ev.address ||
+    (ev.venue ? ev.venue + ', Newcastle upon Tyne' : 'Newcastle upon Tyne');
   jsonLd.location = {
     '@type': 'Place',
     name: ev.venue || 'Event location',
-    address: ev.address || (ev.venue ? ev.venue + ', Newcastle upon Tyne' : 'Newcastle upon Tyne')
+    // A PostalAddress rather than a bare string: Google asks for the address
+    // as an object. postalAddress_ keeps the text verbatim when it cannot
+    // recognise a postcode, so this never invents an address.
+    address: postalAddress_(addressText) || addressText
   };
   if (hasGeo) {
     jsonLd.location.geo = { '@type': 'GeoCoordinates', latitude: lat, longitude: lng };
   }
   if (ev.category) jsonLd.about = ev.category;
+
+  // Only present when the title names more than one act unambiguously.
+  const performers = performersFor_(ev.title);
+  if (performers) jsonLd.performer = performers;
+
   jsonLd.organizer = { '@type': 'Organization', name: 'The Kirn', url: origin + '/' };
   jsonLd.superOrganizer = jsonLd.organizer;
 
@@ -817,7 +968,7 @@ function padTime(t) {
 // Static events index + sitemap
 // ---------------------------------------------------------------------------
 
-function buildEventsIndex(events) {
+function buildEventsIndex(events, pastCount) {
   const origin = CONFIG.siteOrigin;
   const byMonth = new Map();
   for (const ev of events) {
@@ -900,9 +1051,125 @@ function buildEventsIndex(events) {
 <header><h1><a href="/">The Kirn</a></h1></header>
 <main>
   <p>${events.length} upcoming events. <a href="/">Browse them on the map</a>.</p>
-  <p class="jump">Jump to: ${months}</p>
+${pastCount ? '  <p class="jump">Looking for something that has already happened? <a href="/archive/">Browse past events</a>.</p>\n' : ''}  <p class="jump">Jump to: ${months}</p>
 ${sections}
   <p><a href="/">&larr; All events</a></p>
+</main>
+<footer><p><a href="/">thekirn.co.uk</a></p></footer>
+</body>
+</html>
+`;
+}
+
+/**
+ * The past-events page, at /archive/.
+ *
+ * Events that have happened keep their own pages and their own URLs for six
+ * months (see CONFIG.archiveRetentionMonths), but the events index lists only
+ * what is still to come. Without this page those event pages are linked from
+ * nowhere at all - they are in the sitemap and nothing else points at them -
+ * which is exactly the shape Google treats as low-value and slow to crawl.
+ *
+ * The page lists the same set the build writes pages for, newest first, so it
+ * cannot advertise an event whose page has already gone.
+ */
+function buildArchiveIndex(past) {
+  const origin = CONFIG.siteOrigin;
+
+  const ordered = (past || []).slice().sort((a, b) =>
+    b.date.localeCompare(a.date) ||
+    (b.startTime || '').localeCompare(a.startTime || '') ||
+    a.title.localeCompare(b.title));
+
+  const byMonth = new Map();
+  for (const ev of ordered) {
+    const d = parseDate(ev.date);
+    if (!d) continue;
+    const key = MONTHS[d.getUTCMonth()] + ' ' + d.getUTCFullYear();
+    if (!byMonth.has(key)) byMonth.set(key, []);
+    byMonth.get(key).push(ev);
+  }
+
+  const sections = [...byMonth.entries()].map(([month, list]) => {
+    const items = list.map(ev => {
+      return `    <li><a href="/events/${esc(ev.slug)}/">` +
+        `<span class="d">${esc(formatDateNumeric(ev.date))}</span> ` +
+        esc(ev.title) +
+        (ev.venue ? ` - ${esc(ev.venue)}` : '') +
+        '</a></li>';
+    }).join('\n');
+    return `  <h2 id="${esc(monthSlug(month))}">${esc(month)}` +
+      `<span class="count">${list.length}</span></h2>\n  <ul>\n${items}\n  </ul>`;
+  }).join('\n');
+
+  const months = [...byMonth.keys()]
+    .map(m => `<a href="#${esc(monthSlug(m))}">${esc(m)}</a>`)
+    .join('');
+
+  const intro = ordered.length
+    ? `${ordered.length} past events. <a href="/events/">Browse what is still to come</a>, ` +
+      'or <a href="/">see them on the map</a>.'
+    : 'No past events are listed at the moment. ' +
+      '<a href="/events/">Browse what is still to come</a>.';
+
+  return `<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Folk &amp; Traditional Events in Newcastle | The Kirn</title>
+<meta name="description" content="Folk, traditional music, ceilidh, session and heritage events that have already taken place across Newcastle and the North East.">
+<link rel="canonical" href="${esc(origin + '/archive/')}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Kirn">
+<meta property="og:title" content="Past Folk &amp; Traditional Events in Newcastle">
+<meta property="og:description" content="Folk, traditional music, ceilidh, session and heritage events that have already taken place across Newcastle and the North East.">
+<meta property="og:url" content="${esc(origin + '/archive/')}">
+<meta property="og:image" content="${esc(origin + CONFIG.logoImage)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${esc(origin + CONFIG.logoImage)}">
+<meta name="theme-color" content="#660000">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap">
+<style>
+  body { margin:0; background:#ffffea; color:#210000;
+    font-family:-apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height:1.55; }
+  header { background:#660000; padding:14px 16px; text-align:center; }
+  header h1 { margin:0; font-size:1.9rem; font-weight:400;
+    font-family:'IM Fell English', Georgia, serif; }
+  header a { color:#ffffea; text-decoration:none; }
+  main { max-width:820px; margin:0 auto; padding:26px 18px 60px; }
+  h2 { font-family:'IM Fell English', Georgia, serif; font-weight:400;
+    font-size:1.5rem; margin:30px 0 8px; display:flex;
+    align-items:baseline; gap:10px; scroll-margin-top:12px; }
+  h2 .count { font-family:-apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size:.85rem; color:#6b4a3a; }
+  ul { list-style:none; padding:0; margin:0; }
+  li { border-bottom:1px solid #c9c2a0; }
+  li a { display:block; padding:9px 0; color:#210000; text-decoration:none;
+    font-size:.97rem; line-height:1.45; }
+  li a:hover, li a:focus { color:#b82e00; }
+  /* Fixed-width date keeps every line's title in a neat column. */
+  .d { display:inline-block; min-width:4.6em; font-variant-numeric:tabular-nums;
+    color:#6b4a3a; }
+  .jump { margin:0 0 6px; font-size:.9rem; }
+  .jump a { display:inline-block; margin:0 8px 6px 0; }
+  a { color:#b82e00; }
+  footer { border-top:1px solid #c9c2a0; padding:18px; text-align:center; font-size:.9rem; }
+</style>
+</head>
+<body>
+<header><h1><a href="/">The Kirn</a></h1></header>
+<main>
+  <p>${intro}</p>
+  <p class="jump">Jump to: ${months}</p>
+${sections}
+  <p><a href="/events/">&larr; Upcoming events</a></p>
 </main>
 <footer><p><a href="/">thekirn.co.uk</a></p></footer>
 </body>
@@ -924,21 +1191,87 @@ ${sections}
  * is the same in both lists. That is the whole point of splitting them here
  * rather than rebuilding the list from scratch.
  */
-function buildSitemap(upcoming, past) {
+/**
+ * A short fingerprint of a rendered page, used to decide whether its
+ * <lastmod> should move.
+ *
+ * FNV-1a over the UTF-16 code units, with the length appended so that two
+ * different strings cannot collide just by landing on the same 32-bit value.
+ * This only has to notice that a page changed between two builds; it is not a
+ * security hash and does not need to be one.
+ */
+function contentHash_(text) {
+  const s = String(text);
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h.toString(16) + '-' + s.length.toString(16);
+}
+
+/** The lastmod memory, or an empty one if it is missing or unreadable. */
+function readLastmodState_(file) {
+  try {
+    const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
+    if (raw && raw.pages && typeof raw.pages === 'object') return raw.pages;
+  } catch (err) {
+    // First run, or a corrupt file. Every page is treated as new, which is
+    // what the build did before this existed - so the worst case is the old
+    // behaviour, never a missing sitemap.
+  }
+  return {};
+}
+
+/**
+ * Keeps a page's lastmod only while its rendered HTML is unchanged.
+ *
+ * BEFORE: every URL in the sitemap carried today's date, because the build
+ * stamped `todayStr()` on all of them. A sitemap where all 313 URLs changed
+ * today, every day, is a signal Google learns to discount - so the one
+ * freshness hint available was being thrown away.
+ *
+ * NOW: the date moves only when the page's content actually changes. The
+ * memory lives in lastmod.json, which the workflow commits alongside the
+ * pages. If that file is missing the result is the old behaviour, so this
+ * cannot make the sitemap worse than it was.
+ */
+function lastmodFor_(url, html, previous, today) {
+  const hash = contentHash_(html);
+  const before = previous[url];
+  if (before && before.hash === hash && before.lastmod) {
+    return { hash: hash, lastmod: before.lastmod };
+  }
+  return { hash: hash, lastmod: today };
+}
+
+function buildSitemap(upcoming, past, lastmods) {
   const origin = CONFIG.siteOrigin;
-  const today = todayStr();
+  const dates = lastmods || {};
   const statics = [
     { loc: origin + '/', priority: '1.0', freq: 'daily' },
     { loc: origin + '/events/', priority: '0.9', freq: 'daily' },
+    { loc: origin + '/archive/', priority: '0.6', freq: 'weekly' },
     { loc: origin + '/about/', priority: '0.5', freq: 'monthly' },
     { loc: origin + '/submit/', priority: '0.7', freq: 'monthly' },
     { loc: origin + '/contact/', priority: '0.3', freq: 'yearly' }
   ];
-  const eventUrl = ev =>
-    `  <url>\n    <loc>${esc(origin + '/events/' + ev.slug + '/')}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`;
+
+  // lastmod is optional, and is left out rather than guessed for the pages
+  // this build does not render (the homepage, About, Submit, Contact).
+  const lastmodLine = loc => dates[loc]
+    ? `\n    <lastmod>${esc(dates[loc])}</lastmod>`
+    : '';
+
+  const eventUrl = ev => {
+    const loc = origin + '/events/' + ev.slug + '/';
+    return `  <url>\n    <loc>${esc(loc)}</loc>${lastmodLine(loc)}\n` +
+      `    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`;
+  };
 
   const urls = statics.map(s =>
-    `  <url>\n    <loc>${esc(s.loc)}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${s.freq}</changefreq>\n    <priority>${s.priority}</priority>\n  </url>`
+    `  <url>\n    <loc>${esc(s.loc)}</loc>${lastmodLine(s.loc)}\n` +
+    `    <changefreq>${s.freq}</changefreq>\n    <priority>${s.priority}</priority>\n  </url>`
   )
     .concat((upcoming || []).map(eventUrl))
     .concat((past || []).map(eventUrl));
@@ -1064,29 +1397,67 @@ async function main() {
   if (CONFIG.dryRun) {
     console.log('\n--dry-run: nothing written. First 5 upcoming slugs:');
     listed.slice(0, 5).forEach(ev => console.log('  /events/' + ev.slug + '/'));
-    console.log('  ...and ' + expired.length + ' past event(s) that keep their pages.');
+    console.log('  ...and ' + expired.length + ' past event(s) that keep their pages ' +
+      'and are listed on /archive/.');
     return;
   }
+
+  // Render every page before writing anything. The sitemap dates pages from
+  // what they actually render, so the text has to exist first.
+  const rendered = events.map(ev => ({
+    ev: ev,
+    isPast: !isUpcoming(ev, today),
+    url: CONFIG.siteOrigin + '/events/' + ev.slug + '/'
+  }));
+  rendered.forEach(page => { page.html = buildEventPage(page.ev, page.isPast); });
+
+  const eventsUrl = CONFIG.siteOrigin + '/events/';
+  const archiveUrl = CONFIG.siteOrigin + '/archive/';
+  const eventsIndexHtml = buildEventsIndex(listed, expired.length);
+  const archiveHtml = buildArchiveIndex(expired);
+
+  // Carry forward each page's lastmod when nothing about it changed.
+  const previous = readLastmodState_(CONFIG.lastmodPath);
+  const nextState = {};
+  const lastmods = {};
+  const remember = (url, html) => {
+    const entry = lastmodFor_(url, html, previous, today);
+    lastmods[url] = entry.lastmod;
+    nextState[url] = entry;
+  };
+  rendered.forEach(page => remember(page.url, page.html));
+  remember(eventsUrl, eventsIndexHtml);
+  remember(archiveUrl, archiveHtml);
 
   // Rebuild the events directory from scratch so stale pages disappear.
   fs.rmSync(CONFIG.eventsDir, { recursive: true, force: true });
   fs.mkdirSync(CONFIG.eventsDir, { recursive: true });
 
-  let written = 0;
-  for (const ev of events) {
-    const isPast = !isUpcoming(ev, today);
-    const dir = path.join(CONFIG.eventsDir, ev.slug);
+  for (const page of rendered) {
+    const dir = path.join(CONFIG.eventsDir, page.ev.slug);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), buildEventPage(ev, isPast), 'utf8');
-    written++;
+    fs.writeFileSync(path.join(dir, 'index.html'), page.html, 'utf8');
   }
 
-  fs.writeFileSync(path.join(CONFIG.eventsDir, 'index.html'), buildEventsIndex(listed), 'utf8');
-  fs.writeFileSync(CONFIG.sitemapPath, buildSitemap(listed, expired), 'utf8');
+  fs.writeFileSync(path.join(CONFIG.eventsDir, 'index.html'), eventsIndexHtml, 'utf8');
 
-  console.log('Wrote ' + written + ' event pages (' + listed.length +
+  // The archive is rebuilt from scratch too, so it can never keep listing an
+  // event whose page has fallen out of the retention window.
+  fs.rmSync(CONFIG.archiveDir, { recursive: true, force: true });
+  fs.mkdirSync(CONFIG.archiveDir, { recursive: true });
+  fs.writeFileSync(path.join(CONFIG.archiveDir, 'index.html'), archiveHtml, 'utf8');
+
+  fs.writeFileSync(CONFIG.sitemapPath, buildSitemap(listed, expired, lastmods), 'utf8');
+
+  // Sorted keys so an unchanged build rewrites identical bytes and the
+  // committed file stays diffable.
+  const state = { version: 1, pages: {} };
+  Object.keys(nextState).sort().forEach(url => { state.pages[url] = nextState[url]; });
+  fs.writeFileSync(CONFIG.lastmodPath, JSON.stringify(state, null, 2) + '\n', 'utf8');
+
+  console.log('Wrote ' + rendered.length + ' event pages (' + listed.length +
     ' upcoming and listed, ' + expired.length + ' past and kept), ' +
-    'events/index.html and sitemap.xml.');
+    'events/index.html, archive/index.html and sitemap.xml.');
 }
 
 // Run the build when this file is run directly, which is what the workflow
@@ -1110,5 +1481,11 @@ module.exports = {
   eventSlug: eventSlug,
   buildEventPage: buildEventPage,
   buildEventsIndex: buildEventsIndex,
-  buildSitemap: buildSitemap
+  buildArchiveIndex: buildArchiveIndex,
+  buildSitemap: buildSitemap,
+  // Exported so the tests can check the structured-data helpers directly.
+  londonOffsetSuffix_: londonOffsetSuffix_,
+  postalAddress_: postalAddress_,
+  performersFor_: performersFor_,
+  contentHash_: contentHash_
 };
