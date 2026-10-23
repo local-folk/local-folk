@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-10-23T07:32:07.307Z",
+  "generatedAt": "2026-10-23T08:34:09.691Z",
   "posts": [
     {
       "PostID": "Weekly-231026",
       "PostType": "Weekly Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-10-23T07:00:00.000Z",
-      "EventIDs": "2026-10-23|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop,2026-10-26|the lit phil|halloween thoughts the ghost the skull and the sheet,2026-10-27|north shields community hub and library|dr katie liddane witchhaunting the ghosts of witches in the north east and beyond,2026-10-28|the glasshouse gateshead quays ne8 2yr|martin simpson,2026-10-29|kings hall armstrong building newcastle university queen victoria road newcastle ne1 7ru|lunchtime concert",
+      "EventIDs": "2026-10-23|anarchy brew co|peatbog faeries,2026-10-26|the lit phil|halloween thoughts the ghost the skull and the sheet,2026-10-27|north shields community hub and library|dr katie liddane witchhaunting the ghosts of witches in the north east and beyond,2026-10-28|the glasshouse gateshead quays ne8 2yr|martin simpson,2026-10-29|kings hall armstrong building newcastle university queen victoria road newcastle ne1 7ru|lunchtime concert",
       "Candidates": [
         {
           "date": "2026-10-23",
           "day": "Friday",
           "events": [
+            {
+              "id": "2026-10-23|anarchy brew co|peatbog faeries",
+              "title": "Peatbog Faeries",
+              "venue": "Anarchy Brew Co.",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
             {
               "id": "2026-10-23|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
               "title": "Willow Star Workshop",
@@ -167,8 +175,8 @@
           ]
         }
       ],
-      "FBCaption": "// 23-29 OCT // WEEKLY ROUNDUP\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\n\nTHURSDAY - 29/10\nLunchtime Concert\nKing's Hall\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 23-29 OCT // WEEKLY ROUNDUP\n\nFRIDAY - 23/10\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\n\nTHURSDAY - 29/10\nLunchtime Concert\nKing's Hall\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "FBCaption": "// 23-29 OCT // WEEKLY ROUNDUP\n\nFRIDAY - 23/10\nPeatbog Faeries\nAnarchy Brew Co.\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\n\nTHURSDAY - 29/10\nLunchtime Concert\nKing's Hall\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 23-29 OCT // WEEKLY ROUNDUP\n\nFRIDAY - 23/10\nPeatbog Faeries\nAnarchy Brew Co.\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\n\nTHURSDAY - 29/10\nLunchtime Concert\nKing's Hall\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
       "ImageVariant": "Weekly-231026",
       "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-231026.png",
       "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-231026.jpg",
@@ -177,7 +185,7 @@
       "Notes": ""
     },
     {
-      "PostID": "Weekend-231026rnjgt0",
+      "PostID": "Weekend-231026rpr99p",
       "PostType": "Weekend Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-10-23T07:00:00.000Z",
@@ -187,6 +195,14 @@
           "date": "2026-10-23",
           "day": "Friday",
           "events": [
+            {
+              "id": "2026-10-23|anarchy brew co|peatbog faeries",
+              "title": "Peatbog Faeries",
+              "venue": "Anarchy Brew Co.",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
             {
               "id": "2026-10-23|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
               "title": "Willow Star Workshop",
@@ -284,9 +300,9 @@
       ],
       "FBCaption": "// 23-25 OCT // WEEKEND ROUNDUP\n\nFRIDAY - 23/10\nDIY Ceilidh\nLubber Fiend\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 24/10\nCabinet of Curiosities\nJarrow Hall\nExperimental Basketweaving with Rachael Eden\nCobalt Studios\n\nSUNDAY - 25/10\nGer O’Donnell\nThe Cluny 2\nGabriel Bath + Chloë Mulhall & Danny Marshall + Hyem\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
       "IGCaption": "// 23-25 OCT // WEEKEND ROUNDUP\n\nFRIDAY - 23/10\nDIY Ceilidh\nLubber Fiend\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 24/10\nCabinet of Curiosities\nJarrow Hall\nExperimental Basketweaving with Rachael Eden\nCobalt Studios\n\nSUNDAY - 25/10\nGer O’Donnell\nThe Cluny 2\nGabriel Bath + Chloë Mulhall & Danny Marshall + Hyem\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekend-231026rnjgt0",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026rnjgt0.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026rnjgt0.jpg",
+      "ImageVariant": "Weekend-231026rpr99p",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026rpr99p.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-231026rpr99p.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
