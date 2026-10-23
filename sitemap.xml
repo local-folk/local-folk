@@ -2,7 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://thekirn.co.uk/</loc>
-    <lastmod>2026-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -13,25 +12,34 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://thekirn.co.uk/about/</loc>
+    <loc>https://thekirn.co.uk/archive/</loc>
     <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/submit/</loc>
-    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/contact/</loc>
-    <lastmod>2026-10-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/diy-ceilidh-lubber-fiend-20261023/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/peatbog-faeries-anarchy-brew-co-20261023/</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -176,6 +184,12 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261031/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/folklore-medieval-mask-making-workshop-jarroween-jarrow-hall-20261031/</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -380,6 +394,12 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/singaround-bridge-hotel-20261109/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/toby-shaer-archie-moss-jack-warnock-cluny-2-20261110/</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -734,6 +754,12 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261129/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/festive-fright-gothic-market-tyne-bank-brewery-20261129/</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -1388,6 +1414,12 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/richard-thompson-hippies-thugs-and-heroes-band-tour-2027-the-glasshouse-20270505/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/topette-star-and-shadow-20270531/</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Xmas Wild Wreaths with Common C Collective",
-  "startDate": "2026-12-09T18:30",
+  "startDate": "2026-12-09T18:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/xmas-wild-wreaths-with-common-c-collective-cobalt-studios-20261209/",
   "description": "Join Roxana Caplan from Common C Collective for a seasonal wreath-making workshop celebrating the festive season through creativity and crafty nature connection. You’ll be guided through the process of creating your own Christmas wreath using a selection of seasonal foliage and natural materials. The workshop is an opportunity to learn how to get creative making your own Christmas decorations this season using natural and environmental-friendly materials so at the end of the season you can return them back to nature. You will develop your creative skills and spend time connecting with others in a relaxed, welcoming setting. Common C Collective is an open collective of doers, bringing people together through craft, collaboration and collective care. Our work creates opportunities to build skills, nurture our relationship with nature and strengthen connections within our communities. All materials and guidance are provided. You’ll leave with your own handmade wreath to enjoy at home throughout the festive season.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Shieldfield, Newcastle upon Tyne, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street, Shieldfield",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9766082,

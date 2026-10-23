@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Intro to Chainmail Jewellery: Helm Chain with Ellie Grassick",
-  "startDate": "2026-12-12T11:00",
+  "startDate": "2026-12-12T11:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/intro-to-chainmail-jewellery-helm-chain-with-ellie-grassick-cobalt-studios-20261212/",
   "description": "A hands on introduction to the art of chainmail through jewellery making. Participants will learn two approachable chainmail weaves, explore chain-based jewellery-making tools and techniques, and leave with their own handmade helm chain piece, customised with charms and gems. Please note: participants will need to be able to use pliers with both hands to fully enjoy this workshop. Please contact hello@creativeworkshopsnecic.com if you have any questions or access requirements. This workshop is delivered by Creative Workshops NE CIC, a not-for-profit company focusing on wellbeing outcomes through art. We serve communities that often feel excluded and would benefit from art practice, such as queer, neurodiverse and low-income groups. — Please note we are unable to offer refunds. You can click here to view our full refunds policy.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Shieldfield, Newcastle upon Tyne, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street, Shieldfield",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9766082,

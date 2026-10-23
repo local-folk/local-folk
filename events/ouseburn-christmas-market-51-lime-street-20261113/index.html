@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Ouseburn Christmas Market",
-  "startDate": "2026-11-13T16:00",
+  "startDate": "2026-11-13T16:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/ouseburn-christmas-market-51-lime-street-20261113/",
   "description": "Flaura Rose & The Find will be hosting a Christmas light switch on and market on Friday 13th November. Last year we had 3000 people attend our Friday night light switch on event in Ouseburn and we are hoping for the same again for 2026! We have had our application approved to close Lime Street and shops and businesses will also be getting involved making sure festivities continue throughout Ouseburn.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "51 Lime Street",
-    "address": "51 Lime Street, Ouseburn Valley, Newcastle upon Tyne, NE1 2PQ",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "51 Lime Street, Ouseburn Valley",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE1 2PQ",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.974814,

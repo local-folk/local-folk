@@ -1,0 +1,1265 @@
+{
+  "version": 1,
+  "pages": {
+    "https://thekirn.co.uk/archive/": {
+      "hash": "2f5f9b8f-41ed",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/": {
+      "hash": "bb488a73-a7aa",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
+      "hash": "ebbea382-3c7c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/a-different-thread-driven-serious-cluny-2-20261004/": {
+      "hash": "2e222c54-3baa",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/a-different-thread-the-cluny-2-20261004/": {
+      "hash": "b2017475-394d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/a-night-of-balfolk-cobalt-studios-20261102/": {
+      "hash": "c7ae12ef-3ca3",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/a-night-of-balfolk-cobalt-studios-20261207/": {
+      "hash": "b38a4c61-3ca3",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/abigail-lappell-cluny-2-20261119/": {
+      "hash": "1997e246-376c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ahoy-there-me-old-muckers-the-old-low-light-20261003/": {
+      "hash": "6a12bf7d-3bf9",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/amble-o2-city-hall-20261002/": {
+      "hash": "332fce02-379f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261002/": {
+      "hash": "7984056f-3991",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261009/": {
+      "hash": "a6ea2e15-3baf",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261016/": {
+      "hash": "ea449cdd-3bb4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261023/": {
+      "hash": "ac6f4ff2-3b95",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261030/": {
+      "hash": "203a7449-3b95",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261106/": {
+      "hash": "40bc343b-3b94",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261113/": {
+      "hash": "abab2b55-3b99",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261120/": {
+      "hash": "50f7dadb-3b99",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261127/": {
+      "hash": "73c479f0-3b99",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261204/": {
+      "hash": "628fd1e2-3b94",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261211/": {
+      "hash": "1d1ae4f6-3b99",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261218/": {
+      "hash": "2a3635f3-3b99",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261225/": {
+      "hash": "8b59c89f-3b99",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270101/": {
+      "hash": "e7caf9aa-3b90",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270108/": {
+      "hash": "f204450d-3b90",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270115/": {
+      "hash": "5fba118b-3b95",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270122/": {
+      "hash": "f6c00edd-3b95",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/an-dannsa-dub-cluny-2-20261114/": {
+      "hash": "54d84dcd-3754",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/anne-alderson-bridge-hotel-20261012/": {
+      "hash": "dfd0fa77-3a5b",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/atfk-and-me-lost-me-the-lubber-fiend-20261204/": {
+      "hash": "4602e60c-3b3f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ballad-club-the-cumberland-arms-20261004/": {
+      "hash": "19005c64-38d0",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ballad-club-the-cumberland-arms-20261101/": {
+      "hash": "18ebe170-3b2f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ballad-club-the-cumberland-arms-20261206/": {
+      "hash": "33a0fb74-3b27",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/bellowhead-the-glasshouse-20261111/": {
+      "hash": "cb89798d-3a28",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/beyond-the-moor-2026-gosforth-civic-theatre-20261010/": {
+      "hash": "1879b996-3b2d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/birdvox-cluny-2-20261108/": {
+      "hash": "98a28a94-3705",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/blackfriars-christmas-market-blackfriars-restaurant-20261205/": {
+      "hash": "b15e2bcc-3dc0",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/blackfriars-christmas-market-blackfriars-restaurant-20261206/": {
+      "hash": "e4338f69-3db8",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/bob-fox-and-stu-luckley-the-glasshouse-20261128/": {
+      "hash": "6c724938-3808",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/bookbinding-with-victoria-doyle-cobalt-studios-20261219/": {
+      "hash": "64779996-426a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261010/": {
+      "hash": "870a47b5-3ab2",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261024/": {
+      "hash": "8728e37f-3a72",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261031/": {
+      "hash": "4612dcac-3a72",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cat-rose-the-cluny-2-20261129/": {
+      "hash": "4119d3ad-39ca",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/catch-the-sparrow-the-cumberland-arms-20261107/": {
+      "hash": "52341e4e-3b4e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ceilidh-at-the-coast-whitley-bay-big-local-20261218/": {
+      "hash": "7f7fb5ee-3cc3",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/christmas-willow-wreath-making-workshops-gosforth-nature-reserve-20261205/": {
+      "hash": "42824de8-3bff",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/christmas-willow-wreath-workshop-land-of-oak-iron-heritage-centre-20261128/": {
+      "hash": "d961d21e-3cf0",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/christmas-wreath-making-workshop-at-revolution-revolution-20261206/": {
+      "hash": "2279303e-3dec",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cinder-well-the-cluny-20261004/": {
+      "hash": "de2471b1-3a9d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/clay-idols-with-bethany-stead-cobalt-studios-20261114/": {
+      "hash": "c2970c7e-407a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cloth-eared-mule-sugarwell-hill-the-globe-20261008/": {
+      "hash": "4499a9d5-3c2d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/come-all-ye-singing-session-the-cumberland-arms-20261013/": {
+      "hash": "10cd901f-3b61",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/come-all-ye-singing-session-the-cumberland-arms-20261110/": {
+      "hash": "19913d10-3b41",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/come-all-ye-singing-session-the-cumberland-arms-20261208/": {
+      "hash": "e669de8a-3b3c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/come-all-ye-singing-session-the-cumberland-arms-20270112/": {
+      "hash": "4c3cada-3b3d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/craft-flea-boiler-shop-20261004/": {
+      "hash": "ce746b48-3a9f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/craft-flea-christmas-market-boiler-shop-20261115/": {
+      "hash": "248a5b38-3ae6",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-benedictine-social-centre-20261007/": {
+      "hash": "e025dcd4-392e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-benedictine-social-centre-20261021/": {
+      "hash": "2eb4ff03-3b78",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-benedictine-social-centre-20261104/": {
+      "hash": "c1495e2d-3b44",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-benedictine-social-centre-20261118/": {
+      "hash": "e1bb6e54-3b49",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-benedictine-social-centre-20261202/": {
+      "hash": "e96c72fa-3b44",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-benedictine-social-centre-20261209/": {
+      "hash": "7527a011-3b44",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-clive-gregson-and-the-hayes-sisters-benedictine-social-centre-20261125/": {
+      "hash": "76a99873-3aed",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-jez-lowe-christmas-show-benedictine-social-centre-20261216/": {
+      "hash": "be8f539e-3a27",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-tarren-benedictine-social-centre-20261014/": {
+      "hash": "e103b420-3978",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-the-brothers-gillespie-benedictine-social-centre-20261028/": {
+      "hash": "4499979b-3a10",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/cramlington-folk-club-the-carrivik-sisters-benedictine-social-centre-20261111/": {
+      "hash": "35100d99-39f2",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/craven-sam-baxter-and-merle-harbron-frankie-insley-the-cumberland-arms-20261129/": {
+      "hash": "bad0e229-3d61",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/dani-larkin-cumberland-arms-20261106/": {
+      "hash": "a6c2e142-3c1c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/dermot-henry-zerox-20261107/": {
+      "hash": "6e85b947-3796",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/diy-ceilidh-lubber-fiend-20261023/": {
+      "hash": "5ca875d8-3864",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/diy-ceilidh-lubber-fiend-20261120/": {
+      "hash": "d1bb2121-3868",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/diy-ceilidh-lubber-fiend-20261218/": {
+      "hash": "9b74a785-3868",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/diy-ceilidh-presents-a-night-of-balfolk-cobalt-studios-20261005/": {
+      "hash": "b5654828-39c3",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/diy-ceilidh-presents-a-night-of-balfolk-cobalt-studios-20261102/": {
+      "hash": "90c4154b-396f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/diy-ceilidh-presents-a-night-of-balfolk-cobalt-studios-20261207/": {
+      "hash": "c679400b-396f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/dr-katie-liddane-witch-haunting-the-ghosts-of-witches-in-the-north-east-and-beyond-north-shields-community-hub-and-library-20261027/": {
+      "hash": "8a93b310-40dc",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/driven-serious-the-cumberland-arms-20261120/": {
+      "hash": "147e2711-3a12",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/experimental-basketweaving-with-rachael-eden-cobalt-studios-20261024/": {
+      "hash": "487b5f1b-4091",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/festive-folk-hearken-quartet-ouseburn-folk-choir-ouseburn-folk-band-tapyard-20261215/": {
+      "hash": "af03bc59-404e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/festive-fright-gothic-market-tyne-bank-brewery-20261129/": {
+      "hash": "1b0c04f7-3e29",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/festive-lino-printing-workshop-tyne-theatre-opera-house-20261124/": {
+      "hash": "217ebaf9-3cb0",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/festive-wreath-making-workshop-at-the-botanist-the-botanist-20261130/": {
+      "hash": "b19c44cf-3c34",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/festive-wreath-making-workshop-at-the-botanist-the-botanist-20261201/": {
+      "hash": "21b0e7b4-3c33",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261126/": {
+      "hash": "65fa3a51-3c8b",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261204/": {
+      "hash": "f8ebaf56-3c7e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/folklore-medieval-mask-making-workshop-jarroween-jarrow-hall-20261031/": {
+      "hash": "6dec53bb-3bec",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/fresh-thursday-claire-vine-lucy-huzzard-cobalt-studios-20261008/": {
+      "hash": "24402559-468c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/fresh-thursday-right-of-way-raveloe-cobalt-studios-20261015/": {
+      "hash": "83004485-466f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/fresh-thursday-salt-house-maja-bugge-dave-evans-cobalt-studios-20261203/": {
+      "hash": "3013af39-46df",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/freya-ridings-the-glasshouse-gateshead-quays-ne8-2yr-20260927/": {
+      "hash": "3ea71499-3a1d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/fundraiser-singaround-for-crisis-bridge-hotel-20261207/": {
+      "hash": "ca47ad69-3aa4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/gabriel-bath-chloe-mulhall-danny-marshall-hyem-cumberland-arms-20261025/": {
+      "hash": "f869efa8-3d70",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ger-o-donnell-the-cluny-2-20261025/": {
+      "hash": "3548099a-3901",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20260929/": {
+      "hash": "e7c17dd6-392e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261006/": {
+      "hash": "b6927c17-3920",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261020/": {
+      "hash": "9e08810f-3b05",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261103/": {
+      "hash": "5abfce8a-3acc",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261117/": {
+      "hash": "4bebd157-3ad1",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261201/": {
+      "hash": "411d4b89-3acc",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261215/": {
+      "hash": "79653c48-3ad1",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261229/": {
+      "hash": "910f9dd-3ad1",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20270105/": {
+      "hash": "203f6e26-3ac8",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20270119/": {
+      "hash": "98ddf81b-3acd",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/gwenifer-raymond-the-cluny-2-20261203/": {
+      "hash": "4673a2af-3ae6",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/halloween-thoughts-the-devil-the-demon-and-the-vampire-the-lit-phil-20261019/": {
+      "hash": "81fa2105-3c59",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/halloween-thoughts-the-fairy-the-angel-and-the-nymph-the-lit-phil-20261012/": {
+      "hash": "64c79a04-3c40",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/halloween-thoughts-the-ghost-the-skull-and-the-sheet-the-lit-phil-20261026/": {
+      "hash": "1e1cbc27-3c35",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/hbw-x-nca-art-market-high-bridge-works-20261003/": {
+      "hash": "42459512-3b81",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/holly-the-reivers-presents-samhain-songs-cobalt-studios-20261101/": {
+      "hash": "2a5df95d-4086",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/icy-sedgwick-hauntings-on-tyneside-north-shields-community-hub-and-library-20261019/": {
+      "hash": "adc87aaf-3e4b",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/intro-to-chainmail-jewellery-helm-chain-with-ellie-grassick-cobalt-studios-20261212/": {
+      "hash": "ae3b5265-4203",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/introduction-to-leathercraft-with-minuel-designs-cobalt-studios-20261028/": {
+      "hash": "694d3ff5-4423",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/jake-vaadeland-the-sturgeon-river-boys-the-cluny-2-20261016/": {
+      "hash": "9a8fed40-3b92",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/james-yorkston-the-central-bar-20261130/": {
+      "hash": "713eadf6-3942",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/jez-lowe-and-the-bad-pennies-defrosted-the-glasshouse-20261220/": {
+      "hash": "cf013236-3fce",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/juni-habel-the-cumberland-arms-james-place-street-ouseburn-newcastle-ne6-1ld-20260927/": {
+      "hash": "c5bf7c15-3aa2",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/kate-rusby-at-christmas-the-glasshouse-20261214/": {
+      "hash": "eacf02d2-3f39",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/keelman-s-talks-o-pity-my-unhappy-state-st-mary-s-by-the-tyne-20261021/": {
+      "hash": "952e2f31-3d51",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ladr-ache-powtes-cobalt-studios-20261204/": {
+      "hash": "c3fb8756-4420",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/les-caravanes-cluny-2-20261005/": {
+      "hash": "e8223dca-37d7",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/lindisfarne-o2-city-hall-20261219/": {
+      "hash": "76f37018-3b76",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/lucy-farrell-shane-pendergast-cumberland-arms-20261125/": {
+      "hash": "d9b81ace-3b60",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/luna-halloween-market-jarrow-hall-20261009/": {
+      "hash": "69aa4546-3a63",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/lunchtime-concert-king-s-hall-20261029/": {
+      "hash": "516bba67-3bb7",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/lunchtime-singaround-central-bar-20261015/": {
+      "hash": "bfc7244-3a44",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/lunchtime-singaround-central-bar-20261119/": {
+      "hash": "942eac2e-3a0d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/lunchtime-singaround-central-bar-20261217/": {
+      "hash": "39210a21-3a0d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/made-up-north-winter-market-boiler-shop-20261206/": {
+      "hash": "3b6fe2a0-3dbb",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/madra-salach-the-grove-20261003/": {
+      "hash": "9e2ade2d-3aa2",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261019/": {
+      "hash": "b3849dc-39bc",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261102/": {
+      "hash": "bb600423-395f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261116/": {
+      "hash": "ac6573dc-3964",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mariners-marras-shanties-and-trad-work-songs-enigma-tap-20261207/": {
+      "hash": "837c9ca3-395f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/martin-simpson-the-glasshouse-20261028/": {
+      "hash": "aba19169-3aef",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/midcentury-home-market-boiler-shop-20261011/": {
+      "hash": "6069974-3a67",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261004/": {
+      "hash": "bc750a3e-386c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261011/": {
+      "hash": "376e800-3a6c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261018/": {
+      "hash": "fe919778-3a6c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261025/": {
+      "hash": "d8e763cc-3a2d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261101/": {
+      "hash": "3b49d9e1-3a2c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261108/": {
+      "hash": "89faf036-3a24",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261115/": {
+      "hash": "f7e1bfa0-3a29",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261122/": {
+      "hash": "88a76556-3a29",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261129/": {
+      "hash": "87bedecd-3a29",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261206/": {
+      "hash": "aa2b08f-3a24",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261213/": {
+      "hash": "496dcf93-3a29",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261220/": {
+      "hash": "3f02f301-3a31",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20260930/": {
+      "hash": "e22fa0e-3936",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261007/": {
+      "hash": "bf79a0f0-3928",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261014/": {
+      "hash": "c950c4ea-3b43",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261021/": {
+      "hash": "24f7c668-3b43",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261028/": {
+      "hash": "26ccdc16-3b1a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261104/": {
+      "hash": "c511cd3b-3b19",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261111/": {
+      "hash": "78651fb-3b1e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261118/": {
+      "hash": "5d35aff8-3b1e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261125/": {
+      "hash": "ea6f203c-3b1e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261202/": {
+      "hash": "396795e8-3b19",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261209/": {
+      "hash": "4a620e6f-3b19",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261216/": {
+      "hash": "16fce92d-3b1e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261223/": {
+      "hash": "70959dd5-3b1e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261230/": {
+      "hash": "41936d01-3b1e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20270106/": {
+      "hash": "74cbc997-3b15",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20270113/": {
+      "hash": "cfa607ab-3b1a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20270120/": {
+      "hash": "1a0eb3a9-3b1a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/myths-legends-drawing-branding-villa-haddricks-mill-road-south-gosforth-ne3-1ql-20261109/": {
+      "hash": "4c592df-410c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/natural-coil-pot-workshop-tyne-theatre-opera-house-20261012/": {
+      "hash": "c5700f55-3cb7",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/nev-clay-band-live-theatre-20261103/": {
+      "hash": "a85938aa-3b21",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/nev-clay-band-live-theatre-20261104/": {
+      "hash": "51ff18eb-3b14",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/northern-gothic-hexmas-market-the-common-room-20261128/": {
+      "hash": "d4482d5a-3bf4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/offgrid-maar-glad-town-ghost-cobalt-studios-20261010/": {
+      "hash": "5e906aae-4609",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261008/": {
+      "hash": "eb9ebd77-393c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261022/": {
+      "hash": "f0492f9e-3bbd",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261112/": {
+      "hash": "83df8896-3b96",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261126/": {
+      "hash": "facc8e8d-3b96",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261210/": {
+      "hash": "3df548ff-3b96",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261224/": {
+      "hash": "a3256f54-3b96",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20270114/": {
+      "hash": "bcc593de-3b92",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ouseburn-christmas-market-51-lime-street-20261113/": {
+      "hash": "d68989f8-3d40",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-20261010/": {
+      "hash": "a8a0d88b-412e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-20261024/": {
+      "hash": "982f2f80-4104",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-20261107/": {
+      "hash": "b7fe428e-4103",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-20261121/": {
+      "hash": "63a0a19e-4108",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-20261205/": {
+      "hash": "ec50e558-4103",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/peatbog-faeries-anarchy-brew-co-20261023/": {
+      "hash": "beea1a36-407a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/pipe-dream-bridge-hotel-20261116/": {
+      "hash": "45fdb1b5-37e9",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/polymer-clay-pumpkin-carving-with-jed-buttress-cobalt-studios-20261031/": {
+      "hash": "dba4a93a-40c2",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/possessed-by-paul-james-the-globe-20261112/": {
+      "hash": "c0006020-3a00",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261011/": {
+      "hash": "3c6d3217-3d11",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261018/": {
+      "hash": "df8a255-3d11",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261025/": {
+      "hash": "6a0e3baa-3cc6",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261101/": {
+      "hash": "68e1e5c7-3cc5",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261108/": {
+      "hash": "f73137bc-3cc5",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261115/": {
+      "hash": "1269b206-3cca",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261122/": {
+      "hash": "fdd422ac-3cca",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261129/": {
+      "hash": "84749c8f-3cca",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261206/": {
+      "hash": "109c8dd9-3cc5",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261213/": {
+      "hash": "59dfe5e9-3cca",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261220/": {
+      "hash": "cf64dc87-3cca",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261227/": {
+      "hash": "a02bad94-3cca",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270103/": {
+      "hash": "8808f999-3cc1",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270110/": {
+      "hash": "7cae55e7-3cc6",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270117/": {
+      "hash": "5fa55264-3cc6",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/radical-choir-with-bethany-elen-cobalt-studios-20261103/": {
+      "hash": "79297706-3de3",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/radical-choir-with-bethany-elen-cobalt-studios-20261208/": {
+      "hash": "f5fc5b4c-3de3",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/rhiannon-giddens-the-glasshouse-20261208/": {
+      "hash": "92dbec99-439c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/richard-thompson-hippies-thugs-and-heroes-band-tour-2027-the-glasshouse-20270505/": {
+      "hash": "935ff7c7-4136",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/rob-heron-conrad-bird-cluny-2-20261128/": {
+      "hash": "170035a6-37de",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261007/": {
+      "hash": "abb9f4b9-3872",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261014/": {
+      "hash": "d0f49b10-3a99",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261021/": {
+      "hash": "eb5b1914-3a99",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261028/": {
+      "hash": "920cf0e9-3a62",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261104/": {
+      "hash": "88257660-3a61",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261111/": {
+      "hash": "539bf368-3a66",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261118/": {
+      "hash": "c415e81f-3a66",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261125/": {
+      "hash": "1a726023-3a66",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261202/": {
+      "hash": "32e51b7b-3a61",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261209/": {
+      "hash": "a837cd2c-3a61",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261216/": {
+      "hash": "bf7d5226-3a66",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-cobalt-studios-20261006/": {
+      "hash": "3b746d8d-4657",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sacred-harp-singing-workshop-cobalt-studios-20261201/": {
+      "hash": "3b1a3e17-4630",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sally-ironmonger-and-brian-carter-bridge-hotel-20261102/": {
+      "hash": "f2a726b5-3ad8",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/salty-dog-bridge-hotel-20261214/": {
+      "hash": "261096ee-37dd",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sam-sweeney-grace-smith-the-glasshouse-20270502/": {
+      "hash": "17d1d09d-3f24",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sean-gray-bridge-hotel-20270215/": {
+      "hash": "cbe33a7d-3797",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/sexytadhg-the-cluny-2-20261021/": {
+      "hash": "80bf035f-3abc",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/shawn-colvin-the-glasshouse-20261015/": {
+      "hash": "812e3d8-4138",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-bridge-hotel-20261005/": {
+      "hash": "4705821-378e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-bridge-hotel-20261019/": {
+      "hash": "23924c7a-39e3",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-bridge-hotel-20261026/": {
+      "hash": "f229ff33-3997",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-bridge-hotel-20261109/": {
+      "hash": "6dcf1033-3996",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-bridge-hotel-20261123/": {
+      "hash": "bc35d662-3977",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-bridge-hotel-20261130/": {
+      "hash": "ebedb756-3977",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20260916/": {
+      "hash": "ff3516a3-3749",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20260923/": {
+      "hash": "139374f3-3749",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20260930/": {
+      "hash": "8a8de583-3749",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261007/": {
+      "hash": "99038300-37aa",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261014/": {
+      "hash": "808fd4bd-3a00",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261021/": {
+      "hash": "566963b9-3a00",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261028/": {
+      "hash": "79a247-398f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261104/": {
+      "hash": "3f4705d2-398e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261111/": {
+      "hash": "5e52f404-3993",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261118/": {
+      "hash": "17f47691-3993",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261125/": {
+      "hash": "c64a3d39-3993",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261202/": {
+      "hash": "51983dfb-398e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261209/": {
+      "hash": "b6c73f66-398e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/singaround-the-brewery-20261216/": {
+      "hash": "11d6b0ea-3993",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/siobhan-miller-band-the-cluny-20261104/": {
+      "hash": "dfcf87e2-3866",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/spafford-campbell-watersmeet-cobalt-studios-20261113/": {
+      "hash": "387c6421-3ca6",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/spooky-meet-up-st-mary-s-by-the-tyne-20261015/": {
+      "hash": "d24af1e6-3b90",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/stained-glass-workshop-with-rita-griskonyte-newcastle-cathedral-20261213/": {
+      "hash": "7992a6c-3cce",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/student-performance-king-s-hall-20261001/": {
+      "hash": "63f0e3da-3b0f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/student-performance-king-s-hall-20261112/": {
+      "hash": "b3c1baa3-3a89",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/student-performances-king-s-hall-20261008/": {
+      "hash": "e3009d18-3b0f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/student-performances-king-s-hall-20261015/": {
+      "hash": "57a75db6-3b19",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/student-performances-king-s-hall-20261022/": {
+      "hash": "77e4c2a4-3ad3",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/talisk-the-cluny-20261201/": {
+      "hash": "234bdb48-3822",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-alehouse-sessions-wylam-brewery-20261201/": {
+      "hash": "94d9d888-3fe1",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-ayoub-sisters-quartet-hexham-abbey-beaumont-street-hexham-ne46-3nb-20260927/": {
+      "hash": "88629e34-3b26",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-crafty-bazaar-it-s-christmas-maker-s-market-wylam-brewery-20261129/": {
+      "hash": "4e45ca59-3c00",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-deadlians-cluny-2-20261216/": {
+      "hash": "d557fd03-3756",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-magic-of-theatre-superstition-ghosts-and-the-scottish-play-tyne-theatre-opera-house-20261016/": {
+      "hash": "4af35313-3d9e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-mary-wallopers-o2-city-hall-20261014/": {
+      "hash": "f86e1360-3b2d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-often-herd-the-cluny-2-20261107/": {
+      "hash": "9dc3cb4e-38f8",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-rabbitts-cluny-2-20261202/": {
+      "hash": "e12a9597-3743",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261013/": {
+      "hash": "9d87d727-3b73",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261020/": {
+      "hash": "5f7e63cb-3b73",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261027/": {
+      "hash": "9f5258f9-3b26",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261103/": {
+      "hash": "9096a6f0-3b25",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261110/": {
+      "hash": "7b7926d4-3b2a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261117/": {
+      "hash": "2dc1b447-3b2a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261124/": {
+      "hash": "c883bbc5-3b2a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261201/": {
+      "hash": "3a8ce42d-3b25",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261208/": {
+      "hash": "72b3bd26-3b25",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261215/": {
+      "hash": "6bb0dd04-3b2a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261222/": {
+      "hash": "65bb4596-3b2a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261229/": {
+      "hash": "53df0581-3b2a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270105/": {
+      "hash": "381a25f0-3b21",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270112/": {
+      "hash": "72a9a3c-3b26",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270119/": {
+      "hash": "1ff2fe8b-3b26",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tim-dalling-bridge-hotel-20270125/": {
+      "hash": "2f50019a-37ab",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/toby-shaer-archie-moss-and-jack-warnock-the-cluny-2-20261110/": {
+      "hash": "9ce33198-3b2a",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/toby-shaer-archie-moss-jack-warnock-cluny-2-20261110/": {
+      "hash": "1ef38343-3cb3",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/topette-star-and-shadow-20270531/": {
+      "hash": "85d7e482-3ee7",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/torridon-cluny-2-20261113/": {
+      "hash": "6f94f4bf-3707",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261013/": {
+      "hash": "898aa9eb-3b93",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261110/": {
+      "hash": "2cda7bac-3b55",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261208/": {
+      "hash": "6ff757dc-3b50",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261008/": {
+      "hash": "fe5f3262-37a5",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261015/": {
+      "hash": "e0663fb2-3bc8",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261022/": {
+      "hash": "5eec0672-3bc8",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261029/": {
+      "hash": "3b6fc2e8-3ba0",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261105/": {
+      "hash": "eadc0607-3b9f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261112/": {
+      "hash": "7bf24f2b-3ba4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261119/": {
+      "hash": "47e118ca-3ba4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261126/": {
+      "hash": "662839cc-3ba4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261203/": {
+      "hash": "a34a048c-3b9f",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261210/": {
+      "hash": "d0702dbe-3ba4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261217/": {
+      "hash": "15bc0fbf-3ba4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261224/": {
+      "hash": "12eceebd-3ba4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261231/": {
+      "hash": "d8dc9a09-3ba4",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20270107/": {
+      "hash": "b8a2e259-3b9b",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20270114/": {
+      "hash": "9d6504c4-3b9e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20270121/": {
+      "hash": "777daec2-3b9e",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/willow-star-workshop-cumberland-arms-20261108/": {
+      "hash": "7ffe884d-3c8c",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261023/": {
+      "hash": "f09aef00-4089",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261127/": {
+      "hash": "e0693ed5-4074",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/winter-makers-market-by-endless-love-creative-baltic-20261028/": {
+      "hash": "7609a4b2-3d29",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/winter-makers-market-by-endless-love-creative-baltic-20261128/": {
+      "hash": "abd9be0c-3ac5",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/world-building-map-making-with-mark-bletcher-cobalt-studios-20261128/": {
+      "hash": "be57dc34-417d",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/worms-monkeys-and-killer-pigs-the-strange-folk-tales-of-county-durham-the-common-room-20261022/": {
+      "hash": "966d7555-3faa",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/writing-as-a-visual-act-with-victoria-doyle-cobalt-studios-20261107/": {
+      "hash": "e19661f3-42fe",
+      "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/xmas-wild-wreaths-with-common-c-collective-cobalt-studios-20261209/": {
+      "hash": "fd8934fe-42c9",
+      "lastmod": "2026-10-23"
+    }
+  }
+}

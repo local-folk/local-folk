@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Keelman's Talks: 'O pity my unhappy state'",
-  "startDate": "2026-10-21T18:00",
+  "startDate": "2026-10-21T18:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/keelman-s-talks-o-pity-my-unhappy-state-st-mary-s-by-the-tyne-20261021/",
   "description": "Jane Jamieson at Keelman's Hospital. In January 1829, behind the walls of Newcastle's Keelmen's Hospital, a violent family argument drew national attention and was even immortalised in song. Jon Drs Patrick Low and Helen Rutherford to learn more about one of the most famous events in building's history.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "St Mary's By The Tyne",
-    "address": "Oakwellgate, Gateshead, NE8 2AU",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Oakwellgate",
+      "addressLocality": "Gateshead",
+      "postalCode": "NE8 2AU",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967125,

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "FESTIVE FOLK: Hearken Quartet// Ouseburn Folk Choir // Ouseburn Folk Band",
-  "startDate": "2026-12-15T19:00",
+  "startDate": "2026-12-15T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/festive-folk-hearken-quartet-ouseburn-folk-choir-ouseburn-folk-band-tapyard-20261215/",
   "description": "Join us for a cosy festive evening celebrating our Ouseburn folk community! You'll hear glorious harmony singing from Ouseburn Folk Choir, nestled in amongst some unusual Christmas Carols, and songs of strange winter traditions. You'll feel equal parts intrigued and uplifted! Ouseburn Folk Band have been working on how to play folk music fit for dancing to! Expect some ceilidh classics and some european bal folk with a festive twist. The whole evening will be headlined by the incredble HEARKEN QUARTET.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Tapyard",
-    "address": "Hoult's Yard, Newcastle upon Tyne, Newcastle upon Tyne, England, NE6 1AB, United Kingdom",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Hoult's Yard, Newcastle upon Tyne",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE6 1AB",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.970841,

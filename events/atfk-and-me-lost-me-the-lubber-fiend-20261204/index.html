@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "ATFK and ME LOST ME",
-  "startDate": "2026-12-04T19:30",
+  "startDate": "2026-12-04T19:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/atfk-and-me-lost-me-the-lubber-fiend-20261204/",
   "description": "Co-headline show with ATFK, a genre-blasting duo defy the preconceptions of what their instruments can do, and Me Lost Me, th eproject of Newcastle-based artist Jayne Dent who takes influence from folk, art pop, noise, ambient and improvised music.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Lubber Fiend",
-    "address": "81 Blandford Square, Newcastle, NE1 3PZ",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "81 Blandford Square",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 3PZ",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967727,

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Ballad Club",
-  "startDate": "2026-12-06T14:00",
+  "startDate": "2026-12-06T14:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/ballad-club-the-cumberland-arms-20261206/",
   "description": "A monthly traditional ballad singing session in the back bar, from 2pm. Bring your favourite ballads, or come and join in with regulars. Unamplified, and singing from the common repertoire rather than from a songbook.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Cumberland Arms",
-    "address": "St. James Place, Ouseburn, Byker, Newcastle, NE6 1LD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St. James Place, Ouseburn, Byker",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE6 1LD",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.975388,

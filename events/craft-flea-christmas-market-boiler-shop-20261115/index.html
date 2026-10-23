@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Craft & Flea - Christmas Market",
-  "startDate": "2026-11-15T11:00",
+  "startDate": "2026-11-15T11:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/craft-flea-christmas-market-boiler-shop-20261115/",
   "description": "Support small businesses this Xmas at Craft & Flea's Makers Market - a vibrant gathering of Newcastle's finest local artisans and makers.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Boiler Shop",
-    "address": "18 Bewick Road, Newcastle upon Tyne, NE1 6RH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "18 Bewick Road",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE1 6RH",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9723,

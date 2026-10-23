@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Dr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East and Beyond",
-  "startDate": "2026-10-27T18:00",
+  "startDate": "2026-10-27T18:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/dr-katie-liddane-witch-haunting-the-ghosts-of-witches-in-the-north-east-and-beyond-north-shields-community-hub-and-library-20261027/",
   "description": "From a very real fear to a lingering cultural presence, the accused witch and her spirits continue to have a hold on us centuries after their deaths. Dr Katie Liddane traces the ghosts of 'witches', witchfinders, and those the 'witches' were believed to have conjured themselves from the 1600s, into folklore collections of the 1800s and into the present in the form of film and tourism.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "North Shields Community Hub and Library",
-    "address": "Northumberland Square, North Shields, NE30 1QU",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Northumberland Square",
+      "addressLocality": "North Shields",
+      "postalCode": "NE30 1QU",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 55.009849,

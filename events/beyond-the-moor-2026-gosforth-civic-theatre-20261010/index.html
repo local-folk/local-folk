@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Beyond the Moor 2026",
-  "startDate": "2026-10-10T14:30",
+  "startDate": "2026-10-10T14:30:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/beyond-the-moor-2026-gosforth-civic-theatre-20261010/",
   "description": "With Breabach, The Breath, Will Pound & Jenn Butterworth, Jali Bakary Konteh, Hearken Quartet, Watersmeet, and Newcastle University Folk Degree platform.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "Gosforth Civic Theatre",
-    "address": "Regent Farm Road, Newcastle, NE3 3HD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Regent Farm Road",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE3 3HD",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 55.01106,

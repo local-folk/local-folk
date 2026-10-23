@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Les Caravanes",
-  "startDate": "2026-10-05T19:30",
+  "startDate": "2026-10-05T19:30:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/les-caravanes-cluny-2-20261005/",
   "description": "Les Caravanes, Cluny 2, Mon 5 Oct, 7:30pm",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "Cluny 2",
-    "address": "34 Lime Street, Ouseburn, Newcastle, NE1 2PQ",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "34 Lime Street, Ouseburn",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 2PQ",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.974933,

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Gwenifer Raymond",
-  "startDate": "2026-12-03T19:30",
+  "startDate": "2026-12-03T19:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/gwenifer-raymond-the-cluny-2-20261203/",
   "description": "Welsh instrumentalist Gwenifer Raymond's latest album Last Night I Heard the Dog Star Bark is a hybrid of the ancient and the futuristic, where the arcane etchings of occult folk horror fuse with the unfathomable equations of the cosmos.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Cluny 2",
-    "address": "34 Lime Street, Ouseburn, Newcastle, NE1 2PQ",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "34 Lime Street, Ouseburn",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 2PQ",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.974814,

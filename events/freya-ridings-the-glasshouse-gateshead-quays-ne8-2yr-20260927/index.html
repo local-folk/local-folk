@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Freya Ridings",
-  "startDate": "2026-09-27T19:00",
+  "startDate": "2026-09-27T19:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/freya-ridings-the-glasshouse-gateshead-quays-ne8-2yr-20260927/",
   "description": "One of the UK’s most impressive vocal talents, with the ability to turn her hand to tender balladry and powerful air punch moments alike.",
@@ -170,7 +170,12 @@
   "location": {
     "@type": "Place",
     "name": "The Glasshouse, Gateshead Quays, NE8 2YR",
-    "address": "The Glasshouse, Gateshead Quays, NE8 2YR, Newcastle upon Tyne",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "The Glasshouse, Gateshead Quays, NE8 2YR",
+      "addressLocality": "Newcastle upon Tyne",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967783,

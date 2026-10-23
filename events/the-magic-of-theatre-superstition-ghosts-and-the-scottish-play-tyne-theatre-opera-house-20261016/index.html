@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "The Magic of Theatre: Superstition, Ghosts, and the Scottish Play",
-  "startDate": "2026-10-16T13:00",
+  "startDate": "2026-10-16T13:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/the-magic-of-theatre-superstition-ghosts-and-the-scottish-play-tyne-theatre-opera-house-20261016/",
   "description": "This talk will explore a range of theatre superstitions, the strange concept of the ‘ghost light’, the specific folklore attached to Macbeth, and even some of the ghost stories of the Tyne Theatre itself.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "Tyne Theatre & Opera House",
-    "address": "111 Westgate Road, Newcastle, NE1 4AG",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "111 Westgate Road",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 4AG",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.970595,

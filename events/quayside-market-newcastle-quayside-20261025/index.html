@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Quayside Market",
-  "startDate": "2026-10-25T10:30",
+  "startDate": "2026-10-25T10:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261025/",
   "description": "Newcastle Quayside Market has been part of North East culture for as long as anyone can remember. Taking place every Sunday between 9am and 4pm on Newcastle Quayside, the outdoor Quayside Sunday Market features independent traders from all over the region selling handcrafted goods and local products.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Newcastle Quayside",
-    "address": "Swing Bridge to Gateshead Millennium Bridge, Newcastle Upon Tyne, Tyne And Wear, NE1 3DE",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Swing Bridge to Gateshead Millennium Bridge, Newcastle Upon Tyne",
+      "addressLocality": "Tyne And Wear",
+      "postalCode": "NE1 3DE",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.969265,

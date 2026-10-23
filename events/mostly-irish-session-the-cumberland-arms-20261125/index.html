@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Mostly Irish Session",
-  "startDate": "2026-11-25T20:00",
+  "startDate": "2026-11-25T20:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261125/",
   "description": "The pub's Wednesday session, leaning Irish but not exclusively so. Vocals, bouzouki, guitar, fiddle and whatever else turns up. Come for a tune or just to listen.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Cumberland Arms",
-    "address": "James Place Street, Ouseburn, Newcastle, NE6 1LD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "James Place Street, Ouseburn",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE6 1LD",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.975388,

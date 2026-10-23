@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Come All Ye' Singing Session",
-  "startDate": "2027-01-12T20:00",
+  "startDate": "2027-01-12T20:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/come-all-ye-singing-session-the-cumberland-arms-20270112/",
   "description": "A singing session rather than an instrumental one. Songs from all over the place, unaccompanied, in the round. Just turn up and join in.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Cumberland Arms",
-    "address": "James Place Street, Ouseburn, Newcastle, NE6 1LD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "James Place Street, Ouseburn",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE6 1LD",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.975388,

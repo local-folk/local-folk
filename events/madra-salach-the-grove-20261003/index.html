@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Madra Salach",
-  "startDate": "2026-10-03T19:00",
+  "startDate": "2026-10-03T19:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/madra-salach-the-grove-20261003/",
   "description": "Over 14s only. Under 18s must be accompanied by an adult over 18. A max of 6 tickets per person and per household applies. Tickets in excess of 6 will be cancelled.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "The Grove",
-    "address": "1 St Michael's Road, Byker, Newcastle upon Tyne, NE6 1QU",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1 St Michael's Road, Byker",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE6 1QU",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.97306569,

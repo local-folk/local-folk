@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "An Crúiscín Làn' Irish Session",
-  "startDate": "2027-01-22T20:00",
+  "startDate": "2027-01-22T20:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270122/",
   "description": "A weekly traditional Irish music session in the back bar. Jigs, reels and airs, with the session building as the evening goes on. All players and listeners welcome.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Cumberland Arms",
-    "address": "James Place Street, Ouseburn, Newcastle, NE6 1LD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "James Place Street, Ouseburn",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE6 1LD",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.975388,

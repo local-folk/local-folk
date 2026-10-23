@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Dermot Henry",
-  "startDate": "2026-11-07T19:00",
+  "startDate": "2026-11-07T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/dermot-henry-zerox-20261107/",
   "description": "Distinctive new voice in UK alternative folk.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Zerox",
-    "address": "48-52 Sandhill, Newcastle, NE1 3JF",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "48-52 Sandhill",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 3JF",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.968756,

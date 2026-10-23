@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Rhiannon Giddens",
-  "startDate": "2026-12-08T20:00",
+  "startDate": "2026-12-08T20:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/rhiannon-giddens-the-glasshouse-20261208/",
   "description": "Rhiannon Giddens has made a singular, iconic career out of stretching her brand of folk music, with its miles-deep historical roots and contemporary sensibilities, into just about every field imaginable. A two-time GRAMMY Award-winning singer and multi-instrumentalist, MacArthur “Genius” grant recipient, Pulitzer Prize winner, and composer of opera, ballet, and film, Giddens has centered her work around the mission of lifting up people whose contributions to American musical history have previously been overlooked or erased, and advocating for a more accurate understanding of the country’s musical origins through art. Giddens has released three albums under her own name and two in collaboration with Italian multi-instrumentalist Francesco Turrisi, all on Nonesuch Records. American Railroad , her first album in collaboration with the Silkroad Ensemble, was released in November 2024, and her most recent album, a collaboration with Justin Robinson, What Did the Blackbird Say to the Crow , released in April 2025. As Pitchfork once said, “few artists are so fearless and so ravenous in their exploration”—a journey that has led to NPR naming her one of its 25 Most Influential Women Musicians of the 21st Century and to American Songwriter calling her “one of the most important musical minds currently walking the planet.” rhiannongiddens.com",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",
-    "address": "St Mary's Square, Gateshead Quays, NE8 2YR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St Mary's Square",
+      "addressLocality": "Gateshead Quays",
+      "postalCode": "NE8 2YR",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967686,

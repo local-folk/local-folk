@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Made Up North - Winter Market",
-  "startDate": "2026-12-06T10:00",
+  "startDate": "2026-12-06T10:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/made-up-north-winter-market-boiler-shop-20261206/",
   "description": "Made Up North is hosting its Winter Market in the heart of Newcastle, bringing together 60 of the best northern creatives! Enjoy a drink from the BOILER SHOP’s in-house bar while viewing the incredible work of local potters, textiles artists, jewelers, soap makers, and so many other northern creatives. The first 15 people through the door will get a free gift! Tickets are £2 and can be bought online or at the door on the day of the market. Under 16s get free entry. 10% of all the profit from the ticket sale will be donated to the market's nominated charity.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Boiler Shop",
-    "address": "20 South Street, Newcastle, NE1 3PE",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "20 South Street",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 3PE",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967259,

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "The Mary Wallopers",
-  "startDate": "2026-10-14T19:00",
+  "startDate": "2026-10-14T19:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/the-mary-wallopers-o2-city-hall-20261014/",
   "description": "A folk group from Dundalk breathing new life into both well known & rare ballads. Travelling the length & breadth of the country singing & collecting songs, they exude a raw energy that could be described as the Clancy Brothers meet John Lydon.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "O2 City Hall",
-    "address": "Northumberland Road, Newcastle, NE1 8SF",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Northumberland Road",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 8SF",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.977377,

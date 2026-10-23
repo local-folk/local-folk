@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Possessed By Paul James",
-  "startDate": "2026-11-12T19:30",
+  "startDate": "2026-11-12T19:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/possessed-by-paul-james-the-globe-20261112/",
   "description": "Aka Texas songwriter and multi-instrumentalist Konrad Wert, known for his raw, soulful blend of folk, blues, and roots music.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Globe",
-    "address": "11 Railway Street, Newcastle, NE4 7AD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "11 Railway Street",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE4 7AD",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.963946,

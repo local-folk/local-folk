@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Cat Rose",
-  "startDate": "2026-11-29T19:30",
+  "startDate": "2026-11-29T19:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/cat-rose-the-cluny-2-20261129/",
   "description": "A rising folk–indie-pop singer-songwriter based in Plymouth, Cat has storytelling, atmospheric music that drifts between darkness, whimsy and magic.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Cluny 2",
-    "address": "34 Lime Street, Ouseburn, Newcastle, NE1 2PQ",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "34 Lime Street, Ouseburn",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 2PQ",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.974814,

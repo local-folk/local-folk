@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Global Music Session",
-  "startDate": "2026-11-03T20:00",
+  "startDate": "2026-11-03T20:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261103/",
   "description": "Music from anywhere and everywhere, played by whatever instruments turn up. A good first session to try if you're new to the pub.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Cumberland Arms",
-    "address": "James Place Street, Ouseburn, Newcastle, NE6 1LD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "James Place Street, Ouseburn",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE6 1LD",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.975388,

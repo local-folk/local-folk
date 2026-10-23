@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Fresh Thursday // Right of Way + Raveloe",
-  "startDate": "2026-10-15T19:00",
+  "startDate": "2026-10-15T19:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/fresh-thursday-right-of-way-raveloe-cobalt-studios-20261015/",
   "description": "Fresh Thursday is a unique regular event that showcases new music alongside a home-cooked meal. For more information about how this event works please read the info at the bottom of this event carefully. Thank you. If you have a dietary requirement you can indicate it by selecting one of the free add-ons when purchasing your ticket. Please note we are unable to offer refunds. You can click here to view our full refunds policy. Full of playful non-conformity, Right Of Way alt-folk trio will have you moving through wild wooded hills, messy living rooms and the picketed lines of past and present. Their songs combine soulful melodies, intricate vocal arrangements and flowing grooves. They create deeply emotional atmospheres, sometimes upbeat and lively, other times slow and moving. Every song is vivid and distinct, with subject matter ranging from the beauty and challenges of parenthood, the suffragette movement, and the pain and joy of what it means to be a human being living in an age of crisis and wonder. — Raveloe is the project of multi-instrumentalist and songwriter Kim Grant. ​The alias is taken from the name of a fictional village within the pages of a Mary Anne Evans (George Eliot) novel called Silas Marner about a reclusive weaver. Growing up in the small industrial town of Motherwell she found magic and escaped in the small beauties through moments of isolation and difficulty. A thread evident in songs that oscillate from heartbreak to hopefulness, exploring dualities ",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Shieldfield, Newcastle upon Tyne, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street, Shieldfield",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9766082,

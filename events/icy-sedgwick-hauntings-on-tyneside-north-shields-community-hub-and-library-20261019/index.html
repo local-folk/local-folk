@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Icy Sedgwick - Hauntings on Tyneside",
-  "startDate": "2026-10-19T18:00",
+  "startDate": "2026-10-19T18:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/icy-sedgwick-hauntings-on-tyneside-north-shields-community-hub-and-library-20261019/",
   "description": "Icy Sedgwick is the host of the Fabulous Folklore podcast, investigating the fascinating world of European folklore with a focus on the British Isles, and the author of Rebel Folklore and Ghostlore. Former ghost hunter Icy also holds a PhD in Film Studies after examining the representation of haunted houses in contemporary Hollywood cinema.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "North Shields Community Hub and Library",
-    "address": "Northumberland Square, North Shields, NE30 1QU",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Northumberland Square",
+      "addressLocality": "North Shields",
+      "postalCode": "NE30 1QU",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 55.009849,

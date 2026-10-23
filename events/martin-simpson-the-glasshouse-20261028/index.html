@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Martin Simpson",
-  "startDate": "2026-10-28T20:00",
+  "startDate": "2026-10-28T20:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/martin-simpson-the-glasshouse-20261028/",
   "description": "A gifted and influential guitarist, banjoist, singer, and songwriter, Martin Simpson is one of the most visible examples of the relationship between the traditional folk music of the United Kingdom and American roots music.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",
-    "address": "St Mary's Square, Gateshead Quays, NE8 2YR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St Mary's Square",
+      "addressLocality": "Gateshead Quays",
+      "postalCode": "NE8 2YR",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967686,

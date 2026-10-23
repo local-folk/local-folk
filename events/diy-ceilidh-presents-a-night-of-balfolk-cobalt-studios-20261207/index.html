@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "DIY Ceilidh presents A Night of Balfolk",
-  "startDate": "2026-12-07T18:30",
+  "startDate": "2026-12-07T18:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/diy-ceilidh-presents-a-night-of-balfolk-cobalt-studios-20261207/",
   "description": "European social dancing event ",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Newcastle, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.976516,

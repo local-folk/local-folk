@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "A Different Thread",
-  "startDate": "2026-10-04T19:30",
+  "startDate": "2026-10-04T19:30:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/a-different-thread-the-cluny-2-20261004/",
   "description": "Blending British folk rock with North Carolina-bred alt-country melodies.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "The Cluny 2",
-    "address": "34 Lime Street, Ouseburn, Newcastle, NE1 2PQ"
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "34 Lime Street, Ouseburn",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 2PQ",
+      "addressCountry": "GB"
+    }
   },
   "about": "Other",
   "organizer": {

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Gabriel Bath + Chloë Mulhall & Danny Marshall + Hyem",
-  "startDate": "2026-10-25T19:00",
+  "startDate": "2026-10-25T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/gabriel-bath-chloe-mulhall-danny-marshall-hyem-cumberland-arms-20261025/",
   "description": "Join us for an evening of traditional and not so traditional folk music at the Cumberland Arms in Byker on October 25th, doors 7pm. Tickets available online and on the door. Hope to see some of you there!",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cumberland Arms",
-    "address": "James Place Street, Ouseburn, Newcastle, NE6 1LD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "James Place Street, Ouseburn",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE6 1LD",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.975388,
@@ -179,6 +185,20 @@
     }
   },
   "about": "Gigs",
+  "performer": [
+    {
+      "@type": "PerformingGroup",
+      "name": "Gabriel Bath"
+    },
+    {
+      "@type": "PerformingGroup",
+      "name": "Chloë Mulhall & Danny Marshall"
+    },
+    {
+      "@type": "PerformingGroup",
+      "name": "Hyem"
+    }
+  ],
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",

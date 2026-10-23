@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Tyneside Irish Centre Session",
-  "startDate": "2026-11-19T20:30",
+  "startDate": "2026-11-19T20:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261119/",
   "description": "Traditional Irish session in the back bar. Jigs, reels and airs, with singers and musicians of all standards made very welcome. Part of the Centre's regular Thursday programme.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Tyneside Irish Centre",
-    "address": "43 Gallowgate, Newcastle upon Tyne, NE1 4SG",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "43 Gallowgate",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE1 4SG",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9735336,

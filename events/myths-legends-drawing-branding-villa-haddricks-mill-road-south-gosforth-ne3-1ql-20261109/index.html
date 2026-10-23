@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Myths & Legends Drawing",
-  "startDate": "2026-11-09T19:00",
+  "startDate": "2026-11-09T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/myths-legends-drawing-branding-villa-haddricks-mill-road-south-gosforth-ne3-1ql-20261109/",
   "description": "Join Rory Williams for an evening of drawing Myths & Legends at The Brandling Villa The North East Life Art Project and The Brandling Villa are excited to bring you an evening of painting the Myths & Lengends! Lead and tutored by the fabulously talented Rory Williams, join us for and evening of tutored painting some of your favorite Myths & legends. Expect an evening of fun, creativity and laughs. Materials provided. Strictly 18+.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Branding Villa, Haddricks Mill Road, South Gosforth, NE3 1QL",
-    "address": "Haddricks Mill Road, Newcastle upon Tyne, Newcastle upon Tyne, England, NE3 1QY, United Kingdom",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Haddricks Mill Road, Newcastle upon Tyne",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE3 1QY",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 55.0053,

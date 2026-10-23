@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Fresh Thursday // Salt House + Maja Bugge & Dave Evans",
-  "startDate": "2026-12-03T19:00",
+  "startDate": "2026-12-03T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/fresh-thursday-salt-house-maja-bugge-dave-evans-cobalt-studios-20261203/",
   "description": "Fresh Thursday is a unique regular event that showcases new music alongside a home-cooked meal. For more information about how this event works please read the info at the bottom of this event carefully. Thank you. If you have a dietary requirement you can indicate it by selecting one of the free add-ons when purchasing your ticket. Please note we are unable to offer refunds. You can click here to view our full refunds policy. Salt House Salt House have been a mainstay on the folk scene for over a decade. The band’s reputation as thoughtful and innovative interpreters of both ancient ballads and contemporary songs has been solidified with acclaimed album releases, airplay and extensive touring. Described as a “gentle, lulling delight” by The Guardian, Salt House blend heartfelt vocal and instrumental interplay, offering listeners a moment of reflection and connection. New songs that sound like they’ve always been here, ancient ballads woken up. Poems given melodies they’ve long deserved. Salt House’s sound is influenced by the landscapes of the Scottish Highlands, Northumberland and Shetland, the respective homes of band members Ewan MacPherson (vocals, electric and acoustic guitars), Anna Hughes (vocals, fiddle, viola, tenor guitar) and Jenny Sturgeon (vocals, keys, guitar). They incorporate their natural surroundings into the fabric of the music that speaks of a shared love of place, people, and evolving tradition. https://www.salthousemusic.com/ Maja Bugge & Dave Evans Acc",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Shieldfield, Newcastle upon Tyne, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street, Shieldfield",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9766082,

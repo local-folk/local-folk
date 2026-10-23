@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Christmas Willow Wreath Workshop",
-  "startDate": "2026-11-28T10:00",
+  "startDate": "2026-11-28T10:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/christmas-willow-wreath-workshop-land-of-oak-iron-heritage-centre-20261128/",
   "description": "Get festive and creative with this fantastic workshop which will show you how to weave with natural willow. Develop skills and techniques to create your own unique Christmas Wreath for your home.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Land of Oak & Iron Heritage Centre",
-    "address": "Spa Well Road, Winlaton Mill, Blaydon, NE21 6RU",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Spa Well Road, Winlaton Mill",
+      "addressLocality": "Blaydon",
+      "postalCode": "NE21 6RU",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.942516,

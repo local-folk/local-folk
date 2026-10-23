@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "A Night Of Balfolk",
-  "startDate": "2026-12-07T18:30",
+  "startDate": "2026-12-07T18:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/a-night-of-balfolk-cobalt-studios-20261207/",
   "description": "‘a night of balfolk’ is all about that laid back dancing – cozy atmosphere, slow dancing and flowy moves with time to breathe and sink into the step. Focusing on European folk dance (balfolk), the diy ceilidh team will teach dances and play music for this connective night. From French partner dancing to Greek wedding choreographies. Doors at 6.30, dancing at 7! PAYF ON THE DOOR",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Shieldfield, Newcastle upon Tyne, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street, Shieldfield",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9766082,

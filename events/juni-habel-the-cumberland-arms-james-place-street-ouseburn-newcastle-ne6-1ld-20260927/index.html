@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Juni Habel",
-  "startDate": "2026-09-27T19:30",
+  "startDate": "2026-09-27T19:30:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/juni-habel-the-cumberland-arms-james-place-street-ouseburn-newcastle-ne6-1ld-20260927/",
   "description": "Norwegian folk artist.",
@@ -170,7 +170,12 @@
   "location": {
     "@type": "Place",
     "name": "The Cumberland Arms, James Place Street, Ouseburn, Newcastle, NE6 1LD",
-    "address": "The Cumberland Arms, James Place Street, Ouseburn, Newcastle, NE6 1LD, Newcastle upon Tyne",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "The Cumberland Arms, James Place Street, Ouseburn, Newcastle, NE6 1LD",
+      "addressLocality": "Newcastle upon Tyne",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.975388,

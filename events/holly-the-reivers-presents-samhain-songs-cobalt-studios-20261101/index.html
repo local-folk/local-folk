@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Holly & The Reivers presents: ‘Samhain Songs’",
-  "startDate": "2026-11-01T19:00",
+  "startDate": "2026-11-01T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/holly-the-reivers-presents-samhain-songs-cobalt-studios-20261101/",
   "description": "Please note, the advertised start time is when our doors will open, generally music starts one hour after doors. — A brand new show celebrating the songs of the dark season of Samhain or as its more commonly known throughout the world as all hallow’s eve. In legend, this time of the year is when the veil between worlds is thinnest. Spirits, ghosts and darker things descend upon the land and come to be among us once more before the winter descends. Exploring Ballads and songs, Holly & The Reivers have emerged from the archives with songs old and new, Summoning forth a seasonal celebration of one of our oldest festivals. — Please note we are unable to offer refunds. You can click here to view our full refunds policy.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Shieldfield, Newcastle upon Tyne, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street, Shieldfield",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9766082,

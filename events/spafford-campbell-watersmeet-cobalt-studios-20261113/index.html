@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Spafford Campbell + Watersmeet",
-  "startDate": "2026-11-13T19:00",
+  "startDate": "2026-11-13T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/spafford-campbell-watersmeet-cobalt-studios-20261113/",
   "description": "Spafford Campbell are twenty-something mould-breakers, fiddle player Owen Spafford and guitarist Louis Campbell. Watersmeet is Anna Hughes and Jessie Howard. Partners in life and in music, they came together in 2022, to share slow-burning, heartfelt songs with lofty melodies.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Newcastle, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.976516,
@@ -179,6 +185,16 @@
     }
   },
   "about": "Gigs",
+  "performer": [
+    {
+      "@type": "PerformingGroup",
+      "name": "Spafford Campbell"
+    },
+    {
+      "@type": "PerformingGroup",
+      "name": "Watersmeet"
+    }
+  ],
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",

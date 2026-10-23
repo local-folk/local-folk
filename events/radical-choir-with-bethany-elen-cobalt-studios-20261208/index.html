@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Radical Choir with Bethany Elen",
-  "startDate": "2026-12-08T19:00",
+  "startDate": "2026-12-08T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/radical-choir-with-bethany-elen-cobalt-studios-20261208/",
   "description": "If hope is a muscle, join us as we explore our mutual strength through music, creating connections and community through collaborative song. Lead by Bethany Elen. The choir will explore themes of radical hope, unity and justice. Each session we will learn, explore and share music, concluding our sessions with a discussion around the themes arising. All are welcome. All sessions are fully accessible and inclusive, no previous choir experience is necessary.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Shieldfield, Newcastle upon Tyne, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street, Shieldfield",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9766082,

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "The Alehouse Sessions",
-  "startDate": "2026-12-01T18:30",
+  "startDate": "2026-12-01T18:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/the-alehouse-sessions-wylam-brewery-20261201/",
   "description": "The Alehouse Sessions – curated and devised by Bjarte Eike – is an ever changing and evolving insight into the music of a 17th century tavern. It gives audiences a window into this tumultuous period through overtures, English sea shanties, and Scandinavian folk songs. This diversion from the traditional concert model is what is at the heart of the Sessions. Through the medium of these well-loved tunes, a story of the period is interwoven into the music making; creating a unique environment between audience and performer. Using their own arrangement of the tunes, these ‘Alehouse Boys’ combine this unique format with humour, an unrivalled virtuosity and flare for improvisation.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Wylam Brewery",
-    "address": "Wylam Brewery, Exhibition Park, Newcastle upon Tyne, North East, England, NE2 4PZ, United Kingdom",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Wylam Brewery, Exhibition Park, Newcastle upon Tyne",
+      "addressLocality": "North East",
+      "postalCode": "NE2 4PZ",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9864081,

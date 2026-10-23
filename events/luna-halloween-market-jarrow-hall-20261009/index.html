@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Luna Halloween Market",
-  "startDate": "2026-10-09T17:00",
+  "startDate": "2026-10-09T17:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/luna-halloween-market-jarrow-hall-20261009/",
   "description": "The Luna Halloween Market is taking over Jarrow Hall. Expect dark and delightful stalls, delicious food and drinks, ghost tours, and the chance to meet our resident familiars!",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "Jarrow Hall",
-    "address": "Church Bank, Jarrow NE32 3DY",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Church Bank",
+      "addressLocality": "Jarrow",
+      "postalCode": "NE32 3DY",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.982033,

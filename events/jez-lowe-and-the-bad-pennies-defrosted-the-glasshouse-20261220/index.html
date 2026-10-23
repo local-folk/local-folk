@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Jez Lowe and the Bad Pennies Defrosted!",
-  "startDate": "2026-12-20T14:00",
+  "startDate": "2026-12-20T14:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/jez-lowe-and-the-bad-pennies-defrosted-the-glasshouse-20261220/",
   "description": "Toe-tapping. Uplifting. A North East Christmas institution. Who’s performed at The Glasshouse more than any other artist? Yes, it’s Jez Lowe. He’s back again this year with his band The Bad Pennies and their infectious mixture of seasonal songs, old favourites, toe-tapping tunes and witty banter. Once more you can join award-winning songwriter and BBC Radio 4 presenter Jez Lowe for a whistle stop tour of the music and traditions of County Durham, Tyneside and Northumberland. Featuring Jez’s trademark songwriting artistry and a good dose of laughs along the way. With harmony vocals, guitars, fiddle, Northumbrian pipes, bass and piano. Make sure you book early to get your Jez Lowe Christmas fix for 2026.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",
-    "address": "St Mary's Square, Gateshead Quays, NE8 2YR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St Mary's Square",
+      "addressLocality": "Gateshead Quays",
+      "postalCode": "NE8 2YR",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967686,

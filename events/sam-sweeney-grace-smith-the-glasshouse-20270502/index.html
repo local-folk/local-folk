@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Sam Sweeney & Grace Smith",
-  "startDate": "2027-05-02T20:00",
+  "startDate": "2027-05-02T20:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/sam-sweeney-grace-smith-the-glasshouse-20270502/",
   "description": "Rich. Inventive. Traditional fiddle music reimagined. Sam Sweeney and Grace Smith are two of England’s leading fiddle players, known for their powerful, expressive playing and deep connection to traditional music. Sam, a BBC Folk Award winner and veteran of Bellowhead and Leveret, has been called “Britain’s Premier Fiddler” (Songlines), while Grace, a rising star with her acclaimed trio and work with Katie Doherty & the Navigators, brings a fresh, creative voice to the tradition. Both are passionate educators and innovative performers, combining archive inspiration with new compositions to create music that is richly rooted and boldly contemporary. Don’t miss your chance to see them in Sage Two in 2027.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",
-    "address": "St Mary's Square, Gateshead Quays, NE8 2YR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St Mary's Square",
+      "addressLocality": "Gateshead Quays",
+      "postalCode": "NE8 2YR",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967686,

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Winter Makers Market by Endless Love Creative",
-  "startDate": "2026-11-28T11:00",
+  "startDate": "2026-11-28T11:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/winter-makers-market-by-endless-love-creative-baltic-20261128/",
   "description": "Discover artisan craft, contemporary design and beautifully made pieces from over 50 independent makers from across the UK.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "BALTIC",
-    "address": "South Shore Road, Gateshead Quays, Gateshead, NE8 3BA"
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "South Shore Road, Gateshead Quays",
+      "addressLocality": "Gateshead",
+      "postalCode": "NE8 3BA",
+      "addressCountry": "GB"
+    }
   },
   "about": "Markets",
   "organizer": {

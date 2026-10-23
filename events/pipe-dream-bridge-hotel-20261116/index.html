@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Pipe Dream",
-  "startDate": "2026-11-16T19:00",
+  "startDate": "2026-11-16T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/pipe-dream-bridge-hotel-20261116/",
   "description": "Performing at the Bridge Hotel Folk Club.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Bridge Hotel",
-    "address": "Castle Garth, Newcastle, NE1 1RQ",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Castle Garth",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 1RQ",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.968816,

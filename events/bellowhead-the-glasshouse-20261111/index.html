@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Bellowhead",
-  "startDate": "2026-11-11T19:00",
+  "startDate": "2026-11-11T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/bellowhead-the-glasshouse-20261111/",
   "description": "Under 14s must be accompanied by an adult over 18. A max of 6 tickets per person and per household applies. Tickets in excess of 6 will be cancelled.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",
-    "address": "St Mary's Square, Gateshead Quays, NE8 2YR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St Mary's Square",
+      "addressLocality": "Gateshead Quays",
+      "postalCode": "NE8 2YR",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967686,

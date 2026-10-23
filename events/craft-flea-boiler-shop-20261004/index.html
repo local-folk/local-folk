@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Craft & Flea",
-  "startDate": "2026-10-04T11:00",
+  "startDate": "2026-10-04T11:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/craft-flea-boiler-shop-20261004/",
   "description": "Craft & Flea is a spin on the makers market, bringing together talented, independent makers, designers, producers, and collectors, each hand-picked for their quality, on-trend products.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "Boiler Shop",
-    "address": "18 Bewick Road, Newcastle upon Tyne, NE1 6RH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "18 Bewick Road",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE1 6RH",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9723,

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Willow Star Workshop",
-  "startDate": "2026-10-23T19:00",
+  "startDate": "2026-10-23T19:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261023/",
   "description": "There are several willow star workshops on the horizon. They make a really warm and classy home decoration for yourself or a gift. Come and join me for an afternoon or evening of easy-going crafting that is suitable for all. All materials are provided, including fairy lights £25.00 Friday 23rd October @theheartharts 7-9pm Email: handandheartbasketry@gmail.com for enquiries and bookings",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT",
-    "address": "Main Road, Ryton, Gateshead, England, NE40 3RX, United Kingdom",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Main Road, Ryton",
+      "addressLocality": "Gateshead",
+      "postalCode": "NE40 3RX",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.972862,

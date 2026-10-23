@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Richard Thompson - Hippies, Thugs and Heroes - Band Tour 2027",
-  "startDate": "2027-05-05T19:30",
+  "startDate": "2027-05-05T19:30:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/richard-thompson-hippies-thugs-and-heroes-band-tour-2027-the-glasshouse-20270505/",
   "description": "Richard Thompson tours the UK with the Richard Thompson Band to mark the release of his new album Hippies, Thugs and Heroes . The show highlights Thompson’s unmistakable guitar work, sharp songwriting and the energy that has defined his five-decade career. He’s joined by powerhouse drummer Michael Jerome, bassist Tara Prodaniuk, harmony vocalist Zara Phillips, and guitarist/mandolin player Zak Hobbs, whose playing brings a fresh edge to the band’s sound. Together they deliver a tight, dynamic set that moves confidently between electric intensity and acoustic detail. This tour presents Thompson at full strength - a veteran artist still pushing forward, backed by a band built for impact. www.richardthompson-music.com Venue : Sage One (Standing Layout) Price: From £52.60",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",
-    "address": "St Mary's Square, Gateshead Quays, NE8 2YR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St Mary's Square",
+      "addressLocality": "Gateshead Quays",
+      "postalCode": "NE8 2YR",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967686,

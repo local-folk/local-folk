@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Cloth Eared Mule + Sugarwell Hill",
-  "startDate": "2026-10-08T20:00",
+  "startDate": "2026-10-08T20:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/cloth-eared-mule-sugarwell-hill-the-globe-20261008/",
   "description": "Cloth Eared Mule are a North East based American Old Time duo playing a wonderful collection of old time fiddle tunes and songs from the Appalachian mountains and beyond. Sugarwell Hill are a West Yorkshire based Old Time Stringband.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "The Globe",
-    "address": "11 Railway Street, Newcastle, NE4 7AD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "11 Railway Street",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE4 7AD",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.963946,
@@ -178,6 +184,16 @@
     }
   },
   "about": "Gigs",
+  "performer": [
+    {
+      "@type": "PerformingGroup",
+      "name": "Cloth Eared Mule"
+    },
+    {
+      "@type": "PerformingGroup",
+      "name": "Sugarwell Hill"
+    }
+  ],
   "organizer": {
     "@type": "Organization",
     "name": "The Kirn",

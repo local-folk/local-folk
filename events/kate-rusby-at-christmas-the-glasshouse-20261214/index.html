@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Kate Rusby at Christmas",
-  "startDate": "2026-12-14T19:00",
+  "startDate": "2026-12-14T19:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/kate-rusby-at-christmas-the-glasshouse-20261214/",
   "description": "Sparkling. Cosy. Our folk Christmas queen returns. There’s nothing quite like Kate Rusby at Christmas. For over two decades, Kate’s enchanted audiences with her sparkling Christmas concerts. In December 2026, she marks 21 years of Christmas shows. As always, concertgoers seeing Kate at The Glasshouse can expect a performance filled with warmth, wit, wonder, Rusby magic and unmistakable Yorkshire charm. Blending traditional carols, glittering originals, and joyful festive favourites, she creates a magical, cosy atmosphere that audiences adore. With her acclaimed band and ‘Brass Boys,’ captivating vocals, and a holiday spirit like no other, Kate Rusby at Christmas is the perfect seasonal celebration for music lovers of all ages.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",
-    "address": "St Mary's Square, Gateshead Quays, NE8 2YR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St Mary's Square",
+      "addressLocality": "Gateshead Quays",
+      "postalCode": "NE8 2YR",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967686,

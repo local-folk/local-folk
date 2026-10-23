@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Polymer (Clay) Pumpkin Carving with Jed Buttress",
-  "startDate": "2026-10-31T11:00",
+  "startDate": "2026-10-31T11:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/polymer-clay-pumpkin-carving-with-jed-buttress-cobalt-studios-20261031/",
   "description": "In this seasonal session, participants will sculpt small pumpkin-inspired forms using polymer clay and add expressive carved faces and surface textures. The workshop introduces basic clay handling, simple carving tools – perfect for spooky Halloween, no prior sculpting experience needed. Please contact hello@creativeworkshopsnecic.com if you have any questions or access requirements. This workshop is delivered by Creative Workshops NE CIC, a not-for-profit company focusing on wellbeing outcomes through art. We serve communities that often feel excluded and would benefit from art practice, such as queer, neurodiverse and low-income groups. — Please note we are unable to offer refunds. You can click here to view our full refunds policy.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Cobalt Studios",
-    "address": "10-16 Boyd Street, Shieldfield, Newcastle upon Tyne, NE2 1AP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10-16 Boyd Street, Shieldfield",
+      "addressLocality": "Newcastle upon Tyne",
+      "postalCode": "NE2 1AP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.9766082,

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Shawn Colvin",
-  "startDate": "2026-10-15T20:00",
+  "startDate": "2026-10-15T20:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/shawn-colvin-the-glasshouse-20261015/",
   "description": "Shawn Colvin celebrates 30 years of A Few Small Repairs with rare UK Tour. Over the course of three decades, Shawn Colvin has established herself as a captivating performer and a revered storyteller, well-deserving of the commendation of her peers and the devoted audiences who have been inspired by her artistry. As she enters her third decade as a songwriter and performer, Shawn continues to reaffirm her status as a vital voice in music. Shawn Colvin stopped the industry in its tracks with her 1989 debut, Steady On . The following spring, Colvin took home the GRAMMY Award for Best Contemporary Folk Album, establishing herself as a mainstay in the singer-songwriter genre. In the ensuing 30 years, Colvin has won three GRAMMY Awards, released thirteen superlative albums, written a critically acclaimed memoir, maintained a non-stop national and international touring schedule, appeared on countless television and radio programmes, had her songs featured in major motion pictures and created a remarkable canon of work.",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "The Glasshouse",
-    "address": "St Mary's Square, Gateshead Quays, NE8 2YR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St Mary's Square",
+      "addressLocality": "Gateshead Quays",
+      "postalCode": "NE8 2YR",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.967686,

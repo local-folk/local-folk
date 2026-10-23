@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "James Yorkston",
-  "startDate": "2026-11-30T19:30",
+  "startDate": "2026-11-30T19:30:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/james-yorkston-the-central-bar-20261130/",
   "description": "Scottish singer songwriter with a literary, folk bent and unconventional approach.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "The Central Bar",
-    "address": "Half Moon Lane, Gateshead, NE8 2AN",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Half Moon Lane",
+      "addressLocality": "Gateshead",
+      "postalCode": "NE8 2AN",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.965474,

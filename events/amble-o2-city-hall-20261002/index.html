@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Amble",
-  "startDate": "2026-10-02T18:00",
+  "startDate": "2026-10-02T18:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/amble-o2-city-hall-20261002/",
   "description": "Amble, O2 City Hall, Fri 2 Oct, 6pm",
@@ -170,7 +170,13 @@
   "location": {
     "@type": "Place",
     "name": "O2 City Hall",
-    "address": "Northumberland Road, Newcastle, NE1 8SF",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Northumberland Road",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE1 8SF",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.977346,

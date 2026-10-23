@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Cabinet of Curiosities",
-  "startDate": "2026-10-24T10:00",
+  "startDate": "2026-10-24T10:00:00+01:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261024/",
   "description": "Join our resident witches Sally and Kathleen in the Thirlings to discover their cabinet of curiosities! Sally will teach you about medieval medicine, while Kathleen demonstrates the art of divination.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Jarrow Hall",
-    "address": "Church Bank, Jarrow NE32 3DY",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Church Bank",
+      "addressLocality": "Jarrow",
+      "postalCode": "NE32 3DY",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 54.982033,

@@ -162,7 +162,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Christmas Willow Wreath Making Workshops",
-  "startDate": "2026-12-05T10:00",
+  "startDate": "2026-12-05T10:00:00+00:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "url": "https://thekirn.co.uk/events/christmas-willow-wreath-making-workshops-gosforth-nature-reserve-20261205/",
   "description": "Join Dan at Gosforth Nature Reserve for a fun and relaxing workshop where you'll weave your very own festive willow wreath to take home.",
@@ -171,7 +171,13 @@
   "location": {
     "@type": "Place",
     "name": "Gosforth Nature Reserve",
-    "address": "Salter's Lane, Gosforth, Newcastle, NE3 5EP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Salter's Lane, Gosforth",
+      "addressLocality": "Newcastle",
+      "postalCode": "NE3 5EP",
+      "addressCountry": "GB"
+    },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 55.035009,
