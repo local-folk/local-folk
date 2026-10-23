@@ -124,11 +124,11 @@ function readChoices(text, now) {
     const id = String(r[idCol] || '').trim();
     if (!id) return;
 
-    // Strip the revision stamp (-rxxxxx) so every rebuild of the same post
-    // lands on one key, and the latest row in the sheet wins. Without this,
-    // a freshly stamped dateLabel never matches the key the choice was saved
-    // under, so the old unstamped choice is always applied instead.
-    const normId = id.replace(/-r[0-9a-z]+$/i, '');
+    // Strip the revision stamp (-rxxxxx or rxxxxx) so every rebuild of the
+    // same post lands on one key, and the latest row in the sheet wins.
+    // archiveName() strips all non-alphanumeric from dateLabel, so the stamp
+    // arrives here without its dash; match both forms.
+    const normId = id.replace(/[-]?r[0-9a-z]{5}$/i, '');
     if (!normId) return;
 
     if (whenCol !== -1) {
@@ -357,8 +357,10 @@ async function main() {
   let applied = 0;
   posts.forEach((post) => {
     // Match on the date without the revision stamp, so a stamped post still
-    // finds the choice saved under its unstamped key.
-    const cleanDate = String(post.dateLabel || '').replace(/-r[0-9a-z]+$/i, '');
+    // finds the choice saved under its unstamped key. archiveName() strips
+    // all non-alphanumeric from dateLabel, so the stamp may arrive with or
+    // without its dash; match both forms.
+    const cleanDate = String(post.dateLabel || '').replace(/[-]?r[0-9a-z]{5}$/i, '');
     const slug = archiveBase(post.variant, cleanDate);
     let picks = choices[post.PostID || slug] || choices[post.variant];
     if (!picks) return;
