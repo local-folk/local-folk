@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "19a4839b-44bf",
-      "lastmod": "2026-10-24"
+      "hash": "68376203-46c4",
+      "lastmod": "2026-10-25"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "237cfa3e-a4d8",
-      "lastmod": "2026-10-24"
+      "hash": "5bd7d5e2-a368",
+      "lastmod": "2026-10-25"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
       "hash": "ebbea382-3c7c",
@@ -166,8 +166,8 @@
       "lastmod": "2026-10-23"
     },
     "https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261024/": {
-      "hash": "8728e37f-3a72",
-      "lastmod": "2026-10-23"
+      "hash": "1920e8e9-3ab2",
+      "lastmod": "2026-10-25"
     },
     "https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261031/": {
       "hash": "4612dcac-3a72",
@@ -322,8 +322,8 @@
       "lastmod": "2026-10-23"
     },
     "https://thekirn.co.uk/events/experimental-basketweaving-with-rachael-eden-cobalt-studios-20261024/": {
-      "hash": "487b5f1b-4091",
-      "lastmod": "2026-10-23"
+      "hash": "72f8c118-40a3",
+      "lastmod": "2026-10-25"
     },
     "https://thekirn.co.uk/events/festive-folk-hearken-quartet-ouseburn-folk-choir-ouseburn-folk-band-tapyard-20261215/": {
       "hash": "af03bc59-404e",
@@ -730,8 +730,8 @@
       "lastmod": "2026-10-23"
     },
     "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-20261024/": {
-      "hash": "982f2f80-4104",
-      "lastmod": "2026-10-23"
+      "hash": "ef6ba3fc-412e",
+      "lastmod": "2026-10-25"
     },
     "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-20261107/": {
       "hash": "b7fe428e-4103",
@@ -820,6 +820,10 @@
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270117/": {
       "hash": "5fa55264-3cc6",
       "lastmod": "2026-10-23"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270124/": {
+      "hash": "914ab312-3cc6",
+      "lastmod": "2026-10-25"
     },
     "https://thekirn.co.uk/events/radical-choir-with-bethany-elen-cobalt-studios-20261103/": {
       "hash": "79297706-3de3",
