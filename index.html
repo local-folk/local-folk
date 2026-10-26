@@ -838,37 +838,48 @@ function shareTextFor(e) {
   return bits.filter(Boolean).join(', ');
 }
 
-function readSharedEventId() {
+/* Reads one deep-link value from the query string or the fragment.
+ *
+ * Changed 26 October 2026. The generated event pages now write
+ * /#event=<id> and /#venue=<key>. A fragment is never sent to the server, so
+ * Google sees one page (/) instead of a separate query-string URL for every
+ * event and every venue. Those URLs were crawlable duplicates of the homepage
+ * and, on the empty render of 24 October, were classified as Soft 404s.
+ *
+ * The query form is still read, and read first, so every link already shared
+ * or indexed keeps working. URLSearchParams decodes the value itself, so the
+ * old extra decodeURIComponent() is gone - that also stops an id containing a
+ * literal "%" from being thrown away.
+ */
+function readSharedParam(name) {
+  let raw = '';
   try {
-    const params = new URLSearchParams(window.location.search);
-    const raw = params.get(SHARE_PARAM);
-    if (!raw) return '';
-    try {
-      return decodeURIComponent(raw).toLowerCase().trim();
-    } catch (err) {
-      return '';
-    }
+    raw = new URLSearchParams(window.location.search).get(name) || '';
   } catch (err) {
-    return '';
+    raw = '';
   }
+
+  if (!raw) {
+    try {
+      raw = new URLSearchParams(
+        String(window.location.hash || '').replace(/^#/, '')).get(name) || '';
+    } catch (err) {
+      raw = '';
+    }
+  }
+
+  return String(raw).toLowerCase().trim();
 }
 
-/* A generated event page links here as /?venue=<venueKey> so the map opens
+function readSharedEventId() {
+  return readSharedParam(SHARE_PARAM);
+}
+
+/* A generated event page links here as /#venue=<venueKey> so the map opens
    centred on the venue with its pin selected, rather than at the last place
    the visitor was looking. */
 function readSharedVenueKey() {
-  try {
-    const params = new URLSearchParams(window.location.search);
-    const raw = params.get(VENUE_PARAM);
-    if (!raw) return '';
-    try {
-      return decodeURIComponent(raw).toLowerCase().trim();
-    } catch (err) {
-      return '';
-    }
-  } catch (err) {
-    return '';
-  }
+  return readSharedParam(VENUE_PARAM);
 }
 
 /* Filters are cleared first so the venue marker is actually on the map. */
