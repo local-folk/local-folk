@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-26T03:52:55.683Z",
+  "generatedAt": "2026-10-26T07:48:00.366Z",
   "posts": [
     {
-      "PostID": "Weekly-261026",
+      "PostID": "Weekly-261026ryfgs8",
       "PostType": "Weekly Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-10-26T07:00:00.000Z",
-      "EventIDs": "2026-10-26|the lit phil|halloween thoughts the ghost the skull and the sheet,2026-10-27|north shields community hub and library|dr katie liddane witchhaunting the ghosts of witches in the north east and beyond,2026-10-28|the glasshouse gateshead quays ne8 2yr|martin simpson,2026-10-29|kings hall armstrong building newcastle university queen victoria road newcastle ne1 7ru|lunchtime concert,2026-10-30|the cumberland arms|an criscn ln irish session",
+      "EventIDs": "2026-10-26|the lit phil|halloween thoughts the ghost the skull and the sheet,2026-10-27|north shields community hub and library|dr katie liddane witchhaunting the ghosts of witches in the north east and beyond,2026-10-28|the glasshouse gateshead quays ne8 2yr|martin simpson,2026-10-28|benedictine social centre|cramlington folk club the brothers gillespie,2026-10-28|cobalt studios|introduction to leathercraft with minuel designs",
       "Candidates": [
         {
           "date": "2026-10-26",
@@ -151,11 +151,118 @@
           ]
         }
       ],
-      "FBCaption": "// 26-30 OCT // WEEKLY ROUNDUP\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\n\nTHURSDAY - 29/10\nLunchtime Concert\nKing's Hall\n\nFRIDAY - 30/10\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 26-30 OCT // WEEKLY ROUNDUP\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\n\nTHURSDAY - 29/10\nLunchtime Concert\nKing's Hall\n\nFRIDAY - 30/10\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekly-261026",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-261026.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-261026.jpg",
+      "FBCaption": "// 26-28 OCT // WEEKLY ROUNDUP\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\nCramlington Folk Club: The Brothers Gillespie\nBenedictine Social Centre\nIntroduction to Leathercraft with Minuel Designs\nCobalt Studios\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 26-28 OCT // WEEKLY ROUNDUP\n\nMONDAY - 26/10\nHalloween Thoughts - The Ghost, the Skull & the Sheet\nThe Lit & Phil\n\nTUESDAY - 27/10\nDr Katie Liddane- Witch-Haunting: The Ghosts of Witches in the North East & Beyond\nNorth Shields Community Hub & Library\n\nWEDNESDAY - 28/10\nMartin Simpson\nThe Glasshouse\nCramlington Folk Club: The Brothers Gillespie\nBenedictine Social Centre\nIntroduction to Leathercraft with Minuel Designs\nCobalt Studios\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekly-261026ryfgs8",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-261026ryfgs8.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-261026ryfgs8.jpg",
+      "FBPostID": "",
+      "IGPostID": "",
+      "Notes": ""
+    },
+    {
+      "PostID": "Weekend-301026",
+      "PostType": "Weekend Roundup",
+      "Status": "Draft",
+      "ScheduledFor": "2026-10-30T07:00:00.000Z",
+      "EventIDs": "2026-10-30|the cumberland arms|an criscn ln irish session,2026-10-31|jarrow hall|cabinet of curiosities,2026-10-31|jarrow hall|folklore medieval mask making workshop jarroween,2026-10-31|cobalt studios|polymer clay pumpkin carving with jed buttress,2026-11-01|cobalt studios|holly the reivers presents samhain songs,2026-11-01|cumberland arms|a cosy night in with eddie doyle nicky rushton guapanelas",
+      "Candidates": [
+        {
+          "date": "2026-10-30",
+          "day": "Friday",
+          "events": [
+            {
+              "id": "2026-10-30|the cumberland arms|an criscn ln irish session",
+              "title": "An Crúiscín Làn' Irish Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-10-31",
+          "day": "Saturday",
+          "events": [
+            {
+              "id": "2026-10-31|jarrow hall|cabinet of curiosities",
+              "title": "Cabinet of Curiosities",
+              "venue": "Jarrow Hall",
+              "category": "Folk Music",
+              "rank": 7,
+              "size": 3
+            },
+            {
+              "id": "2026-10-31|jarrow hall|folklore medieval mask making workshop jarroween",
+              "title": "Folklore & Medieval Mask Making Workshop - Jarroween",
+              "venue": "Jarrow Hall",
+              "category": "Heritage Workshop",
+              "rank": 27,
+              "size": 3
+            },
+            {
+              "id": "2026-10-31|cobalt studios|polymer clay pumpkin carving with jed buttress",
+              "title": "Polymer (Clay) Pumpkin Carving with Jed Buttress",
+              "venue": "Cobalt Studios",
+              "category": "Heritage Workshop",
+              "rank": 27,
+              "size": 3
+            }
+          ]
+        },
+        {
+          "date": "2026-11-01",
+          "day": "Sunday",
+          "events": [
+            {
+              "id": "2026-11-01|cobalt studios|holly the reivers presents samhain songs",
+              "title": "Holly & The Reivers presents: ‘Samhain Songs’",
+              "venue": "Cobalt Studios",
+              "category": "Folk Music",
+              "rank": 7,
+              "size": 3
+            },
+            {
+              "id": "2026-11-01|cumberland arms|a cosy night in with eddie doyle nicky rushton guapanelas",
+              "title": "A Cosy Night In with Eddie Doyle, Nicky Rushton & Guapanelas",
+              "venue": "Cumberland Arms",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-01|newcastle quayside|quayside market",
+              "title": "Quayside Market",
+              "venue": "Newcastle Quayside",
+              "category": "Market",
+              "rank": 37,
+              "size": 3
+            },
+            {
+              "id": "2026-11-01|the cumberland arms|ballad club",
+              "title": "Ballad Club",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            },
+            {
+              "id": "2026-11-01|monkseaton arms|monkey folk club",
+              "title": "Monkey Folk Club",
+              "venue": "Monkseaton Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        }
+      ],
+      "FBCaption": "// 30 OCT - 01 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 30/10\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 31/10\nCabinet of Curiosities\nJarrow Hall\nFolklore & Medieval Mask Making Workshop - Jarroween\nJarrow Hall\nPolymer (Clay) Pumpkin Carving with Jed Buttress\nCobalt Studios\n\nSUNDAY - 01/11\nHolly & The Reivers presents: ‘Samhain Songs’\nCobalt Studios\nA Cosy Night In with Eddie Doyle, Nicky Rushton & Guapanelas\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 30 OCT - 01 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 30/10\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 31/10\nCabinet of Curiosities\nJarrow Hall\nFolklore & Medieval Mask Making Workshop - Jarroween\nJarrow Hall\nPolymer (Clay) Pumpkin Carving with Jed Buttress\nCobalt Studios\n\nSUNDAY - 01/11\nHolly & The Reivers presents: ‘Samhain Songs’\nCobalt Studios\nA Cosy Night In with Eddie Doyle, Nicky Rushton & Guapanelas\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-301026",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-301026.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-301026.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
