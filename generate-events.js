@@ -636,10 +636,24 @@ function buildEventPage(ev, isPast) {
   // A past event is not in the homepage's list, so linking to it with the
   // event id would land on a page that cannot find it. Link to the homepage
   // itself instead.
+  //
+  // The deep links are fragments, not query strings.
+  //
+  // Changed 26 October 2026. A fragment is never sent to the server, so every
+  // one of these links is just a link to "/" as far as Google is concerned.
+  // The query form produced a separate, crawlable URL for every event and every
+  // venue - around 600 of them - all serving the same homepage. They were
+  // canonicalised to "/", but on 24 October Search Console still listed a batch
+  // under "Soft 404": the page had returned 200 with an empty list because the
+  // scripts it loaded from cdnjs were blocked in Google's renderer. That is
+  // fixed, and the fragments stop the duplicate URLs being discovered at all.
+  //
+  // The homepage still reads ?event= and ?venue=, so links already shared or
+  // indexed keep working exactly as before.
   const homeHref = isPast
     ? origin + '/'
-    : origin + '/?event=' + encodeURIComponent(ev.favId);
-  const venueHref = origin + '/?venue=' + encodeURIComponent(ev.venueKey);
+    : origin + '/#event=' + encodeURIComponent(ev.favId);
+  const venueHref = origin + '/#venue=' + encodeURIComponent(ev.venueKey);
   const allEventsHref = origin + '/';
 
   return `<!DOCTYPE html>
@@ -1434,7 +1448,7 @@ async function main() {
       sourceIndex: rowIndex < published.length ? rowIndex : null
     };
 
-    // Must match venueKeyFor() in index.html so ?venue= resolves to a marker.
+    // Must match venueKeyFor() in index.html so #venue= resolves to a marker.
     ev.venueKey = venueKeyFor(ev);
 
     events.push(ev);
