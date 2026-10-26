@@ -1041,6 +1041,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://thekirn.co.uk/events/lady-maisery-and-jimmy-sid-present-awake-arise-a-midwinter-show-for-our-times-gosforth-civic-theatre-20261214/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://thekirn.co.uk/events/festive-folk-hearken-quartet-ouseburn-folk-choir-ouseburn-folk-band-tapyard-20261215/</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -1337,6 +1343,12 @@
   <url>
     <loc>https://thekirn.co.uk/events/tim-dalling-bridge-hotel-20270125/</loc>
     <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270126/</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
