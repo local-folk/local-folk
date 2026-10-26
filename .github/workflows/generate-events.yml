@@ -56,11 +56,12 @@ jobs:
 
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # archive/ is the past-events page and lastmod.json is the sitemap's
-          # memory of when each page last changed. If lastmod.json is not
+          # archive/ is the past-events page, lastmod.json is the sitemap's
+          # memory of when each page last changed, and events-data.js is the
+          # homepage's copy of the upcoming events. If lastmod.json is not
           # committed, every build treats every page as new and the sitemap
           # goes back to stamping today's date on all of them.
-          git add events archive sitemap.xml lastmod.json
+          git add events archive sitemap.xml lastmod.json events-data.js
           git commit -m "Update event pages"
 
           if ! git push; then
