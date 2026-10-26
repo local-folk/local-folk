@@ -31,9 +31,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<!-- Leaflet and Papa Parse are served from this site rather than a CDN.
+     Google's renderer reported "Other error" fetching all three cdnjs files
+     and ran the page without them, so the map threw before the list was
+     drawn. These are the same library files, unchanged, with their licences
+     beside them in /assets/. -->
+<link rel="stylesheet" href="/assets/leaflet/leaflet.min.css">
+<script src="/assets/leaflet/leaflet.min.js"></script>
+<script src="/assets/papaparse/papaparse.min.js"></script>
 <style>
 
   :root {
@@ -1093,19 +1098,28 @@ function showPinWithPopup(marker) {
   if (popupTop < 8) map.panBy([0, popupTop - 8]);
 }
 
+/* The map is a bonus, not the page. If Leaflet is missing or will not start -
+   Google's renderer could not fetch it from the CDN - the list must still be
+   drawn, because the list is what the page is for. */
 function initMap() {
-  const saved = loadSavedMapView();
-  hasSavedMapView = !!saved;
-  map = L.map('map').setView(
-    saved ? [saved.lat, saved.lng] : DEFAULT_CENTRE,
-    saved ? saved.zoom : DEFAULT_ZOOM
-  );
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-  markersLayer = L.layerGroup().addTo(map);
+  try {
+    const saved = loadSavedMapView();
+    hasSavedMapView = !!saved;
+    map = L.map('map').setView(
+      saved ? [saved.lat, saved.lng] : DEFAULT_CENTRE,
+      saved ? saved.zoom : DEFAULT_ZOOM
+    );
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    markersLayer = L.layerGroup().addTo(map);
 
-  map.on('moveend zoomend', saveMapView);
+    map.on('moveend zoomend', saveMapView);
+  } catch (err) {
+    map = null;
+    markersLayer = null;
+    document.getElementById('map').style.display = 'none';
+  }
 }
 
 function loadSavedMapView() {
@@ -1141,7 +1155,7 @@ function saveMapView() {
 }
 
 function fitMapToPins() {
-  if (!map || !map.fitBounds) return false;
+  if (!map || !markersLayer || !map.fitBounds) return false;
   const pts = [];
   markersLayer.eachLayer(m => {
     const p = m.getLatLng();
@@ -1239,6 +1253,16 @@ function loadEvents() {
   // undefined and the page behaves exactly as it did before.
   const built = Array.isArray(window.KIRN_EVENTS) ? window.KIRN_EVENTS : null;
   if (built) showEvents(mapEventRows(built));
+
+  // Nothing to fetch the sheet with. The built list stands; if there was none,
+  // say so rather than leaving "Loading events..." on the page for ever.
+  if (typeof Papa === 'undefined') {
+    if (!built) {
+      document.getElementById('status').textContent =
+        'Events failed to load. Please try again later.';
+    }
+    return;
+  }
 
   Papa.parse(CONFIG.CSV_URL, {
     download: true,
@@ -1358,7 +1382,7 @@ function render() {
     .filter(e => !favouritesOnly || isFavourite(e))
     .sort((a, b) => a.date.localeCompare(b.date));
 
-  markersLayer.clearLayers();
+  if (markersLayer) markersLayer.clearLayers();
   venueMarkers = {};
 
   const venueGroups = {};
@@ -1371,21 +1395,23 @@ function render() {
     if (!venueGroups[venueKey].address && e.address) venueGroups[venueKey].address = e.address;
     venueGroups[venueKey].events.push(e);
   });
-  Object.keys(venueGroups).forEach(key => {
-    const g = venueGroups[key];
-    const marker = L.marker([g.lat, g.lng], { icon: pinIcon(false, g), alt: pinLabel(g), title: pinLabel(g) }).addTo(markersLayer)
-      .bindPopup(buildVenuePopup(g), { maxWidth: 320 });
+  if (markersLayer) {
+    Object.keys(venueGroups).forEach(key => {
+      const g = venueGroups[key];
+      const marker = L.marker([g.lat, g.lng], { icon: pinIcon(false, g), alt: pinLabel(g), title: pinLabel(g) }).addTo(markersLayer)
+        .bindPopup(buildVenuePopup(g), { maxWidth: 320 });
 
-    marker.on('popupopen', () => {
-      marker.setIcon(pinIcon(true, g));
-      showPinWithPopup(marker);
+      marker.on('popupopen', () => {
+        marker.setIcon(pinIcon(true, g));
+        showPinWithPopup(marker);
+      });
+      marker.on('popupclose', () => marker.setIcon(pinIcon(false, g)));
+      venueMarkers[key] = marker;
     });
-    marker.on('popupclose', () => marker.setIcon(pinIcon(false, g)));
-    venueMarkers[key] = marker;
-  });
 
-  if (!mapHasFitted && !hasSavedMapView) {
-    if (autoFitMapToPins()) mapHasFitted = true;
+    if (!mapHasFitted && !hasSavedMapView) {
+      if (autoFitMapToPins()) mapHasFitted = true;
+    }
   }
 
   const list = document.getElementById('eventList');
