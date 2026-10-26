@@ -714,6 +714,10 @@
     </div>
   </div>
 
+<!-- The upcoming events, written by the daily build. Deliberately not deferred:
+     a blocking script, so the list is on the page in the first render rather
+     than after the sheet has been fetched. -->
+<script src="/events-data.js"></script>
 <script>
 
 const CONFIG = {
@@ -1161,7 +1165,81 @@ function autoFitMapToPins() {
   }
 }
 
+/* One row, as the sheet gives it, in the shape the rest of the page uses. */
+function mapEventRows(rows) {
+  return (rows || [])
+    .filter(row => row.Title && row.Date)
+    .filter(row => !isPastDate(row.Date))
+    .map((row, idx) => ({
+      eventId: row.EventID || '',
+      domId: 'event-' + idx + '-' + (row.EventID || row.Title).replace(/[^a-zA-Z0-9]/g, '').slice(0, 40),
+      title: row.Title,
+      description: row.Description || '',
+      category: row.Category || '',
+      date: row.Date,
+      startTime: row.StartTime || '',
+      endTime: row.EndTime || '',
+      venue: row.Venue || '',
+      address: row.Address || '',
+      lat: parseFloat(row.Lat),
+      lng: parseFloat(row.Lng),
+      sourceUrl: row.SourceURL || ''
+    }));
+}
+
+/* Everything the list, the map and the favourites are drawn from, as a single
+   string: two sets of events with the same signature would draw the same page,
+   so there is nothing to redraw. Descriptions are left out - the built copy of
+   the list does not carry them, and the sheet filling them in is not a change
+   to show. */
+function eventsSignature(events) {
+  return JSON.stringify(events.map(e => [
+    e.eventId, e.title, e.category, e.date, e.startTime, e.endTime,
+    e.venue, e.address, e.lat, e.lng, e.sourceUrl
+  ]));
+}
+
+/* The signature of the list the page is currently showing. */
+let eventsShown = '';
+let firstRenderDone = false;
+
+/* Draws a set of events, whether they came from /events-data.js or from the
+   sheet. Only redraws when something has changed, so the refresh that follows
+   the sheet's fetch leaves a list the visitor may already be reading alone. */
+function showEvents(events) {
+  const signature = eventsSignature(events);
+  const changed = signature !== eventsShown;
+  eventsShown = signature;
+  allEvents = events;
+
+  if (changed) {
+    document.getElementById('status').style.display = 'none';
+    pruneFavourites();
+    render();
+    if (!firstRenderDone) {
+      firstRenderDone = true;
+      openSharedLink();
+    }
+    return;
+  }
+
+  // The same events, but freshly mapped objects: the sheet's rows carry the
+  // descriptions the built copy leaves out. The list on the page is unchanged
+  // and in this order, so point its lookups at the new objects.
+  if (Array.isArray(window.currentFilteredEvents)) {
+    window.currentFilteredEvents = window.currentFilteredEvents.map(old =>
+      allEvents.find(e => e.domId === old.domId) || old);
+  }
+}
+
 function loadEvents() {
+  // The build's copy of the list first, so there is something on the page
+  // before the sheet arrives - which is also what the page is indexed with.
+  // It is a blocking script, so it is already here. A missing file leaves this
+  // undefined and the page behaves exactly as it did before.
+  const built = Array.isArray(window.KIRN_EVENTS) ? window.KIRN_EVENTS : null;
+  if (built) showEvents(mapEventRows(built));
+
   Papa.parse(CONFIG.CSV_URL, {
     download: true,
     header: true,
@@ -1172,31 +1250,15 @@ function loadEvents() {
       // scraper keeps each one for six months after the event so its own
       // page stays online. Those are not part of the list, the map or the
       // favourites, so they are dropped as the list is built.
-      allEvents = results.data
-        .filter(row => row.Title && row.Date)
-        .filter(row => !isPastDate(row.Date))
-        .map((row, idx) => ({
-          eventId: row.EventID || '',
-          domId: 'event-' + idx + '-' + (row.EventID || row.Title).replace(/[^a-zA-Z0-9]/g, '').slice(0, 40),
-          title: row.Title,
-          description: row.Description,
-          category: row.Category || '',
-          date: row.Date,
-          startTime: row.StartTime || '',
-          endTime: row.EndTime || '',
-          venue: row.Venue || '',
-          address: row.Address || '',
-          lat: parseFloat(row.Lat),
-          lng: parseFloat(row.Lng),
-          sourceUrl: row.SourceURL || ''
-        }));
-      document.getElementById('status').style.display = 'none';
-      pruneFavourites();
-      render();
-
-      openSharedLink();
+      //
+      // Usually this changes nothing the page has not already drawn, in which
+      // case only the descriptions are new.
+      showEvents(mapEventRows(results.data));
     },
     error: function() {
+      // The build's copy is on the page, so a failed refresh is not worth
+      // reporting: the list is there, one build out of date at worst.
+      if (built) return;
       document.getElementById('status').textContent =
         'Events failed to load. Please try again later.';
     }
