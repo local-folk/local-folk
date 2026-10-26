@@ -7,10 +7,14 @@
  *
  * The rules, per the agreed specification:
  *
- *   Weekly  - Monday, covers Monday to Friday, one event per day, 5 maximum.
+ *   Weekly  - runs Monday, covers Monday to Friday, one event per day, 5 maximum.
  *             Five weekdays means five lines; the cap is a ceiling, not a target.
- *   Weekend - Thursday, covers Friday to Saturday and Sunday, up to 6 events.
- *             One per day, then extra events on the days that have them.
+ *             A Sunday to Wednesday run covers that Monday to Friday; a
+ *             Thursday to Saturday run covers the coming one (windowStartFor).
+ *   Weekend - runs Friday, covers Friday to Sunday, up to 6 events.
+ *             One per day, then extra events on the days that have them. A
+ *             Thursday to Saturday run covers that weekend; a Sunday to
+ *             Wednesday run covers the coming one.
  *
  * Selection is least-recently-posted-first, so no event repeats while others go
  * unmentioned. Events already recorded as Posted are excluded outright, which
@@ -453,35 +457,54 @@ function tidyText(value) {
  * ------------------------------------------------------------------ */
 
 /**
+ * The Monday (weekly) or Friday (weekend) that anchors the roundup period.
+ *
+ * The period is used while at most half of it has passed. That keeps the dates
+ * stable when a post is generated a day or two late, instead of sliding the
+ * whole window forward:
+ *
+ *   Weekly  (Mon-Fri)  Sun-Wed -> that week's Monday-Friday
+ *                      Thu-Sat -> the coming week's Monday-Friday
+ *   Weekend (Fri-Sun)  Thu-Sat -> that weekend's Friday-Sunday
+ *                      Sun-Wed -> the coming weekend's Friday-Sunday
+ *
+ * Sunday has no Monday in its own week, so "that week" starts the next day.
+ * After that, the next occurrence wins.
+ */
+function windowStartFor(variant, today) {
+  const firstDow = variant.windowDays[0];                       // Monday or Friday
+  const lag = Math.floor((variant.windowDays.length - 1) / 2);  // 2 or 1
+  const target = startOfUtcDay(today) - (lag * DAY_MS);
+  const targetDow = new Date(target).getUTCDay();
+  return new Date(target + (((firstDow - targetDow + 7) % 7) * DAY_MS));
+}
+
+/**
  * Pick events for one variant.
  *
- * For each day in the window, candidates are ordered least-recently-posted
- * first and the first one wins. Extra weekend slots then go to days that still
- * have unposted candidates, working through the days in date order.
+ * The window is fixed by windowStartFor(): the whole Monday-Friday or
+ * Friday-Sunday period, even when the post is generated partway through it.
+ *
+ * Events are only chosen from today onwards. A Tuesday run still promises
+ * Monday-Friday, but Monday's events have gone and must not be posted as if
+ * they were still to come.
+ *
+ * For each selectable day, candidates are ordered least-recently-posted first
+ * and the first one wins. Extra weekend slots then go to days that still have
+ * unposted candidates, working through the days in date order.
  */
 function selectFor(variant, events, posted, now) {
   const today = new Date(startOfUtcDay(now));
-  const todayDow = today.getUTCDay();
+  const windowStart = windowStartFor(variant, today);
 
-  // The window opens on the next occurrence of each weekday, so a Monday run
-  // looks at this week and a Thursday run looks at the coming weekend.
-  // Window resolution.
-  //
-  // The window is the next occurrence of each weekday in the roundup's list,
-  // so a Monday run covers Monday to Friday of the current week (0 to +4 days)
-  // and a Thursday run covers Friday to Sunday (+1 to +3 days).
-  //
-  // Consequence worth knowing: the Monday post is generated at 03:17 UTC on the
-  // Monday itself, so its earliest event is the same day and it never reaches
-  // beyond Friday of that week. The weekend post, running Thursday, picks up the
-  // Friday that the weekly post also listed. Rotation handles the overlap -
-  // see section 3 of the spec.
-  const offsets = [];
-  for (const dow of variant.windowDays) {
-    const delta = (dow - todayDow + 7) % 7;
-    offsets.push({ dow, offset: delta });
+  // The full window, past days included. The header prints all of it.
+  const windowDates = [];
+  for (let i = 0; i < variant.windowDays.length; i++) {
+    windowDates.push(new Date(windowStart.getTime() + (i * DAY_MS)));
   }
-  offsets.sort((a, b) => a.offset - b.offset);
+
+  // But only today and later can be posted.
+  const selectable = windowDates.filter((d) => d.getTime() >= today.getTime());
 
   const picked = [];
   const usedKeys = new Set();
@@ -534,13 +557,13 @@ function selectFor(variant, events, posted, now) {
   const candidatesByDay = [];
 
   // Pass one: one event per day.
-  for (const { dow, offset } of offsets) {
-    const dateMs = today.getTime() + (offset * DAY_MS);
+  for (const date of selectable) {
+    const dateMs = date.getTime();
     const candidates = candidatesFor(dateMs);
 
     candidatesByDay.push({
-      date: new Date(dateMs).toISOString().slice(0, 10),
-      day: WEEKDAYS[new Date(dateMs).getUTCDay()],
+      date: date.toISOString().slice(0, 10),
+      day: WEEKDAYS[date.getUTCDay()],
       events: candidates.map(function (c) {
         return {
           eventId: c.key,
@@ -573,10 +596,10 @@ function selectFor(variant, events, posted, now) {
   for (let pass = 0; pass < 2; pass++) {
     let swept = false;
 
-    for (const { offset } of offsets) {
+    for (const date of selectable) {
       if (picked.length >= variant.maxEvents) break;
 
-      const dateMs = today.getTime() + (offset * DAY_MS);
+      const dateMs = date.getTime();
       const candidates = candidatesFor(dateMs);
       if (candidates.length === 0) continue;
 
@@ -595,6 +618,12 @@ function selectFor(variant, events, posted, now) {
     if (picked.length >= variant.maxEvents) break;
     if (!swept) break;
   }
+
+  // The roundup's own window: every day it covers, whether or not an event was
+  // chosen for that day and whether or not that day has already passed. The
+  // header prints this, so a quiet Thursday cannot shorten "26-30 OCT" to
+  // "26-28 OCT", and a Tuesday run still says Monday-Friday.
+  const window = windowDates.map((d) => d.toISOString().slice(0, 10));
 
   // Trim to the cap, keeping date order.
   picked.sort((a, b) => a.date - b.date);
@@ -625,7 +654,7 @@ function selectFor(variant, events, posted, now) {
     bucket.events.push(entry);
   }
 
-  return { grouped, trimmed, candidatesByDay };
+  return { grouped, trimmed, candidatesByDay, window };
 }
 
 /* ------------------------------------------------------------------ *
@@ -707,7 +736,7 @@ async function main() {
       continue;
     }
 
-    const { grouped, trimmed, candidatesByDay } = selectFor(variant, rows, posted, now);
+    const { grouped, trimmed, candidatesByDay, window } = selectFor(variant, rows, posted, now);
 
     if (grouped.length === 0) {
       console.log('SKIP  ' + variant.label + ' - no events in the window.');
@@ -719,6 +748,9 @@ async function main() {
       variant: name,
       subtitle: variant.subtitle,
       dateLabel: formatCompact(first),
+      // The dates the roundup covers, independent of which of them have an
+      // event. The header must show the whole window, not just the busy days.
+      window: window,
       rows: grouped,
       // The whole field per day, so the approval page can offer alternatives.
       // Populated 13 October 2026.
@@ -762,7 +794,13 @@ async function main() {
   console.log('Then:     node select-social-events.js --record-only');
 }
 
-main().catch((err) => {
-  console.error('Failed: ' + err.message);
-  process.exitCode = 1;
-});
+/* Run as a script (the workflow and npm scripts do). Requiring the module, as
+ * the tests do, must not run a selection. */
+if (require.main === module) {
+  main().catch((err) => {
+    console.error('Failed: ' + err.message);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { selectFor, VARIANTS };
