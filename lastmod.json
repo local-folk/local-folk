@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "2f203832-4a9f",
-      "lastmod": "2026-10-27"
+      "hash": "cfb09d65-4c92",
+      "lastmod": "2026-10-28"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "43831a55-a159",
-      "lastmod": "2026-10-27"
+      "hash": "f18bea90-9ee1",
+      "lastmod": "2026-10-28"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
       "hash": "b21ea752-3c7c",
@@ -19,14 +19,6 @@
     },
     "https://thekirn.co.uk/events/a-different-thread-the-cluny-2-20261004/": {
       "hash": "a21eba01-394d",
-      "lastmod": "2026-10-26"
-    },
-    "https://thekirn.co.uk/events/a-night-of-balfolk-cobalt-studios-20261102/": {
-      "hash": "3a902eff-3ca3",
-      "lastmod": "2026-10-26"
-    },
-    "https://thekirn.co.uk/events/a-night-of-balfolk-cobalt-studios-20261207/": {
-      "hash": "92ce0361-3ca3",
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/abigail-lappell-cluny-2-20261119/": {
@@ -314,8 +306,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/dr-katie-liddane-witch-haunting-the-ghosts-of-witches-in-the-north-east-and-beyond-north-shields-community-hub-and-library-20261027/": {
-      "hash": "2fe78e68-40dc",
-      "lastmod": "2026-10-26"
+      "hash": "c894e78-409b",
+      "lastmod": "2026-10-28"
     },
     "https://thekirn.co.uk/events/driven-serious-the-cumberland-arms-20261120/": {
       "hash": "50c83cc9-3a12",
@@ -672,6 +664,10 @@
     "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20270120/": {
       "hash": "46447a31-3b1a",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20270127/": {
+      "hash": "6cc276a4-3b1a",
+      "lastmod": "2026-10-28"
     },
     "https://thekirn.co.uk/events/myths-legends-drawing-branding-villa-haddricks-mill-road-south-gosforth-ne3-1ql-20261109/": {
       "hash": "f5bc332f-410c",
@@ -1086,8 +1082,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261027/": {
-      "hash": "2433b861-3b26",
-      "lastmod": "2026-10-26"
+      "hash": "b361d0a8-3b73",
+      "lastmod": "2026-10-28"
     },
     "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261103/": {
       "hash": "f8acd6e0-3b25",
