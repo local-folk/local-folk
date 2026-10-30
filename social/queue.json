@@ -1,12 +1,187 @@
 {
-  "generatedAt": "2026-10-30T03:59:26.245Z",
+  "generatedAt": "2026-10-30T06:55:15.618Z",
   "posts": [
     {
-      "PostID": "Weekend-301026",
+      "PostID": "Weekly-021126",
+      "PostType": "Weekly Roundup",
+      "Status": "Draft",
+      "ScheduledFor": "2026-11-02T07:00:00.000Z",
+      "EventIDs": "2026-11-02|bridge hotel|sally ironmonger and brian carter,2026-11-03|live theatre|nev clay band,2026-11-04|the cluny|siobhan miller band,2026-11-05|tyneside irish centre|tyneside irish centre session,2026-11-06|the cumberland arms|dani larkin",
+      "Candidates": [
+        {
+          "date": "2026-11-02",
+          "day": "Monday",
+          "events": [
+            {
+              "id": "2026-11-02|bridge hotel|sally ironmonger and brian carter",
+              "title": "Sally Ironmonger & Brian Carter",
+              "venue": "Bridge Hotel",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-02|cobalt studios ltd|diy ceilidh presents a night of balfolk",
+              "title": "DIY Ceilidh presents A Night of Balfolk",
+              "venue": "Cobalt Studios",
+              "category": "Ceilidh / Social Dance",
+              "rank": 32,
+              "size": 3
+            },
+            {
+              "id": "2026-11-02|enigma tap|mariners marras shanties and trad work songs",
+              "title": "Mariners & Marras: Shanties & trad work songs",
+              "venue": "Enigma Tap",
+              "category": "Music Session",
+              "rank": 47,
+              "size": 3
+            }
+          ]
+        },
+        {
+          "date": "2026-11-03",
+          "day": "Tuesday",
+          "events": [
+            {
+              "id": "2026-11-03|live theatre|nev clay band",
+              "title": "Nev Clay & Band",
+              "venue": "Live Theatre",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-03|cobalt studios|radical choir with bethany elen 0311",
+              "title": "Radical Choir with Bethany Elen",
+              "venue": "Cobalt Studios",
+              "category": "Music Session",
+              "rank": 47,
+              "size": 3
+            },
+            {
+              "id": "2026-11-03|the cumberland arms|global music session",
+              "title": "Global Music Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            },
+            {
+              "id": "2026-11-03|the wheatsheaf felling|the wheatsheaf session",
+              "title": "The Wheatsheaf Session",
+              "venue": "The Wheatsheaf, Felling",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-11-04",
+          "day": "Wednesday",
+          "events": [
+            {
+              "id": "2026-11-04|the cluny|siobhan miller band",
+              "title": "Siobhan Miller Band",
+              "venue": "The Cluny",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-04|benedictine social centre|cramlington folk club",
+              "title": "Cramlington Folk Club",
+              "venue": "Benedictine Social Centre",
+              "category": "Folk Music",
+              "rank": 7,
+              "size": 3
+            },
+            {
+              "id": "2026-11-04|live theatre|nev clay band",
+              "title": "Nev Clay & Band",
+              "venue": "Live Theatre",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-04|the brewery|singaround",
+              "title": "Singaround",
+              "venue": "The Brewery",
+              "category": "Music Session",
+              "rank": 47,
+              "size": 3
+            },
+            {
+              "id": "2026-11-04|the cumberland arms|mostly irish session",
+              "title": "Mostly Irish Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            },
+            {
+              "id": "2026-11-04|bridge hotel|Sacred Harp Singing Workshop",
+              "title": "Sacred Harp Singing Workshop",
+              "venue": "Bridge Hotel",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-11-05",
+          "day": "Thursday",
+          "events": [
+            {
+              "id": "2026-11-05|tyneside irish centre|tyneside irish centre session",
+              "title": "Tyneside Irish Centre Session",
+              "venue": "Tyneside Irish Centre",
+              "category": "Music Session",
+              "rank": 47,
+              "size": 3
+            }
+          ]
+        },
+        {
+          "date": "2026-11-06",
+          "day": "Friday",
+          "events": [
+            {
+              "id": "2026-11-06|the cumberland arms|dani larkin",
+              "title": "Dani Larkin",
+              "venue": "Cumberland Arms",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-06|the cumberland arms|an criscn ln irish session",
+              "title": "An Crúiscín Làn' Irish Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        }
+      ],
+      "FBCaption": "// 02-06 NOV // WEEKLY ROUNDUP\n\nMONDAY - 02/11\nSally Ironmonger & Brian Carter\nBridge Hotel\n\nTUESDAY - 03/11\nNev Clay & Band\nLive Theatre\n\nWEDNESDAY - 04/11\nSiobhan Miller Band\nThe Cluny\n\nTHURSDAY - 05/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 02-06 NOV // WEEKLY ROUNDUP\n\nMONDAY - 02/11\nSally Ironmonger & Brian Carter\nBridge Hotel\n\nTUESDAY - 03/11\nNev Clay & Band\nLive Theatre\n\nWEDNESDAY - 04/11\nSiobhan Miller Band\nThe Cluny\n\nTHURSDAY - 05/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekly-021126",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-021126.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-021126.jpg",
+      "FBPostID": "",
+      "IGPostID": "",
+      "Notes": ""
+    },
+    {
+      "PostID": "Weekend-301026rmb1a3",
       "PostType": "Weekend Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-10-30T07:00:00.000Z",
-      "EventIDs": "2026-10-30|the cumberland arms|an criscn ln irish session,2026-10-31|jarrow hall|cabinet of curiosities,2026-10-31|jarrow hall|folklore medieval mask making workshop jarroween,2026-10-31|cobalt studios|polymer clay pumpkin carving with jed buttress,2026-11-01|cobalt studios|holly the reivers presents samhain songs,2026-11-01|cumberland arms|a cosy night in with eddie doyle nicky rushton guapanelas",
+      "EventIDs": "2026-10-30|the cumberland arms|an criscn ln irish session,2026-10-31|jarrow hall|cabinet of curiosities,2026-10-31|jarrow hall|folklore medieval mask making workshop jarroween,2026-11-01|cobalt studios|holly the reivers presents samhain songs,2026-11-01|cumberland arms|a cosy night in with eddie doyle nicky rushton guapanelas",
       "Candidates": [
         {
           "date": "2026-10-30",
@@ -99,11 +274,11 @@
           ]
         }
       ],
-      "FBCaption": "// 30 OCT - 01 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 30/10\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 31/10\nCabinet of Curiosities\nJarrow Hall\nFolklore & Medieval Mask Making Workshop - Jarroween\nJarrow Hall\nPolymer (Clay) Pumpkin Carving with Jed Buttress\nCobalt Studios\n\nSUNDAY - 01/11\nHolly & The Reivers presents: ‘Samhain Songs’\nCobalt Studios\nA Cosy Night In with Eddie Doyle, Nicky Rushton & Guapanelas\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 30 OCT - 01 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 30/10\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 31/10\nCabinet of Curiosities\nJarrow Hall\nFolklore & Medieval Mask Making Workshop - Jarroween\nJarrow Hall\nPolymer (Clay) Pumpkin Carving with Jed Buttress\nCobalt Studios\n\nSUNDAY - 01/11\nHolly & The Reivers presents: ‘Samhain Songs’\nCobalt Studios\nA Cosy Night In with Eddie Doyle, Nicky Rushton & Guapanelas\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekend-301026",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-301026.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-301026.jpg",
+      "FBCaption": "// 30 OCT - 01 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 30/10\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 31/10\nCabinet of Curiosities\nJarrow Hall\nFolklore & Medieval Mask Making Workshop - Jarroween\nJarrow Hall\n\nSUNDAY - 01/11\nHolly & The Reivers presents: ‘Samhain Songs’\nCobalt Studios\nA Cosy Night In with Eddie Doyle, Nicky Rushton & Guapanelas\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 30 OCT - 01 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 30/10\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 31/10\nCabinet of Curiosities\nJarrow Hall\nFolklore & Medieval Mask Making Workshop - Jarroween\nJarrow Hall\n\nSUNDAY - 01/11\nHolly & The Reivers presents: ‘Samhain Songs’\nCobalt Studios\nA Cosy Night In with Eddie Doyle, Nicky Rushton & Guapanelas\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-301026rmb1a3",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-301026rmb1a3.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-301026rmb1a3.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
