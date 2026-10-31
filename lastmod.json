@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "ed105f83-528b",
-      "lastmod": "2026-10-30"
+      "hash": "a983cbb0-5343",
+      "lastmod": "2026-10-31"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "22619585-9afc",
-      "lastmod": "2026-10-30"
+      "hash": "17e05ff3-9ad9",
+      "lastmod": "2026-10-31"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
       "hash": "b21ea752-3c7c",
@@ -50,8 +50,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261030/": {
-      "hash": "491eb959-3b95",
-      "lastmod": "2026-10-26"
+      "hash": "ae7315ce-3bb4",
+      "lastmod": "2026-10-31"
     },
     "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261106/": {
       "hash": "337c0733-3b94",
@@ -832,6 +832,10 @@
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270124/": {
       "hash": "f3f6ea12-3cc6",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270131/": {
+      "hash": "1fdad8d4-3cc6",
+      "lastmod": "2026-10-31"
     },
     "https://thekirn.co.uk/events/radical-choir-with-bethany-elen-cobalt-studios-20261103/": {
       "hash": "fb96778e-3de3",
