@@ -7,13 +7,13 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/archive/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -31,24 +31,6 @@
     <loc>https://thekirn.co.uk/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261031/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/folklore-medieval-mask-making-workshop-jarroween-jarrow-hall-20261031/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/polymer-clay-pumpkin-carving-with-jed-buttress-cobalt-studios-20261031/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261101/</loc>
@@ -1943,6 +1925,24 @@
   <url>
     <loc>https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261030/</loc>
     <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261031/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/folklore-medieval-mask-making-workshop-jarroween-jarrow-hall-20261031/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/polymer-clay-pumpkin-carving-with-jed-buttress-cobalt-studios-20261031/</loc>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
