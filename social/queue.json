@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-02T04:12:54.357Z",
+  "generatedAt": "2026-11-02T10:32:38.061Z",
   "posts": [
     {
-      "PostID": "Weekly-021126",
+      "PostID": "Weekly-021126r4e51q",
       "PostType": "Weekly Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-11-02T07:00:00.000Z",
-      "EventIDs": "2026-11-02|bridge hotel|sally ironmonger and brian carter,2026-11-03|live theatre|nev clay band,2026-11-04|the cluny|siobhan miller band,2026-11-05|tyneside irish centre|tyneside irish centre session,2026-11-06|the cumberland arms|dani larkin",
+      "EventIDs": "2026-11-02|bridge hotel|sally ironmonger and brian carter,2026-11-02|cobalt studios ltd|diy ceilidh presents a night of balfolk,2026-11-03|live theatre|nev clay band,2026-11-04|the cluny|siobhan miller band,2026-11-05|tyneside irish centre|tyneside irish centre session,2026-11-06|the cumberland arms|dani larkin",
       "Candidates": [
         {
           "date": "2026-11-02",
@@ -167,11 +167,134 @@
           ]
         }
       ],
-      "FBCaption": "// 02-06 NOV // WEEKLY ROUNDUP\n\nMONDAY - 02/11\nSally Ironmonger & Brian Carter\nBridge Hotel\n\nTUESDAY - 03/11\nNev Clay & Band\nLive Theatre\n\nWEDNESDAY - 04/11\nSiobhan Miller Band\nThe Cluny\n\nTHURSDAY - 05/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 02-06 NOV // WEEKLY ROUNDUP\n\nMONDAY - 02/11\nSally Ironmonger & Brian Carter\nBridge Hotel\n\nTUESDAY - 03/11\nNev Clay & Band\nLive Theatre\n\nWEDNESDAY - 04/11\nSiobhan Miller Band\nThe Cluny\n\nTHURSDAY - 05/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekly-021126",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-021126.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-021126.jpg",
+      "FBCaption": "// 02-06 NOV // WEEKLY ROUNDUP\n\nMONDAY - 02/11\nSally Ironmonger & Brian Carter\nBridge Hotel\nDIY Ceilidh presents A Night of Balfolk\nCobalt Studios\n\nTUESDAY - 03/11\nNev Clay & Band\nLive Theatre\n\nWEDNESDAY - 04/11\nSiobhan Miller Band\nThe Cluny\n\nTHURSDAY - 05/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 02-06 NOV // WEEKLY ROUNDUP\n\nMONDAY - 02/11\nSally Ironmonger & Brian Carter\nBridge Hotel\nDIY Ceilidh presents A Night of Balfolk\nCobalt Studios\n\nTUESDAY - 03/11\nNev Clay & Band\nLive Theatre\n\nWEDNESDAY - 04/11\nSiobhan Miller Band\nThe Cluny\n\nTHURSDAY - 05/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekly-021126r4e51q",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-021126r4e51q.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-021126r4e51q.jpg",
+      "FBPostID": "",
+      "IGPostID": "",
+      "Notes": ""
+    },
+    {
+      "PostID": "Weekend-061126",
+      "PostType": "Weekend Roundup",
+      "Status": "Draft",
+      "ScheduledFor": "2026-11-06T07:00:00.000Z",
+      "EventIDs": "2026-11-06|the cumberland arms|dani larkin,2026-11-06|the cumberland arms|an criscn ln irish session,2026-11-07|the cluny 2|the often herd,2026-11-07|the cumberland arms|catch the sparrow,2026-11-08|cluny 2|dhp presents birdvox,2026-11-08|monkseaton arms|monkey folk club",
+      "Candidates": [
+        {
+          "date": "2026-11-06",
+          "day": "Friday",
+          "events": [
+            {
+              "id": "2026-11-06|the cumberland arms|dani larkin",
+              "title": "Dani Larkin",
+              "venue": "Cumberland Arms",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-06|the cumberland arms|an criscn ln irish session",
+              "title": "An Crúiscín Làn' Irish Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-11-07",
+          "day": "Saturday",
+          "events": [
+            {
+              "id": "2026-11-07|the cluny 2|the often herd",
+              "title": "The Often Herd",
+              "venue": "The Cluny 2",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-07|the cumberland arms|catch the sparrow",
+              "title": "Catch The Sparrow",
+              "venue": "The Cumberland Arms",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-07|zerox|dermot henry",
+              "title": "Dermot Henry",
+              "venue": "Zerox",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-07|cobalt studios|writing as a visual act with victoria doyle",
+              "title": "Writing as a Visual Act with Victoria Doyle",
+              "venue": "Cobalt Studios",
+              "category": "Heritage Workshop",
+              "rank": 27,
+              "size": 3
+            },
+            {
+              "id": "2026-11-07|ouseburn trust at 51 lime street|ouseburn heritage guided walk",
+              "title": "Ouseburn Heritage Guided Walk",
+              "venue": "Ouseburn Trust",
+              "category": "Other",
+              "rank": 58,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-11-08",
+          "day": "Sunday",
+          "events": [
+            {
+              "id": "2026-11-08|cluny 2|dhp presents birdvox",
+              "title": "Birdvox",
+              "venue": "Cluny 2",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-08|monkseaton arms|monkey folk club",
+              "title": "Monkey Folk Club",
+              "venue": "Monkseaton Arms",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-08|cumberland arms|willow star workshop",
+              "title": "Willow Star Workshop",
+              "venue": "Cumberland Arms",
+              "category": "Heritage Workshop",
+              "rank": 28,
+              "size": 2
+            },
+            {
+              "id": "2026-11-08|newcastle quayside|quayside market",
+              "title": "Quayside Market",
+              "venue": "Newcastle Quayside",
+              "category": "Market",
+              "rank": 37,
+              "size": 3
+            }
+          ]
+        }
+      ],
+      "FBCaption": "// 06-08 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 07/11\nThe Often Herd\nThe Cluny 2\nCatch The Sparrow\nThe Cumberland Arms\n\nSUNDAY - 08/11\nBirdvox\nCluny 2\nMonkey Folk Club\nMonkseaton Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 06-08 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 07/11\nThe Often Herd\nThe Cluny 2\nCatch The Sparrow\nThe Cumberland Arms\n\nSUNDAY - 08/11\nBirdvox\nCluny 2\nMonkey Folk Club\nMonkseaton Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-061126",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-061126.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-061126.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
