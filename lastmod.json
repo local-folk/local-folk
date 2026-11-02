@@ -2,16 +2,16 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "5c94e72e-5577",
-      "lastmod": "2026-11-01"
+      "hash": "9604a0e8-595f",
+      "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "f1d70764-9829",
-      "lastmod": "2026-11-01"
+      "hash": "18ec8fe0-968b",
+      "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
-      "hash": "b21ea752-3c7c",
-      "lastmod": "2026-10-26"
+      "hash": "e64596a-3c85",
+      "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/a-different-thread-driven-serious-cluny-2-20261004/": {
       "hash": "26bcf7d8-3baa",
@@ -122,8 +122,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/ballad-club-the-cumberland-arms-20261101/": {
-      "hash": "f58df88-3b2f",
-      "lastmod": "2026-10-26"
+      "hash": "e56db57d-3b69",
+      "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/ballad-club-the-cumberland-arms-20261206/": {
       "hash": "f38ca35c-3b27",
@@ -168,6 +168,10 @@
     "https://thekirn.co.uk/events/cabinet-of-curiosities-jarrow-hall-20261031/": {
       "hash": "a81d0452-3ab2",
       "lastmod": "2026-11-01"
+    },
+    "https://thekirn.co.uk/events/caleb-caudle-the-globe-20270114/": {
+      "hash": "9f788226-396d",
+      "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/cat-rose-the-cluny-2-20261129/": {
       "hash": "6f5c1dad-39ca",
@@ -421,6 +425,10 @@
       "hash": "2dfb1833-3acd",
       "lastmod": "2026-10-26"
     },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20270202/": {
+      "hash": "931ecde3-3acc",
+      "lastmod": "2026-11-02"
+    },
     "https://thekirn.co.uk/events/gwenifer-raymond-the-cluny-2-20261203/": {
       "hash": "9d1b1567-3ae6",
       "lastmod": "2026-10-26"
@@ -442,8 +450,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/holly-the-reivers-presents-samhain-songs-cobalt-studios-20261101/": {
-      "hash": "4596c9fd-4086",
-      "lastmod": "2026-10-26"
+      "hash": "9b2fe19-409b",
+      "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/icy-sedgwick-hauntings-on-tyneside-north-shields-community-hub-and-library-20261019/": {
       "hash": "9a5473f3-3e4b",
@@ -570,8 +578,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261101/": {
-      "hash": "322034f1-3a2c",
-      "lastmod": "2026-10-26"
+      "hash": "9938279a-3a6b",
+      "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261108/": {
       "hash": "ab5d0316-3a24",
@@ -782,8 +790,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261101/": {
-      "hash": "d500c49f-3cc5",
-      "lastmod": "2026-10-26"
+      "hash": "7204bed0-3d10",
+      "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261108/": {
       "hash": "dd2ac794-3cc5",
@@ -1148,6 +1156,10 @@
     "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270126/": {
       "hash": "98b5d15-3b26",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270202/": {
+      "hash": "820dbb29-3b25",
+      "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/tim-dalling-bridge-hotel-20270125/": {
       "hash": "a38539b2-37ab",
