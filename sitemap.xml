@@ -7,13 +7,13 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/archive/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -31,12 +31,6 @@
     <loc>https://thekirn.co.uk/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261105/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/dani-larkin-cumberland-arms-20261106/</loc>
@@ -1979,6 +1973,12 @@
   <url>
     <loc>https://thekirn.co.uk/events/singaround-the-brewery-20261104/</loc>
     <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261105/</loc>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
