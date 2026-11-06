@@ -1,73 +1,73 @@
 {
-  "generatedAt": "2026-11-02T10:32:38.061Z",
+  "generatedAt": "2026-11-06T09:01:09.310Z",
   "posts": [
     {
-      "PostID": "Weekly-021126r4e51q",
+      "PostID": "Weekly-091126",
       "PostType": "Weekly Roundup",
       "Status": "Draft",
-      "ScheduledFor": "2026-11-02T07:00:00.000Z",
-      "EventIDs": "2026-11-02|bridge hotel|sally ironmonger and brian carter,2026-11-02|cobalt studios ltd|diy ceilidh presents a night of balfolk,2026-11-03|live theatre|nev clay band,2026-11-04|the cluny|siobhan miller band,2026-11-05|tyneside irish centre|tyneside irish centre session,2026-11-06|the cumberland arms|dani larkin",
+      "ScheduledFor": "2026-11-09T07:00:00.000Z",
+      "EventIDs": "2026-11-09|branding villa haddricks mill road south gosforth ne3 1ql|myths legends drawing,2026-11-10|cluny 2|toby shaer archie moss jack warnock,2026-11-11|the glasshouse international centre for music|bellowhead,2026-11-12|kings hall|student performance,2026-11-13|cluny 2|torridon",
       "Candidates": [
         {
-          "date": "2026-11-02",
+          "date": "2026-11-09",
           "day": "Monday",
           "events": [
             {
-              "id": "2026-11-02|bridge hotel|sally ironmonger and brian carter",
-              "title": "Sally Ironmonger & Brian Carter",
-              "venue": "Bridge Hotel",
+              "id": "2026-11-09|branding villa haddricks mill road south gosforth ne3 1ql|myths legends drawing",
+              "title": "Myths & Legends Drawing",
+              "venue": "Branding Villa, Haddricks Mill Road, South Gosforth, NE3 1QL",
               "category": "Folk Music",
               "rank": 8,
               "size": 2
             },
             {
-              "id": "2026-11-02|cobalt studios ltd|diy ceilidh presents a night of balfolk",
-              "title": "DIY Ceilidh presents A Night of Balfolk",
-              "venue": "Cobalt Studios",
-              "category": "Ceilidh / Social Dance",
-              "rank": 32,
-              "size": 3
-            },
-            {
-              "id": "2026-11-02|enigma tap|mariners marras shanties and trad work songs",
-              "title": "Mariners & Marras: Shanties & trad work songs",
-              "venue": "Enigma Tap",
+              "id": "2026-11-09|bridge hotel|singaround",
+              "title": "Singaround",
+              "venue": "Bridge Hotel",
               "category": "Music Session",
-              "rank": 47,
-              "size": 3
+              "rank": 48,
+              "size": 2
             }
           ]
         },
         {
-          "date": "2026-11-03",
+          "date": "2026-11-10",
           "day": "Tuesday",
           "events": [
             {
-              "id": "2026-11-03|live theatre|nev clay band",
-              "title": "Nev Clay & Band",
-              "venue": "Live Theatre",
+              "id": "2026-11-10|cluny 2|toby shaer archie moss jack warnock",
+              "title": "Toby Shaer, Archie Moss & Jack Warnock",
+              "venue": "Cluny 2",
               "category": "Folk Music",
-              "rank": 8,
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-10|the cluny 2 34 lime street ouseburn newcastle ne1 2pq|toby shaer archie moss and jack warnock",
+              "title": "Toby Shaer, Archie Moss & Jack Warnock",
+              "venue": "The Cluny 2",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-10|gateshead masonic hall|tyneside ceilidh club",
+              "title": "Tyneside Ceilidh Club",
+              "venue": "Gateshead Masonic Hall",
+              "category": "Ceilidh / Social Dance",
+              "rank": 33,
               "size": 2
             },
             {
-              "id": "2026-11-03|cobalt studios|radical choir with bethany elen 0311",
-              "title": "Radical Choir with Bethany Elen",
-              "venue": "Cobalt Studios",
-              "category": "Music Session",
-              "rank": 47,
-              "size": 3
-            },
-            {
-              "id": "2026-11-03|the cumberland arms|global music session",
-              "title": "Global Music Session",
+              "id": "2026-11-10|the cumberland arms|come all ye singing session",
+              "title": "Come All Ye' Singing Session",
               "venue": "The Cumberland Arms",
               "category": "Music Session",
               "rank": 48,
               "size": 2
             },
             {
-              "id": "2026-11-03|the wheatsheaf felling|the wheatsheaf session",
+              "id": "2026-11-10|the wheatsheaf felling|the wheatsheaf session",
               "title": "The Wheatsheaf Session",
               "venue": "The Wheatsheaf, Felling",
               "category": "Music Session",
@@ -77,35 +77,27 @@
           ]
         },
         {
-          "date": "2026-11-04",
+          "date": "2026-11-11",
           "day": "Wednesday",
           "events": [
             {
-              "id": "2026-11-04|the cluny|siobhan miller band",
-              "title": "Siobhan Miller Band",
-              "venue": "The Cluny",
+              "id": "2026-11-11|the glasshouse international centre for music|bellowhead",
+              "title": "Bellowhead",
+              "venue": "The Glasshouse",
               "category": "Folk Music",
-              "rank": 6,
-              "size": 4
+              "rank": 5,
+              "size": 5
             },
             {
-              "id": "2026-11-04|benedictine social centre|cramlington folk club",
-              "title": "Cramlington Folk Club",
+              "id": "2026-11-11|benedictine social centre|cramlington folk club the carrivik sisters",
+              "title": "Cramlington Folk Club: The Carrivik Sisters",
               "venue": "Benedictine Social Centre",
               "category": "Folk Music",
               "rank": 7,
               "size": 3
             },
             {
-              "id": "2026-11-04|live theatre|nev clay band",
-              "title": "Nev Clay & Band",
-              "venue": "Live Theatre",
-              "category": "Folk Music",
-              "rank": 8,
-              "size": 2
-            },
-            {
-              "id": "2026-11-04|the brewery|singaround",
+              "id": "2026-11-11|the brewery|singaround",
               "title": "Singaround",
               "venue": "The Brewery",
               "category": "Music Session",
@@ -113,7 +105,7 @@
               "size": 3
             },
             {
-              "id": "2026-11-04|the cumberland arms|mostly irish session",
+              "id": "2026-11-11|the cumberland arms|mostly irish session",
               "title": "Mostly Irish Session",
               "venue": "The Cumberland Arms",
               "category": "Music Session",
@@ -121,7 +113,7 @@
               "size": 2
             },
             {
-              "id": "2026-11-04|bridge hotel|Sacred Harp Singing Workshop",
+              "id": "2026-11-11|bridge hotel|Sacred Harp Singing Workshop",
               "title": "Sacred Harp Singing Workshop",
               "venue": "Bridge Hotel",
               "category": "Music Session",
@@ -131,33 +123,73 @@
           ]
         },
         {
-          "date": "2026-11-05",
+          "date": "2026-11-12",
           "day": "Thursday",
           "events": [
             {
-              "id": "2026-11-05|tyneside irish centre|tyneside irish centre session",
-              "title": "Tyneside Irish Centre Session",
-              "venue": "Tyneside Irish Centre",
-              "category": "Music Session",
-              "rank": 47,
+              "id": "2026-11-12|kings hall|student performance",
+              "title": "Student Performance",
+              "venue": "King's Hall",
+              "category": "Folk Music",
+              "rank": 7,
               "size": 3
-            }
-          ]
-        },
-        {
-          "date": "2026-11-06",
-          "day": "Friday",
-          "events": [
+            },
             {
-              "id": "2026-11-06|the cumberland arms|dani larkin",
-              "title": "Dani Larkin",
-              "venue": "Cumberland Arms",
+              "id": "2026-11-12|the globe|possessed by paul james",
+              "title": "Possessed By Paul James",
+              "venue": "The Globe",
               "category": "Folk Music",
               "rank": 8,
               "size": 2
             },
             {
-              "id": "2026-11-06|the cumberland arms|an criscn ln irish session",
+              "id": "2026-11-12|tyneside irish centre|tyneside irish centre session",
+              "title": "Tyneside Irish Centre Session",
+              "venue": "Tyneside Irish Centre",
+              "category": "Music Session",
+              "rank": 47,
+              "size": 3
+            },
+            {
+              "id": "2026-11-12|the cumberland arms|old time music session",
+              "title": "Old Time Music Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-11-13",
+          "day": "Friday",
+          "events": [
+            {
+              "id": "2026-11-13|cluny 2|torridon",
+              "title": "Torridon",
+              "venue": "Cluny 2",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-13|cobalt studios ltd 1016 boyd street newcastle ne2 1ap|spafford campbell watersmeet",
+              "title": "Spafford Campbell + Watersmeet",
+              "venue": "Cobalt Studios",
+              "category": "Folk Music",
+              "rank": 7,
+              "size": 3
+            },
+            {
+              "id": "2026-11-13|51 lime street|ouseburn christmas market",
+              "title": "Ouseburn Christmas Market",
+              "venue": "51 Lime Street",
+              "category": "Market",
+              "rank": 38,
+              "size": 2
+            },
+            {
+              "id": "2026-11-13|the cumberland arms|an criscn ln irish session",
               "title": "An Crúiscín Làn' Irish Session",
               "venue": "The Cumberland Arms",
               "category": "Music Session",
@@ -167,21 +199,21 @@
           ]
         }
       ],
-      "FBCaption": "// 02-06 NOV // WEEKLY ROUNDUP\n\nMONDAY - 02/11\nSally Ironmonger & Brian Carter\nBridge Hotel\nDIY Ceilidh presents A Night of Balfolk\nCobalt Studios\n\nTUESDAY - 03/11\nNev Clay & Band\nLive Theatre\n\nWEDNESDAY - 04/11\nSiobhan Miller Band\nThe Cluny\n\nTHURSDAY - 05/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 02-06 NOV // WEEKLY ROUNDUP\n\nMONDAY - 02/11\nSally Ironmonger & Brian Carter\nBridge Hotel\nDIY Ceilidh presents A Night of Balfolk\nCobalt Studios\n\nTUESDAY - 03/11\nNev Clay & Band\nLive Theatre\n\nWEDNESDAY - 04/11\nSiobhan Miller Band\nThe Cluny\n\nTHURSDAY - 05/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekly-021126r4e51q",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-021126r4e51q.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-021126r4e51q.jpg",
+      "FBCaption": "// 09-13 NOV // WEEKLY ROUNDUP\n\nMONDAY - 09/11\nMyths & Legends Drawing\nBranding Villa, Haddricks Mill Road, South Gosforth, NE3 1QL\n\nTUESDAY - 10/11\nToby Shaer, Archie Moss & Jack Warnock\nCluny 2\n\nWEDNESDAY - 11/11\nBellowhead\nThe Glasshouse\n\nTHURSDAY - 12/11\nStudent Performance\nKing's Hall\n\nFRIDAY - 13/11\nTorridon\nCluny 2\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 09-13 NOV // WEEKLY ROUNDUP\n\nMONDAY - 09/11\nMyths & Legends Drawing\nBranding Villa, Haddricks Mill Road, South Gosforth, NE3 1QL\n\nTUESDAY - 10/11\nToby Shaer, Archie Moss & Jack Warnock\nCluny 2\n\nWEDNESDAY - 11/11\nBellowhead\nThe Glasshouse\n\nTHURSDAY - 12/11\nStudent Performance\nKing's Hall\n\nFRIDAY - 13/11\nTorridon\nCluny 2\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekly-091126",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-091126.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-091126.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
     },
     {
-      "PostID": "Weekend-061126",
+      "PostID": "Weekend-061126rqvwta",
       "PostType": "Weekend Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-11-06T07:00:00.000Z",
-      "EventIDs": "2026-11-06|the cumberland arms|dani larkin,2026-11-06|the cumberland arms|an criscn ln irish session,2026-11-07|the cluny 2|the often herd,2026-11-07|the cumberland arms|catch the sparrow,2026-11-08|cluny 2|dhp presents birdvox,2026-11-08|monkseaton arms|monkey folk club",
+      "EventIDs": "2026-11-06|the cumberland arms|dani larkin,2026-11-07|the cluny 2|the often herd,2026-11-07|the cumberland arms|catch the sparrow,2026-11-07|zerox|dermot henry,2026-11-08|cluny 2|dhp presents birdvox,2026-11-08|monkseaton arms|monkey folk club",
       "Candidates": [
         {
           "date": "2026-11-06",
@@ -290,11 +322,11 @@
           ]
         }
       ],
-      "FBCaption": "// 06-08 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 07/11\nThe Often Herd\nThe Cluny 2\nCatch The Sparrow\nThe Cumberland Arms\n\nSUNDAY - 08/11\nBirdvox\nCluny 2\nMonkey Folk Club\nMonkseaton Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 06-08 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 07/11\nThe Often Herd\nThe Cluny 2\nCatch The Sparrow\nThe Cumberland Arms\n\nSUNDAY - 08/11\nBirdvox\nCluny 2\nMonkey Folk Club\nMonkseaton Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekend-061126",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-061126.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-061126.jpg",
+      "FBCaption": "// 06-08 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSATURDAY - 07/11\nThe Often Herd\nThe Cluny 2\nCatch The Sparrow\nThe Cumberland Arms\nDermot Henry\nZerox\n\nSUNDAY - 08/11\nBirdvox\nCluny 2\nMonkey Folk Club\nMonkseaton Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 06-08 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 06/11\nDani Larkin\nCumberland Arms\n\nSATURDAY - 07/11\nThe Often Herd\nThe Cluny 2\nCatch The Sparrow\nThe Cumberland Arms\nDermot Henry\nZerox\n\nSUNDAY - 08/11\nBirdvox\nCluny 2\nMonkey Folk Club\nMonkseaton Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-061126rqvwta",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-061126rqvwta.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-061126rqvwta.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
