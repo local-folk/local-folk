@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "5b5d9d0c-6694",
-      "lastmod": "2026-11-08"
+      "hash": "947abb88-68c2",
+      "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "b88be437-8bfc",
-      "lastmod": "2026-11-08"
+      "hash": "1794c283-8b2e",
+      "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
       "hash": "e64596a-3c85",
@@ -142,8 +142,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/birdvox-cluny-2-20261108/": {
-      "hash": "c1751d8c-3705",
-      "lastmod": "2026-10-26"
+      "hash": "c8cf3f3d-3793",
+      "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/blackfriars-christmas-market-blackfriars-restaurant-20261205/": {
       "hash": "2cc48944-3dc0",
@@ -228,6 +228,10 @@
     "https://thekirn.co.uk/events/come-all-ye-singing-session-the-cumberland-arms-20270112/": {
       "hash": "98603f9a-3b3d",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/come-all-ye-singing-session-the-cumberland-arms-20270209/": {
+      "hash": "373df9f4-3b3c",
+      "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/craft-flea-boiler-shop-20261004/": {
       "hash": "13cc48dc-3a9f",
@@ -586,8 +590,8 @@
       "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261108/": {
-      "hash": "ab5d0316-3a24",
-      "lastmod": "2026-10-26"
+      "hash": "911f0064-3a63",
+      "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261115/": {
       "hash": "9f71ef98-3a29",
@@ -802,8 +806,8 @@
       "lastmod": "2026-11-02"
     },
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261108/": {
-      "hash": "dd2ac794-3cc5",
-      "lastmod": "2026-10-26"
+      "hash": "88e4cb90-3d10",
+      "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261115/": {
       "hash": "c8bb2e96-3cca",
@@ -1173,6 +1177,10 @@
       "hash": "820dbb29-3b25",
       "lastmod": "2026-11-02"
     },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270209/": {
+      "hash": "f3415514-3b25",
+      "lastmod": "2026-11-09"
+    },
     "https://thekirn.co.uk/events/tim-dalling-bridge-hotel-20270125/": {
       "hash": "a38539b2-37ab",
       "lastmod": "2026-10-26"
@@ -1278,8 +1286,8 @@
       "lastmod": "2026-11-05"
     },
     "https://thekirn.co.uk/events/willow-star-workshop-cumberland-arms-20261108/": {
-      "hash": "bf699305-3c8c",
-      "lastmod": "2026-10-26"
+      "hash": "12841e-3cd6",
+      "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261023/": {
       "hash": "87522cd0-406a",
