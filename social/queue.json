@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-09T11:40:44.658Z",
+  "generatedAt": "2026-11-09T12:03:53.997Z",
   "posts": [
     {
-      "PostID": "Weekly-091126",
+      "PostID": "Weekly-101126r7qgvf",
       "PostType": "Weekly Roundup",
       "Status": "Draft",
-      "ScheduledFor": "2026-11-09T07:00:00.000Z",
-      "EventIDs": "2026-11-09|branding villa haddricks mill road south gosforth ne3 1ql|myths legends drawing,2026-11-10|cluny 2|toby shaer archie moss jack warnock,2026-11-11|the glasshouse international centre for music|bellowhead,2026-11-12|kings hall|student performance,2026-11-13|cluny 2|torridon",
+      "ScheduledFor": "2026-11-10T07:00:00.000Z",
+      "EventIDs": "2026-11-10|cluny 2|toby shaer archie moss jack warnock,2026-11-11|the glasshouse international centre for music|bellowhead,2026-11-11|benedictine social centre|cramlington folk club the carrivik sisters,2026-11-12|the globe|possessed by paul james,2026-11-13|cluny 2|torridon,2026-11-13|cobalt studios ltd 1016 boyd street newcastle ne2 1ap|spafford campbell watersmeet",
       "Candidates": [
         {
           "date": "2026-11-09",
@@ -199,11 +199,118 @@
           ]
         }
       ],
-      "FBCaption": "// 09-13 NOV // WEEKLY ROUNDUP\n\nMONDAY - 09/11\nMyths & Legends Drawing\nBranding Villa, Haddricks Mill Road, South Gosforth, NE3 1QL\n\nTUESDAY - 10/11\nToby Shaer, Archie Moss & Jack Warnock\nCluny 2\n\nWEDNESDAY - 11/11\nBellowhead\nThe Glasshouse\n\nTHURSDAY - 12/11\nStudent Performance\nKing's Hall\n\nFRIDAY - 13/11\nTorridon\nCluny 2\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 09-13 NOV // WEEKLY ROUNDUP\n\nMONDAY - 09/11\nMyths & Legends Drawing\nBranding Villa, Haddricks Mill Road, South Gosforth, NE3 1QL\n\nTUESDAY - 10/11\nToby Shaer, Archie Moss & Jack Warnock\nCluny 2\n\nWEDNESDAY - 11/11\nBellowhead\nThe Glasshouse\n\nTHURSDAY - 12/11\nStudent Performance\nKing's Hall\n\nFRIDAY - 13/11\nTorridon\nCluny 2\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekly-091126",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-091126.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-091126.jpg",
+      "FBCaption": "// 09-13 NOV // WEEKLY ROUNDUP\n\nTUESDAY - 10/11\nToby Shaer, Archie Moss & Jack Warnock\nCluny 2\n\nWEDNESDAY - 11/11\nBellowhead\nThe Glasshouse\nCramlington Folk Club: The Carrivik Sisters\nBenedictine Social Centre\n\nTHURSDAY - 12/11\nPossessed By Paul James\nThe Globe\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 09-13 NOV // WEEKLY ROUNDUP\n\nTUESDAY - 10/11\nToby Shaer, Archie Moss & Jack Warnock\nCluny 2\n\nWEDNESDAY - 11/11\nBellowhead\nThe Glasshouse\nCramlington Folk Club: The Carrivik Sisters\nBenedictine Social Centre\n\nTHURSDAY - 12/11\nPossessed By Paul James\nThe Globe\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekly-101126r7qgvf",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-101126r7qgvf.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-101126r7qgvf.jpg",
+      "FBPostID": "",
+      "IGPostID": "",
+      "Notes": ""
+    },
+    {
+      "PostID": "Weekend-131126",
+      "PostType": "Weekend Roundup",
+      "Status": "Draft",
+      "ScheduledFor": "2026-11-13T07:00:00.000Z",
+      "EventIDs": "2026-11-13|cluny 2|torridon,2026-11-13|cobalt studios ltd 1016 boyd street newcastle ne2 1ap|spafford campbell watersmeet,2026-11-14|cluny 2|an dannsa dub,2026-11-14|cobalt studios|clay idols with bethany stead,2026-11-15|monkseaton arms|monkey folk club,2026-11-15|boiler shop|craft flea christmas market",
+      "Candidates": [
+        {
+          "date": "2026-11-13",
+          "day": "Friday",
+          "events": [
+            {
+              "id": "2026-11-13|cluny 2|torridon",
+              "title": "Torridon",
+              "venue": "Cluny 2",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-13|cobalt studios ltd 1016 boyd street newcastle ne2 1ap|spafford campbell watersmeet",
+              "title": "Spafford Campbell + Watersmeet",
+              "venue": "Cobalt Studios",
+              "category": "Folk Music",
+              "rank": 7,
+              "size": 3
+            },
+            {
+              "id": "2026-11-13|51 lime street|ouseburn christmas market",
+              "title": "Ouseburn Christmas Market",
+              "venue": "51 Lime Street",
+              "category": "Market",
+              "rank": 38,
+              "size": 2
+            },
+            {
+              "id": "2026-11-13|the cumberland arms|an criscn ln irish session",
+              "title": "An Crúiscín Làn' Irish Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-11-14",
+          "day": "Saturday",
+          "events": [
+            {
+              "id": "2026-11-14|cluny 2|an dannsa dub",
+              "title": "An Dannsa Dub",
+              "venue": "Cluny 2",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-14|cobalt studios|clay idols with bethany stead",
+              "title": "Clay Idols with Bethany Stead",
+              "venue": "Cobalt Studios",
+              "category": "Heritage Workshop",
+              "rank": 27,
+              "size": 3
+            }
+          ]
+        },
+        {
+          "date": "2026-11-15",
+          "day": "Sunday",
+          "events": [
+            {
+              "id": "2026-11-15|monkseaton arms|monkey folk club",
+              "title": "Monkey Folk Club",
+              "venue": "Monkseaton Arms",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-15|boiler shop|craft flea christmas market",
+              "title": "Craft & Flea - Christmas Market",
+              "venue": "Boiler Shop",
+              "category": "Market",
+              "rank": 37,
+              "size": 3
+            },
+            {
+              "id": "2026-11-15|newcastle quayside|quayside market",
+              "title": "Quayside Market",
+              "venue": "Newcastle Quayside",
+              "category": "Market",
+              "rank": 37,
+              "size": 3
+            }
+          ]
+        }
+      ],
+      "FBCaption": "// 13-15 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\n\nSATURDAY - 14/11\nAn Dannsa Dub\nCluny 2\nClay Idols with Bethany Stead\nCobalt Studios\n\nSUNDAY - 15/11\nMonkey Folk Club\nMonkseaton Arms\nCraft & Flea - Christmas Market\nBoiler Shop\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 13-15 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\n\nSATURDAY - 14/11\nAn Dannsa Dub\nCluny 2\nClay Idols with Bethany Stead\nCobalt Studios\n\nSUNDAY - 15/11\nMonkey Folk Club\nMonkseaton Arms\nCraft & Flea - Christmas Market\nBoiler Shop\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-131126",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
