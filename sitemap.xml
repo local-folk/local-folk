@@ -7,13 +7,13 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/archive/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -31,18 +31,6 @@
     <loc>https://thekirn.co.uk/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/myths-legends-drawing-branding-villa-haddricks-mill-road-south-gosforth-ne3-1ql-20261109/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/singaround-bridge-hotel-20261109/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/toby-shaer-archie-moss-jack-warnock-cluny-2-20261110/</loc>
@@ -1005,6 +993,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://thekirn.co.uk/events/the-pink-stones-the-cluny-2-20270115/</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270115/</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -1143,8 +1137,20 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20270210/</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://thekirn.co.uk/events/sean-gray-bridge-hotel-20270215/</loc>
     <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/shovel-dance-collective-gosforth-civic-theatre-20270216/</loc>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1997,6 +2003,18 @@
   <url>
     <loc>https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261108/</loc>
     <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/myths-legends-drawing-branding-villa-haddricks-mill-road-south-gosforth-ne3-1ql-20261109/</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/singaround-bridge-hotel-20261109/</loc>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
