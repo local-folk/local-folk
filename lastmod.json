@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "26bd5e6d-6da8",
-      "lastmod": "2026-11-11"
+      "hash": "ed9affa1-70c6",
+      "lastmod": "2026-11-12"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "e2c72f11-897a",
-      "lastmod": "2026-11-11"
+      "hash": "f4679dcd-8714",
+      "lastmod": "2026-11-12"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
       "hash": "e64596a-3c85",
@@ -109,6 +109,10 @@
       "hash": "a75958c-3b94",
       "lastmod": "2026-11-05"
     },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270212/": {
+      "hash": "477b7488-3b99",
+      "lastmod": "2026-11-12"
+    },
     "https://thekirn.co.uk/events/an-dannsa-dub-cluny-2-20261114/": {
       "hash": "e89652cd-3754",
       "lastmod": "2026-10-26"
@@ -134,8 +138,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/bellowhead-the-glasshouse-20261111/": {
-      "hash": "712e182d-3a28",
-      "lastmod": "2026-10-26"
+      "hash": "e8e334f6-3a51",
+      "lastmod": "2026-11-12"
     },
     "https://thekirn.co.uk/events/beyond-the-moor-2026-gosforth-civic-theatre-20261010/": {
       "hash": "ecd9dc4a-3b2d",
@@ -282,8 +286,8 @@
       "lastmod": "2026-10-29"
     },
     "https://thekirn.co.uk/events/cramlington-folk-club-the-carrivik-sisters-benedictine-social-centre-20261111/": {
-      "hash": "f41f9cb9-39f2",
-      "lastmod": "2026-10-26"
+      "hash": "e1055597-3a4e",
+      "lastmod": "2026-11-12"
     },
     "https://thekirn.co.uk/events/craven-sam-baxter-and-merle-harbron-frankie-insley-the-cumberland-arms-20261129/": {
       "hash": "9eb3889-3d61",
@@ -642,8 +646,8 @@
       "lastmod": "2026-11-05"
     },
     "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261111/": {
-      "hash": "f95e8fa3-3b1e",
-      "lastmod": "2026-10-26"
+      "hash": "884dba3d-3b47",
+      "lastmod": "2026-11-12"
     },
     "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261118/": {
       "hash": "c0263758-3b1e",
@@ -910,8 +914,8 @@
       "lastmod": "2026-11-05"
     },
     "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261111/": {
-      "hash": "37e4edc8-3a66",
-      "lastmod": "2026-10-26"
+      "hash": "7e504fb0-3a9d",
+      "lastmod": "2026-11-12"
     },
     "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261118/": {
       "hash": "7695fd7f-3a66",
@@ -1026,8 +1030,8 @@
       "lastmod": "2026-11-05"
     },
     "https://thekirn.co.uk/events/singaround-the-brewery-20261111/": {
-      "hash": "43823f44-3993",
-      "lastmod": "2026-10-26"
+      "hash": "2fd81839-39f2",
+      "lastmod": "2026-11-12"
     },
     "https://thekirn.co.uk/events/singaround-the-brewery-20261118/": {
       "hash": "42472261-3993",
