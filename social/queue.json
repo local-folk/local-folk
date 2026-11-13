@@ -1,167 +1,8 @@
 {
-  "generatedAt": "2026-11-13T06:40:00.497Z",
+  "generatedAt": "2026-11-13T11:02:38.854Z",
   "posts": [
     {
-      "PostID": "Weekly-161126",
-      "PostType": "Weekly Roundup",
-      "Status": "Draft",
-      "ScheduledFor": "2026-11-16T07:00:00.000Z",
-      "EventIDs": "2026-11-16|bridge hotel|pipe dream,2026-11-17|the cumberland arms|global music session,2026-11-18|benedictine social centre|cramlington folk club,2026-11-19|cluny 2|abigail lappell,2026-11-20|the cumberland arms james place street ouseburn newcastle ne6 1ld|driven serious",
-      "Candidates": [
-        {
-          "date": "2026-11-16",
-          "day": "Monday",
-          "events": [
-            {
-              "id": "2026-11-16|bridge hotel|pipe dream",
-              "title": "Pipe Dream",
-              "venue": "Bridge Hotel",
-              "category": "Folk Music",
-              "rank": 8,
-              "size": 2
-            },
-            {
-              "id": "2026-11-16|enigma tap|mariners marras shanties and trad work songs",
-              "title": "Mariners & Marras: Shanties & trad work songs",
-              "venue": "Enigma Tap",
-              "category": "Music Session",
-              "rank": 47,
-              "size": 3
-            }
-          ]
-        },
-        {
-          "date": "2026-11-17",
-          "day": "Tuesday",
-          "events": [
-            {
-              "id": "2026-11-17|the cumberland arms|global music session",
-              "title": "Global Music Session",
-              "venue": "The Cumberland Arms",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            },
-            {
-              "id": "2026-11-17|the wheatsheaf felling|the wheatsheaf session",
-              "title": "The Wheatsheaf Session",
-              "venue": "The Wheatsheaf, Felling",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            }
-          ]
-        },
-        {
-          "date": "2026-11-18",
-          "day": "Wednesday",
-          "events": [
-            {
-              "id": "2026-11-18|benedictine social centre|cramlington folk club",
-              "title": "Cramlington Folk Club",
-              "venue": "Benedictine Social Centre",
-              "category": "Folk Music",
-              "rank": 7,
-              "size": 3
-            },
-            {
-              "id": "2026-11-18|the brewery|singaround",
-              "title": "Singaround",
-              "venue": "The Brewery",
-              "category": "Music Session",
-              "rank": 47,
-              "size": 3
-            },
-            {
-              "id": "2026-11-18|the cumberland arms|mostly irish session",
-              "title": "Mostly Irish Session",
-              "venue": "The Cumberland Arms",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            },
-            {
-              "id": "2026-11-18|bridge hotel|Sacred Harp Singing Workshop",
-              "title": "Sacred Harp Singing Workshop",
-              "venue": "Bridge Hotel",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            }
-          ]
-        },
-        {
-          "date": "2026-11-19",
-          "day": "Thursday",
-          "events": [
-            {
-              "id": "2026-11-19|cluny 2|abigail lappell",
-              "title": "Abigail Lappell",
-              "venue": "Cluny 2",
-              "category": "Folk Music",
-              "rank": 6,
-              "size": 4
-            },
-            {
-              "id": "2026-11-19|tyneside irish centre|tyneside irish centre session",
-              "title": "Tyneside Irish Centre Session",
-              "venue": "Tyneside Irish Centre",
-              "category": "Music Session",
-              "rank": 47,
-              "size": 3
-            },
-            {
-              "id": "2026-11-19|central bar|singaround at 1230",
-              "title": "Lunchtime Singaround",
-              "venue": "Central Bar",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            }
-          ]
-        },
-        {
-          "date": "2026-11-20",
-          "day": "Friday",
-          "events": [
-            {
-              "id": "2026-11-20|the cumberland arms james place street ouseburn newcastle ne6 1ld|driven serious",
-              "title": "Driven Serious",
-              "venue": "The Cumberland Arms",
-              "category": "Folk Music",
-              "rank": 8,
-              "size": 2
-            },
-            {
-              "id": "2026-11-20|lubber fiend|diy ceilidh",
-              "title": "DIY Ceilidh",
-              "venue": "Lubber Fiend",
-              "category": "Ceilidh / Social Dance",
-              "rank": 32,
-              "size": 3
-            },
-            {
-              "id": "2026-11-20|the cumberland arms|an criscn ln irish session",
-              "title": "An Crúiscín Làn' Irish Session",
-              "venue": "The Cumberland Arms",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            }
-          ]
-        }
-      ],
-      "FBCaption": "// 16-20 NOV // WEEKLY ROUNDUP\n\nMONDAY - 16/11\nPipe Dream\nBridge Hotel\n\nTUESDAY - 17/11\nGlobal Music Session\nThe Cumberland Arms\n\nWEDNESDAY - 18/11\nCramlington Folk Club\nBenedictine Social Centre\n\nTHURSDAY - 19/11\nAbigail Lappell\nCluny 2\n\nFRIDAY - 20/11\nDriven Serious\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 16-20 NOV // WEEKLY ROUNDUP\n\nMONDAY - 16/11\nPipe Dream\nBridge Hotel\n\nTUESDAY - 17/11\nGlobal Music Session\nThe Cumberland Arms\n\nWEDNESDAY - 18/11\nCramlington Folk Club\nBenedictine Social Centre\n\nTHURSDAY - 19/11\nAbigail Lappell\nCluny 2\n\nFRIDAY - 20/11\nDriven Serious\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekly-161126",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-161126.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-161126.jpg",
-      "FBPostID": "",
-      "IGPostID": "",
-      "Notes": ""
-    },
-    {
-      "PostID": "Weekend-131126rlxcs2",
+      "PostID": "Weekend-131126rvb47a",
       "PostType": "Weekend Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-11-13T07:00:00.000Z",
@@ -260,9 +101,9 @@
       ],
       "FBCaption": "// 13-15 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\nOuseburn Christmas Market\n51 Lime Street\n\nSATURDAY - 14/11\nAn Dannsa Dub\nCluny 2\nClay Idols with Bethany Stead\nCobalt Studios\n\nSUNDAY - 15/11\nCraft & Flea - Christmas Market\nBoiler Shop\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
       "IGCaption": "// 13-15 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\nOuseburn Christmas Market\n51 Lime Street\n\nSATURDAY - 14/11\nAn Dannsa Dub\nCluny 2\nClay Idols with Bethany Stead\nCobalt Studios\n\nSUNDAY - 15/11\nCraft & Flea - Christmas Market\nBoiler Shop\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekend-131126rlxcs2",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126rlxcs2.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126rlxcs2.jpg",
+      "ImageVariant": "Weekend-131126rvb47a",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126rvb47a.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126rvb47a.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
