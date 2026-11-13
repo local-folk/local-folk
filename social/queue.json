@@ -1,73 +1,49 @@
 {
-  "generatedAt": "2026-11-09T12:03:53.997Z",
+  "generatedAt": "2026-11-13T06:40:00.497Z",
   "posts": [
     {
-      "PostID": "Weekly-101126r7qgvf",
+      "PostID": "Weekly-161126",
       "PostType": "Weekly Roundup",
       "Status": "Draft",
-      "ScheduledFor": "2026-11-10T07:00:00.000Z",
-      "EventIDs": "2026-11-10|cluny 2|toby shaer archie moss jack warnock,2026-11-11|the glasshouse international centre for music|bellowhead,2026-11-11|benedictine social centre|cramlington folk club the carrivik sisters,2026-11-12|the globe|possessed by paul james,2026-11-13|cluny 2|torridon,2026-11-13|cobalt studios ltd 1016 boyd street newcastle ne2 1ap|spafford campbell watersmeet",
+      "ScheduledFor": "2026-11-16T07:00:00.000Z",
+      "EventIDs": "2026-11-16|bridge hotel|pipe dream,2026-11-17|the cumberland arms|global music session,2026-11-18|benedictine social centre|cramlington folk club,2026-11-19|cluny 2|abigail lappell,2026-11-20|the cumberland arms james place street ouseburn newcastle ne6 1ld|driven serious",
       "Candidates": [
         {
-          "date": "2026-11-09",
+          "date": "2026-11-16",
           "day": "Monday",
           "events": [
             {
-              "id": "2026-11-09|branding villa haddricks mill road south gosforth ne3 1ql|myths legends drawing",
-              "title": "Myths & Legends Drawing",
-              "venue": "Branding Villa, Haddricks Mill Road, South Gosforth, NE3 1QL",
+              "id": "2026-11-16|bridge hotel|pipe dream",
+              "title": "Pipe Dream",
+              "venue": "Bridge Hotel",
               "category": "Folk Music",
               "rank": 8,
               "size": 2
             },
             {
-              "id": "2026-11-09|bridge hotel|singaround",
-              "title": "Singaround",
-              "venue": "Bridge Hotel",
+              "id": "2026-11-16|enigma tap|mariners marras shanties and trad work songs",
+              "title": "Mariners & Marras: Shanties & trad work songs",
+              "venue": "Enigma Tap",
               "category": "Music Session",
-              "rank": 48,
-              "size": 2
+              "rank": 47,
+              "size": 3
             }
           ]
         },
         {
-          "date": "2026-11-10",
+          "date": "2026-11-17",
           "day": "Tuesday",
           "events": [
             {
-              "id": "2026-11-10|cluny 2|toby shaer archie moss jack warnock",
-              "title": "Toby Shaer, Archie Moss & Jack Warnock",
-              "venue": "Cluny 2",
-              "category": "Folk Music",
-              "rank": 6,
-              "size": 4
-            },
-            {
-              "id": "2026-11-10|the cluny 2 34 lime street ouseburn newcastle ne1 2pq|toby shaer archie moss and jack warnock",
-              "title": "Toby Shaer, Archie Moss & Jack Warnock",
-              "venue": "The Cluny 2",
-              "category": "Folk Music",
-              "rank": 6,
-              "size": 4
-            },
-            {
-              "id": "2026-11-10|gateshead masonic hall|tyneside ceilidh club",
-              "title": "Tyneside Ceilidh Club",
-              "venue": "Gateshead Masonic Hall",
-              "category": "Ceilidh / Social Dance",
-              "rank": 33,
-              "size": 2
-            },
-            {
-              "id": "2026-11-10|the cumberland arms|come all ye singing session",
-              "title": "Come All Ye' Singing Session",
+              "id": "2026-11-17|the cumberland arms|global music session",
+              "title": "Global Music Session",
               "venue": "The Cumberland Arms",
               "category": "Music Session",
               "rank": 48,
               "size": 2
             },
             {
-              "id": "2026-11-10|the wheatsheaf felling|the wheatsheaf session",
+              "id": "2026-11-17|the wheatsheaf felling|the wheatsheaf session",
               "title": "The Wheatsheaf Session",
               "venue": "The Wheatsheaf, Felling",
               "category": "Music Session",
@@ -77,27 +53,19 @@
           ]
         },
         {
-          "date": "2026-11-11",
+          "date": "2026-11-18",
           "day": "Wednesday",
           "events": [
             {
-              "id": "2026-11-11|the glasshouse international centre for music|bellowhead",
-              "title": "Bellowhead",
-              "venue": "The Glasshouse",
-              "category": "Folk Music",
-              "rank": 5,
-              "size": 5
-            },
-            {
-              "id": "2026-11-11|benedictine social centre|cramlington folk club the carrivik sisters",
-              "title": "Cramlington Folk Club: The Carrivik Sisters",
+              "id": "2026-11-18|benedictine social centre|cramlington folk club",
+              "title": "Cramlington Folk Club",
               "venue": "Benedictine Social Centre",
               "category": "Folk Music",
               "rank": 7,
               "size": 3
             },
             {
-              "id": "2026-11-11|the brewery|singaround",
+              "id": "2026-11-18|the brewery|singaround",
               "title": "Singaround",
               "venue": "The Brewery",
               "category": "Music Session",
@@ -105,7 +73,7 @@
               "size": 3
             },
             {
-              "id": "2026-11-11|the cumberland arms|mostly irish session",
+              "id": "2026-11-18|the cumberland arms|mostly irish session",
               "title": "Mostly Irish Session",
               "venue": "The Cumberland Arms",
               "category": "Music Session",
@@ -113,7 +81,7 @@
               "size": 2
             },
             {
-              "id": "2026-11-11|bridge hotel|Sacred Harp Singing Workshop",
+              "id": "2026-11-18|bridge hotel|Sacred Harp Singing Workshop",
               "title": "Sacred Harp Singing Workshop",
               "venue": "Bridge Hotel",
               "category": "Music Session",
@@ -123,27 +91,19 @@
           ]
         },
         {
-          "date": "2026-11-12",
+          "date": "2026-11-19",
           "day": "Thursday",
           "events": [
             {
-              "id": "2026-11-12|kings hall|student performance",
-              "title": "Student Performance",
-              "venue": "King's Hall",
+              "id": "2026-11-19|cluny 2|abigail lappell",
+              "title": "Abigail Lappell",
+              "venue": "Cluny 2",
               "category": "Folk Music",
-              "rank": 7,
-              "size": 3
+              "rank": 6,
+              "size": 4
             },
             {
-              "id": "2026-11-12|the globe|possessed by paul james",
-              "title": "Possessed By Paul James",
-              "venue": "The Globe",
-              "category": "Folk Music",
-              "rank": 8,
-              "size": 2
-            },
-            {
-              "id": "2026-11-12|tyneside irish centre|tyneside irish centre session",
+              "id": "2026-11-19|tyneside irish centre|tyneside irish centre session",
               "title": "Tyneside Irish Centre Session",
               "venue": "Tyneside Irish Centre",
               "category": "Music Session",
@@ -151,9 +111,9 @@
               "size": 3
             },
             {
-              "id": "2026-11-12|the cumberland arms|old time music session",
-              "title": "Old Time Music Session",
-              "venue": "The Cumberland Arms",
+              "id": "2026-11-19|central bar|singaround at 1230",
+              "title": "Lunchtime Singaround",
+              "venue": "Central Bar",
               "category": "Music Session",
               "rank": 48,
               "size": 2
@@ -161,35 +121,27 @@
           ]
         },
         {
-          "date": "2026-11-13",
+          "date": "2026-11-20",
           "day": "Friday",
           "events": [
             {
-              "id": "2026-11-13|cluny 2|torridon",
-              "title": "Torridon",
-              "venue": "Cluny 2",
+              "id": "2026-11-20|the cumberland arms james place street ouseburn newcastle ne6 1ld|driven serious",
+              "title": "Driven Serious",
+              "venue": "The Cumberland Arms",
               "category": "Folk Music",
-              "rank": 6,
-              "size": 4
-            },
-            {
-              "id": "2026-11-13|cobalt studios ltd 1016 boyd street newcastle ne2 1ap|spafford campbell watersmeet",
-              "title": "Spafford Campbell + Watersmeet",
-              "venue": "Cobalt Studios",
-              "category": "Folk Music",
-              "rank": 7,
-              "size": 3
-            },
-            {
-              "id": "2026-11-13|51 lime street|ouseburn christmas market",
-              "title": "Ouseburn Christmas Market",
-              "venue": "51 Lime Street",
-              "category": "Market",
-              "rank": 38,
+              "rank": 8,
               "size": 2
             },
             {
-              "id": "2026-11-13|the cumberland arms|an criscn ln irish session",
+              "id": "2026-11-20|lubber fiend|diy ceilidh",
+              "title": "DIY Ceilidh",
+              "venue": "Lubber Fiend",
+              "category": "Ceilidh / Social Dance",
+              "rank": 32,
+              "size": 3
+            },
+            {
+              "id": "2026-11-20|the cumberland arms|an criscn ln irish session",
               "title": "An Crúiscín Làn' Irish Session",
               "venue": "The Cumberland Arms",
               "category": "Music Session",
@@ -199,21 +151,21 @@
           ]
         }
       ],
-      "FBCaption": "// 09-13 NOV // WEEKLY ROUNDUP\n\nTUESDAY - 10/11\nToby Shaer, Archie Moss & Jack Warnock\nCluny 2\n\nWEDNESDAY - 11/11\nBellowhead\nThe Glasshouse\nCramlington Folk Club: The Carrivik Sisters\nBenedictine Social Centre\n\nTHURSDAY - 12/11\nPossessed By Paul James\nThe Globe\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 09-13 NOV // WEEKLY ROUNDUP\n\nTUESDAY - 10/11\nToby Shaer, Archie Moss & Jack Warnock\nCluny 2\n\nWEDNESDAY - 11/11\nBellowhead\nThe Glasshouse\nCramlington Folk Club: The Carrivik Sisters\nBenedictine Social Centre\n\nTHURSDAY - 12/11\nPossessed By Paul James\nThe Globe\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekly-101126r7qgvf",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-101126r7qgvf.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-101126r7qgvf.jpg",
+      "FBCaption": "// 16-20 NOV // WEEKLY ROUNDUP\n\nMONDAY - 16/11\nPipe Dream\nBridge Hotel\n\nTUESDAY - 17/11\nGlobal Music Session\nThe Cumberland Arms\n\nWEDNESDAY - 18/11\nCramlington Folk Club\nBenedictine Social Centre\n\nTHURSDAY - 19/11\nAbigail Lappell\nCluny 2\n\nFRIDAY - 20/11\nDriven Serious\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 16-20 NOV // WEEKLY ROUNDUP\n\nMONDAY - 16/11\nPipe Dream\nBridge Hotel\n\nTUESDAY - 17/11\nGlobal Music Session\nThe Cumberland Arms\n\nWEDNESDAY - 18/11\nCramlington Folk Club\nBenedictine Social Centre\n\nTHURSDAY - 19/11\nAbigail Lappell\nCluny 2\n\nFRIDAY - 20/11\nDriven Serious\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekly-161126",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-161126.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-161126.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
     },
     {
-      "PostID": "Weekend-131126",
+      "PostID": "Weekend-131126rlxcs2",
       "PostType": "Weekend Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-11-13T07:00:00.000Z",
-      "EventIDs": "2026-11-13|cluny 2|torridon,2026-11-13|cobalt studios ltd 1016 boyd street newcastle ne2 1ap|spafford campbell watersmeet,2026-11-14|cluny 2|an dannsa dub,2026-11-14|cobalt studios|clay idols with bethany stead,2026-11-15|monkseaton arms|monkey folk club,2026-11-15|boiler shop|craft flea christmas market",
+      "EventIDs": "2026-11-13|cluny 2|torridon,2026-11-13|cobalt studios ltd 1016 boyd street newcastle ne2 1ap|spafford campbell watersmeet,2026-11-13|51 lime street|ouseburn christmas market,2026-11-14|cluny 2|an dannsa dub,2026-11-14|cobalt studios|clay idols with bethany stead,2026-11-15|boiler shop|craft flea christmas market",
       "Candidates": [
         {
           "date": "2026-11-13",
@@ -306,11 +258,11 @@
           ]
         }
       ],
-      "FBCaption": "// 13-15 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\n\nSATURDAY - 14/11\nAn Dannsa Dub\nCluny 2\nClay Idols with Bethany Stead\nCobalt Studios\n\nSUNDAY - 15/11\nMonkey Folk Club\nMonkseaton Arms\nCraft & Flea - Christmas Market\nBoiler Shop\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 13-15 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\n\nSATURDAY - 14/11\nAn Dannsa Dub\nCluny 2\nClay Idols with Bethany Stead\nCobalt Studios\n\nSUNDAY - 15/11\nMonkey Folk Club\nMonkseaton Arms\nCraft & Flea - Christmas Market\nBoiler Shop\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekend-131126",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126.jpg",
+      "FBCaption": "// 13-15 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\nOuseburn Christmas Market\n51 Lime Street\n\nSATURDAY - 14/11\nAn Dannsa Dub\nCluny 2\nClay Idols with Bethany Stead\nCobalt Studios\n\nSUNDAY - 15/11\nCraft & Flea - Christmas Market\nBoiler Shop\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 13-15 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 13/11\nTorridon\nCluny 2\nSpafford Campbell + Watersmeet\nCobalt Studios\nOuseburn Christmas Market\n51 Lime Street\n\nSATURDAY - 14/11\nAn Dannsa Dub\nCluny 2\nClay Idols with Bethany Stead\nCobalt Studios\n\nSUNDAY - 15/11\nCraft & Flea - Christmas Market\nBoiler Shop\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-131126rlxcs2",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126rlxcs2.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-131126rlxcs2.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
