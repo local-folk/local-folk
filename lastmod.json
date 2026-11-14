@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "7008cd14-7348",
-      "lastmod": "2026-11-13"
+      "hash": "fff38f6a-75bb",
+      "lastmod": "2026-11-14"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "cca0f673-8492",
-      "lastmod": "2026-11-13"
+      "hash": "76cb6b3-82b4",
+      "lastmod": "2026-11-14"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
       "hash": "e64596a-3c85",
@@ -58,8 +58,8 @@
       "lastmod": "2026-11-07"
     },
     "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261113/": {
-      "hash": "1191d38d-3b99",
-      "lastmod": "2026-10-26"
+      "hash": "8b1628b8-3bb8",
+      "lastmod": "2026-11-14"
     },
     "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261120/": {
       "hash": "93bd5263-3b99",
@@ -762,8 +762,8 @@
       "lastmod": "2026-11-11"
     },
     "https://thekirn.co.uk/events/ouseburn-christmas-market-51-lime-street-20261113/": {
-      "hash": "b694598-3d40",
-      "lastmod": "2026-10-26"
+      "hash": "70146c5-3d75",
+      "lastmod": "2026-11-14"
     },
     "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-20261010/": {
       "hash": "2fccc07f-412e",
@@ -872,6 +872,10 @@
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270207/": {
       "hash": "b153f319-3cc5",
       "lastmod": "2026-11-07"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270214/": {
+      "hash": "6ce231b9-3cca",
+      "lastmod": "2026-11-14"
     },
     "https://thekirn.co.uk/events/radical-choir-with-bethany-elen-cobalt-studios-20261103/": {
       "hash": "cf86b615-3dff",
@@ -1058,8 +1062,8 @@
       "lastmod": "2026-11-05"
     },
     "https://thekirn.co.uk/events/spafford-campbell-watersmeet-cobalt-studios-20261113/": {
-      "hash": "e9d3cd41-3ca6",
-      "lastmod": "2026-10-26"
+      "hash": "c79de89f-3c9b",
+      "lastmod": "2026-11-14"
     },
     "https://thekirn.co.uk/events/spooky-meet-up-st-mary-s-by-the-tyne-20261015/": {
       "hash": "220bd09a-3b90",
@@ -1218,8 +1222,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/torridon-cluny-2-20261113/": {
-      "hash": "b583f14f-3707",
-      "lastmod": "2026-10-26"
+      "hash": "e125278d-37a5",
+      "lastmod": "2026-11-14"
     },
     "https://thekirn.co.uk/events/tyneside-ceilidh-club-gateshead-masonic-hall-20261013/": {
       "hash": "c3c7f7f-3b93",
