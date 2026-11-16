@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "3bf977c3-76df",
-      "lastmod": "2026-11-15"
+      "hash": "8522d585-78ac",
+      "lastmod": "2026-11-16"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "c45f8b00-8190",
-      "lastmod": "2026-11-15"
+      "hash": "d88ab768-8110",
+      "lastmod": "2026-11-16"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
       "hash": "e64596a-3c85",
@@ -242,8 +242,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/craft-flea-christmas-market-boiler-shop-20261115/": {
-      "hash": "e4604670-3ae6",
-      "lastmod": "2026-10-26"
+      "hash": "9a486e58-3b22",
+      "lastmod": "2026-11-16"
     },
     "https://thekirn.co.uk/events/cramlington-folk-club-benedictine-social-centre-20261007/": {
       "hash": "dee27a8-392e",
@@ -441,6 +441,10 @@
       "hash": "931ecde3-3acc",
       "lastmod": "2026-11-02"
     },
+    "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20270216/": {
+      "hash": "33e26a42-3ad1",
+      "lastmod": "2026-11-16"
+    },
     "https://thekirn.co.uk/events/gwenifer-raymond-the-cluny-2-20261203/": {
       "hash": "9d1b1567-3ae6",
       "lastmod": "2026-10-26"
@@ -598,8 +602,8 @@
       "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261115/": {
-      "hash": "9f71ef98-3a29",
-      "lastmod": "2026-10-26"
+      "hash": "b809d61c-3a68",
+      "lastmod": "2026-11-16"
     },
     "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261122/": {
       "hash": "7b23171e-3a29",
@@ -822,8 +826,8 @@
       "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261115/": {
-      "hash": "c8bb2e96-3cca",
-      "lastmod": "2026-10-26"
+      "hash": "f1f1ed7c-3d00",
+      "lastmod": "2026-11-16"
     },
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261122/": {
       "hash": "361eb404-3cca",
@@ -1204,6 +1208,10 @@
     "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270209/": {
       "hash": "f3415514-3b25",
       "lastmod": "2026-11-09"
+    },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270216/": {
+      "hash": "96ed05f6-3b2a",
+      "lastmod": "2026-11-16"
     },
     "https://thekirn.co.uk/events/tim-dalling-bridge-hotel-20270125/": {
       "hash": "a38539b2-37ab",
