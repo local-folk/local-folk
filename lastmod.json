@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "aaa75ddd-79f1",
-      "lastmod": "2026-11-17"
+      "hash": "d088c72b-7b3e",
+      "lastmod": "2026-11-18"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "b15e4fb9-806c",
-      "lastmod": "2026-11-17"
+      "hash": "1b2c3a33-8125",
+      "lastmod": "2026-11-18"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
       "hash": "e64596a-3c85",
@@ -414,8 +414,8 @@
       "lastmod": "2026-11-05"
     },
     "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261117/": {
-      "hash": "bcfe8527-3ad1",
-      "lastmod": "2026-10-26"
+      "hash": "f225fa96-3b09",
+      "lastmod": "2026-11-18"
     },
     "https://thekirn.co.uk/events/global-music-session-the-cumberland-arms-20261201/": {
       "hash": "cfa4e739-3acc",
@@ -1121,6 +1121,10 @@
       "hash": "239b17c3-3756",
       "lastmod": "2026-10-26"
     },
+    "https://thekirn.co.uk/events/the-lit-phil-invention-challenge-2026-myths-and-legends-exhibition-launch-and-celebration-the-lit-phil-20261205/": {
+      "hash": "7b3f6689-3f6b",
+      "lastmod": "2026-11-18"
+    },
     "https://thekirn.co.uk/events/the-magic-of-theatre-superstition-ghosts-and-the-scottish-play-tyne-theatre-opera-house-20261016/": {
       "hash": "38a7856f-3d9e",
       "lastmod": "2026-10-26"
@@ -1162,8 +1166,8 @@
       "lastmod": "2026-11-11"
     },
     "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261117/": {
-      "hash": "62939f-3b2a",
-      "lastmod": "2026-10-26"
+      "hash": "87f5f2a6-3b77",
+      "lastmod": "2026-11-18"
     },
     "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261124/": {
       "hash": "1701d47d-3b2a",
@@ -1360,6 +1364,10 @@
     "https://thekirn.co.uk/events/xmas-wild-wreaths-with-common-c-collective-cobalt-studios-20261209/": {
       "hash": "16e2a90e-42c9",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/yuletide-folklore-a-christmas-talk-with-david-silk-newcastle-castle-20261218/": {
+      "hash": "ac4f8c22-3b92",
+      "lastmod": "2026-11-18"
     }
   }
 }
