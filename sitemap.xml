@@ -7,13 +7,13 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/archive/</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -31,24 +31,6 @@
     <loc>https://thekirn.co.uk/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/abigail-lappell-cluny-2-20261119/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261119/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/lunchtime-singaround-central-bar-20261119/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/diy-ceilidh-lubber-fiend-20261120/</loc>
@@ -345,6 +327,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://thekirn.co.uk/events/a-bit-crack-storytelling-hugh-lupton-when-the-morning-stars-sang-the-angels-shouted-for-joy-the-chillingham-arms-20261204/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://thekirn.co.uk/events/atfk-and-me-lost-me-the-lubber-fiend-20261204/</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -419,6 +407,12 @@
   <url>
     <loc>https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261206/</loc>
     <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/the-brothers-grimm-two-lives-one-legacy-the-lit-phil-20261207/</loc>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -515,6 +509,12 @@
   <url>
     <loc>https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261211/</loc>
     <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/the-glasshouse-christmas-market-the-glasshouse-20261212/</loc>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -653,6 +653,12 @@
   <url>
     <loc>https://thekirn.co.uk/events/lindisfarne-o2-city-hall-20261219/</loc>
     <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/i-love-north-shields-vintage-market-christmas-edition-salt-market-social-20261220/</loc>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -891,6 +897,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://thekirn.co.uk/events/introduction-to-calligraphy-tyne-theatre-opera-house-20270127/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/jose-gonzalez-the-glasshouse-20270128/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20270128/</loc>
     <lastmod>2026-10-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -905,6 +923,12 @@
   <url>
     <loc>https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270129/</loc>
     <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/seamus-fogarty-the-cluny-2-20270130/</loc>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -945,6 +969,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://thekirn.co.uk/events/gravedancer-kenan-flannery-the-central-bar-20270206/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270207/</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -977,6 +1007,12 @@
   <url>
     <loc>https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20270211/</loc>
     <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/jim-moray-gosforth-civic-theatre-20270212/</loc>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -2081,6 +2117,24 @@
   <url>
     <loc>https://thekirn.co.uk/events/singaround-the-brewery-20261118/</loc>
     <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/abigail-lappell-cluny-2-20261119/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261119/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/lunchtime-singaround-central-bar-20261119/</loc>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

@@ -2,12 +2,16 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "94be051c-7dae",
-      "lastmod": "2026-11-19"
+      "hash": "2f6e562e-7f75",
+      "lastmod": "2026-11-20"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "bbad5d77-8024",
-      "lastmod": "2026-11-19"
+      "hash": "8319682e-84f3",
+      "lastmod": "2026-11-20"
+    },
+    "https://thekirn.co.uk/events/a-bit-crack-storytelling-hugh-lupton-when-the-morning-stars-sang-the-angels-shouted-for-joy-the-chillingham-arms-20261204/": {
+      "hash": "e7569889-3f91",
+      "lastmod": "2026-11-20"
     },
     "https://thekirn.co.uk/events/a-cosy-night-in-with-eddie-doyle-nicky-rushton-guapanelas-cumberland-arms-20261101/": {
       "hash": "e64596a-3c85",
@@ -22,8 +26,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/abigail-lappell-cluny-2-20261119/": {
-      "hash": "28a261e-376c",
-      "lastmod": "2026-10-26"
+      "hash": "632e6693-3801",
+      "lastmod": "2026-11-20"
     },
     "https://thekirn.co.uk/events/ahoy-there-me-old-muckers-the-old-low-light-20261003/": {
       "hash": "8d23dd91-3bf9",
@@ -449,6 +453,10 @@
       "hash": "33e26a42-3ad1",
       "lastmod": "2026-11-16"
     },
+    "https://thekirn.co.uk/events/gravedancer-kenan-flannery-the-central-bar-20270206/": {
+      "hash": "d9266a43-3baf",
+      "lastmod": "2026-11-20"
+    },
     "https://thekirn.co.uk/events/gwenifer-raymond-the-cluny-2-20261203/": {
       "hash": "9d1b1567-3ae6",
       "lastmod": "2026-10-26"
@@ -473,6 +481,10 @@
       "hash": "9b2fe19-409b",
       "lastmod": "2026-11-02"
     },
+    "https://thekirn.co.uk/events/i-love-north-shields-vintage-market-christmas-edition-salt-market-social-20261220/": {
+      "hash": "22d9d6fc-3d7e",
+      "lastmod": "2026-11-20"
+    },
     "https://thekirn.co.uk/events/icy-sedgwick-hauntings-on-tyneside-north-shields-community-hub-and-library-20261019/": {
       "hash": "9a5473f3-3e4b",
       "lastmod": "2026-10-26"
@@ -480,6 +492,10 @@
     "https://thekirn.co.uk/events/intro-to-chainmail-jewellery-helm-chain-with-ellie-grassick-cobalt-studios-20261212/": {
       "hash": "7c321df5-4203",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/introduction-to-calligraphy-tyne-theatre-opera-house-20270127/": {
+      "hash": "4fe719a6-3d1f",
+      "lastmod": "2026-11-20"
     },
     "https://thekirn.co.uk/events/introduction-to-leathercraft-with-minuel-designs-cobalt-studios-20261028/": {
       "hash": "f16b5e8f-4442",
@@ -496,6 +512,14 @@
     "https://thekirn.co.uk/events/jez-lowe-and-the-bad-pennies-defrosted-the-glasshouse-20261220/": {
       "hash": "53f35886-3fce",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/jim-moray-gosforth-civic-theatre-20270212/": {
+      "hash": "b49f2fb5-39f0",
+      "lastmod": "2026-11-20"
+    },
+    "https://thekirn.co.uk/events/jose-gonzalez-the-glasshouse-20270128/": {
+      "hash": "223d1d41-3a6f",
+      "lastmod": "2026-11-20"
     },
     "https://thekirn.co.uk/events/juni-habel-the-cumberland-arms-james-place-street-ouseburn-newcastle-ne6-1ld-20260927/": {
       "hash": "7610d181-3aa2",
@@ -542,8 +566,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/lunchtime-singaround-central-bar-20261119/": {
-      "hash": "88bcc1a6-3a0d",
-      "lastmod": "2026-10-26"
+      "hash": "93122490-3a48",
+      "lastmod": "2026-11-20"
     },
     "https://thekirn.co.uk/events/lunchtime-singaround-central-bar-20261217/": {
       "hash": "d52127a1-3a0d",
@@ -973,6 +997,10 @@
       "hash": "f30a3b05-3f24",
       "lastmod": "2026-10-26"
     },
+    "https://thekirn.co.uk/events/seamus-fogarty-the-cluny-2-20270130/": {
+      "hash": "87802c32-383e",
+      "lastmod": "2026-11-20"
+    },
     "https://thekirn.co.uk/events/sean-gray-bridge-hotel-20270215/": {
       "hash": "aa14cc4d-3797",
       "lastmod": "2026-10-26"
@@ -1117,6 +1145,10 @@
       "hash": "44a147f8-3b26",
       "lastmod": "2026-10-26"
     },
+    "https://thekirn.co.uk/events/the-brothers-grimm-two-lives-one-legacy-the-lit-phil-20261207/": {
+      "hash": "c306a312-3ce0",
+      "lastmod": "2026-11-20"
+    },
     "https://thekirn.co.uk/events/the-crafty-bazaar-it-s-christmas-maker-s-market-wylam-brewery-20261129/": {
       "hash": "f4150de1-3c00",
       "lastmod": "2026-10-26"
@@ -1124,6 +1156,10 @@
     "https://thekirn.co.uk/events/the-deadlians-cluny-2-20261216/": {
       "hash": "239b17c3-3756",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/the-glasshouse-christmas-market-the-glasshouse-20261212/": {
+      "hash": "f1b8b775-3b47",
+      "lastmod": "2026-11-20"
     },
     "https://thekirn.co.uk/events/the-lit-phil-invention-challenge-2026-myths-and-legends-exhibition-launch-and-celebration-the-lit-phil-20261205/": {
       "hash": "7b3f6689-3f6b",
@@ -1282,8 +1318,8 @@
       "lastmod": "2026-11-13"
     },
     "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261119/": {
-      "hash": "747c675a-3ba4",
-      "lastmod": "2026-10-26"
+      "hash": "efbe9489-3bcc",
+      "lastmod": "2026-11-20"
     },
     "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261126/": {
       "hash": "c8d3a73c-3ba4",
