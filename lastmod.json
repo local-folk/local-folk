@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "2f6e562e-7f75",
-      "lastmod": "2026-11-20"
+      "hash": "12d11018-8143",
+      "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "8319682e-84f3",
-      "lastmod": "2026-11-20"
+      "hash": "f1c06ba9-88df",
+      "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/a-bit-crack-storytelling-hugh-lupton-when-the-morning-stars-sang-the-angels-shouted-for-joy-the-chillingham-arms-20261204/": {
       "hash": "e7569889-3f91",
@@ -66,8 +66,8 @@
       "lastmod": "2026-11-14"
     },
     "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261120/": {
-      "hash": "93bd5263-3b99",
-      "lastmod": "2026-10-26"
+      "hash": "953a5d94-3bb8",
+      "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261127/": {
       "hash": "4fb31958-3b99",
@@ -314,8 +314,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/diy-ceilidh-lubber-fiend-20261120/": {
-      "hash": "d1352e31-3868",
-      "lastmod": "2026-10-26"
+      "hash": "f9f86326-38fc",
+      "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/diy-ceilidh-lubber-fiend-20261218/": {
       "hash": "791ba735-3868",
@@ -338,8 +338,20 @@
       "lastmod": "2026-10-28"
     },
     "https://thekirn.co.uk/events/driven-serious-the-cumberland-arms-20261120/": {
-      "hash": "50c83cc9-3a12",
-      "lastmod": "2026-10-26"
+      "hash": "7d73d522-3a5e",
+      "lastmod": "2026-11-21"
+    },
+    "https://thekirn.co.uk/events/elder-beer-folk-session-elder-beer-20261125/": {
+      "hash": "53b81b18-392d",
+      "lastmod": "2026-11-21"
+    },
+    "https://thekirn.co.uk/events/elder-beer-folk-session-elder-beer-20261223/": {
+      "hash": "6fb9a0d7-392d",
+      "lastmod": "2026-11-21"
+    },
+    "https://thekirn.co.uk/events/elder-beer-folk-session-elder-beer-20270127/": {
+      "hash": "b613e696-3929",
+      "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/experimental-basketweaving-with-rachael-eden-cobalt-studios-20261024/": {
       "hash": "591ac214-40a3",
@@ -392,6 +404,30 @@
     "https://thekirn.co.uk/events/freya-ridings-the-glasshouse-gateshead-quays-ne8-2yr-20260927/": {
       "hash": "cf117945-3a1d",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20261124/": {
+      "hash": "aa647462-396d",
+      "lastmod": "2026-11-21"
+    },
+    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20261213/": {
+      "hash": "496a2e65-3969",
+      "lastmod": "2026-11-21"
+    },
+    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20261222/": {
+      "hash": "7960544d-396d",
+      "lastmod": "2026-11-21"
+    },
+    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20270110/": {
+      "hash": "345342a1-3965",
+      "lastmod": "2026-11-21"
+    },
+    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20270126/": {
+      "hash": "d50c4e4a-3969",
+      "lastmod": "2026-11-21"
+    },
+    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20270214/": {
+      "hash": "9f043d49-3969",
+      "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/fundraiser-singaround-for-crisis-bridge-hotel-20261207/": {
       "hash": "fbbcc669-3aa4",
@@ -912,6 +948,10 @@
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270214/": {
       "hash": "6ce231b9-3cca",
       "lastmod": "2026-11-14"
+    },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270221/": {
+      "hash": "a6ba19d-3cca",
+      "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/radical-choir-with-bethany-elen-cobalt-studios-20261103/": {
       "hash": "cf86b615-3dff",
