@@ -208,6 +208,83 @@ function scheduledFor(variant, post) {
   return d;
 }
 
+/* ------------------------------------------------------------------ *
+ * Keeping the queue additive - 20 November 2026
+ *
+ * This file used to replace social/queue.json with only the posts produced by
+ * the current run. That deleted a post built early for another day: on
+ * 13 November 2026 a Weekend run removed the pre-built Weekly for 16 November,
+ * and nobody noticed until the post failed to appear.
+ *
+ * Auto-dispatch makes that worse, because a dispatch on a drafting day would
+ * rebuild both variants unless it is told which one it is for. The workflow now
+ * passes a variant, and this merge keeps anything already queued for today or
+ * later that this run did not rebuild.
+ *
+ * The rule is deliberately narrow:
+ *   - a post this run produced always wins;
+ *   - an older entry of the same roundup is dropped, even if its PostID has a
+ *     revision stamp, so a rebuild cannot leave two versions in the queue;
+ *   - anything else survives only if it is due today or later. A post from a
+ *     previous day is not today's post and must not be emailed as one.
+ * ------------------------------------------------------------------ */
+
+function readExistingQueue() {
+  try {
+    if (!fs.existsSync(QUEUE_FILE)) return [];
+    const parsed = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf8'));
+    return Array.isArray(parsed.posts) ? parsed.posts : [];
+  } catch (err) {
+    console.log('Could not read the existing queue (' + err.message +
+      '); writing this run\'s posts only.');
+    return [];
+  }
+}
+
+function mergeQueue(existing, fresh, now) {
+  const freshList = Array.isArray(fresh) ? fresh : [];
+  const existingList = Array.isArray(existing) ? existing : [];
+  const when = now instanceof Date ? now : new Date();
+  const today = when.toISOString().slice(0, 10);
+
+  const freshIds = new Set();
+  const freshTypes = new Set();
+  freshList.forEach(function (p) {
+    const id = String((p && p.PostID) || '').trim();
+    const type = String((p && p.PostType) || '').trim();
+    if (id) freshIds.add(id);
+    if (type) freshTypes.add(type);
+  });
+
+  const kept = existingList.filter(function (p) {
+    const id = String((p && p.PostID) || '').trim();
+    if (!id || freshIds.has(id)) return false;
+
+    // A run that rebuilt this roundup owns it. Keeping an older entry for the
+    // same type would email the owner two versions of the same post.
+    const type = String((p && p.PostType) || '').trim();
+    if (type && freshTypes.has(type)) return false;
+
+    const scheduled = Date.parse(String((p && p.ScheduledFor) || ''));
+    if (!isFinite(scheduled)) return false;
+
+    // The calendar day, not "after now": a post due at 07:00 has to survive a
+    // run at 09:00 on the same day, which is exactly when a rebuild of the
+    // other variant happens.
+    return new Date(scheduled).toISOString().slice(0, 10) >= today;
+  });
+
+  const merged = freshList.concat(kept);
+  merged.sort(function (a, b) {
+    const at = Date.parse(String((a && a.ScheduledFor) || '')) || 0;
+    const bt = Date.parse(String((b && b.ScheduledFor) || '')) || 0;
+    if (at !== bt) return at - bt;
+    return String((a && a.PostID) || '').localeCompare(String((b && b.PostID) || ''));
+  });
+
+  return { posts: merged, kept: kept };
+}
+
 function main() {
   const show = process.argv.includes('--show');
   const now = new Date();
@@ -313,20 +390,29 @@ function main() {
     }
   }
 
-  /* Overwritten rather than appended, so the file always describes the posts
-   * about to go out and never a growing history. Apps Script keys off PostID,
-   * so re-running with the same selection is idempotent.
+  /* Merged, not blindly overwritten. This run's posts always replace their own
+   * PostID, but a post already queued for today or later survives - see
+   * mergeQueue above. That is what stops a rebuild or an auto-dispatch of one
+   * roundup deleting the other one.
    *
    * Written as UTF-8 without a BOM. The captions carry diacritics
    * ("An Crúiscín Làn'"), and a BOM here would become part of the first
    * PostID once Apps Script parsed it. */
+  const merged = mergeQueue(readExistingQueue(), queue, now);
+  if (merged.kept.length) {
+    console.log('Kept ' + merged.kept.length + ' already-queued post(s): ' +
+      merged.kept.map(function (p) { return p.PostID; }).join(', '));
+  }
+
   fs.writeFileSync(
     QUEUE_FILE,
-    JSON.stringify({ generatedAt: now.toISOString(), posts: queue }, null, 2),
+    JSON.stringify({ generatedAt: now.toISOString(), posts: merged.posts }, null, 2),
     'utf8'
   );
   console.log('wrote ' + path.relative(__dirname, QUEUE_FILE) +
-    ' (' + queue.length + ' post(s) awaiting approval)');
+    ' (' + merged.posts.length + ' post(s) awaiting approval)');
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { mergeQueue, readExistingQueue };

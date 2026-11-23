@@ -32,6 +32,8 @@
  *   node select-social-events.js --record-only  record the current social-posts.json
  *                                           as posted, without re-selecting
  *   node select-social-events.js --from-file  read a local CSV instead of fetching
+ *   node select-social-events.js --variant Weekend   build only that roundup
+ *   node select-social-events.js --all        build both, regardless of weekday
  *
  * Recording is a deliberate second step. Running selection again after
  * rendering would rotate to different events and leave the image and the
@@ -676,9 +678,30 @@ async function loadCsv() {
   return res.text();
 }
 
+/* Reads `--variant Weekly` / `--variant Weekend` from an argv-style array.
+ * Returns '' when it is absent. Pure, so it can be tested without a process. */
+function variantFromArgs(args) {
+  const i = args.indexOf('--variant');
+  if (i === -1) return '';
+  const raw = String(args[i + 1] || '').trim();
+  if (!raw || raw.indexOf('--') === 0) {
+    throw new Error('--variant needs a value: Weekly or Weekend.');
+  }
+  const match = Object.keys(VARIANTS).find((k) => k.toLowerCase() === raw.toLowerCase());
+  if (!match) {
+    throw new Error('Unknown --variant "' + raw + '". Use Weekly or Weekend.');
+  }
+  return match;
+}
+
 async function main() {
   const dry = process.argv.includes('--dry');
   const recordOnly = process.argv.includes('--record-only');
+  const only = variantFromArgs(process.argv);
+  const all = process.argv.includes('--all');
+  if (only && all) {
+    throw new Error('Use either --variant or --all, not both.');
+  }
   const now = new Date();
   const dow = now.getUTCDay();
 
@@ -729,9 +752,17 @@ async function main() {
   for (const name of Object.keys(VARIANTS)) {
     const variant = VARIANTS[name];
 
+    // --variant is used by the workflow's variant input. It deliberately
+    // overrides the weekday: the point is to rebuild exactly one roundup
+    // without touching the other one that may be waiting in the queue.
+    if (only && name !== only) {
+      console.log('SKIP  ' + variant.label + ' - --variant ' + only + ' was given.');
+      continue;
+    }
+
     // Which variants are due today.
     const isDue = dow === variant.runOn;
-    if (!isDue && !process.argv.includes('--all')) {
+    if (!only && !isDue && !all) {
       console.log('SKIP  ' + variant.label + ' - runs on ' + WEEKDAYS[variant.runOn] + 's.');
       continue;
     }
@@ -803,4 +834,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { selectFor, VARIANTS };
+module.exports = { selectFor, VARIANTS, variantFromArgs };
