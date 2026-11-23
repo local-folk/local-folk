@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-23T10:04:18.639Z",
+  "generatedAt": "2026-11-23T10:29:38.625Z",
   "posts": [
     {
-      "PostID": "Weekly-231126",
+      "PostID": "Weekly-231126r4j6df",
       "PostType": "Weekly Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-11-23T07:00:00.000Z",
-      "EventIDs": "2026-11-23|bridge hotel|singaround,2026-11-24|tyne theatre opera house|festive lino printing workshop,2026-11-25|benedictine social centre|cramlington folk club clive gregson and the hayes sisters,2026-11-26|tyneside cinema|festive wreath making workshop at tyneside cinema,2026-11-27|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
+      "EventIDs": "2026-11-23|bridge hotel|singaround,2026-11-24|the cumberland arms|fuck it folk,2026-11-25|benedictine social centre|cramlington folk club clive gregson and the hayes sisters,2026-11-25|cumberland arms|lucy farrell shane pendergast,2026-11-26|tyneside irish centre|tyneside irish centre session,2026-11-27|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
       "Candidates": [
         {
           "date": "2026-11-23",
@@ -159,11 +159,158 @@
           ]
         }
       ],
-      "FBCaption": "// 23-27 NOV // WEEKLY ROUNDUP\n\nMONDAY - 23/11\nSingaround\nBridge Hotel\n\nTUESDAY - 24/11\nFestive Lino Printing Workshop\nTyne Theatre & Opera House\n\nWEDNESDAY - 25/11\nCramlington Folk Club: Clive Gregson & the Hayes Sisters\nBenedictine Social Centre\n\nTHURSDAY - 26/11\nFestive Wreath Making Workshop at Tyneside Cinema\nTyneside Cinema\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 23-27 NOV // WEEKLY ROUNDUP\n\nMONDAY - 23/11\nSingaround\nBridge Hotel\n\nTUESDAY - 24/11\nFestive Lino Printing Workshop\nTyne Theatre & Opera House\n\nWEDNESDAY - 25/11\nCramlington Folk Club: Clive Gregson & the Hayes Sisters\nBenedictine Social Centre\n\nTHURSDAY - 26/11\nFestive Wreath Making Workshop at Tyneside Cinema\nTyneside Cinema\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekly-231126",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-231126.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-231126.jpg",
+      "FBCaption": "// 23-27 NOV // WEEKLY ROUNDUP\n\nMONDAY - 23/11\nSingaround\nBridge Hotel\n\nTUESDAY - 24/11\nFuck It Folk\nThe Cumberland Arms\n\nWEDNESDAY - 25/11\nCramlington Folk Club: Clive Gregson & the Hayes Sisters\nBenedictine Social Centre\nLucy Farrell & Shane Pendergast\nCumberland Arms\n\nTHURSDAY - 26/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 23-27 NOV // WEEKLY ROUNDUP\n\nMONDAY - 23/11\nSingaround\nBridge Hotel\n\nTUESDAY - 24/11\nFuck It Folk\nThe Cumberland Arms\n\nWEDNESDAY - 25/11\nCramlington Folk Club: Clive Gregson & the Hayes Sisters\nBenedictine Social Centre\nLucy Farrell & Shane Pendergast\nCumberland Arms\n\nTHURSDAY - 26/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekly-231126r4j6df",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-231126r4j6df.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-231126r4j6df.jpg",
+      "FBPostID": "",
+      "IGPostID": "",
+      "Notes": ""
+    },
+    {
+      "PostID": "Weekend-271126",
+      "PostType": "Weekend Roundup",
+      "Status": "Draft",
+      "ScheduledFor": "2026-11-27T07:00:00.000Z",
+      "EventIDs": "2026-11-27|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop,2026-11-27|the cumberland arms|an criscn ln irish session,2026-11-28|the glasshouse|bob fox and stu luckley,2026-11-28|cluny 2|rob heron conrad bird,2026-11-29|the cluny 2|cat rose,2026-11-29|the cumberland arms|craven sam baxter and merle harbron",
+      "Candidates": [
+        {
+          "date": "2026-11-27",
+          "day": "Friday",
+          "events": [
+            {
+              "id": "2026-11-27|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
+              "title": "Willow Star Workshop",
+              "venue": "The Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT",
+              "category": "Heritage Workshop",
+              "rank": 28,
+              "size": 2
+            },
+            {
+              "id": "2026-11-27|the cumberland arms|an criscn ln irish session",
+              "title": "An Crúiscín Làn' Irish Session",
+              "venue": "The Cumberland Arms",
+              "category": "Music Session",
+              "rank": 48,
+              "size": 2
+            }
+          ]
+        },
+        {
+          "date": "2026-11-28",
+          "day": "Saturday",
+          "events": [
+            {
+              "id": "2026-11-28|the glasshouse|bob fox and stu luckley",
+              "title": "Bob Fox & Stu Luckley",
+              "venue": "The Glasshouse",
+              "category": "Folk Music",
+              "rank": 5,
+              "size": 5
+            },
+            {
+              "id": "2026-11-28|cluny 2|rob heron conrad bird",
+              "title": "Rob Heron & Conrad Bird",
+              "venue": "Cluny 2",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-28|cobalt studios|world building map making with mark bletcher",
+              "title": "World Building & Map Making with Mark Bletcher",
+              "venue": "Cobalt Studios",
+              "category": "Heritage Workshop",
+              "rank": 27,
+              "size": 3
+            },
+            {
+              "id": "2026-11-28|land of oak iron heritage centre|christmas willow wreath workshop",
+              "title": "Christmas Willow Wreath Workshop",
+              "venue": "Land of Oak & Iron Heritage Centre",
+              "category": "Heritage Workshop",
+              "rank": 28,
+              "size": 2
+            },
+            {
+              "id": "2026-11-28|baltic|winter makers market by endless love creative",
+              "title": "Winter Makers Market by Endless Love Creative",
+              "venue": "BALTIC",
+              "category": "Market",
+              "rank": 37,
+              "size": 3
+            },
+            {
+              "id": "2026-11-28|the common room|northern gothic hexmas market",
+              "title": "Northern Gothic Hexmas Market",
+              "venue": "The Common Room",
+              "category": "Market",
+              "rank": 39,
+              "size": 1
+            }
+          ]
+        },
+        {
+          "date": "2026-11-29",
+          "day": "Sunday",
+          "events": [
+            {
+              "id": "2026-11-29|the cluny 2|cat rose",
+              "title": "Cat Rose",
+              "venue": "The Cluny 2",
+              "category": "Folk Music",
+              "rank": 6,
+              "size": 4
+            },
+            {
+              "id": "2026-11-29|the cumberland arms|craven sam baxter and merle harbron",
+              "title": "Craven + Sam Baxter & Merle Harbron + Frankie Insley",
+              "venue": "The Cumberland Arms",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-29|monkseaton arms|monkey folk club",
+              "title": "Monkey Folk Club",
+              "venue": "Monkseaton Arms",
+              "category": "Folk Music",
+              "rank": 8,
+              "size": 2
+            },
+            {
+              "id": "2026-11-29|newcastle quayside|quayside market",
+              "title": "Quayside Market",
+              "venue": "Newcastle Quayside",
+              "category": "Market",
+              "rank": 37,
+              "size": 3
+            },
+            {
+              "id": "2026-11-29|tyne bank brewery|festive fright gothic market",
+              "title": "Festive Fright Gothic Market",
+              "venue": "Tyne Bank Brewery",
+              "category": "Market",
+              "rank": 38,
+              "size": 2
+            },
+            {
+              "id": "2026-11-29|wylam brewery|the crafty bazaar its christmas makers market",
+              "title": "The Crafty Bazaar - It's Christmas! Maker's Market",
+              "venue": "Wylam Brewery",
+              "category": "Market",
+              "rank": 38,
+              "size": 2
+            }
+          ]
+        }
+      ],
+      "FBCaption": "// 27-29 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 28/11\nBob Fox & Stu Luckley\nThe Glasshouse\nRob Heron & Conrad Bird\nCluny 2\n\nSUNDAY - 29/11\nCat Rose\nThe Cluny 2\nCraven + Sam Baxter & Merle Harbron + Frankie Insley\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 27-29 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre, Main Road, Horsley, Newcastle Upon Tyne, NE15 0NT\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 28/11\nBob Fox & Stu Luckley\nThe Glasshouse\nRob Heron & Conrad Bird\nCluny 2\n\nSUNDAY - 29/11\nCat Rose\nThe Cluny 2\nCraven + Sam Baxter & Merle Harbron + Frankie Insley\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-271126",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-271126.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-271126.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
