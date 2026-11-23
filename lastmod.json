@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "fc77cea4-81ec",
-      "lastmod": "2026-11-22"
+      "hash": "80d19c1e-8312",
+      "lastmod": "2026-11-23"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "5ce5cd8-8836",
-      "lastmod": "2026-11-22"
+      "hash": "bb920e2a-87eb",
+      "lastmod": "2026-11-23"
     },
     "https://thekirn.co.uk/events/a-bit-crack-storytelling-hugh-lupton-when-the-morning-stars-sang-the-angels-shouted-for-joy-the-chillingham-arms-20261204/": {
       "hash": "e7569889-3f91",
@@ -357,6 +357,34 @@
       "hash": "591ac214-40a3",
       "lastmod": "2026-10-26"
     },
+    "https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20261124/": {
+      "hash": "9d186157-396d",
+      "lastmod": "2026-11-23"
+    },
+    "https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20261213/": {
+      "hash": "29a56c6a-3969",
+      "lastmod": "2026-11-23"
+    },
+    "https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20261222/": {
+      "hash": "1fdac214-396d",
+      "lastmod": "2026-11-23"
+    },
+    "https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20270110/": {
+      "hash": "91b49434-3965",
+      "lastmod": "2026-11-23"
+    },
+    "https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20270126/": {
+      "hash": "c1530959-3969",
+      "lastmod": "2026-11-23"
+    },
+    "https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20270214/": {
+      "hash": "6a951f12-3969",
+      "lastmod": "2026-11-23"
+    },
+    "https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20270223/": {
+      "hash": "677c666e-396d",
+      "lastmod": "2026-11-23"
+    },
     "https://thekirn.co.uk/events/festive-folk-hearken-quartet-ouseburn-folk-choir-ouseburn-folk-band-tapyard-20261215/": {
       "hash": "2861db31-404e",
       "lastmod": "2026-10-26"
@@ -404,30 +432,6 @@
     "https://thekirn.co.uk/events/freya-ridings-the-glasshouse-gateshead-quays-ne8-2yr-20260927/": {
       "hash": "cf117945-3a1d",
       "lastmod": "2026-10-26"
-    },
-    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20261124/": {
-      "hash": "aa647462-396d",
-      "lastmod": "2026-11-21"
-    },
-    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20261213/": {
-      "hash": "496a2e65-3969",
-      "lastmod": "2026-11-21"
-    },
-    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20261222/": {
-      "hash": "7960544d-396d",
-      "lastmod": "2026-11-21"
-    },
-    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20270110/": {
-      "hash": "345342a1-3965",
-      "lastmod": "2026-11-21"
-    },
-    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20270126/": {
-      "hash": "d50c4e4a-3969",
-      "lastmod": "2026-11-21"
-    },
-    "https://thekirn.co.uk/events/fuck-it-folk-the-cumberland-arms-20270214/": {
-      "hash": "9f043d49-3969",
-      "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/fundraiser-singaround-for-crisis-bridge-hotel-20261207/": {
       "hash": "fbbcc669-3aa4",
@@ -670,8 +674,8 @@
       "lastmod": "2026-11-16"
     },
     "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261122/": {
-      "hash": "7b23171e-3a29",
-      "lastmod": "2026-10-26"
+      "hash": "74837a78-3a68",
+      "lastmod": "2026-11-23"
     },
     "https://thekirn.co.uk/events/monkey-folk-club-monkseaton-arms-20261129/": {
       "hash": "c843245d-3a29",
@@ -898,8 +902,8 @@
       "lastmod": "2026-11-16"
     },
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261122/": {
-      "hash": "361eb404-3cca",
-      "lastmod": "2026-10-26"
+      "hash": "cbb26974-3d00",
+      "lastmod": "2026-11-23"
     },
     "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20261129/": {
       "hash": "27b8e48f-3cca",
@@ -1301,6 +1305,10 @@
       "hash": "96ed05f6-3b2a",
       "lastmod": "2026-11-16"
     },
+    "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20270223/": {
+      "hash": "2444375a-3b2a",
+      "lastmod": "2026-11-23"
+    },
     "https://thekirn.co.uk/events/tim-dalling-bridge-hotel-20270125/": {
       "hash": "a38539b2-37ab",
       "lastmod": "2026-10-26"
@@ -1417,12 +1425,12 @@
       "hash": "12841e-3cd6",
       "lastmod": "2026-11-09"
     },
+    "https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-20261127/": {
+      "hash": "606ccbbf-3d71",
+      "lastmod": "2026-11-23"
+    },
     "https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261023/": {
       "hash": "87522cd0-406a",
-      "lastmod": "2026-10-26"
-    },
-    "https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261127/": {
-      "hash": "3705a93d-4074",
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/winter-makers-market-by-endless-love-creative-baltic-20261028/": {
