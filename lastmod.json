@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "ec6daeee-8391",
-      "lastmod": "2026-11-24"
+      "hash": "eb0c2ea5-8593",
+      "lastmod": "2026-11-25"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "95b286a7-88a2",
-      "lastmod": "2026-11-24"
+      "hash": "dff96dd9-87fc",
+      "lastmod": "2026-11-25"
     },
     "https://thekirn.co.uk/events/a-bit-crack-storytelling-hugh-lupton-when-the-morning-stars-sang-the-angels-shouted-for-joy-the-chillingham-arms-20261204/": {
       "hash": "e7569889-3f91",
@@ -362,8 +362,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20261124/": {
-      "hash": "9d186157-396d",
-      "lastmod": "2026-11-23"
+      "hash": "d7ccaaf9-39f5",
+      "lastmod": "2026-11-25"
     },
     "https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20261213/": {
       "hash": "29a56c6a-3969",
@@ -398,8 +398,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/festive-lino-printing-workshop-tyne-theatre-opera-house-20261124/": {
-      "hash": "b2e3abf9-3cb0",
-      "lastmod": "2026-10-26"
+      "hash": "9efa4f37-3cc4",
+      "lastmod": "2026-11-25"
     },
     "https://thekirn.co.uk/events/festive-wreath-making-workshop-at-the-botanist-the-botanist-20261130/": {
       "hash": "ce47509f-3c34",
@@ -845,6 +845,10 @@
       "hash": "2ba7820f-3b96",
       "lastmod": "2026-11-11"
     },
+    "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20270225/": {
+      "hash": "e91aee94-3b96",
+      "lastmod": "2026-11-25"
+    },
     "https://thekirn.co.uk/events/ouseburn-christmas-market-51-lime-street-20261113/": {
       "hash": "70146c5-3d75",
       "lastmod": "2026-11-14"
@@ -1262,8 +1266,8 @@
       "lastmod": "2026-11-18"
     },
     "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261124/": {
-      "hash": "1701d47d-3b2a",
-      "lastmod": "2026-10-26"
+      "hash": "6c9e630a-3b77",
+      "lastmod": "2026-11-25"
     },
     "https://thekirn.co.uk/events/the-wheatsheaf-session-the-wheatsheaf-felling-20261201/": {
       "hash": "143ffdd-3b25",
@@ -1428,6 +1432,10 @@
     "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20270218/": {
       "hash": "7c55ff18-3ba2",
       "lastmod": "2026-11-19"
+    },
+    "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20270225/": {
+      "hash": "64c589c-3ba2",
+      "lastmod": "2026-11-25"
     },
     "https://thekirn.co.uk/events/willow-star-workshop-cumberland-arms-20261108/": {
       "hash": "12841e-3cd6",
