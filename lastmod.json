@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "eb0c2ea5-8593",
-      "lastmod": "2026-11-25"
+      "hash": "65cb64ad-8992",
+      "lastmod": "2026-11-26"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "dff96dd9-87fc",
-      "lastmod": "2026-11-25"
+      "hash": "fb76c017-84b5",
+      "lastmod": "2026-11-26"
     },
     "https://thekirn.co.uk/events/a-bit-crack-storytelling-hugh-lupton-when-the-morning-stars-sang-the-angels-shouted-for-joy-the-chillingham-arms-20261204/": {
       "hash": "e7569889-3f91",
@@ -120,6 +120,10 @@
     "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270219/": {
       "hash": "f2c1a613-3b99",
       "lastmod": "2026-11-19"
+    },
+    "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270226/": {
+      "hash": "795d0f8d-3b99",
+      "lastmod": "2026-11-26"
     },
     "https://thekirn.co.uk/events/an-dannsa-dub-cluny-2-20261114/": {
       "hash": "2e419558-37e9",
@@ -278,8 +282,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/cramlington-folk-club-clive-gregson-and-the-hayes-sisters-benedictine-social-centre-20261125/": {
-      "hash": "dbab978b-3aed",
-      "lastmod": "2026-10-26"
+      "hash": "f094671-3b2c",
+      "lastmod": "2026-11-26"
     },
     "https://thekirn.co.uk/events/cramlington-folk-club-jez-lowe-christmas-show-benedictine-social-centre-20261216/": {
       "hash": "f3ca0336-3a27",
@@ -342,8 +346,8 @@
       "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/elder-beer-folk-session-elder-beer-20261125/": {
-      "hash": "53b81b18-392d",
-      "lastmod": "2026-11-21"
+      "hash": "2dc1981a-39b3",
+      "lastmod": "2026-11-26"
     },
     "https://thekirn.co.uk/events/elder-beer-folk-session-elder-beer-20261223/": {
       "hash": "6fb9a0d7-392d",
@@ -594,8 +598,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/lucy-farrell-shane-pendergast-cumberland-arms-20261125/": {
-      "hash": "617507de-3b60",
-      "lastmod": "2026-10-26"
+      "hash": "f914eff3-3b87",
+      "lastmod": "2026-11-26"
     },
     "https://thekirn.co.uk/events/luna-halloween-market-jarrow-hall-20261009/": {
       "hash": "962c435a-3a63",
@@ -730,8 +734,8 @@
       "lastmod": "2026-11-19"
     },
     "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261125/": {
-      "hash": "ba17314c-3b1e",
-      "lastmod": "2026-10-26"
+      "hash": "2a10eb7b-3b47",
+      "lastmod": "2026-11-26"
     },
     "https://thekirn.co.uk/events/mostly-irish-session-the-cumberland-arms-20261202/": {
       "hash": "fef56240-3b19",
@@ -1018,8 +1022,8 @@
       "lastmod": "2026-11-19"
     },
     "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261125/": {
-      "hash": "2dc961c3-3a66",
-      "lastmod": "2026-10-26"
+      "hash": "409a9114-3a9d",
+      "lastmod": "2026-11-26"
     },
     "https://thekirn.co.uk/events/sacred-harp-singing-workshop-bridge-hotel-20261202/": {
       "hash": "65b1342b-3a61",
@@ -1138,8 +1142,8 @@
       "lastmod": "2026-11-19"
     },
     "https://thekirn.co.uk/events/singaround-the-brewery-20261125/": {
-      "hash": "a38e53f1-3993",
-      "lastmod": "2026-10-26"
+      "hash": "182e2baf-39f2",
+      "lastmod": "2026-11-26"
     },
     "https://thekirn.co.uk/events/singaround-the-brewery-20261202/": {
       "hash": "d1802423-398e",
