@@ -7,13 +7,13 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/archive/</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -31,24 +31,6 @@
     <loc>https://thekirn.co.uk/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261126/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261126/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261126/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-20261127/</loc>
@@ -221,6 +203,12 @@
   <url>
     <loc>https://thekirn.co.uk/events/fresh-thursday-salt-house-maja-bugge-dave-evans-cobalt-studios-20261203/</loc>
     <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/yuletide-jumper-pottery-painting-workshop-the-cumberland-arms-20261203/</loc>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -447,6 +435,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://thekirn.co.uk/events/lost-love-festive-market-luckies-20261213/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://thekirn.co.uk/events/f-ck-it-folk-the-cumberland-arms-20261213/</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -567,8 +561,20 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261219/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://thekirn.co.uk/events/bookbinding-with-victoria-doyle-cobalt-studios-20261219/</loc>
     <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/winter-solstice-gathering-with-common-c-deep-north-ouseburn-20261219/</loc>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -2237,6 +2243,24 @@
   <url>
     <loc>https://thekirn.co.uk/events/singaround-the-brewery-20261125/</loc>
     <lastmod>2026-11-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261126/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261126/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261126/</loc>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

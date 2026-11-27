@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "65cb64ad-8992",
-      "lastmod": "2026-11-26"
+      "hash": "ec9d0d41-8bc1",
+      "lastmod": "2026-11-27"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "fb76c017-84b5",
-      "lastmod": "2026-11-26"
+      "hash": "63bdc4d5-8576",
+      "lastmod": "2026-11-27"
     },
     "https://thekirn.co.uk/events/a-bit-crack-storytelling-hugh-lupton-when-the-morning-stars-sang-the-angels-shouted-for-joy-the-chillingham-arms-20261204/": {
       "hash": "e7569889-3f91",
@@ -414,8 +414,8 @@
       "lastmod": "2026-10-26"
     },
     "https://thekirn.co.uk/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261126/": {
-      "hash": "7e99ce29-3c8b",
-      "lastmod": "2026-10-26"
+      "hash": "17672cc1-3c9b",
+      "lastmod": "2026-11-27"
     },
     "https://thekirn.co.uk/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261204/": {
       "hash": "4a3fb4ae-3c7e",
@@ -596,6 +596,10 @@
     "https://thekirn.co.uk/events/lindisfarne-o2-city-hall-20261219/": {
       "hash": "4d09d298-3b76",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/lost-love-festive-market-luckies-20261213/": {
+      "hash": "55d59bc1-38d5",
+      "lastmod": "2026-11-27"
     },
     "https://thekirn.co.uk/events/lucy-farrell-shane-pendergast-cumberland-arms-20261125/": {
       "hash": "f914eff3-3b87",
@@ -826,8 +830,8 @@
       "lastmod": "2026-11-13"
     },
     "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261126/": {
-      "hash": "7285e2cd-3b96",
-      "lastmod": "2026-10-26"
+      "hash": "9aa6be9b-3bc1",
+      "lastmod": "2026-11-27"
     },
     "https://thekirn.co.uk/events/old-time-music-session-the-cumberland-arms-20261210/": {
       "hash": "7d610d2f-3b96",
@@ -876,6 +880,10 @@
     "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-20261205/": {
       "hash": "847bccd0-4103",
       "lastmod": "2026-10-26"
+    },
+    "https://thekirn.co.uk/events/ouseburn-heritage-guided-walk-ouseburn-trust-at-51-lime-street-20261219/": {
+      "hash": "f1880c2f-4222",
+      "lastmod": "2026-11-27"
     },
     "https://thekirn.co.uk/events/peatbog-faeries-anarchy-brew-co-20261023/": {
       "hash": "bf80eb82-40c9",
@@ -1386,8 +1394,8 @@
       "lastmod": "2026-11-20"
     },
     "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261126/": {
-      "hash": "c8d3a73c-3ba4",
-      "lastmod": "2026-10-26"
+      "hash": "e2764eb1-3bcc",
+      "lastmod": "2026-11-27"
     },
     "https://thekirn.co.uk/events/tyneside-irish-centre-session-tyneside-irish-centre-20261203/": {
       "hash": "ede75fc-3b9f",
@@ -1461,6 +1469,10 @@
       "hash": "65306004-3ac5",
       "lastmod": "2026-10-26"
     },
+    "https://thekirn.co.uk/events/winter-solstice-gathering-with-common-c-deep-north-ouseburn-20261219/": {
+      "hash": "4b47426b-3c4d",
+      "lastmod": "2026-11-27"
+    },
     "https://thekirn.co.uk/events/world-building-map-making-with-mark-bletcher-cobalt-studios-20261128/": {
       "hash": "fcf9213c-417d",
       "lastmod": "2026-10-26"
@@ -1480,6 +1492,10 @@
     "https://thekirn.co.uk/events/yuletide-folklore-a-christmas-talk-with-david-silk-newcastle-castle-20261218/": {
       "hash": "ac4f8c22-3b92",
       "lastmod": "2026-11-18"
+    },
+    "https://thekirn.co.uk/events/yuletide-jumper-pottery-painting-workshop-the-cumberland-arms-20261203/": {
+      "hash": "16823d2d-3dd1",
+      "lastmod": "2026-11-27"
     }
   }
 }
