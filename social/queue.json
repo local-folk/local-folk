@@ -1,179 +1,12 @@
 {
-  "generatedAt": "2026-11-23T12:57:26.698Z",
+  "generatedAt": "2026-11-27T10:09:47.565Z",
   "posts": [
     {
-      "PostID": "Weekly-231126r9t9ot",
-      "PostType": "Weekly Roundup",
-      "Status": "Draft",
-      "ScheduledFor": "2026-11-23T07:00:00.000Z",
-      "EventIDs": "2026-11-23|bridge hotel|singaround,2026-11-24|the cumberland arms|fuck it folk,2026-11-25|cumberland arms|lucy farrell shane pendergast,2026-11-25|elder beer|elder beer folk session,2026-11-26|tyneside irish centre|tyneside irish centre session,2026-11-27|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
-      "Candidates": [
-        {
-          "date": "2026-11-23",
-          "day": "Monday",
-          "events": [
-            {
-              "id": "2026-11-23|bridge hotel|singaround",
-              "title": "Singaround",
-              "venue": "Bridge Hotel",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            }
-          ]
-        },
-        {
-          "date": "2026-11-24",
-          "day": "Tuesday",
-          "events": [
-            {
-              "id": "2026-11-24|tyne theatre opera house|festive lino printing workshop",
-              "title": "Festive Lino Printing Workshop",
-              "venue": "Tyne Theatre & Opera House",
-              "category": "Heritage Workshop",
-              "rank": 25,
-              "size": 5
-            },
-            {
-              "id": "2026-11-24|the cumberland arms|fuck it folk",
-              "title": "F*ck It Folk",
-              "venue": "The Cumberland Arms",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            },
-            {
-              "id": "2026-11-24|the wheatsheaf felling|the wheatsheaf session",
-              "title": "The Wheatsheaf Session",
-              "venue": "The Wheatsheaf, Felling",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            }
-          ]
-        },
-        {
-          "date": "2026-11-25",
-          "day": "Wednesday",
-          "events": [
-            {
-              "id": "2026-11-25|benedictine social centre|cramlington folk club clive gregson and the hayes sisters",
-              "title": "Cramlington Folk Club: Clive Gregson & the Hayes Sisters",
-              "venue": "Benedictine Social Centre",
-              "category": "Folk Music",
-              "rank": 7,
-              "size": 3
-            },
-            {
-              "id": "2026-11-25|cumberland arms|lucy farrell shane pendergast",
-              "title": "Lucy Farrell & Shane Pendergast",
-              "venue": "Cumberland Arms",
-              "category": "Folk Music",
-              "rank": 8,
-              "size": 2
-            },
-            {
-              "id": "2026-11-25|the brewery|singaround",
-              "title": "Singaround",
-              "venue": "The Brewery",
-              "category": "Music Session",
-              "rank": 47,
-              "size": 3
-            },
-            {
-              "id": "2026-11-25|elder beer|elder beer folk session",
-              "title": "Elder Beer Folk Session",
-              "venue": "Elder Beer",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            },
-            {
-              "id": "2026-11-25|the cumberland arms|mostly irish session",
-              "title": "Mostly Irish Session",
-              "venue": "The Cumberland Arms",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            },
-            {
-              "id": "2026-11-25|bridge hotel|Sacred Harp Singing Workshop",
-              "title": "Sacred Harp Singing Workshop",
-              "venue": "Bridge Hotel",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            }
-          ]
-        },
-        {
-          "date": "2026-11-26",
-          "day": "Thursday",
-          "events": [
-            {
-              "id": "2026-11-26|tyneside cinema|festive wreath making workshop at tyneside cinema",
-              "title": "Festive Wreath Making Workshop at Tyneside Cinema",
-              "venue": "Tyneside Cinema",
-              "category": "Heritage Workshop",
-              "rank": 27,
-              "size": 3
-            },
-            {
-              "id": "2026-11-26|tyneside irish centre|tyneside irish centre session",
-              "title": "Tyneside Irish Centre Session",
-              "venue": "Tyneside Irish Centre",
-              "category": "Music Session",
-              "rank": 47,
-              "size": 3
-            },
-            {
-              "id": "2026-11-26|the cumberland arms|old time music session",
-              "title": "Old Time Music Session",
-              "venue": "The Cumberland Arms",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            }
-          ]
-        },
-        {
-          "date": "2026-11-27",
-          "day": "Friday",
-          "events": [
-            {
-              "id": "2026-11-27|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop",
-              "title": "Willow Star Workshop",
-              "venue": "The Hearth Arts Centre",
-              "category": "Heritage Workshop",
-              "rank": 28,
-              "size": 2
-            },
-            {
-              "id": "2026-11-27|the cumberland arms|an criscn ln irish session",
-              "title": "An Crúiscín Làn' Irish Session",
-              "venue": "The Cumberland Arms",
-              "category": "Music Session",
-              "rank": 48,
-              "size": 2
-            }
-          ]
-        }
-      ],
-      "FBCaption": "// 23-27 NOV // WEEKLY ROUNDUP\n\nMONDAY - 23/11\nSingaround\nBridge Hotel\n\nTUESDAY - 24/11\nF*ck It Folk\nThe Cumberland Arms\n\nWEDNESDAY - 25/11\nLucy Farrell & Shane Pendergast\nCumberland Arms\nElder Beer Folk Session\nElder Beer\n\nTHURSDAY - 26/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 23-27 NOV // WEEKLY ROUNDUP\n\nMONDAY - 23/11\nSingaround\nBridge Hotel\n\nTUESDAY - 24/11\nF*ck It Folk\nThe Cumberland Arms\n\nWEDNESDAY - 25/11\nLucy Farrell & Shane Pendergast\nCumberland Arms\nElder Beer Folk Session\nElder Beer\n\nTHURSDAY - 26/11\nTyneside Irish Centre Session\nTyneside Irish Centre\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekly-231126r9t9ot",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekly-231126r9t9ot.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekly-231126r9t9ot.jpg",
-      "FBPostID": "",
-      "IGPostID": "",
-      "Notes": ""
-    },
-    {
-      "PostID": "Weekend-271126",
+      "PostID": "Weekend-271126rtl2lf",
       "PostType": "Weekend Roundup",
       "Status": "Draft",
       "ScheduledFor": "2026-11-27T07:00:00.000Z",
-      "EventIDs": "2026-11-27|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop,2026-11-27|the cumberland arms|an criscn ln irish session,2026-11-28|the glasshouse|bob fox and stu luckley,2026-11-28|cluny 2|rob heron conrad bird,2026-11-29|the cluny 2|cat rose,2026-11-29|the cumberland arms|craven sam baxter and merle harbron",
+      "EventIDs": "2026-11-27|the hearth arts centre main road horsley newcastle upon tyne ne15 0nt|willow star workshop,2026-11-28|the glasshouse|bob fox and stu luckley,2026-11-28|cluny 2|rob heron conrad bird,2026-11-28|the common room|northern gothic hexmas market,2026-11-29|the cluny 2|cat rose,2026-11-29|the cumberland arms|craven sam baxter and merle harbron,2026-11-29|tyne bank brewery|festive fright gothic market,2026-11-29|wylam brewery|the crafty bazaar its christmas makers market",
       "Candidates": [
         {
           "date": "2026-11-27",
@@ -306,11 +139,11 @@
           ]
         }
       ],
-      "FBCaption": "// 27-29 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 28/11\nBob Fox & Stu Luckley\nThe Glasshouse\nRob Heron & Conrad Bird\nCluny 2\n\nSUNDAY - 29/11\nCat Rose\nThe Cluny 2\nCraven + Sam Baxter & Merle Harbron + Frankie Insley\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "IGCaption": "// 27-29 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre\nAn Crúiscín Làn' Irish Session\nThe Cumberland Arms\n\nSATURDAY - 28/11\nBob Fox & Stu Luckley\nThe Glasshouse\nRob Heron & Conrad Bird\nCluny 2\n\nSUNDAY - 29/11\nCat Rose\nThe Cluny 2\nCraven + Sam Baxter & Merle Harbron + Frankie Insley\nThe Cumberland Arms\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
-      "ImageVariant": "Weekend-271126",
-      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-271126.png",
-      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-271126.jpg",
+      "FBCaption": "// 27-29 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre\n\nSATURDAY - 28/11\nBob Fox & Stu Luckley\nThe Glasshouse\nRob Heron & Conrad Bird\nCluny 2\nNorthern Gothic Hexmas Market\nThe Common Room\n\nSUNDAY - 29/11\nCat Rose\nThe Cluny 2\nCraven + Sam Baxter & Merle Harbron + Frankie Insley\nThe Cumberland Arms\nFestive Fright Gothic Market\nTyne Bank Brewery\nThe Crafty Bazaar - It's Christmas! Maker's Market\nWylam Brewery\n\nSee full list of events on the website.\nLink: thekirn.co.uk\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "IGCaption": "// 27-29 NOV // WEEKEND ROUNDUP\n\nFRIDAY - 27/11\nWillow Star Workshop\nThe Hearth Arts Centre\n\nSATURDAY - 28/11\nBob Fox & Stu Luckley\nThe Glasshouse\nRob Heron & Conrad Bird\nCluny 2\nNorthern Gothic Hexmas Market\nThe Common Room\n\nSUNDAY - 29/11\nCat Rose\nThe Cluny 2\nCraven + Sam Baxter & Merle Harbron + Frankie Insley\nThe Cumberland Arms\nFestive Fright Gothic Market\nTyne Bank Brewery\nThe Crafty Bazaar - It's Christmas! Maker's Market\nWylam Brewery\n\nSee full list of events on the website.\nLink in bio.\n\n#newcastle #northeast #folk #folkmusic #sessions #crafts #markets #thekirn",
+      "ImageVariant": "Weekend-271126rtl2lf",
+      "ImageURL": "https://thekirn.co.uk/social/archive/Weekend-271126rtl2lf.png",
+      "EmailImageURL": "https://thekirn.co.uk/social/archive/Weekend-271126rtl2lf.jpg",
       "FBPostID": "",
       "IGPostID": "",
       "Notes": ""
