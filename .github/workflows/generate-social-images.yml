@@ -43,6 +43,17 @@ on:
   repository_dispatch:
     types: [social-rebuild]
   workflow_dispatch:
+    inputs:
+      variant:
+        description: 'Which roundup to build'
+        required: false
+        default: due
+        type: choice
+        options:
+          - due
+          - Weekly
+          - Weekend
+          - all
 
 permissions:
   contents: write
@@ -77,26 +88,54 @@ jobs:
           fi
 
       - name: Select events
-        # workflow_dispatch can fire on any weekday. When run manually, both
-        # variants are selected so a test run produces images to look at;
-        # on the scheduled days selection picks the one that is due.
+        # Scheduled runs build whichever roundup is due that day.
+        #
+        # Manual and dispatched runs take the `variant` input, added
+        # 20 November 2026. It defaults to "due" and exists so an automatic
+        # dispatch (or a rebuild of one post) can never rebuild the OTHER
+        # roundup and overwrite a post already waiting in the queue. "all" is
+        # kept for deliberate "show me everything" test runs.
         #
         # A social-rebuild behaves like workflow_dispatch: the owner's change
-        # names a specific post, and re-selecting both variants would rebuild a
-        # post nobody asked to change.
+        # names a specific post, so Apps Script passes that post's variant.
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_VARIANT: ${{ github.event.inputs.variant }}
+          PAYLOAD_VARIANT: ${{ github.event.client_payload.variant }}
         run: |
           set -euo pipefail
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || \
-             [ "${{ github.event_name }}" = "repository_dispatch" ]; then
-            node select-social-events.js --all
-          else
-            node select-social-events.js
-          fi
+          VARIANT="${INPUT_VARIANT:-${PAYLOAD_VARIANT:-due}}"
+          case "$EVENT_NAME" in
+            workflow_dispatch|repository_dispatch)
+              case "$VARIANT" in
+                all)           node select-social-events.js --all ;;
+                Weekly|Weekend) node select-social-events.js --variant "$VARIANT" ;;
+                due|'')        node select-social-events.js ;;
+                *)
+                  echo "::error::Unknown variant '$VARIANT'"
+                  exit 1
+                  ;;
+              esac
+              ;;
+            *)
+              node select-social-events.js
+              ;;
+          esac
 
       - name: Apply the owner's event choices
         # Only meaningful on a rebuild. On the ordinary Monday and Friday runs
         # POST_CHOICES_URL is unset, the script says so and does nothing - which
         # is why this step is safe to run every time.
+        #
+        # There is deliberately NO --wait here. Google caches the published CSV
+        # for 300 seconds, and the race that caused was fixed on the Apps Script
+        # side instead: the rebuild is now scheduled six minutes AFTER the owner
+        # saves their choice, so by the time this step runs the sheet has
+        # settled and the read is always correct.
+        #
+        # Polling here was tried first and rejected - it made every rebuild pay
+        # a wait it should not have, and it needed a repository change. See
+        # requestRegeneration_ in social.gs and SOCIAL-POST-CHOICES.md.
         env:
           POST_CHOICES_URL: ${{ vars.POST_CHOICES_URL }}
         run: |
