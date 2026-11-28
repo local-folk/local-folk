@@ -2,12 +2,12 @@
   "version": 1,
   "pages": {
     "https://thekirn.co.uk/archive/": {
-      "hash": "ec9d0d41-8bc1",
-      "lastmod": "2026-11-27"
+      "hash": "c30a96ec-8d20",
+      "lastmod": "2026-11-28"
     },
     "https://thekirn.co.uk/events/": {
-      "hash": "63bdc4d5-8576",
-      "lastmod": "2026-11-27"
+      "hash": "76de58a7-84ac",
+      "lastmod": "2026-11-28"
     },
     "https://thekirn.co.uk/events/a-bit-crack-storytelling-hugh-lupton-when-the-morning-stars-sang-the-angels-shouted-for-joy-the-chillingham-arms-20261204/": {
       "hash": "e7569889-3f91",
@@ -70,8 +70,8 @@
       "lastmod": "2026-11-21"
     },
     "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261127/": {
-      "hash": "4fb31958-3b99",
-      "lastmod": "2026-10-26"
+      "hash": "a9f9206a-3bb8",
+      "lastmod": "2026-11-28"
     },
     "https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261204/": {
       "hash": "b5c18bfa-3b94",
@@ -981,6 +981,10 @@
       "hash": "a6ba19d-3cca",
       "lastmod": "2026-11-21"
     },
+    "https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270228/": {
+      "hash": "7bd8df2c-3cca",
+      "lastmod": "2026-11-28"
+    },
     "https://thekirn.co.uk/events/radical-choir-with-bethany-elen-cobalt-studios-20261103/": {
       "hash": "cf86b615-3dff",
       "lastmod": "2026-11-05"
@@ -1454,8 +1458,8 @@
       "lastmod": "2026-11-09"
     },
     "https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-20261127/": {
-      "hash": "606ccbbf-3d71",
-      "lastmod": "2026-11-23"
+      "hash": "81006d3a-3d7d",
+      "lastmod": "2026-11-28"
     },
     "https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-main-road-horsley-newcastle-upon-tyne-ne15-0nt-20261023/": {
       "hash": "87522cd0-406a",

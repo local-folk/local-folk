@@ -7,13 +7,13 @@
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/</loc>
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/archive/</loc>
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -31,18 +31,6 @@
     <loc>https://thekirn.co.uk/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-20261127/</loc>
-    <lastmod>2026-11-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261127/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thekirn.co.uk/events/christmas-willow-wreath-workshop-land-of-oak-iron-heritage-centre-20261128/</loc>
@@ -1079,6 +1067,12 @@
   <url>
     <loc>https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20270226/</loc>
     <lastmod>2026-11-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/quayside-market-newcastle-quayside-20270228/</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -2261,6 +2255,18 @@
   <url>
     <loc>https://thekirn.co.uk/events/festive-wreath-making-workshop-at-tyneside-cinema-tyneside-cinema-20261126/</loc>
     <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/willow-star-workshop-the-hearth-arts-centre-20261127/</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thekirn.co.uk/events/an-cruiscin-lan-irish-session-the-cumberland-arms-20261127/</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
